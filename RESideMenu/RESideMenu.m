@@ -54,6 +54,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)show
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
 }
 
@@ -177,6 +178,8 @@ const int INTERSTITIAL_STEPS = 99;
         weakSelf.tableView.alpha = 0;
         weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
     }];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 }
 
 - (void)restoreView
