@@ -31,7 +31,6 @@
         [menu hide];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[DemoViewController alloc] init]];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     
     _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem]];

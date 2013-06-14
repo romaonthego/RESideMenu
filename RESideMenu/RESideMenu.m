@@ -34,6 +34,7 @@ const int INTERSTITIAL_STEPS = 99;
     self.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:21];
     self.textColor = [UIColor whiteColor];
     self.highlightedTextColor = [UIColor lightGrayColor];
+    self.hideStatusBarArea = YES;
     
     return self;
 }
@@ -63,7 +64,7 @@ const int INTERSTITIAL_STEPS = 99;
 {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     window.rootViewController = viewController;
-    _screenshotView.image = [window re_snapshot];
+    _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
     [window bringSubviewToFront:_backgroundView];
     [window bringSubviewToFront:_tableView];
     [window bringSubviewToFront:_screenshotView];
@@ -88,8 +89,9 @@ const int INTERSTITIAL_STEPS = 99;
     
     // Take a snapshot
     //
-    _screenshotView = [[UIImageView alloc] initWithFrame:window.bounds];
-    _screenshotView.image = [window re_snapshot];
+    _screenshotView = [[UIImageView alloc] initWithFrame:CGRectNull];
+    _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
+    _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
     
