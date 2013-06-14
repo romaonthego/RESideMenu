@@ -140,15 +140,17 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.layer.bounds = CGRectMake(window.frame.size.width - 80.0, (window.frame.size.height - newHeight) / 2.0, newWidth, newHeight);
     [CATransaction commit];
     
-    __typeof (&*self) __weak weakSelf = self;
-    weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
-    [UIView animateWithDuration:0.5 animations:^{
-        weakSelf.tableView.transform = CGAffineTransformIdentity;
-    }];
-    
-    [UIView animateWithDuration:0.6 animations:^{
-        weakSelf.tableView.alpha = 1;
-    }];
+    if (_tableView.alpha == 0) {
+        __typeof (&*self) __weak weakSelf = self;
+        weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
+        [UIView animateWithDuration:0.5 animations:^{
+            weakSelf.tableView.transform = CGAffineTransformIdentity;
+        }];
+        
+        [UIView animateWithDuration:0.6 animations:^{
+            weakSelf.tableView.alpha = 1;
+        }];
+    }
 }
 
 - (void)restoreFromRect:(CGRect)rect
