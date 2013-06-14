@@ -34,7 +34,7 @@
     }];
     
     _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem]];
-    _sideMenu.verticalOffset = 250;
+    _sideMenu.verticalOffset = IS_WIDESCREEN ? 250 : 230;
     [_sideMenu show];
 }
 

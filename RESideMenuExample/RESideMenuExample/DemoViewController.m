@@ -77,7 +77,7 @@
     }];
     
     _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem, aroundMeItem, helpCenterItem, logOutItem]];
-    _sideMenu.verticalOffset = 110;
+    _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
     [_sideMenu show];
 }
 
