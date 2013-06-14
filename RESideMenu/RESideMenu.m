@@ -127,12 +127,21 @@ const int INTERSTITIAL_STEPS = 99;
     if (sender.state == UIGestureRecognizerStateChanged) {
         CGFloat x = translation.x + _initialX;
         CGFloat m = 1 - ((x / window.frame.size.width) * 210/window.frame.size.width);
+        CGFloat y = (window.frame.size.height - _originalSize.height * m) / 2.0;
         
-        _screenshotView.frame = CGRectMake(x, (window.frame.size.height - _originalSize.height * m) / 2.0, _originalSize.width * m, _originalSize.height * m);
+        if (x < 0 || y < 0) {
+            _screenshotView.frame = CGRectMake(0, 0, _originalSize.width, _originalSize.height);
+        } else {
+            _screenshotView.frame = CGRectMake(x, y, _originalSize.width * m, _originalSize.height * m);
+        }
     }
     
     if (sender.state == UIGestureRecognizerStateEnded) {
-        [self restoreFromRect:_screenshotView.frame];
+        if ([sender velocityInView:window].x < 0) {
+            [self restoreFromRect:_screenshotView.frame];
+        } else {
+            [self minimizeFromRect:_screenshotView.frame];
+        }
     }
 }
 
