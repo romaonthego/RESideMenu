@@ -23,6 +23,8 @@
 		30D7C3C4176B82F100FB3018 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C3C3176B82F100FB3018 /* QuartzCore.framework */; };
 		30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C0176B81CD00FB3018 /* Evaluate.m */; };
 		30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */; };
+		30DBD52D176BB3FC00CF3CB3 /* RESideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */; };
+		30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,10 +52,13 @@
 		30D7C3BF176B81CD00FB3018 /* Evaluate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Evaluate.h; sourceTree = "<group>"; };
 		30D7C3C0176B81CD00FB3018 /* Evaluate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evaluate.m; sourceTree = "<group>"; };
 		30D7C3C1176B81CD00FB3018 /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
-		30D7C3C2176B81CD00FB3018 /* RESideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		30D7C3C3176B82F100FB3018 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		30D7C3C6176B830E00FB3018 /* AccelerationAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccelerationAnimation.h; sourceTree = "<group>"; };
 		30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccelerationAnimation.m; sourceTree = "<group>"; };
+		30DBD52B176BB3FC00CF3CB3 /* RESideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenuCell.h; sourceTree = "<group>"; };
+		30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenuCell.m; sourceTree = "<group>"; };
+		30DBD52E176BB88700CF3CB3 /* RESideMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenuItem.h; sourceTree = "<group>"; };
+		30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,14 +138,18 @@
 				30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */,
 				30D7C3BF176B81CD00FB3018 /* Evaluate.h */,
 				30D7C3C0176B81CD00FB3018 /* Evaluate.m */,
-				30D7C3C1176B81CD00FB3018 /* RESideMenu.h */,
-				30D7C3C2176B81CD00FB3018 /* RESideMenu.m */,
 				30D7C3B6176B720000FB3018 /* REBackgroundView.h */,
 				30D7C3B7176B720000FB3018 /* REBackgroundView.m */,
-				30D7C3B9176B7DE200FB3018 /* RESideMenu.h */,
+				30D7C3C1176B81CD00FB3018 /* RESideMenu.h */,
 				30D7C3BA176B7DE200FB3018 /* RESideMenu.m */,
+				30DBD52B176BB3FC00CF3CB3 /* RESideMenuCell.h */,
+				30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */,
+				30DBD52E176BB88700CF3CB3 /* RESideMenuItem.h */,
+				30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */,
 				30D7C3BC176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.h */,
 				30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */,
+				30D7C3B9176B7DE200FB3018 /* RESideMenu.h */,
+				30D7C3BA176B7DE200FB3018 /* RESideMenu.m */,
 			);
 			name = RESideMenu;
 			path = ../RESideMenu;
@@ -219,6 +228,8 @@
 				30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */,
 				30D7C3BB176B7DE200FB3018 /* RESideMenu.m in Sources */,
 				30D7C3BE176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m in Sources */,
+				30DBD52D176BB3FC00CF3CB3 /* RESideMenuCell.m in Sources */,
+				30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

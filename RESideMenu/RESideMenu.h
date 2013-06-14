@@ -10,15 +10,19 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIWindow+RESideMenuExtensions.h"
 #import "REBackgroundView.h"
+#import "RESideMenuCell.h"
+#import "RESideMenuItem.h"
 
-@interface RESideMenu : NSObject
+@interface RESideMenu : NSObject <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
-@property (strong, readonly, nonatomic) UIImageView *screenshotView;
-@property (assign, readwrite, nonatomic) CGPoint gripPoint;
-@property (assign, readwrite, nonatomic) NSInteger initialX;
-@property (assign, readwrite, nonatomic) CGSize originalSize;
+@property (strong, readonly, nonatomic) NSArray *items;
+@property (assign, readwrite, nonatomic) CGFloat verticalOffset;
+@property (strong, readwrite, nonatomic) UIFont *font;
+@property (strong, readwrite, nonatomic) UIColor *textColor;
+@property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
 
+- (id)initWithItems:(NSArray *)items;
 - (void)show;
+- (void)hide;
 
 @end
