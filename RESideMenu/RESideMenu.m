@@ -31,6 +31,8 @@ const int INTERSTITIAL_STEPS = 99;
         return nil;
     
     self.verticalOffset = 100;
+    self.horizontalOffset = 50;
+    self.itemHeight = 50;
     self.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:21];
     self.textColor = [UIColor whiteColor];
     self.highlightedTextColor = [UIColor lightGrayColor];
@@ -238,7 +240,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return self.itemHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -257,6 +259,7 @@ const int INTERSTITIAL_STEPS = 99;
     
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
+    cell.horizontalOffset = self.horizontalOffset;
     
     return cell;
 }

@@ -17,6 +17,8 @@
 
 @property (strong, readonly, nonatomic) NSArray *items;
 @property (assign, readwrite, nonatomic) CGFloat verticalOffset;
+@property (assign, readwrite, nonatomic) CGFloat horizontalOffset;
+@property (assign, readwrite, nonatomic) CGFloat itemHeight;
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
