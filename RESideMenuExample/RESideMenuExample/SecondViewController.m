@@ -18,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Second";
     self.view.backgroundColor = [UIColor colorWithRed:0.902 green:0.859 blue:0.487 alpha:1.000];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
 }

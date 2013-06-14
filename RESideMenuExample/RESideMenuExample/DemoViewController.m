@@ -18,8 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//REBackgroundView *view = [[REBackgroundView alloc] initWithFrame:self.view.bounds];
-    //[self.view addSubview:view];
     self.title = @"RESideMenu";
     self.view.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.000];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
@@ -32,45 +30,50 @@
 {
     RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
+        
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     RESideMenuItem *activityItem = [[RESideMenuItem alloc] initWithTitle:@"Activity" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     RESideMenuItem *profileItem = [[RESideMenuItem alloc] initWithTitle:@"Profile" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     RESideMenuItem *aroundMeItem = [[RESideMenuItem alloc] initWithTitle:@"Around Me" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help Center" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
     }];
     RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SecondViewController alloc] init]];
-        [menu setRootViewController:navigationController];
-        NSLog(@"Item: %@", item);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
+        [alertView show];
     }];
     
     _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem, aroundMeItem, helpCenterItem, logOutItem]];
