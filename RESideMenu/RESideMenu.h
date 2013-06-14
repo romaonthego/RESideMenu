@@ -20,9 +20,11 @@
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
+@property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 
 - (id)initWithItems:(NSArray *)items;
 - (void)show;
 - (void)hide;
+- (void)setRootViewController:(UIViewController *)viewController;
 
 @end

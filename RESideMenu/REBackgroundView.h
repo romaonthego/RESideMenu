@@ -10,4 +10,6 @@
 
 @interface REBackgroundView : UIView
 
+@property (strong, readwrite, nonatomic) UIImage *backgroundImage;
+
 @end

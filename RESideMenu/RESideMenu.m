@@ -59,15 +59,14 @@ const int INTERSTITIAL_STEPS = 99;
     [self restoreFromRect:_screenshotView.frame];
 }
 
--(void)slow:(UIView *)view
+- (void)setRootViewController:(UIViewController *)viewController
 {
-    [CATransaction begin];
-    [CATransaction setValue:[NSNumber numberWithFloat:2.5] forKey:kCATransactionAnimationDuration];
-    AccelerationAnimation *animation = [AccelerationAnimation animationWithKeyPath:@"position.y" startValue:view.frame.origin.y + 300 endValue:0 evaluationObject:[[ExponentialDecayEvaluator alloc] initWithCoefficient:6.0] interstitialSteps:INTERSTITIAL_STEPS];
-    [animation setDelegate:self];
-    [[view layer] setValue:[NSNumber numberWithDouble:0] forKeyPath:@"position.y"];
-    [[view layer] addAnimation:animation forKey:@"position"];
-    [CATransaction commit];
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    window.rootViewController = viewController;
+    _screenshotView.image = [window re_snapshot];
+    [window bringSubviewToFront:_backgroundView];
+    [window bringSubviewToFront:_tableView];
+    [window bringSubviewToFront:_screenshotView];
 }
 
 - (void)addAnimation:(NSString *)path view:(UIView *)view startValue:(double)startValue endValue:(double)endValue
@@ -99,6 +98,7 @@ const int INTERSTITIAL_STEPS = 99;
     // Add views
     //
     _backgroundView = [[REBackgroundView alloc] initWithFrame:window.bounds];
+    _backgroundView.backgroundImage = _backgroundImage;
     [window addSubview:_backgroundView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, window.frame.size.height)];

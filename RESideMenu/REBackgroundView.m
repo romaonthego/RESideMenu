@@ -8,21 +8,35 @@
 
 #import "REBackgroundView.h"
 
+@interface REBackgroundView ()
+
+@property (strong, readonly, nonatomic) UIImageView *imageView;
+
+@end
+
 @implementation REBackgroundView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return self;
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    _backgroundImage = backgroundImage;
+    _imageView.image = backgroundImage;
+}
+
 - (void)drawRect:(CGRect)rect
 {
+    if (self.backgroundImage)
+        return;
+    
     //// General Declarations
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -56,10 +70,6 @@
     //// Cleanup
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
-    
-
-    
-
 }
 
 @end
