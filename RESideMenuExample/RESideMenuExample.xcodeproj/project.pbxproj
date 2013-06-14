@@ -1,0 +1,341 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30D7C396176B71A500FB3018 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C395176B71A500FB3018 /* UIKit.framework */; };
+		30D7C398176B71A500FB3018 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C397176B71A500FB3018 /* Foundation.framework */; };
+		30D7C39A176B71A500FB3018 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C399176B71A500FB3018 /* CoreGraphics.framework */; };
+		30D7C3A0176B71A500FB3018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C39E176B71A500FB3018 /* InfoPlist.strings */; };
+		30D7C3A2176B71A500FB3018 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3A1176B71A500FB3018 /* main.m */; };
+		30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3A5176B71A500FB3018 /* AppDelegate.m */; };
+		30D7C3A8176B71A500FB3018 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3A7176B71A500FB3018 /* Default.png */; };
+		30D7C3AA176B71A500FB3018 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3A9176B71A500FB3018 /* Default@2x.png */; };
+		30D7C3AC176B71A500FB3018 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */; };
+		30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3B3176B71CD00FB3018 /* DemoViewController.m */; };
+		30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3B7176B720000FB3018 /* REBackgroundView.m */; };
+		30D7C3BB176B7DE200FB3018 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3BA176B7DE200FB3018 /* RESideMenu.m */; };
+		30D7C3BE176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */; };
+		30D7C3C4176B82F100FB3018 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C3C3176B82F100FB3018 /* QuartzCore.framework */; };
+		30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C0176B81CD00FB3018 /* Evaluate.m */; };
+		30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30D7C392176B71A500FB3018 /* RESideMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESideMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30D7C395176B71A500FB3018 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		30D7C397176B71A500FB3018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		30D7C399176B71A500FB3018 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		30D7C39D176B71A500FB3018 /* RESideMenuExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RESideMenuExample-Info.plist"; sourceTree = "<group>"; };
+		30D7C39F176B71A500FB3018 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		30D7C3A1176B71A500FB3018 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30D7C3A3176B71A500FB3018 /* RESideMenuExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RESideMenuExample-Prefix.pch"; sourceTree = "<group>"; };
+		30D7C3A4176B71A500FB3018 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		30D7C3A5176B71A500FB3018 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		30D7C3A7176B71A500FB3018 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		30D7C3A9176B71A500FB3018 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		30D7C3B2176B71CD00FB3018 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		30D7C3B3176B71CD00FB3018 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		30D7C3B6176B720000FB3018 /* REBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REBackgroundView.h; sourceTree = "<group>"; };
+		30D7C3B7176B720000FB3018 /* REBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REBackgroundView.m; sourceTree = "<group>"; };
+		30D7C3B9176B7DE200FB3018 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		30D7C3BA176B7DE200FB3018 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		30D7C3BC176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+RESideMenuExtensions.h"; sourceTree = "<group>"; };
+		30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+RESideMenuExtensions.m"; sourceTree = "<group>"; };
+		30D7C3BF176B81CD00FB3018 /* Evaluate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Evaluate.h; sourceTree = "<group>"; };
+		30D7C3C0176B81CD00FB3018 /* Evaluate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evaluate.m; sourceTree = "<group>"; };
+		30D7C3C1176B81CD00FB3018 /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		30D7C3C2176B81CD00FB3018 /* RESideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		30D7C3C3176B82F100FB3018 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		30D7C3C6176B830E00FB3018 /* AccelerationAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccelerationAnimation.h; sourceTree = "<group>"; };
+		30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccelerationAnimation.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30D7C38F176B71A500FB3018 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30D7C3C4176B82F100FB3018 /* QuartzCore.framework in Frameworks */,
+				30D7C396176B71A500FB3018 /* UIKit.framework in Frameworks */,
+				30D7C398176B71A500FB3018 /* Foundation.framework in Frameworks */,
+				30D7C39A176B71A500FB3018 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30D7C389176B71A500FB3018 = {
+			isa = PBXGroup;
+			children = (
+				30D7C3B5176B71E500FB3018 /* RESideMenu */,
+				30D7C39B176B71A500FB3018 /* RESideMenuExample */,
+				30D7C394176B71A500FB3018 /* Frameworks */,
+				30D7C393176B71A500FB3018 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30D7C393176B71A500FB3018 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30D7C392176B71A500FB3018 /* RESideMenuExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30D7C394176B71A500FB3018 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30D7C3C3176B82F100FB3018 /* QuartzCore.framework */,
+				30D7C395176B71A500FB3018 /* UIKit.framework */,
+				30D7C397176B71A500FB3018 /* Foundation.framework */,
+				30D7C399176B71A500FB3018 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30D7C39B176B71A500FB3018 /* RESideMenuExample */ = {
+			isa = PBXGroup;
+			children = (
+				30D7C39C176B71A500FB3018 /* Supporting Files */,
+				30D7C3A4176B71A500FB3018 /* AppDelegate.h */,
+				30D7C3A5176B71A500FB3018 /* AppDelegate.m */,
+				30D7C3B2176B71CD00FB3018 /* DemoViewController.h */,
+				30D7C3B3176B71CD00FB3018 /* DemoViewController.m */,
+			);
+			path = RESideMenuExample;
+			sourceTree = "<group>";
+		};
+		30D7C39C176B71A500FB3018 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30D7C39D176B71A500FB3018 /* RESideMenuExample-Info.plist */,
+				30D7C39E176B71A500FB3018 /* InfoPlist.strings */,
+				30D7C3A1176B71A500FB3018 /* main.m */,
+				30D7C3A3176B71A500FB3018 /* RESideMenuExample-Prefix.pch */,
+				30D7C3A7176B71A500FB3018 /* Default.png */,
+				30D7C3A9176B71A500FB3018 /* Default@2x.png */,
+				30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		30D7C3B5176B71E500FB3018 /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				30D7C3C6176B830E00FB3018 /* AccelerationAnimation.h */,
+				30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */,
+				30D7C3BF176B81CD00FB3018 /* Evaluate.h */,
+				30D7C3C0176B81CD00FB3018 /* Evaluate.m */,
+				30D7C3C1176B81CD00FB3018 /* RESideMenu.h */,
+				30D7C3C2176B81CD00FB3018 /* RESideMenu.m */,
+				30D7C3B6176B720000FB3018 /* REBackgroundView.h */,
+				30D7C3B7176B720000FB3018 /* REBackgroundView.m */,
+				30D7C3B9176B7DE200FB3018 /* RESideMenu.h */,
+				30D7C3BA176B7DE200FB3018 /* RESideMenu.m */,
+				30D7C3BC176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.h */,
+				30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */,
+			);
+			name = RESideMenu;
+			path = ../RESideMenu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30D7C391176B71A500FB3018 /* RESideMenuExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30D7C3AF176B71A500FB3018 /* Build configuration list for PBXNativeTarget "RESideMenuExample" */;
+			buildPhases = (
+				30D7C38E176B71A500FB3018 /* Sources */,
+				30D7C38F176B71A500FB3018 /* Frameworks */,
+				30D7C390176B71A500FB3018 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RESideMenuExample;
+			productName = RESideMenuExample;
+			productReference = 30D7C392176B71A500FB3018 /* RESideMenuExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30D7C38A176B71A500FB3018 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Roman Efimov";
+			};
+			buildConfigurationList = 30D7C38D176B71A500FB3018 /* Build configuration list for PBXProject "RESideMenuExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 30D7C389176B71A500FB3018;
+			productRefGroup = 30D7C393176B71A500FB3018 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30D7C391176B71A500FB3018 /* RESideMenuExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30D7C390176B71A500FB3018 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30D7C3A0176B71A500FB3018 /* InfoPlist.strings in Resources */,
+				30D7C3A8176B71A500FB3018 /* Default.png in Resources */,
+				30D7C3AA176B71A500FB3018 /* Default@2x.png in Resources */,
+				30D7C3AC176B71A500FB3018 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30D7C38E176B71A500FB3018 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30D7C3A2176B71A500FB3018 /* main.m in Sources */,
+				30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */,
+				30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */,
+				30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */,
+				30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */,
+				30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */,
+				30D7C3BB176B7DE200FB3018 /* RESideMenu.m in Sources */,
+				30D7C3BE176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		30D7C39E176B71A500FB3018 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30D7C39F176B71A500FB3018 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30D7C3AD176B71A500FB3018 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		30D7C3AE176B71A500FB3018 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30D7C3B0176B71A500FB3018 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RESideMenuExample/RESideMenuExample-Prefix.pch";
+				INFOPLIST_FILE = "RESideMenuExample/RESideMenuExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		30D7C3B1176B71A500FB3018 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RESideMenuExample/RESideMenuExample-Prefix.pch";
+				INFOPLIST_FILE = "RESideMenuExample/RESideMenuExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30D7C38D176B71A500FB3018 /* Build configuration list for PBXProject "RESideMenuExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30D7C3AD176B71A500FB3018 /* Debug */,
+				30D7C3AE176B71A500FB3018 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30D7C3AF176B71A500FB3018 /* Build configuration list for PBXNativeTarget "RESideMenuExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30D7C3B0176B71A500FB3018 /* Debug */,
+				30D7C3B1176B71A500FB3018 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30D7C38A176B71A500FB3018 /* Project object */;
+}
