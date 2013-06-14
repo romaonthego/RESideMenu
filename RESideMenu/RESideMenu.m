@@ -261,6 +261,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     if (item.action)
         item.action(self, item);
