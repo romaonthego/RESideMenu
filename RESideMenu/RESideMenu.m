@@ -184,7 +184,12 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)restoreView
 {
-    [_screenshotView removeFromSuperview];
+    __typeof (&*self) __weak weakSelf = self;
+    [UIView animateWithDuration:0.2 animations:^{
+        weakSelf.screenshotView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [weakSelf.screenshotView removeFromSuperview];
+    }];
     [_backgroundView removeFromSuperview];
     [_tableView removeFromSuperview];
 }
