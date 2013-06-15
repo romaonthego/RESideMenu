@@ -1,8 +1,9 @@
-# REMenu
+# RESideMenu
 
-Dropdown menu inspired by Vine.
+iOS 7 style side menu inspired by dribbble shots http://dribbble.com/shots/1116265-Instasave-iPhone-App and http://dribbble.com/shots/1114754-Social-Feed-iOS7
 
-![Screenshot of REMenu](https://github.com/romaonthego/REMenu/raw/master/Screenshot.png "REMenu Screenshot")
+<img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="320" height="480" />
+<img src="https://github.com/romaonthego/RESideMenu/raw/master/Demo.gif" alt="RESideMenu Screenshot" width="320" height="480" />
 
 ## Requirements
 * Xcode 4.5 or higher
@@ -12,13 +13,13 @@ Dropdown menu inspired by Vine.
 
 ## Demo
 
-Build and run the `REMenuExample` project in Xcode to see `REMenu` in action.
+Build and run the `RESideMenuExample` project in Xcode to see `RESideMenu` in action.
 
 ## Installation
 
 ### CocoaPods
 
-The recommended approach for installating `REMenu` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
+The recommended approach for installating `RESideMenu` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
 For best results, it is recommended that you install via CocoaPods >= **0.15.2** using Git >= **1.8.0** installed via Homebrew.
 
 Install CocoaPods if not already available:
@@ -36,11 +37,11 @@ $ touch Podfile
 $ edit Podfile
 ```
 
-Edit your Podfile and add REMenu:
+Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '5.0'
-pod 'REMenu', '~> 1.3.4'
+pod 'RESideMenu', '~> 1.0'
 ```
 
 Install into your Xcode project:
@@ -59,104 +60,43 @@ Please note that if your installation fails, it may be because you are installin
 
 ### Manual Install
 
-All you need to do is drop `REMenu` files into your project, and add `#include "REMenu.h"` to the top of classes that will use it.
+All you need to do is drop `RESideMenu` files into your project, and add `#include "RESideMenu.h"` to the top of classes that will use it.
 
 ## Example Usage
 
 ``` objective-c
-REMenuItem *homeItem = [[REMenuItem alloc] initWithTitle:@"Home"
-                                                  subtitle:@"Return to Home Screen"
-                                                     image:[UIImage imageNamed:@"Icon_Home"]
-                                          highlightedImage:nil
-                                                    action:^(REMenuItem *item) {
-                                                        NSLog(@"Item: %@", item);
-                                                    }];
+RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
+    [menu hide];
 
-REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"Explore"
-                                                   subtitle:@"Explore 47 additional options"
-                                                      image:[UIImage imageNamed:@"Icon_Explore"]
-                                           highlightedImage:nil
-                                                     action:^(REMenuItem *item) {
-                                                         NSLog(@"Item: %@", item);
-                                                     }];
+    SecondViewController *secondViewController = [[SecondViewController alloc] init];
+    secondViewController.title = item.title;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
 
-REMenuItem *activityItem = [[REMenuItem alloc] initWithTitle:@"Activity"
-                                                    subtitle:@"Perform 3 additional activities"
-                                                       image:[UIImage imageNamed:@"Icon_Activity"]
-                                            highlightedImage:nil
-                                                      action:^(REMenuItem *item) {
-                                                          NSLog(@"Item: %@", item);
-                                                      }];
-
-REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"Profile"
-                                                      image:[UIImage imageNamed:@"Icon_Profile"]
-                                           highlightedImage:nil
-                                                     action:^(REMenuItem *item) {
-                                                         NSLog(@"Item: %@", item);
-                                                     }];
-
-_menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
-[_menu showFromNavigationController:self.navigationController];
-```
-
-You can also present `REMenu` from a custom view, there are 2 specific tasks for that:
-
-``` objective-c
-- (void)showFromRect:(CGRect)rect inView:(UIView *)view;
-- (void)showInView:(UIView *)view;
-```
-
-Since version 1.3 you are able to assign custom view to your items, as show below:
-
-``` objective-c
-UIView *customView = [[UIView alloc] init];
-customView.backgroundColor = [UIColor blueColor];
-customView.alpha = 0.4;
-REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
-    NSLog(@"Tap on customView");
+    // Use setRootViewController to switch between view controllers
+    //
+    [menu setRootViewController:navigationController];
 }];
+RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
+    [menu hide];
+}];
+
+_sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem]];
+[_sideMenu show];
 ```
 
 ## Customization
 
-You can customize the following properties of `REMenu`:
+You can customize the following properties of `RESideMenu`:
 
 ``` objective-c
-@property (assign, readwrite, nonatomic) CGFloat cornerRadius;
-@property (strong, readwrite, nonatomic) UIColor *shadowColor;
-@property (assign, readwrite, nonatomic) CGSize shadowOffset;
-@property (assign, readwrite, nonatomic) CGFloat shadowOpacity;
-@property (assign, readwrite, nonatomic) CGFloat shadowRadius;
+@property (assign, readwrite, nonatomic) CGFloat verticalOffset;
+@property (assign, readwrite, nonatomic) CGFloat horizontalOffset;
 @property (assign, readwrite, nonatomic) CGFloat itemHeight;
-@property (strong, readwrite, nonatomic) UIColor *backgroundColor;
-@property (strong, readwrite, nonatomic) UIColor *separatorColor;
-@property (assign, readwrite, nonatomic) CGFloat separatorHeight;
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
-@property (strong, readwrite, nonatomic) UIColor *textShadowColor;
-@property (assign, readwrite, nonatomic) CGSize imageOffset;
-@property (assign, readwrite, nonatomic) CGSize textOffset;
-@property (assign, readwrite, nonatomic) CGSize textShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *highligtedBackgroundColor;
-@property (strong, readwrite, nonatomic) UIColor *highlightedSeparatorColor;
-@property (strong, readwrite, nonatomic) UIColor *highlighedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *highlighedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
-@property (assign, readwrite, nonatomic) CGFloat borderWidth;
-@property (strong, readwrite, nonatomic) UIColor *borderColor;
-@property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
-@property (strong, readwrite, nonatomic) UIFont *subtitleFont;
-@property (strong, readwrite, nonatomic) UIColor *subtitleTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subtitleTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subtitleTextOffset;
-@property (assign, readwrite, nonatomic) CGSize subtitleTextShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
-@property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
-@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
-@property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
-@property (assign, readwrite, nonatomic) BOOL bounce;
+@property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
+@property (strong, readwrite, nonatomic) UIImage *backgroundImage;
+@property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
 ```
 
 ## Contact
@@ -169,7 +109,7 @@ Roman Efimov
 
 ## License
 
-REMenu is available under the MIT license.
+RESideMenu is available under the MIT license.
 
 Copyright © 2013 Roman Efimov.
 
