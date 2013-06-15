@@ -8,6 +8,7 @@
 
 #import "SecondViewController.h"
 #import "DemoViewController.h"
+#import "AppDelegate.h"
 
 @interface SecondViewController ()
 
@@ -35,6 +36,7 @@
     
     _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem]];
     _sideMenu.verticalOffset = IS_WIDESCREEN ? 250 : 230;
+    _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
     [_sideMenu show];
 }
 
