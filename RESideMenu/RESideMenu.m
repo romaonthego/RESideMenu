@@ -160,6 +160,11 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)restoreFromRect:(CGRect)rect
 {
+    _screenshotView.userInteractionEnabled = NO;
+    while (_screenshotView.gestureRecognizers.count) {
+        [_screenshotView removeGestureRecognizer:[_screenshotView.gestureRecognizers objectAtIndex:0]];
+    }
+    g
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat:0.4] forKey:kCATransactionAnimationDuration];
@@ -185,7 +190,6 @@ const int INTERSTITIAL_STEPS = 99;
 - (void)restoreView
 {
     __typeof (&*self) __weak weakSelf = self;
-    _screenshotView.userInteractionEnabled = NO;
     [UIView animateWithDuration:0.2 animations:^{
         weakSelf.screenshotView.alpha = 0;
     } completion:^(BOOL finished) {
