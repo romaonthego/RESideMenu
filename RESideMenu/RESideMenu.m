@@ -185,6 +185,7 @@ const int INTERSTITIAL_STEPS = 99;
 - (void)restoreView
 {
     __typeof (&*self) __weak weakSelf = self;
+    _screenshotView.userInteractionEnabled = NO;
     [UIView animateWithDuration:0.2 animations:^{
         weakSelf.screenshotView.alpha = 0;
     } completion:^(BOOL finished) {
