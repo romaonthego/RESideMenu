@@ -262,6 +262,8 @@ const int INTERSTITIAL_STEPS = 99;
     
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
+    cell.imageView.image = item.image;
+    cell.imageView.highlightedImage = item.highlightedImage;
     cell.horizontalOffset = self.horizontalOffset;
     
     return cell;
