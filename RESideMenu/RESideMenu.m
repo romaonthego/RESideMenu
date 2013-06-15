@@ -164,7 +164,7 @@ const int INTERSTITIAL_STEPS = 99;
     while (_screenshotView.gestureRecognizers.count) {
         [_screenshotView removeGestureRecognizer:[_screenshotView.gestureRecognizers objectAtIndex:0]];
     }
-    g
+    
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat:0.4] forKey:kCATransactionAnimationDuration];
