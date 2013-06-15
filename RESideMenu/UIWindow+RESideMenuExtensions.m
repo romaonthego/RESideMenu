@@ -54,8 +54,6 @@
     // Retrieve the screenshot image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
-    NSLog(@"%f", image.size.height);
-    
     UIGraphicsEndImageContext();
     
     return image;
