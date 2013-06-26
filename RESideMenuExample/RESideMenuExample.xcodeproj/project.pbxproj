@@ -26,6 +26,7 @@
 		30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */; };
 		30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */; };
 		30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD53A176F698A00CF3CB3 /* RESideMenu.m */; };
+		30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E884F0177B5C57007D0E38 /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		30DBD539176F698A00CF3CB3 /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
 		30DBD53A176F698A00CF3CB3 /* RESideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		30E884EF177B5C57007D0E38 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		30E884F0177B5C57007D0E38 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,13 +113,15 @@
 		30D7C39B176B71A500FB3018 /* RESideMenuExample */ = {
 			isa = PBXGroup;
 			children = (
-				30D7C39C176B71A500FB3018 /* Supporting Files */,
 				30D7C3A4176B71A500FB3018 /* AppDelegate.h */,
 				30D7C3A5176B71A500FB3018 /* AppDelegate.m */,
+				30E884EF177B5C57007D0E38 /* RootViewController.h */,
+				30E884F0177B5C57007D0E38 /* RootViewController.m */,
 				30D7C3B2176B71CD00FB3018 /* DemoViewController.h */,
 				30D7C3B3176B71CD00FB3018 /* DemoViewController.m */,
 				30DBD531176BBDFB00CF3CB3 /* SecondViewController.h */,
 				30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */,
+				30D7C39C176B71A500FB3018 /* Supporting Files */,
 			);
 			path = RESideMenuExample;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				30DBD52D176BB3FC00CF3CB3 /* RESideMenuCell.m in Sources */,
 				30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */,
 				30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */,
+				30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

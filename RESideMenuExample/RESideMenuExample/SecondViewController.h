@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RESideMenu.h"
+#import "RootViewController.h"
 
-@interface SecondViewController : UIViewController
-
-@property (strong, readonly, nonatomic) RESideMenu *sideMenu;
+@interface SecondViewController : RootViewController
 
 @end

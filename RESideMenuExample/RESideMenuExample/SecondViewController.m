@@ -20,25 +20,6 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:0.902 green:0.859 blue:0.487 alpha:1.000];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
 }
-
-#pragma mark -
-#pragma mark Button actions
-
-- (void)showMenu
-{
-    RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Go Back" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        [menu hide];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[DemoViewController alloc] init]];
-        [menu setRootViewController:navigationController];
-    }];
-    
-    _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem]];
-    _sideMenu.verticalOffset = IS_WIDESCREEN ? 250 : 230;
-    _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
-    [_sideMenu show];
-}
-
 
 @end
