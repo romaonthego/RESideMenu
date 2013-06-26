@@ -41,6 +41,7 @@
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
+@property (assign, readwrite, nonatomic) BOOL isShowing;
 
 - (id)initWithItems:(NSArray *)items;
 - (void)show;

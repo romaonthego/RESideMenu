@@ -71,6 +71,10 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)show
 {
+    if (_isShowing)
+        return;
+    
+    _isShowing = YES;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
 }
@@ -202,6 +206,7 @@ const int INTERSTITIAL_STEPS = 99;
     }];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    _isShowing = NO;
 }
 
 - (void)restoreView
