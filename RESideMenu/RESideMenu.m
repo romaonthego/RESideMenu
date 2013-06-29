@@ -30,7 +30,9 @@
 const int INTERSTITIAL_STEPS = 99;
 
 @interface RESideMenu ()
-
+{
+    BOOL _appIsHidingStatusBar;
+}
 @property (assign, readwrite, nonatomic) NSInteger initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
@@ -75,7 +77,13 @@ const int INTERSTITIAL_STEPS = 99;
         return;
     
     _isShowing = YES;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+
+        // keep track of whether or not it was already hidden
+    _appIsHidingStatusBar=[[UIApplication sharedApplication] isStatusBarHidden];
+
+    if(!_appIsHidingStatusBar)
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    
     [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
 }
 
@@ -205,7 +213,8 @@ const int INTERSTITIAL_STEPS = 99;
         weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.7, 0.7);
     }];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    // restore the status bar to its original state.
+    [[UIApplication sharedApplication] setStatusBarHidden:_appIsHidingStatusBar withAnimation:UIStatusBarAnimationFade];
     _isShowing = NO;
 }
 
