@@ -57,16 +57,33 @@
             [menu hide];
             NSLog(@"Item %@", item);
         }];
-        RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help Center" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        
+        RESideMenuItem *helpPlus1 = [[RESideMenuItem alloc] initWithTitle:@"How to use" action:^(RESideMenu *menu, RESideMenuItem *item) {
+            NSLog(@"Item %@", item);
             [menu hide];
+        }];
+        
+        RESideMenuItem *helpPlus2 = [[RESideMenuItem alloc] initWithTitle:@"Helpdesk" action:^(RESideMenu *menu, RESideMenuItem *item) {
+            NSLog(@"Item %@", item);
+            [menu hide];
+        }];
+        
+        RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help+" action:^(RESideMenu *menu, RESideMenuItem *item) {
             NSLog(@"Item %@", item);
         }];
+        helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
+        
+        RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Others+" action:^(RESideMenu *menu, RESideMenuItem *item) {
+            NSLog(@"Item %@", item);
+        }];
+        itemWithSubItems.subItems = @[aroundMeItem,helpCenterItem];
+        
         RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
             [alertView show];
         }];
         
-        _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem, aroundMeItem, helpCenterItem, logOutItem]];
+        _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem,itemWithSubItems, logOutItem]];
         _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
         _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
     }
