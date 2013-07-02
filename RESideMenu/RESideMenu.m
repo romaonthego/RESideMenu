@@ -32,12 +32,17 @@ const int INTERSTITIAL_STEPS = 99;
 @interface RESideMenu ()
 {
     BOOL _appIsHidingStatusBar;
+    BOOL _isInSubMenu;
 }
 @property (assign, readwrite, nonatomic) NSInteger initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
 @property (strong, readonly, nonatomic) UITableView *tableView;
+
+// Array containing menu (which are array of items)
+@property (strong, readwrite, nonatomic) NSMutableArray *menuStack;
+@property (strong, readwrite, nonatomic) RESideMenuItem *backMenu;
 
 @end
 
@@ -57,6 +62,8 @@ const int INTERSTITIAL_STEPS = 99;
     self.highlightedTextColor = [UIColor lightGrayColor];
     self.hideStatusBarArea = YES;
     
+    self.menuStack = [NSMutableArray array];
+    
     return self;
 }
 
@@ -67,8 +74,37 @@ const int INTERSTITIAL_STEPS = 99;
         return nil;
     
     _items = items;
+    [_menuStack addObject:items];
+    _backMenu = [[RESideMenuItem alloc] initWithTitle:@"<" action:nil];
     
     return self;
+}
+
+- (void) showItems:(NSArray *)items
+{
+    // Animate to deappear
+    __typeof (&*self) __weak weakSelf = self;
+    weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
+    [UIView animateWithDuration:0.5 animations:^{
+        weakSelf.tableView.transform = CGAffineTransformIdentity;
+    }];
+    [UIView animateWithDuration:0.6 animations:^{
+        weakSelf.tableView.alpha = 0;
+    }];
+    
+    // Set items and reload
+    _items = items;
+    [self.tableView reloadData];
+    
+    // Animate to reappear once reloaded
+    weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 1, 1);
+    [UIView animateWithDuration:0.5 animations:^{
+        weakSelf.tableView.transform = CGAffineTransformIdentity;
+    }];
+    [UIView animateWithDuration:0.6 animations:^{
+        weakSelf.tableView.alpha = 1;
+    }];
+    
 }
 
 - (void)show
@@ -77,10 +113,10 @@ const int INTERSTITIAL_STEPS = 99;
         return;
     
     _isShowing = YES;
-
-        // keep track of whether or not it was already hidden
+    
+    // keep track of whether or not it was already hidden
     _appIsHidingStatusBar=[[UIApplication sharedApplication] isStatusBarHidden];
-
+    
     if(!_appIsHidingStatusBar)
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
@@ -236,7 +272,7 @@ const int INTERSTITIAL_STEPS = 99;
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-
+    
     CGPoint translation = [sender translationInView:window];
 	if (sender.state == UIGestureRecognizerStateBegan) {
 		_initialX = _screenshotView.frame.origin.x;
@@ -248,7 +284,7 @@ const int INTERSTITIAL_STEPS = 99;
         CGFloat y = (window.frame.size.height - _originalSize.height * m) / 2.0;
         
         _tableView.alpha = (x + 80.0) / window.frame.size.width;
-
+        
         if (x < 0 || y < 0) {
             _screenshotView.frame = CGRectMake(0, 0, _originalSize.width, _originalSize.height);
         } else {
@@ -301,6 +337,7 @@ const int INTERSTITIAL_STEPS = 99;
         cell.textLabel.highlightedTextColor = self.highlightedTextColor;
     }
     
+    
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
     cell.imageView.image = item.image;
@@ -316,6 +353,34 @@ const int INTERSTITIAL_STEPS = 99;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
+    
+    // Case back on subMenu
+    if(_isInSubMenu &&
+       indexPath.row==0 &&
+       indexPath.section == 0){
+        
+        [_menuStack removeLastObject];
+        if(_menuStack.count==1){
+            _isInSubMenu = NO;
+        }
+        [self showItems:_menuStack.lastObject];
+        
+        return;
+    }
+        
+    // Case menu with subMenu
+    if(item.subItems){
+        _isInSubMenu = YES;
+        
+        // Concat back menu to submenus and show
+        NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
+        [array addObjectsFromArray:item.subItems];
+        [self showItems:array];
+        
+        // Push new menu on stack
+        [_menuStack addObject:array];
+    }
+    
     if (item.action)
         item.action(self, item);
 }
