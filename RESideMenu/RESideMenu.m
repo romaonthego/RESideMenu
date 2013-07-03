@@ -87,11 +87,9 @@ const int INTERSTITIAL_STEPS = 99;
     weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
     [UIView animateWithDuration:0.5 animations:^{
         weakSelf.tableView.transform = CGAffineTransformIdentity;
-    }];
-    [UIView animateWithDuration:0.6 animations:^{
         weakSelf.tableView.alpha = 0;
     }];
-    
+
     // Set items and reload
     _items = items;
     [self.tableView reloadData];
@@ -100,9 +98,7 @@ const int INTERSTITIAL_STEPS = 99;
     weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 1, 1);
     [UIView animateWithDuration:0.5 animations:^{
         weakSelf.tableView.transform = CGAffineTransformIdentity;
-    }];
-    [UIView animateWithDuration:0.6 animations:^{
-        weakSelf.tableView.alpha = 1;
+         weakSelf.tableView.alpha = 1;
     }];
     
 }
