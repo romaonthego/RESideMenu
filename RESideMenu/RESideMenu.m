@@ -80,7 +80,7 @@ const int INTERSTITIAL_STEPS = 99;
     return self;
 }
 
-- (void) showItems:(NSArray *)items
+- (void) reloadWithItems:(NSArray *)items
 {
     // Animate to deappear
     __typeof (&*self) __weak weakSelf = self;
@@ -323,24 +323,84 @@ const int INTERSTITIAL_STEPS = 99;
 {
     NSString *cellIdentifier = @"RESideMenuCell";
     
-    RESideMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[RESideMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
+    
+    RESideMenuCell *cell = [[RESideMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
         cell.textLabel.font = self.font;
         cell.textLabel.textColor = self.textColor;
         cell.textLabel.highlightedTextColor = self.highlightedTextColor;
+    
+    
+    UITapGestureRecognizer *tapped;
+    UITextField * field;
+    
+    switch (item.type) {
+        case SideMenuItemTypeField:
+            
+            cell.textLabel.text = @"";
+            field = [[UITextField alloc] initWithFrame:CGRectMake(self.horizontalOffset, 12, 200, cell.frame.size.height)];
+            field.delegate = self;
+            [field setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+            [field setAutocorrectionType:UITextAutocorrectionTypeNo];
+            [field setFont:self.font];
+            [field setTextColor:self.textColor];
+            [field setPlaceholder:item.title];
+            [field setReturnKeyType:UIReturnKeyDone];
+            field.tag = indexPath.row;
+            [cell addSubview:field];
+            cell.imageView.image = item.image;
+            cell.imageView.highlightedImage = item.highlightedImage;
+            
+            cell.horizontalOffset = self.horizontalOffset;
+            break;
+            
+        default:
+            cell.textLabel.text = item.title;
+            cell.imageView.image = item.image;
+            cell.imageView.highlightedImage = item.highlightedImage;
+            cell.imageView.userInteractionEnabled = YES;
+            cell.imageView.tag = indexPath.row;
+            tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageAction:)];
+            [cell.imageView addGestureRecognizer:tapped];
+            
+            if(item.image){
+                cell.horizontalOffset = 10;
+            }else{
+                cell.horizontalOffset = self.horizontalOffset;   
+            }
+            
+            break;
     }
-    
-    
-    RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.title;
-    cell.imageView.image = item.image;
-    cell.imageView.highlightedImage = item.highlightedImage;
-    cell.horizontalOffset = self.horizontalOffset;
-    
+
     return cell;
+}
+
+#pragma mark - User interaction
+
+-(void) imageAction:(UITapGestureRecognizer *) sender
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)sender;
+    RESideMenuItem * item = _items[gesture.view.tag];
+    if(item.imageAction){
+        item.imageAction(self, item); 
+    }
+}
+
+#pragma mark - textfield
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField.text.length > 0){
+        RESideMenuItem *item = [_items objectAtIndex:textField.tag];
+        _lastFieldInput = textField.text;
+        if (item.action){
+           item.action(self, item); 
+        }
+    }
+    [textField resignFirstResponder];
+    return NO;
 }
 
 #pragma mark - Table view delegate
@@ -359,7 +419,7 @@ const int INTERSTITIAL_STEPS = 99;
         if(_menuStack.count==1){
             _isInSubMenu = NO;
         }
-        [self showItems:_menuStack.lastObject];
+        [self reloadWithItems:_menuStack.lastObject];
         
         return;
     }
@@ -371,7 +431,7 @@ const int INTERSTITIAL_STEPS = 99;
         // Concat back menu to submenus and show
         NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
         [array addObjectsFromArray:item.subItems];
-        [self showItems:array];
+        [self reloadWithItems:array];
         
         // Push new menu on stack
         [_menuStack addObject:array];

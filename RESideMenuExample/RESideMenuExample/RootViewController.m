@@ -12,14 +12,19 @@
 #import "AppDelegate.h"
 
 @interface RootViewController ()
-
+    
 @end
 
-@implementation RootViewController
+@implementation RootViewController{
+    NSMutableArray * addedItems;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    addedItems = [NSMutableArray array];
+    
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
 }
 
@@ -45,45 +50,43 @@
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
             [menu setRootViewController:navigationController];
         }];
-        RESideMenuItem *activityItem = [[RESideMenuItem alloc] initWithTitle:@"Activity" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];
-            NSLog(@"Item %@", item);
+
+        RESideMenuItem *addNewItem = [[RESideMenuItem alloc] initWithTitle:@"+ Add new" action:^(RESideMenu *menu, RESideMenuItem *item) {
+            
+            __block RESideMenuItem *addedItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"delete"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
+                
+                NSMutableArray * items = menu.items.mutableCopy;
+                [items removeObject:addedItem];
+                [addedItems removeObject:addedItem];
+                [menu reloadWithItems:items];
+
+            } action:^(RESideMenu *menu, RESideMenuItem *item) {
+                NSLog(@"Item %@", item);
+                [menu hide];
+            }];
+            
+            NSMutableArray * items = menu.items.mutableCopy;
+            [items insertObject:addedItem atIndex:2];
+            [addedItems addObject:addedItem];
+            [menu reloadWithItems:items];
+            
         }];
-        RESideMenuItem *profileItem = [[RESideMenuItem alloc] initWithTitle:@"Profile" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];
-            NSLog(@"Item %@", item);
-        }];
-        RESideMenuItem *aroundMeItem = [[RESideMenuItem alloc] initWithTitle:@"Around Me" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];
-            NSLog(@"Item %@", item);
-        }];
+        [addNewItem setType:SideMenuItemTypeField];
         
-        RESideMenuItem *helpPlus1 = [[RESideMenuItem alloc] initWithTitle:@"How to use" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            NSLog(@"Item %@", item);
-            [menu hide];
-        }];
-        
-        RESideMenuItem *helpPlus2 = [[RESideMenuItem alloc] initWithTitle:@"Helpdesk" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            NSLog(@"Item %@", item);
-            [menu hide];
-        }];
-        
-        RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help+" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            NSLog(@"Item %@", item);
-        }];
-        helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
         
         RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Others+" action:^(RESideMenu *menu, RESideMenuItem *item) {
             NSLog(@"Item %@", item);
         }];
-        itemWithSubItems.subItems = @[aroundMeItem,helpCenterItem];
+        NSMutableArray * otherItems = addedItems;
+        [otherItems insertObject:addNewItem atIndex:0];
+        itemWithSubItems.subItems = otherItems;
         
         RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
             [alertView show];
         }];
         
-        _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem,itemWithSubItems, logOutItem]];
+        _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem,itemWithSubItems, logOutItem]];
         _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
         _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
     }
