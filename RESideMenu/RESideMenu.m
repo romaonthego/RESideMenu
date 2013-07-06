@@ -397,12 +397,17 @@ const int INTERSTITIAL_STEPS = 99;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    if(textField.text.length > 0){
+    
+    NSString *s = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if(s.length > 0){
         RESideMenuItem *item = [_items objectAtIndex:textField.tag];
         _lastFieldInput = textField.text;
         if (item.action){
             item.action(self, item);
         }
+    }else{
+        textField.text = @"";
     }
     
     return YES;
@@ -414,6 +419,10 @@ const int INTERSTITIAL_STEPS = 99;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
+    
+    if(item.type==SideMenuItemTypeField){
+        return;
+    }
     
     // Prioritize action in case user want to interact with submenu in it
     if (item.action){
