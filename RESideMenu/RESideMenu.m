@@ -440,14 +440,9 @@ const int INTERSTITIAL_STEPS = 99;
     // Case menu with subMenu
     if(item.subItems){
         _isInSubMenu = YES;
-        
-        // Concat back menu to submenus and show
-        NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
-        [array addObjectsFromArray:item.subItems];
-        [self reloadWithItems:array];
-        
+        [self reloadWithItems:item.subItems];
         // Push new menu on stack
-        [_menuStack addObject:array];
+        [_menuStack addObject:item.subItems];
     }
 }
 
