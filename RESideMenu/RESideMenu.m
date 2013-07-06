@@ -91,7 +91,8 @@ const int INTERSTITIAL_STEPS = 99;
     }];
 
     // Set items and reload
-    if(_isInSubMenu){
+    RESideMenuItem * firstItem = items[0];
+    if(_isInSubMenu && firstItem!=_backMenu){
         NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
         [array addObjectsFromArray:items];
         _items = array;
@@ -361,7 +362,6 @@ const int INTERSTITIAL_STEPS = 99;
             cell.imageView.image = item.image;
             cell.imageView.highlightedImage = item.highlightedImage;
             
-            cell.horizontalOffset = self.horizontalOffset;
             break;
             
         default:
@@ -373,15 +373,11 @@ const int INTERSTITIAL_STEPS = 99;
             tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageAction:)];
             [cell.imageView addGestureRecognizer:tapped];
             
-            if(item.image){
-                cell.horizontalOffset = self.horizontalOffset - item.image.size.width - 8;
-            }else{
-                cell.horizontalOffset = self.horizontalOffset;   
-            }
-            
             break;
     }
 
+    cell.horizontalOffset = self.horizontalOffset;
+    
     return cell;
 }
 
