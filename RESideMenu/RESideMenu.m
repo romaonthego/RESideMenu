@@ -91,7 +91,14 @@ const int INTERSTITIAL_STEPS = 99;
     }];
 
     // Set items and reload
-    _items = items;
+    if(_isInSubMenu){
+        NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
+        [array addObjectsFromArray:items];
+        _items = array;
+    }else{
+       _items = items;  
+    }
+    
     [self.tableView reloadData];
     
     // Animate to reappear once reloaded
