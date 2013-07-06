@@ -396,15 +396,16 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [textField resignFirstResponder];
     if(textField.text.length > 0){
         RESideMenuItem *item = [_items objectAtIndex:textField.tag];
         _lastFieldInput = textField.text;
         if (item.action){
-           item.action(self, item); 
+            item.action(self, item);
         }
     }
-    [textField resignFirstResponder];
-    return NO;
+    
+    return YES;
 }
 
 #pragma mark - Table view delegate
