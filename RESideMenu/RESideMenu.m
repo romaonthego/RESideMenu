@@ -168,6 +168,7 @@ const int INTERSTITIAL_STEPS = 99;
     [window addSubview:_backgroundView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, window.frame.size.height)];
+    [_tableView setShowsVerticalScrollIndicator:NO];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.backgroundView = nil;
     _tableView.delegate = self;
@@ -366,7 +367,7 @@ const int INTERSTITIAL_STEPS = 99;
             [cell.imageView addGestureRecognizer:tapped];
             
             if(item.image){
-                cell.horizontalOffset = 10;
+                cell.horizontalOffset = self.horizontalOffset - item.image.size.width - 8;
             }else{
                 cell.horizontalOffset = self.horizontalOffset;   
             }

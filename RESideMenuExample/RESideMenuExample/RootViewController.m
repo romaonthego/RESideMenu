@@ -53,7 +53,7 @@
 
         RESideMenuItem *addNewItem = [[RESideMenuItem alloc] initWithTitle:@"+ Add new" action:^(RESideMenu *menu, RESideMenuItem *item) {
             
-            __block RESideMenuItem *addedItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"delete"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
+            __block RESideMenuItem *addedItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus2"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
                 
                 NSMutableArray * items = menu.items.mutableCopy;
                 [items removeObject:addedItem];
