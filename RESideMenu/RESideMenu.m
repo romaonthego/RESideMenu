@@ -411,6 +411,11 @@ const int INTERSTITIAL_STEPS = 99;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     
+    // Prioritize action in case user want to interact with submenu in it
+    if (item.action){
+        item.action(self, item);
+    }
+        
     // Case back on subMenu
     if(_isInSubMenu &&
        indexPath.row==0 &&
@@ -437,9 +442,6 @@ const int INTERSTITIAL_STEPS = 99;
         // Push new menu on stack
         [_menuStack addObject:array];
     }
-    
-    if (item.action)
-        item.action(self, item);
 }
 
 @end
