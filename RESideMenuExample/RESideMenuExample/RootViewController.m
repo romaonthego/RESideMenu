@@ -26,6 +26,14 @@
     addedItems = [NSMutableArray array];
     
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
+    
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:gestureRecognizer];
+}
+
+-(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
+    [self showMenu];
 }
 
 #pragma mark -
@@ -34,6 +42,8 @@
 - (void)showMenu
 {
     if (!_sideMenu) {
+        
+        // Simple menus
         RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
             [menu hide];
             
@@ -51,7 +61,8 @@
             [menu setRootViewController:navigationController];
         }];
 
-        RESideMenuItem *addNewItem = [[RESideMenuItem alloc] initWithTitle:@"+ Add new" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        // Dynamic addable menus
+        RESideMenuItem *addNewItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"+ Add menu" doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
             
             __block RESideMenuItem *addedItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
                 
@@ -71,7 +82,6 @@
             [menu reloadWithItems:items];
             
         }];
-        [addNewItem setType:SideMenuItemTypeField];
         
         
         RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Others+" action:^(RESideMenu *menu, RESideMenuItem *item) {
@@ -81,12 +91,16 @@
         [otherItems insertObject:addNewItem atIndex:0];
         itemWithSubItems.subItems = otherItems;
         
+        
+        // Simple menu with alert
         RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
             [alertView show];
         }];
         
         _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem,itemWithSubItems, logOutItem]];
+        _sideMenu.horizontalOffset = 40;
+        _sideMenu.itemHeight = 40;
         _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
         _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
     }
