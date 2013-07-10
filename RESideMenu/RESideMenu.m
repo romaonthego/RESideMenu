@@ -33,6 +33,7 @@ const int INTERSTITIAL_STEPS = 99;
 {
     BOOL _appIsHidingStatusBar;
     BOOL _isInSubMenu;
+    BOOL _showFromPan;
 }
 @property (assign, readwrite, nonatomic) CGFloat initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
@@ -116,6 +117,7 @@ const int INTERSTITIAL_STEPS = 99;
         return;
     
     _isShowing = YES;
+    _showFromPan = NO;
     
     // keep track of whether or not it was already hidden
     _appIsHidingStatusBar=[[UIApplication sharedApplication] isStatusBarHidden];
@@ -128,11 +130,17 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender
 {
+    _showFromPan = YES;
 	if (sender.state == UIGestureRecognizerStateBegan) {
+        if (_isShowing)
+            return;
+        
+        _isShowing = YES;
         if(!_appIsHidingStatusBar)
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-        [self performSelector:@selector(updateViews) withObject:nil afterDelay:0.1];
+        [self updateViews];
 	}
+    
     [self panGestureRecognized:sender];
 }
 
@@ -239,7 +247,6 @@ const int INTERSTITIAL_STEPS = 99;
             weakSelf.tableView.alpha = 1;
         }];
     }
-    
 }
 
 - (void)restoreFromRect:(CGRect)rect
@@ -257,10 +264,10 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.layer.position = CGPointMake(0, 0);
     _screenshotView.layer.bounds = CGRectMake(0, 0, window.frame.size.width, window.frame.size.height);
     [CATransaction commit];
-    [self performSelector:@selector(restoreView) withObject:nil afterDelay:0.3];
+    [self performSelector:@selector(restoreView) withObject:nil afterDelay:0.4];
     
     __typeof (&*self) __weak weakSelf = self;
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         weakSelf.tableView.alpha = 0;
         weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.7, 0.7);
     }];
@@ -291,8 +298,12 @@ const int INTERSTITIAL_STEPS = 99;
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
     CGPoint translation = [sender translationInView:window];
-	if (sender.state == UIGestureRecognizerStateBegan && _screenshotView) {
-        _initialX = _screenshotView.frame.origin.x;
+	if (sender.state == UIGestureRecognizerStateBegan) {
+        if(_showFromPan){
+            _initialX = 0;
+        }else{
+            _initialX = _screenshotView.frame.origin.x;
+        }
 	}
 	
     if (sender.state == UIGestureRecognizerStateChanged && _screenshotView) {
@@ -314,6 +325,7 @@ const int INTERSTITIAL_STEPS = 99;
         if ([sender velocityInView:window].x < 0) {
             [self restoreFromRect:_screenshotView.frame];
         } else {
+            _showFromPan = NO;
             [self minimizeFromRect:_screenshotView.frame];
         }
     }
