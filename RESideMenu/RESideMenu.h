@@ -32,7 +32,7 @@
 
 @interface RESideMenu : NSObject <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (strong, readonly, nonatomic) NSArray *items;
+@property (strong, readwrite, nonatomic) NSArray *items;
 @property (assign, readwrite, nonatomic) CGFloat verticalOffset;
 @property (assign, readwrite, nonatomic) CGFloat horizontalOffset;
 @property (assign, readwrite, nonatomic) CGFloat itemHeight;
@@ -48,6 +48,7 @@
 - (id)initWithItems:(NSArray *)items;
 - (void)reloadWithItems:(NSArray *)items;
 - (void)show;
+- (void)showFromPanGesture:(UIPanGestureRecognizer *)sender;
 - (void)hide;
 - (void)setRootViewController:(UIViewController *)viewController;
 
