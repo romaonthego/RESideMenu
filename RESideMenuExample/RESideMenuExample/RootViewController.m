@@ -42,7 +42,7 @@
             [menu setRootViewController:navigationController];
         }];
         RESideMenuItem *activityItem = [[RESideMenuItem alloc] initWithTitle:@"Activity" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];g
+            [menu hide];
             NSLog(@"Item %@", item);
         }];
         RESideMenuItem *profileItem = [[RESideMenuItem alloc] initWithTitle:@"Profile" action:^(RESideMenu *menu, RESideMenuItem *item) {
