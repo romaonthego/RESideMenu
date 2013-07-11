@@ -64,12 +64,12 @@
             [menu hide];
         }];
         
-        RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help+" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help +" action:^(RESideMenu *menu, RESideMenuItem *item) {
             NSLog(@"Item %@", item);
         }];
         helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
         
-        RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Others+" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Sub items +" action:^(RESideMenu *menu, RESideMenuItem *item) {
             NSLog(@"Item %@", item);
         }];
         itemWithSubItems.subItems = @[aroundMeItem,helpCenterItem];
