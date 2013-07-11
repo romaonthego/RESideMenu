@@ -30,23 +30,19 @@
 {
     if (!_sideMenu) {
         RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];
-            
             DemoViewController *viewController = [[DemoViewController alloc] init];
             viewController.title = item.title;
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
             [menu setRootViewController:navigationController];
         }];
         RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];
-            
             SecondViewController *secondViewController = [[SecondViewController alloc] init];
             secondViewController.title = item.title;
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
             [menu setRootViewController:navigationController];
         }];
         RESideMenuItem *activityItem = [[RESideMenuItem alloc] initWithTitle:@"Activity" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            [menu hide];
+            [menu hide];g
             NSLog(@"Item %@", item);
         }];
         RESideMenuItem *profileItem = [[RESideMenuItem alloc] initWithTitle:@"Profile" action:^(RESideMenu *menu, RESideMenuItem *item) {
