@@ -125,11 +125,15 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)hide
 {
-    [self restoreFromRect:_screenshotView.frame];
+    if (_isShowing)
+        [self restoreFromRect:_screenshotView.frame];
 }
 
 - (void)setRootViewController:(UIViewController *)viewController
 {
+    if (_isShowing)
+        [self hide];
+    
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     window.rootViewController = viewController;
     _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
