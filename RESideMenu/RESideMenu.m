@@ -192,8 +192,8 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _originalSize = _screenshotView.frame.size;
     
-    _backgroundView.backgroundImage = _backgroundImage;
     _backgroundView = [[REBackgroundView alloc] initWithFrame:window.bounds];
+    _backgroundView.backgroundImage = _backgroundImage;
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, window.frame.size.height)];
     [_tableView setShowsVerticalScrollIndicator:NO];
