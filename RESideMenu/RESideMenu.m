@@ -136,8 +136,10 @@ const int INTERSTITIAL_STEPS = 99;
             return;
         
         _isShowing = YES;
+        
         if(!_appIsHidingStatusBar)
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+        
         [self updateViews];
 	}
     
@@ -188,7 +190,6 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
-    _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
     _originalSize = _screenshotView.frame.size;
     
     _backgroundView.backgroundImage = _backgroundImage;
@@ -197,7 +198,6 @@ const int INTERSTITIAL_STEPS = 99;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, window.frame.size.height)];
     [_tableView setShowsVerticalScrollIndicator:NO];
     _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.backgroundView = nil;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, self.verticalOffset)];
@@ -295,8 +295,8 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGPoint translation = [sender translationInView:window];
 	if (sender.state == UIGestureRecognizerStateBegan) {
         if(_showFromPan){
@@ -306,7 +306,9 @@ const int INTERSTITIAL_STEPS = 99;
         }
 	}
 	
-    if (sender.state == UIGestureRecognizerStateChanged && _screenshotView) {
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
+        
         CGFloat x = translation.x + _initialX ;
         CGFloat m = 1 - ((x / window.frame.size.width) * 210/window.frame.size.width);
         CGFloat y = (window.frame.size.height - _originalSize.height * m) / 2.0;
@@ -319,6 +321,7 @@ const int INTERSTITIAL_STEPS = 99;
         } else {
             _screenshotView.frame = CGRectMake(x, y, _originalSize.width * m, _originalSize.height * m);
         }
+                
     }
     
     if (sender.state == UIGestureRecognizerStateEnded && _screenshotView) {
@@ -329,6 +332,7 @@ const int INTERSTITIAL_STEPS = 99;
             [self minimizeFromRect:_screenshotView.frame];
         }
     }
+    
 }
 
 - (void)tapGestureRecognized:(UITapGestureRecognizer *)sender
