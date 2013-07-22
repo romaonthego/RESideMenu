@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-#define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 @interface RootViewController : UIViewController
 

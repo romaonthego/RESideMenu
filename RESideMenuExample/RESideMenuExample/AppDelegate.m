@@ -11,6 +11,8 @@
 #import "DemoViewController.h"
 #import "SecondViewController.h"
 
+#define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @implementation AppDelegate
 
 + (NSInteger)OSVersion
