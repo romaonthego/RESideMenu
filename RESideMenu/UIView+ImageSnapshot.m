@@ -7,6 +7,7 @@
 //
 
 #import "UIView+ImageSnapshot.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIView (ImageSnapshot)
 -(UIImage*) snapshotImage
@@ -17,8 +18,15 @@
         UIGraphicsBeginImageContext(self.bounds.size);
     }
 
-    if ([self respondsToSelector:@selector(snapshotView)]) {
-        [self drawViewHierarchyInRect:self.bounds];
+    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:)]) {        
+        NSInvocation* invoc = [NSInvocation invocationWithMethodSignature:
+                               [self methodSignatureForSelector:
+                                @selector(drawViewHierarchyInRect:)]];
+        [invoc setTarget:self];
+        [invoc setSelector:@selector(drawViewHierarchyInRect:)];
+        CGRect arg2 = self.bounds;
+        [invoc setArgument:&arg2 atIndex:2];
+        [invoc invoke];
     } else {
         [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     }

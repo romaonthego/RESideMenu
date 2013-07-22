@@ -253,7 +253,7 @@ const int INTERSTITIAL_STEPS = 99;
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [UIView animateWithDuration:0.5 animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
+            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
         }];
     }
 }
@@ -289,7 +289,7 @@ const int INTERSTITIAL_STEPS = 99;
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [UIView animateWithDuration:0.5 animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
+            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
         }];
     }
 }
@@ -447,8 +447,8 @@ const int INTERSTITIAL_STEPS = 99;
 {
     if (_isShowing && self.openStatusBarStyle) {
         return self.openStatusBarStyle;
-    } else if (self.topController) {
-        return [self.topController preferredStatusBarStyle];
+    } else if (self.topController && [self.topController respondsToSelector:@selector(preferredStatusBarStyle)]) {
+        return [[self.topController performSelector:@selector(preferredStatusBarStyle)] intValue];
     } else {
         return UIStatusBarStyleDefault;
     }

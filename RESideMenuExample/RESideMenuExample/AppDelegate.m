@@ -87,7 +87,7 @@
     
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
     
-    _sideMenu.openStatusBarStyle = UIStatusBarStyleLightContent;
+    _sideMenu.openStatusBarStyle = UIStatusBarStyleBlackTranslucent;
     
     // Call the home action rather than duplicating the initialisation
     homeItem.action(_sideMenu, homeItem);
