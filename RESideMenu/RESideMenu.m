@@ -455,7 +455,9 @@ const int INTERSTITIAL_STEPS = 99;
 
 -(void) deviceOrientationDidChange
 {
-
+    if (_isShowing) {
+        [self hide];
+    }
 }
 
 - (BOOL) shouldAutorotate
