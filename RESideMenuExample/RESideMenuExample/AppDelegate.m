@@ -88,15 +88,13 @@
     
     _sideMenu.verticalPortraitOffset = IS_WIDESCREEN ? 110 : 76;
     _sideMenu.verticalLandscapeOffset = 16;
-
+    
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
-    
-    
-    DemoViewController *viewController = [[DemoViewController alloc] init];
-    viewController.title = @"Home";
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [_sideMenu displayContentController:navigationController];
 
+    _sideMenu.openStatusBarStyle = UIStatusBarStyleLightContent;
+    
+    // Call the home action rather than duplicating the initialisation
+    homeItem.action(_sideMenu, homeItem);
 
     self.window.rootViewController = _sideMenu;
     self.window.backgroundColor = [UIColor whiteColor];
