@@ -463,6 +463,11 @@ const int INTERSTITIAL_STEPS = 99;
     return !_isShowing;
 }
 
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return !_isShowing;
+}
+
 
 - (NSUInteger)supportedInterfaceOrientations
 {
