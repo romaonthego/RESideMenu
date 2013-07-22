@@ -132,11 +132,14 @@ const int INTERSTITIAL_STEPS = 99;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-    [self restoreFromRect:_screenshotView.frame];
+    if (_isShowing)
+        [self restoreFromRect:_screenshotView.frame];
 }
 
 - (void) displayContentController: (UIViewController*) content;
 {
+    if (_isShowing)
+        [self hide];
     [self addChildViewController:content];
     content.view.frame = self.view.bounds;
     [self.view addSubview:content.view];

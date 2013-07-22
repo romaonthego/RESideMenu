@@ -31,16 +31,12 @@
     
     
     RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        [menu hide];
-        
         DemoViewController *viewController = [[DemoViewController alloc] init];
         viewController.title = item.title;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
         [menu displayContentController:navigationController];
     }];
     RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        [menu hide];
-        
         SecondViewController *secondViewController = [[SecondViewController alloc] init];
         secondViewController.title = item.title;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
@@ -69,12 +65,12 @@
         [menu hide];
     }];
     
-    RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help+" action:^(RESideMenu *menu, RESideMenuItem *item) {
+    RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help +" action:^(RESideMenu *menu, RESideMenuItem *item) {
         NSLog(@"Item %@", item);
     }];
     helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
     
-    RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Others+" action:^(RESideMenu *menu, RESideMenuItem *item) {
+    RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Sub items +" action:^(RESideMenu *menu, RESideMenuItem *item) {
         NSLog(@"Item %@", item);
     }];
     itemWithSubItems.subItems = @[aroundMeItem,helpCenterItem];
@@ -90,12 +86,12 @@
     _sideMenu.verticalLandscapeOffset = 16;
     
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
-
+    
     _sideMenu.openStatusBarStyle = UIStatusBarStyleLightContent;
     
     // Call the home action rather than duplicating the initialisation
     homeItem.action(_sideMenu, homeItem);
-
+    
     self.window.rootViewController = _sideMenu;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -110,7 +106,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
