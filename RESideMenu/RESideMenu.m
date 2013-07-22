@@ -293,7 +293,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 -(CGFloat) verticalOffset
 {
-    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         return self.verticalPortraitOffset;
     } else {
         return self.verticalLandscapeOffset;
@@ -302,7 +302,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 -(CGFloat) horizontalOffset
 {
-    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         return self.horizontalPortraitOffset;
     } else {
         return self.horizontalLandscapeOffset;
