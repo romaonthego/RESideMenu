@@ -247,6 +247,12 @@ const int INTERSTITIAL_STEPS = 99;
             weakSelf.tableView.alpha = 1;
         }];
     }
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
+        }];
+    }
 }
 
 - (void)restoreFromRect:(CGRect)rect
@@ -277,6 +283,12 @@ const int INTERSTITIAL_STEPS = 99;
     // restore the status bar to its original state.
     [[UIApplication sharedApplication] setStatusBarHidden:_appIsHidingStatusBar withAnimation:UIStatusBarAnimationFade];
     _isShowing = NO;
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
+        }];
+    }
 }
 
 - (void)restoreView
@@ -430,7 +442,9 @@ const int INTERSTITIAL_STEPS = 99;
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
-    if (self.topController) {
+    if (_isShowing && self.openStatusBarStyle) {
+        return self.openStatusBarStyle;
+    } else if (self.topController) {
         return [self.topController preferredStatusBarStyle];
     } else {
         return UIStatusBarStyleDefault;
