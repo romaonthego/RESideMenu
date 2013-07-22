@@ -190,7 +190,7 @@ const int INTERSTITIAL_STEPS = 99;
     
     // Add views
     //
-    _backgroundView = [[REBackgroundView alloc] initWithFrame:self.view.bounds];
+    _backgroundView = [[REBackgroundView alloc] initWithFrame:CGRectMake(0, -20, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
     _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _backgroundView.backgroundImage = _backgroundImage;
     [self.view addSubview:_backgroundView];
@@ -222,7 +222,7 @@ const int INTERSTITIAL_STEPS = 99;
     CGFloat newWidth = _originalSize.width * m;
     CGFloat newHeight = _originalSize.height * m;
     
-    CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) ? 3 : 2);
+    CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 3 : 2);
     
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat:0.6] forKey:kCATransactionAnimationDuration];
