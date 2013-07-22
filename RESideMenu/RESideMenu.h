@@ -32,8 +32,10 @@
 @interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, readonly, nonatomic) NSArray *items;
-@property (assign, readwrite, nonatomic) CGFloat verticalOffset;
-@property (assign, readwrite, nonatomic) CGFloat horizontalOffset;
+@property (assign, readwrite, nonatomic) CGFloat verticalLandscapeOffset;
+@property (assign, readwrite, nonatomic) CGFloat horizontalLandscapeOffset;
+@property (assign, readwrite, nonatomic) CGFloat verticalPortraitOffset;
+@property (assign, readwrite, nonatomic) CGFloat horizontalPortraitOffset;
 @property (assign, readwrite, nonatomic) CGFloat itemHeight;
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;

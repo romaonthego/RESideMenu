@@ -12,18 +12,18 @@
 -(UIImage*) snapshotImage
 {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
     } else {
-        UIGraphicsBeginImageContext(self.window.bounds.size);
+        UIGraphicsBeginImageContext(self.bounds.size);
     }
 
     if ([self respondsToSelector:@selector(snapshotView)]) {
-        [self drawViewHierarchyInRect:self.frame];
+        [self drawViewHierarchyInRect:self.bounds];
     } else {
         [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     }
-    
-    __block UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 

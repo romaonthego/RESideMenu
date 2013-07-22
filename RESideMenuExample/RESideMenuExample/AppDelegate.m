@@ -83,7 +83,10 @@
     }];
     
     _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem,itemWithSubItems, logOutItem]];
-    _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
+    
+    _sideMenu.verticalPortraitOffset = IS_WIDESCREEN ? 110 : 76;
+    _sideMenu.verticalLandscapeOffset = 16;
+
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
     
     
