@@ -13,6 +13,5 @@
 
 @interface RootViewController : UIViewController
 
-@property (strong, readonly, nonatomic) RESideMenu *sideMenu;
 
 @end

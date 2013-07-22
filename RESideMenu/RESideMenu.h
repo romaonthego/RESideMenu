@@ -25,12 +25,11 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "UIWindow+RESideMenuExtensions.h"
 #import "REBackgroundView.h"
 #import "RESideMenuCell.h"
 #import "RESideMenuItem.h"
 
-@interface RESideMenu : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, readonly, nonatomic) NSArray *items;
 @property (assign, readwrite, nonatomic) CGFloat verticalOffset;
@@ -46,6 +45,6 @@
 - (id)initWithItems:(NSArray *)items;
 - (void)show;
 - (void)hide;
-- (void)setRootViewController:(UIViewController *)viewController;
+- (void) displayContentController: (UIViewController*) content;
 
 @end

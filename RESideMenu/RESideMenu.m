@@ -26,6 +26,7 @@
 #import "RESideMenu.h"
 #import "AccelerationAnimation.h"
 #import "Evaluate.h"
+#import "UIView+ImageSnapshot.h"
 
 const int INTERSTITIAL_STEPS = 99;
 
@@ -39,6 +40,7 @@ const int INTERSTITIAL_STEPS = 99;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
 @property (strong, readonly, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UIViewController *topController;
 
 // Array containing menu (which are array of items)
 @property (strong, readwrite, nonatomic) NSMutableArray *menuStack;
@@ -128,14 +130,31 @@ const int INTERSTITIAL_STEPS = 99;
     [self restoreFromRect:_screenshotView.frame];
 }
 
-- (void)setRootViewController:(UIViewController *)viewController
+- (void) displayContentController: (UIViewController*) content;
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    window.rootViewController = viewController;
-    _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
-    [window bringSubviewToFront:_backgroundView];
-    [window bringSubviewToFront:_tableView];
-    [window bringSubviewToFront:_screenshotView];
+    [self addChildViewController:content];
+    content.view.frame = self.view.frame;
+    [self.view addSubview:content.view];
+    [content didMoveToParentViewController:self];
+
+    if (self.topController) {
+        [self.topController willMoveToParentViewController:nil];
+        [self.topController.view removeFromSuperview];
+        [self.topController removeFromParentViewController];
+    }
+    
+    self.topController = content;
+    
+    [self.topController.view setNeedsDisplay];
+    [self.view bringSubviewToFront:_backgroundView];
+    [self.view bringSubviewToFront:_tableView];
+    [self.view bringSubviewToFront:_screenshotView];
+
+    double delayInSeconds = 0.1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        _screenshotView.image = [self.topController.view snapshotImage];
+    });
 }
 
 - (void)addAnimation:(NSString *)path view:(UIView *)view startValue:(double)startValue endValue:(double)endValue
@@ -153,12 +172,10 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)showAfterDelay
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    
     // Take a snapshot
     //
     _screenshotView = [[UIImageView alloc] initWithFrame:CGRectNull];
-    _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
+    _screenshotView.image = [self.view snapshotImage];
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
@@ -167,21 +184,21 @@ const int INTERSTITIAL_STEPS = 99;
     
     // Add views
     //
-    _backgroundView = [[REBackgroundView alloc] initWithFrame:window.bounds];
+    _backgroundView = [[REBackgroundView alloc] initWithFrame:self.view.bounds];
     _backgroundView.backgroundImage = _backgroundImage;
-    [window addSubview:_backgroundView];
+    [self.view addSubview:_backgroundView];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, window.frame.size.height)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.backgroundView = nil;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, self.verticalOffset)];
+    _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.verticalOffset)];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.alpha = 0;
-    [window addSubview:_tableView];
+    [self.view addSubview:_tableView];
     
-    [window addSubview:_screenshotView];
+    [self.view addSubview:_screenshotView];
     
     [self minimizeFromRect:CGRectMake(0, 0, _originalSize.width, _originalSize.height)];
     
@@ -194,20 +211,19 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)minimizeFromRect:(CGRect)rect
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGFloat m = 0.5;
     CGFloat newWidth = _originalSize.width * m;
     CGFloat newHeight = _originalSize.height * m;
     
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat:0.6] forKey:kCATransactionAnimationDuration];
-    [self addAnimation:@"position.x" view:_screenshotView startValue:rect.origin.x endValue:window.frame.size.width - 80.0];
-    [self addAnimation:@"position.y" view:_screenshotView startValue:rect.origin.y endValue:(window.frame.size.height - newHeight) / 2.0];
+    [self addAnimation:@"position.x" view:_screenshotView startValue:rect.origin.x endValue:self.view.frame.size.width - 80.0];
+    [self addAnimation:@"position.y" view:_screenshotView startValue:rect.origin.y endValue:(self.view.frame.size.height - newHeight) / 2.0];
     [self addAnimation:@"bounds.size.width" view:_screenshotView startValue:rect.size.width endValue:newWidth];
     [self addAnimation:@"bounds.size.height" view:_screenshotView startValue:rect.size.height endValue:newHeight];
     
-    _screenshotView.layer.position = CGPointMake(window.frame.size.width - 80.0, (window.frame.size.height - newHeight) / 2.0);
-    _screenshotView.layer.bounds = CGRectMake(window.frame.size.width - 80.0, (window.frame.size.height - newHeight) / 2.0, newWidth, newHeight);
+    _screenshotView.layer.position = CGPointMake(self.view.frame.size.width - 80.0, (self.view.frame.size.height - newHeight) / 2.0);
+    _screenshotView.layer.bounds = CGRectMake(self.view.frame.size.width - 80.0, (self.view.frame.size.height - newHeight) / 2.0, newWidth, newHeight);
     [CATransaction commit];
     
     if (_tableView.alpha == 0) {
@@ -230,16 +246,15 @@ const int INTERSTITIAL_STEPS = 99;
         [_screenshotView removeGestureRecognizer:[_screenshotView.gestureRecognizers objectAtIndex:0]];
     }
     
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat:0.4] forKey:kCATransactionAnimationDuration];
     [self addAnimation:@"position.x" view:_screenshotView startValue:rect.origin.x endValue:0];
     [self addAnimation:@"position.y" view:_screenshotView startValue:rect.origin.y endValue:0];
-    [self addAnimation:@"bounds.size.width" view:_screenshotView startValue:rect.size.width endValue:window.frame.size.width];
-    [self addAnimation:@"bounds.size.height" view:_screenshotView startValue:rect.size.height endValue:window.frame.size.height];
+    [self addAnimation:@"bounds.size.width" view:_screenshotView startValue:rect.size.width endValue:self.view.frame.size.width];
+    [self addAnimation:@"bounds.size.height" view:_screenshotView startValue:rect.size.height endValue:self.view.frame.size.height];
     
     _screenshotView.layer.position = CGPointMake(0, 0);
-    _screenshotView.layer.bounds = CGRectMake(0, 0, window.frame.size.width, window.frame.size.height);
+    _screenshotView.layer.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [CATransaction commit];
     [self performSelector:@selector(restoreView) withObject:nil afterDelay:0.4];
     
@@ -271,19 +286,17 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    
-    CGPoint translation = [sender translationInView:window];
+    CGPoint translation = [sender translationInView:self.view];
 	if (sender.state == UIGestureRecognizerStateBegan) {
 		_initialX = _screenshotView.frame.origin.x;
 	}
 	
     if (sender.state == UIGestureRecognizerStateChanged) {
         CGFloat x = translation.x + _initialX;
-        CGFloat m = 1 - ((x / window.frame.size.width) * 210/window.frame.size.width);
-        CGFloat y = (window.frame.size.height - _originalSize.height * m) / 2.0;
+        CGFloat m = 1 - ((x / self.view.frame.size.width) * 210/self.view.frame.size.width);
+        CGFloat y = (self.view.frame.size.height - _originalSize.height * m) / 2.0;
         
-        _tableView.alpha = (x + 80.0) / window.frame.size.width;
+        _tableView.alpha = (x + 80.0) / self.view.frame.size.width;
         
         if (x < 0 || y < 0) {
             _screenshotView.frame = CGRectMake(0, 0, _originalSize.width, _originalSize.height);
@@ -293,7 +306,7 @@ const int INTERSTITIAL_STEPS = 99;
     }
     
     if (sender.state == UIGestureRecognizerStateEnded) {
-        if ([sender velocityInView:window].x < 0) {
+        if ([sender velocityInView:self.view].x < 0) {
             [self restoreFromRect:_screenshotView.frame];
         } else {
             [self minimizeFromRect:_screenshotView.frame];
@@ -383,6 +396,17 @@ const int INTERSTITIAL_STEPS = 99;
     
     if (item.action)
         item.action(self, item);
+}
+
+#pragma Status bar
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    if (self.topController) {
+        return [self.topController preferredStatusBarStyle];
+    } else {
+        return UIStatusBarStyleDefault;
+    }
 }
 
 @end
