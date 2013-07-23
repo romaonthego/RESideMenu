@@ -63,7 +63,7 @@ const int INTERSTITIAL_STEPS = 99;
     self.textColor = [UIColor whiteColor];
     self.highlightedTextColor = [UIColor lightGrayColor];
     self.hideStatusBarArea = YES;
-    
+    self.openStatusBarStyle = UIStatusBarStyleDefault;
     self.menuStack = [NSMutableArray array];
     
     return self;
@@ -125,21 +125,21 @@ const int INTERSTITIAL_STEPS = 99;
     if(!_appIsHidingStatusBar)
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
+    [self updateStatusBar];
     [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
 }
 
 - (void)hide
 {
+    if (!_isShowing)
+        return
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-    if (_isShowing)
-        [self restoreFromRect:_screenshotView.frame];
+    [self restoreFromRect:_screenshotView.frame];
 }
 
 - (void) displayContentController: (UIViewController*) content;
 {
-    if (_isShowing)
-        [self hide];
     [self addChildViewController:content];
     content.view.frame = self.view.bounds;
     [self.view addSubview:content.view];
@@ -163,6 +163,8 @@ const int INTERSTITIAL_STEPS = 99;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         _screenshotView.image = [weakSelf.topController.view snapshotImage];
+        if (_isShowing)
+            [weakSelf hide];
     });
 }
 
@@ -251,12 +253,6 @@ const int INTERSTITIAL_STEPS = 99;
             weakSelf.tableView.alpha = 1;
         }];
     }
-    
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [UIView animateWithDuration:0.5 animations:^{
-            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-        }];
-    }
 }
 
 - (void)restoreFromRect:(CGRect)rect
@@ -287,10 +283,15 @@ const int INTERSTITIAL_STEPS = 99;
     // restore the status bar to its original state.
     [[UIApplication sharedApplication] setStatusBarHidden:_appIsHidingStatusBar withAnimation:UIStatusBarAnimationFade];
     _isShowing = NO;
-    
+    [self updateStatusBar];
+}
+
+- (void) updateStatusBar
+{
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [UIView animateWithDuration:0.5 animations:^{
-            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+        __typeof (&*self) __weak weakSelf = self;
+        [UIView animateWithDuration:0.3 animations:^{
+            [weakSelf performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
         }];
     }
 }
@@ -444,15 +445,10 @@ const int INTERSTITIAL_STEPS = 99;
 
 #pragma mark - Status bar
 
+
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
-    if (_isShowing && self.openStatusBarStyle) {
-        return self.openStatusBarStyle;
-    } else if (self.topController && [self.topController respondsToSelector:@selector(preferredStatusBarStyle)]) {
-        return [[self.topController performSelector:@selector(preferredStatusBarStyle)] intValue];
-    } else {
-        return UIStatusBarStyleDefault;
-    }
+    return _isShowing ? self.openStatusBarStyle : [self.topController preferredStatusBarStyle];
 }
 
 #pragma mark - Rotation
