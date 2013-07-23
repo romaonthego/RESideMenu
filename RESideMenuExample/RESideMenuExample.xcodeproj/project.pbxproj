@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22778077179D757100A68874 /* UIView+ImageSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 22778076179D757100A68874 /* UIView+ImageSnapshot.m */; };
+		22F47C73179F10E500F544CC /* UINavigationController+DelegateFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */; };
 		30D7C396176B71A500FB3018 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C395176B71A500FB3018 /* UIKit.framework */; };
 		30D7C398176B71A500FB3018 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C397176B71A500FB3018 /* Foundation.framework */; };
 		30D7C39A176B71A500FB3018 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C399176B71A500FB3018 /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 /* Begin PBXFileReference section */
 		22778075179D757100A68874 /* UIView+ImageSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageSnapshot.h"; sourceTree = "<group>"; };
 		22778076179D757100A68874 /* UIView+ImageSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageSnapshot.m"; sourceTree = "<group>"; };
+		22F47C71179F10E500F544CC /* UINavigationController+DelegateFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+DelegateFixes.h"; sourceTree = "<group>"; };
+		22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+DelegateFixes.m"; sourceTree = "<group>"; };
 		30D7C392176B71A500FB3018 /* RESideMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESideMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D7C395176B71A500FB3018 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30D7C397176B71A500FB3018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -151,6 +154,8 @@
 				30D7C3B7176B720000FB3018 /* REBackgroundView.m */,
 				22778075179D757100A68874 /* UIView+ImageSnapshot.h */,
 				22778076179D757100A68874 /* UIView+ImageSnapshot.m */,
+				22F47C71179F10E500F544CC /* UINavigationController+DelegateFixes.h */,
+				22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */,
 				30DBD539176F698A00CF3CB3 /* RESideMenu.h */,
 				30DBD53A176F698A00CF3CB3 /* RESideMenu.m */,
 				30DBD52B176BB3FC00CF3CB3 /* RESideMenuCell.h */,
@@ -228,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D7C3A2176B71A500FB3018 /* main.m in Sources */,
+				22F47C73179F10E500F544CC /* UINavigationController+DelegateFixes.m in Sources */,
 				30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */,
 				30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */,
 				30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */,

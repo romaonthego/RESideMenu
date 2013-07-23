@@ -27,6 +27,7 @@
 #import "AccelerationAnimation.h"
 #import "Evaluate.h"
 #import "UIView+ImageSnapshot.h"
+#import "UINavigationController+DelegateFixes.h"
 
 const int INTERSTITIAL_STEPS = 99;
 
@@ -445,11 +446,12 @@ const int INTERSTITIAL_STEPS = 99;
 
 #pragma mark - Status bar
 
-
+#ifdef __IPHONE_7_0
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return _isShowing ? self.openStatusBarStyle : [self.topController preferredStatusBarStyle];
 }
+#endif
 
 #pragma mark - Rotation
 
