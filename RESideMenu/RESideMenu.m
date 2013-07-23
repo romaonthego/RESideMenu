@@ -158,10 +158,11 @@ const int INTERSTITIAL_STEPS = 99;
     [self.view bringSubviewToFront:_tableView];
     [self.view bringSubviewToFront:_screenshotView];
 
+    __typeof (&*self) __weak weakSelf = self;
     double delayInSeconds = 0.1;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        _screenshotView.image = [self.topController.view snapshotImage];
+        _screenshotView.image = [weakSelf.topController.view snapshotImage];
     });
 }
 
