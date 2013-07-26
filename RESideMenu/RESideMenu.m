@@ -130,15 +130,19 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender
 {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    CGPoint translation = [sender translationInView:window];
+    
     _showFromPan = YES;
 	if (sender.state == UIGestureRecognizerStateBegan) {
-        if (_isShowing)
+        if (_isShowing || translation.x<=0)
             return;
         
         _isShowing = YES;
         
         if(!_appIsHidingStatusBar)
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+        
         
         [self updateViews];
 	}
