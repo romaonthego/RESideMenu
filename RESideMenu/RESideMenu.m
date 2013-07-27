@@ -60,6 +60,23 @@ const int INTERSTITIAL_STEPS = 99;
         self.highlightedTextColor = [UIColor lightGrayColor];
         self.hideStatusBarArea = YES;
         self.menuStack = [NSMutableArray array];
+        
+        CGRect screen = [UIScreen mainScreen].bounds;
+        
+        // Back
+        _backgroundView = [[REBackgroundView alloc] initWithFrame:screen];
+        _backgroundView.backgroundImage = _backgroundImage;
+        
+        
+        // Table
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.height)];
+        [_tableView setShowsVerticalScrollIndicator:NO];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, self.verticalOffset)];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
     }
     
     return self;
@@ -74,6 +91,7 @@ const int INTERSTITIAL_STEPS = 99;
     _items = items;
     [_menuStack addObject:items];
     _backMenu = [[RESideMenuItem alloc] initWithTitle:@"<" action:nil];
+    
     
     return self;
 }
@@ -108,7 +126,7 @@ const int INTERSTITIAL_STEPS = 99;
     }];
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma markPublic API
 
 - (void)show
@@ -190,22 +208,13 @@ const int INTERSTITIAL_STEPS = 99;
 {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
+    // Screenshot
     _screenshotView = [[UIImageView alloc] initWithFrame:window.frame];
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _originalSize = _screenshotView.frame.size;
     
-    _backgroundView = [[REBackgroundView alloc] initWithFrame:window.bounds];
-    _backgroundView.backgroundImage = _backgroundImage;
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, window.frame.size.height)];
-    [_tableView setShowsVerticalScrollIndicator:NO];
-    _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, self.verticalOffset)];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.alpha = 0;
     
     [window addSubview:_backgroundView];
@@ -239,15 +248,17 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.layer.bounds = CGRectMake(window.frame.size.width - 80.0, (window.frame.size.height - newHeight) / 2.0, newWidth, newHeight);
     [CATransaction commit];
     
-    if (_tableView.alpha <1 ) {
+    if (_tableView.alpha  != 1 ) {
         __typeof (&*self) __weak weakSelf = self;
         
         if(_tableView.alpha == 0){
-            weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
-            [UIView animateWithDuration:0.5 animations:^{
-                weakSelf.tableView.transform = CGAffineTransformIdentity;
-            }];
+            weakSelf.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
         }
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            weakSelf.tableView.transform = CGAffineTransformIdentity;
+        }];
+        
         [UIView animateWithDuration:0.6 animations:^{
             weakSelf.tableView.alpha = 1;
         }];
@@ -274,7 +285,7 @@ const int INTERSTITIAL_STEPS = 99;
     __typeof (&*self) __weak weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         weakSelf.tableView.alpha = 0;
-        weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.7, 0.7);
+        weakSelf.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
     }];
     
     // restore the status bar to its original state.
@@ -309,6 +320,7 @@ const int INTERSTITIAL_STEPS = 99;
         }else{
             _initialX = _screenshotView.frame.origin.x;
         }
+        _tableView.transform = CGAffineTransformIdentity;
 	}
 	
     if (sender.state == UIGestureRecognizerStateChanged) {
@@ -320,13 +332,15 @@ const int INTERSTITIAL_STEPS = 99;
         
         float alphaOffset = (x + 80.0) / window.frame.size.width;
         _tableView.alpha = alphaOffset;
+        float scaleOffset = 0.6 +(alphaOffset*0.4);
+        _tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, scaleOffset, scaleOffset);
         
         if (x < 0 || y < 0) {
             _screenshotView.frame = CGRectMake(0, 0, _originalSize.width, _originalSize.height);
         } else {
             _screenshotView.frame = CGRectMake(x, y, _originalSize.width * m, _originalSize.height * m);
         }
-                
+        
     }
     
     if (sender.state == UIGestureRecognizerStateEnded && _screenshotView) {
@@ -387,22 +401,19 @@ const int INTERSTITIAL_STEPS = 99;
             [field setReturnKeyType:UIReturnKeyDone];
             field.tag = indexPath.row;
             [cell addSubview:field];
-            cell.imageView.image = item.image;
-            cell.imageView.highlightedImage = item.highlightedImage;
             break;
             
         default:
             cell.textLabel.text = item.title;
-            cell.imageView.image = item.image;
-            cell.imageView.highlightedImage = item.highlightedImage;
             cell.imageView.userInteractionEnabled = YES;
             cell.imageView.tag = indexPath.row;
-            tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageAction:)];
-            [cell.imageView addGestureRecognizer:tapped];
-            
+
             break;
     }
-    
+    cell.imageView.image = item.image;
+    cell.imageView.highlightedImage = item.highlightedImage;
+    tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageAction:)];
+    [cell.imageView addGestureRecognizer:tapped];
     cell.horizontalOffset = self.horizontalOffset;
     
     return cell;

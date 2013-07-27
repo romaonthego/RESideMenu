@@ -41,10 +41,20 @@
     return [self initWithTitle:placeholder image:nil highlightedImage:nil imageAction:nil action:action];
 }
 
+- (id)initFieldWithPlaceholder:(NSString *)placeholder
+                         image:(UIImage *)image
+              highlightedImage:(UIImage *)highlightedImage
+                   imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
+                    doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+{
+    self.type = SideMenuItemTypeField;
+    return [self initWithTitle:placeholder image:image highlightedImage:highlightedImage imageAction:imageAction action:action];
+}
+
 - (id)initWithTitle:(NSString *)title
               image:(UIImage *)image
    highlightedImage:(UIImage *)highlightedImage
-            imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
+        imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
              action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
     self = [super init];

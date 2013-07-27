@@ -55,21 +55,35 @@
     }];
     RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
         [menu hide];
-        
         SecondViewController *secondViewController = [[SecondViewController alloc] init];
         secondViewController.title = item.title;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
         [menu setRootViewController:navigationController];
     }];
     
+    RESideMenuItem *helpPlus1 = [[RESideMenuItem alloc] initWithTitle:@"How to use" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+        [menu hide];
+    }];
+    
+    RESideMenuItem *helpPlus2 = [[RESideMenuItem alloc] initWithTitle:@"Helpdesk" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+        [menu hide];
+    }];
+    
+    RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help +" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+    }];
+    helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
+    
     // Dynamic addable menus
-    RESideMenuItem *addNewItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"+ Add menu" doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
+    RESideMenuItem *tagFieldItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"+ Add tag" doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
         
-        __block RESideMenuItem *addedItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
+        __block RESideMenuItem *newTagItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
             
             NSMutableArray * items = menu.items.mutableCopy;
-            [items removeObject:addedItem];
-            [addedItems removeObject:addedItem];
+            [items removeObject:newTagItem];
+            [addedItems removeObject:newTagItem];
             [menu reloadWithItems:items];
             
         } action:^(RESideMenu *menu, RESideMenuItem *item) {
@@ -78,19 +92,19 @@
         }];
         
         NSMutableArray * items = menu.items.mutableCopy;
-        [items insertObject:addedItem atIndex:2];
-        [addedItems addObject:addedItem];
+        [items insertObject:newTagItem atIndex:2];
+        [addedItems addObject:newTagItem];
         [menu reloadWithItems:items];
         
     }];
     
     
-    RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Others+" action:^(RESideMenu *menu, RESideMenuItem *item) {
+    RESideMenuItem *tagMakerItem = [[RESideMenuItem alloc] initWithTitle:@"Tags +" action:^(RESideMenu *menu, RESideMenuItem *item) {
         NSLog(@"Item %@", item);
     }];
     NSMutableArray * otherItems = addedItems;
-    [otherItems insertObject:addNewItem atIndex:0];
-    itemWithSubItems.subItems = otherItems;
+    [otherItems insertObject:tagFieldItem atIndex:0];
+    tagMakerItem.subItems = otherItems;
     
     
     // Simple menu with alert
@@ -99,11 +113,9 @@
         [alertView show];
     }];
     
-    [menuItems addObjectsFromArray:@[homeItem, exploreItem,itemWithSubItems, logOutItem]];
+    [menuItems addObjectsFromArray:@[homeItem, exploreItem,helpCenterItem, tagMakerItem, logOutItem]];
     
     _sideMenu = [[RESideMenu alloc] initWithItems:menuItems];
-    _sideMenu.horizontalOffset = 40;
-    _sideMenu.itemHeight = 40;
     _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
 }
