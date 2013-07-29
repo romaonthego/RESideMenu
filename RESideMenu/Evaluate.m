@@ -19,8 +19,7 @@
 - (id)initWithFirst:(double)newFirst second:(double)newSecond
 {
 	self = [super init];
-	if (self != nil)
-	{
+	if (self != nil) {
 		firstControlPoint = newFirst;
 		secondControlPoint = newSecond;
 	}
@@ -43,8 +42,7 @@
 - (id)initWithCoefficient:(double)newCoeff
 {
 	self = [super init];
-	if (self != nil)
-	{
+	if (self != nil) {
 		coeff = newCoeff;
 		offset = exp(-coeff);
 		scale = 1.0 / (1.0 - offset);
@@ -64,8 +62,7 @@
 - (id)initWithOmega:(double)newOmega zeta:(double)newZeta
 {
 	self = [super init];
-	if (self != nil)
-	{
+	if (self != nil) {
 		omega = newOmega;
 		zeta = newZeta;
 	}
