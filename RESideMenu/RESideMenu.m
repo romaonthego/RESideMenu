@@ -123,8 +123,8 @@ const int INTERSTITIAL_STEPS = 99;
     // keep track of whether or not it was already hidden
     _appIsHidingStatusBar=[[UIApplication sharedApplication] isStatusBarHidden];
     
-    if(!_appIsHidingStatusBar)
-        [[UIApplication sharedApplication] setStatusBarHidden:_hideStatusBarArea withAnimation:UIStatusBarAnimationFade];
+    if(!_appIsHidingStatusBar && _hideStatusBarArea)
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     [self updateStatusBar];
     [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
@@ -282,7 +282,7 @@ const int INTERSTITIAL_STEPS = 99;
     }];
     
     // restore the status bar to its original state.
-    [[UIApplication sharedApplication] setStatusBarHidden:_hideStatusBarArea || _appIsHidingStatusBar withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication] setStatusBarHidden:_appIsHidingStatusBar withAnimation:UIStatusBarAnimationFade];
     _isShowing = NO;
     [self updateStatusBar];
 }
