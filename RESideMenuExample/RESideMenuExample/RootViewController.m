@@ -46,15 +46,12 @@
     
     // Simple menus
     RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        [menu hide];
-        
         DemoViewController *viewController = [[DemoViewController alloc] init];
         viewController.title = item.title;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
         [menu setRootViewController:navigationController];
     }];
     RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        [menu hide];
         SecondViewController *secondViewController = [[SecondViewController alloc] init];
         secondViewController.title = item.title;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
