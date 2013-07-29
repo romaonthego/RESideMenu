@@ -458,7 +458,8 @@ const int INTERSTITIAL_STEPS = 99;
 -(void) deviceOrientationDidChange
 {
     if (_isShowing) {
-        [self hide];
+        [self performSelector:@selector(hide) withObject:nil afterDelay:0.1];
+        [[self class] performSelector:@selector(attemptRotationToDeviceOrientation) withObject:nil afterDelay:0.5];
     }
 }
 
