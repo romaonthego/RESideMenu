@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22778077179D757100A68874 /* UIView+ImageSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 22778076179D757100A68874 /* UIView+ImageSnapshot.m */; };
+		22F47C73179F10E500F544CC /* UINavigationController+DelegateFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */; };
 		30D7C396176B71A500FB3018 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C395176B71A500FB3018 /* UIKit.framework */; };
 		30D7C398176B71A500FB3018 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C397176B71A500FB3018 /* Foundation.framework */; };
 		30D7C39A176B71A500FB3018 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C399176B71A500FB3018 /* CoreGraphics.framework */; };
@@ -18,7 +20,6 @@
 		30D7C3AC176B71A500FB3018 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */; };
 		30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3B3176B71CD00FB3018 /* DemoViewController.m */; };
 		30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3B7176B720000FB3018 /* REBackgroundView.m */; };
-		30D7C3BE176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */; };
 		30D7C3C4176B82F100FB3018 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C3C3176B82F100FB3018 /* QuartzCore.framework */; };
 		30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C0176B81CD00FB3018 /* Evaluate.m */; };
 		30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */; };
@@ -30,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22778075179D757100A68874 /* UIView+ImageSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageSnapshot.h"; sourceTree = "<group>"; };
+		22778076179D757100A68874 /* UIView+ImageSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageSnapshot.m"; sourceTree = "<group>"; };
+		22F47C71179F10E500F544CC /* UINavigationController+DelegateFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+DelegateFixes.h"; sourceTree = "<group>"; };
+		22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+DelegateFixes.m"; sourceTree = "<group>"; };
 		30D7C392176B71A500FB3018 /* RESideMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESideMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D7C395176B71A500FB3018 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30D7C397176B71A500FB3018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,8 +52,6 @@
 		30D7C3B3176B71CD00FB3018 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		30D7C3B6176B720000FB3018 /* REBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REBackgroundView.h; sourceTree = "<group>"; };
 		30D7C3B7176B720000FB3018 /* REBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REBackgroundView.m; sourceTree = "<group>"; };
-		30D7C3BC176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+RESideMenuExtensions.h"; sourceTree = "<group>"; };
-		30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+RESideMenuExtensions.m"; sourceTree = "<group>"; };
 		30D7C3BF176B81CD00FB3018 /* Evaluate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Evaluate.h; sourceTree = "<group>"; };
 		30D7C3C0176B81CD00FB3018 /* Evaluate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evaluate.m; sourceTree = "<group>"; };
 		30D7C3C3176B82F100FB3018 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -149,14 +152,16 @@
 				30D7C3C0176B81CD00FB3018 /* Evaluate.m */,
 				30D7C3B6176B720000FB3018 /* REBackgroundView.h */,
 				30D7C3B7176B720000FB3018 /* REBackgroundView.m */,
+				22778075179D757100A68874 /* UIView+ImageSnapshot.h */,
+				22778076179D757100A68874 /* UIView+ImageSnapshot.m */,
+				22F47C71179F10E500F544CC /* UINavigationController+DelegateFixes.h */,
+				22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */,
 				30DBD539176F698A00CF3CB3 /* RESideMenu.h */,
 				30DBD53A176F698A00CF3CB3 /* RESideMenu.m */,
 				30DBD52B176BB3FC00CF3CB3 /* RESideMenuCell.h */,
 				30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */,
 				30DBD52E176BB88700CF3CB3 /* RESideMenuItem.h */,
 				30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */,
-				30D7C3BC176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.h */,
-				30D7C3BD176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m */,
 			);
 			name = RESideMenu;
 			path = ../RESideMenu;
@@ -228,14 +233,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D7C3A2176B71A500FB3018 /* main.m in Sources */,
+				22F47C73179F10E500F544CC /* UINavigationController+DelegateFixes.m in Sources */,
 				30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */,
 				30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */,
 				30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */,
 				30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */,
 				30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */,
-				30D7C3BE176B7F2C00FB3018 /* UIWindow+RESideMenuExtensions.m in Sources */,
 				30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */,
 				30DBD52D176BB3FC00CF3CB3 /* RESideMenuCell.m in Sources */,
+				22778077179D757100A68874 /* UIView+ImageSnapshot.m in Sources */,
 				30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */,
 				30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */,
 				30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */,
