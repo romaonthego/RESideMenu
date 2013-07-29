@@ -49,6 +49,7 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
         [menu setRootViewController:navigationController];
     }];
+    
     RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
         SecondViewController *secondViewController = [[SecondViewController alloc] init];
         secondViewController.title = item.title;
@@ -72,15 +73,13 @@
     helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
     
     // Dynamic addable menus
+    //
     RESideMenuItem *tagFieldItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"+ Add tag" doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
-        
         __block RESideMenuItem *newTagItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
-            
             NSMutableArray * items = menu.items.mutableCopy;
             [items removeObject:newTagItem];
             [_addedItems removeObject:newTagItem];
             [menu reloadWithItems:items];
-            
         } action:^(RESideMenu *menu, RESideMenuItem *item) {
             NSLog(@"Item %@", item);
             [menu hide];
@@ -90,19 +89,18 @@
         [items insertObject:newTagItem atIndex:2];
         [_addedItems addObject:newTagItem];
         [menu reloadWithItems:items];
-        
     }];
-    
     
     RESideMenuItem *tagMakerItem = [[RESideMenuItem alloc] initWithTitle:@"Tags +" action:^(RESideMenu *menu, RESideMenuItem *item) {
         NSLog(@"Item %@", item);
     }];
-    NSMutableArray * otherItems = _addedItems;
+    
+    NSMutableArray *otherItems = _addedItems;
     [otherItems insertObject:tagFieldItem atIndex:0];
     tagMakerItem.subItems = otherItems;
     
-    
-    // Simple menu with alert
+    // Simple menu with an alert
+    //
     RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
         [alertView show];
@@ -112,7 +110,7 @@
     
     _sideMenu = [[RESideMenu alloc] initWithItems:_menuItems];
     _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
-    _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
+    _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7.0;
 }
 
 #pragma mark -
