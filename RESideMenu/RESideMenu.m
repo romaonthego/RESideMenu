@@ -29,12 +29,12 @@
 
 const int INTERSTITIAL_STEPS = 99;
 
-@interface RESideMenu ()
-{
+@interface RESideMenu () {
     BOOL _appIsHidingStatusBar;
     BOOL _isInSubMenu;
     BOOL _showFromPan;
 }
+
 @property (assign, readwrite, nonatomic) CGFloat initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
@@ -51,7 +51,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (id)init
 {
-    if (self = [super init]){
+    if (self = [super init]) {
         self.verticalOffset = 100;
         self.horizontalOffset = 50;
         self.itemHeight = 50;
@@ -76,7 +76,6 @@ const int INTERSTITIAL_STEPS = 99;
         _tableView.dataSource = self;
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, self.verticalOffset)];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
     }
     
     return self;
@@ -92,13 +91,13 @@ const int INTERSTITIAL_STEPS = 99;
     [_menuStack addObject:items];
     _backMenu = [[RESideMenuItem alloc] initWithTitle:@"<" action:nil];
     
-    
     return self;
 }
 
-- (void) reloadWithItems:(NSArray *)items
+- (void)reloadWithItems:(NSArray *)items
 {
-    // Animate to deappear
+    // Animate to disappear
+    //
     __typeof (&*self) __weak weakSelf = self;
     weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 0.9, 0.9);
     [UIView animateWithDuration:0.5 animations:^{
@@ -107,18 +106,20 @@ const int INTERSTITIAL_STEPS = 99;
     }];
     
     // Set items and reload
+    //
     RESideMenuItem * firstItem = items[0];
-    if(_isInSubMenu && firstItem!=_backMenu){
+    if (_isInSubMenu && firstItem!=_backMenu){
         NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
         [array addObjectsFromArray:items];
         _items = array;
-    }else{
+    } else {
         _items = items;
     }
     
     [self.tableView reloadData];
     
     // Animate to reappear once reloaded
+    //
     weakSelf.tableView.transform = CGAffineTransformScale(_tableView.transform, 1, 1);
     [UIView animateWithDuration:0.5 animations:^{
         weakSelf.tableView.transform = CGAffineTransformIdentity;
@@ -137,7 +138,8 @@ const int INTERSTITIAL_STEPS = 99;
     _isShowing = YES;
     _showFromPan = NO;
     
-    // keep track of whether or not it was already hidden
+    // Keep track of whether or not it was already hidden
+    //
     _appIsHidingStatusBar=[[UIApplication sharedApplication] isStatusBarHidden];
     
     if(!_appIsHidingStatusBar)
@@ -161,10 +163,8 @@ const int INTERSTITIAL_STEPS = 99;
         if(!_appIsHidingStatusBar)
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         
-        
         [self updateViews];
 	}
-    
     [self panGestureRecognized:sender];
 }
 
@@ -213,6 +213,7 @@ const int INTERSTITIAL_STEPS = 99;
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
     // Screenshot
+    //
     _screenshotView = [[UIImageView alloc] initWithFrame:window.frame];
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.image = [window re_snapshotWithStatusBar:!self.hideStatusBarArea];
@@ -292,7 +293,8 @@ const int INTERSTITIAL_STEPS = 99;
         weakSelf.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
     }];
     
-    // restore the status bar to its original state.
+    // Restore the status bar to its original state
+    //
     [[UIApplication sharedApplication] setStatusBarHidden:_appIsHidingStatusBar withAnimation:UIStatusBarAnimationFade];
 }
 
@@ -315,13 +317,12 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
-    
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     CGPoint translation = [sender translationInView:window];
 	if (sender.state == UIGestureRecognizerStateBegan) {
-        if(_showFromPan){
+        if (_showFromPan){
             _initialX = 0;
-        }else{
+        } else {
             _initialX = _screenshotView.frame.origin.x;
         }
         _tableView.transform = CGAffineTransformIdentity;
@@ -355,7 +356,6 @@ const int INTERSTITIAL_STEPS = 99;
             [self minimizeFromRect:_screenshotView.frame];
         }
     }
-    
 }
 
 - (void)tapGestureRecognized:(UITapGestureRecognizer *)sender
@@ -363,7 +363,8 @@ const int INTERSTITIAL_STEPS = 99;
     [self restoreFromRect:_screenshotView.frame];
 }
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -388,9 +389,8 @@ const int INTERSTITIAL_STEPS = 99;
     cell.textLabel.textColor = self.textColor;
     cell.textLabel.highlightedTextColor = self.highlightedTextColor;
     
-    
     UITapGestureRecognizer *tapped;
-    UITextField * field;
+    UITextField *field;
     
     switch (item.type) {
         case SideMenuItemTypeField:
@@ -423,18 +423,20 @@ const int INTERSTITIAL_STEPS = 99;
     return cell;
 }
 
-#pragma mark - User interaction
+#pragma mark - 
+#pragma mark User Interaction
 
--(void) imageAction:(UITapGestureRecognizer *) sender
+- (void)imageAction:(UITapGestureRecognizer *)sender
 {
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)sender;
     RESideMenuItem * item = _items[gesture.view.tag];
-    if(item.imageAction){
+    if (item.imageAction) {
         item.imageAction(self, item);
     }
 }
 
-#pragma mark - textfield
+#pragma mark - 
+#pragma mark Text Field
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -442,16 +444,15 @@ const int INTERSTITIAL_STEPS = 99;
     
     NSString *s = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if(s.length > 0){
+    if (s.length > 0) {
         RESideMenuItem *item = [_items objectAtIndex:textField.tag];
         _lastFieldInput = textField.text;
-        if (item.action){
+        if (item.action) {
             item.action(self, item);
         }
-    }else{
+    } else {
         textField.text = @"";
     }
-    
     return YES;
 }
 
@@ -462,22 +463,22 @@ const int INTERSTITIAL_STEPS = 99;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     
-    if(item.type==SideMenuItemTypeField){
+    if (item.type == SideMenuItemTypeField) {
         return;
     }
     
     // Prioritize action in case user want to interact with submenu in it
-    if (item.action){
+    //
+    if (item.action) {
         item.action(self, item);
     }
     
     // Case back on subMenu
-    if(_isInSubMenu &&
-       indexPath.row==0 &&
-       indexPath.section == 0){
+    //
+    if (_isInSubMenu && indexPath.row==0 && indexPath.section == 0) {
         
         [_menuStack removeLastObject];
-        if(_menuStack.count==1){
+        if (_menuStack.count == 1) {
             _isInSubMenu = NO;
         }
         [self reloadWithItems:_menuStack.lastObject];
@@ -486,10 +487,13 @@ const int INTERSTITIAL_STEPS = 99;
     }
     
     // Case menu with subMenu
-    if(item.subItems){
+    //
+    if (item.subItems) {
         _isInSubMenu = YES;
         [self reloadWithItems:item.subItems];
+        
         // Push new menu on stack
+        //
         [_menuStack addObject:item.subItems];
     }
 }
