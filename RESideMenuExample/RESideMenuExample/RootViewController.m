@@ -15,24 +15,23 @@
 
 @end
 
-@implementation RootViewController{
-    NSMutableArray * addedItems;
-    NSMutableArray * menuItems;
+@implementation RootViewController {
+    NSMutableArray *_addedItems;
+    NSMutableArray *_menuItems;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    addedItems = [NSMutableArray array];
-    menuItems = [NSMutableArray array];
+    _addedItems = [NSMutableArray array];
+    _menuItems = [NSMutableArray array];
     [self initMenus];
     
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
     
     UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
     [self.view addGestureRecognizer:gestureRecognizer];
-    
 }
 
 -(void)swipeHandler:(UIPanGestureRecognizer *)sender
@@ -40,11 +39,10 @@
     [_sideMenu showFromPanGesture:sender];
 }
 
-
-- (void) initMenus
-{
-    
+- (void)initMenus
+{    
     // Simple menus
+    //
     RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
         DemoViewController *viewController = [[DemoViewController alloc] init];
         viewController.title = item.title;
@@ -80,7 +78,7 @@
             
             NSMutableArray * items = menu.items.mutableCopy;
             [items removeObject:newTagItem];
-            [addedItems removeObject:newTagItem];
+            [_addedItems removeObject:newTagItem];
             [menu reloadWithItems:items];
             
         } action:^(RESideMenu *menu, RESideMenuItem *item) {
@@ -90,7 +88,7 @@
         
         NSMutableArray * items = menu.items.mutableCopy;
         [items insertObject:newTagItem atIndex:2];
-        [addedItems addObject:newTagItem];
+        [_addedItems addObject:newTagItem];
         [menu reloadWithItems:items];
         
     }];
@@ -99,7 +97,7 @@
     RESideMenuItem *tagMakerItem = [[RESideMenuItem alloc] initWithTitle:@"Tags +" action:^(RESideMenu *menu, RESideMenuItem *item) {
         NSLog(@"Item %@", item);
     }];
-    NSMutableArray * otherItems = addedItems;
+    NSMutableArray * otherItems = _addedItems;
     [otherItems insertObject:tagFieldItem atIndex:0];
     tagMakerItem.subItems = otherItems;
     
@@ -110,9 +108,9 @@
         [alertView show];
     }];
     
-    [menuItems addObjectsFromArray:@[homeItem, exploreItem,helpCenterItem, tagMakerItem, logOutItem]];
+    [_menuItems addObjectsFromArray:@[homeItem, exploreItem,helpCenterItem, tagMakerItem, logOutItem]];
     
-    _sideMenu = [[RESideMenu alloc] initWithItems:menuItems];
+    _sideMenu = [[RESideMenu alloc] initWithItems:_menuItems];
     _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
 }
