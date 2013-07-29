@@ -23,22 +23,46 @@
 // THE SOFTWARE.
 //
 
+
 #import "RESideMenuItem.h"
 
 @implementation RESideMenuItem
 
-- (id)initWithTitle:(NSString *)title action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+- (id)initWithTitle:(NSString *)title
+             action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
-    return [self initWithTitle:title image:nil highlightedImage:nil action:action];
+    return [self initWithTitle:title image:nil highlightedImage:nil imageAction:nil action:action];
 }
 
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+- (id)initFieldWithPlaceholder:(NSString *)placeholder
+                    doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+{
+    self.type = SideMenuItemTypeField;
+    return [self initWithTitle:placeholder image:nil highlightedImage:nil imageAction:nil action:action];
+}
+
+- (id)initFieldWithPlaceholder:(NSString *)placeholder
+                         image:(UIImage *)image
+              highlightedImage:(UIImage *)highlightedImage
+                   imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
+                    doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+{
+    self.type = SideMenuItemTypeField;
+    return [self initWithTitle:placeholder image:image highlightedImage:highlightedImage imageAction:imageAction action:action];
+}
+
+- (id)initWithTitle:(NSString *)title
+              image:(UIImage *)image
+   highlightedImage:(UIImage *)highlightedImage
+        imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
+             action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
     self = [super init];
     if (!self)
         return nil;
     
     self.title = title;
+    self.imageAction = imageAction;
     self.action = action;
     self.image = image;
     self.highlightedImage = highlightedImage;
