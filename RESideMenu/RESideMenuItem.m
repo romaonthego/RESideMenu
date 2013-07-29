@@ -28,34 +28,24 @@
 
 @implementation RESideMenuItem
 
-- (id)initWithTitle:(NSString *)title
-             action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+- (id)initWithTitle:(NSString *)title action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
     return [self initWithTitle:title image:nil highlightedImage:nil imageAction:nil action:action];
 }
 
-- (id)initFieldWithPlaceholder:(NSString *)placeholder
-                    doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+- (id)initFieldWithPlaceholder:(NSString *)placeholder doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
-    self.type = SideMenuItemTypeField;
+    self.type = RESideMenuItemTypeField;
     return [self initWithTitle:placeholder image:nil highlightedImage:nil imageAction:nil action:action];
 }
 
-- (id)initFieldWithPlaceholder:(NSString *)placeholder
-                         image:(UIImage *)image
-              highlightedImage:(UIImage *)highlightedImage
-                   imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
-                    doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+- (id)initFieldWithPlaceholder:(NSString *)placeholder image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction doneAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
-    self.type = SideMenuItemTypeField;
+    self.type = RESideMenuItemTypeField;
     return [self initWithTitle:placeholder image:image highlightedImage:highlightedImage imageAction:imageAction action:action];
 }
 
-- (id)initWithTitle:(NSString *)title
-              image:(UIImage *)image
-   highlightedImage:(UIImage *)highlightedImage
-        imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction
-             action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage imageAction:(void(^)(RESideMenu *menu, RESideMenuItem *item))imageAction action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action
 {
     self = [super init];
     if (!self)
@@ -69,7 +59,6 @@
     
     return self;
 }
-
 
 - (NSString *)description
 {

@@ -393,7 +393,7 @@ const int INTERSTITIAL_STEPS = 99;
     UITextField *field;
     
     switch (item.type) {
-        case SideMenuItemTypeField:
+        case RESideMenuItemTypeField:
             cell.textLabel.text = @"";
             field = [[UITextField alloc] initWithFrame:CGRectMake(self.horizontalOffset, 12, 200, cell.frame.size.height)];
             field.delegate = self;
@@ -463,7 +463,7 @@ const int INTERSTITIAL_STEPS = 99;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     
-    if (item.type == SideMenuItemTypeField) {
+    if (item.type == RESideMenuItemTypeField) {
         return;
     }
     
