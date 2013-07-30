@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "DemoViewController.h"
+#import "DemoViewController.h"
+#import "SecondViewController.h"
+
+#define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 @implementation AppDelegate
 
@@ -24,7 +28,71 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[DemoViewController alloc] init]];
+    
+    
+    RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        DemoViewController *viewController = [[DemoViewController alloc] init];
+        viewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        [menu displayContentController:navigationController];
+    }];
+    RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        SecondViewController *secondViewController = [[SecondViewController alloc] init];
+        secondViewController.title = item.title;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+        [menu displayContentController:navigationController];
+    }];
+    RESideMenuItem *activityItem = [[RESideMenuItem alloc] initWithTitle:@"Activity" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        [menu hide];
+        NSLog(@"Item %@", item);
+    }];
+    RESideMenuItem *profileItem = [[RESideMenuItem alloc] initWithTitle:@"Profile" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        [menu hide];
+        NSLog(@"Item %@", item);
+    }];
+    RESideMenuItem *aroundMeItem = [[RESideMenuItem alloc] initWithTitle:@"Around Me" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        [menu hide];
+        NSLog(@"Item %@", item);
+    }];
+    
+    RESideMenuItem *helpPlus1 = [[RESideMenuItem alloc] initWithTitle:@"How to use" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+        [menu hide];
+    }];
+    
+    RESideMenuItem *helpPlus2 = [[RESideMenuItem alloc] initWithTitle:@"Helpdesk" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+        [menu hide];
+    }];
+    
+    RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help +" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+    }];
+    helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
+    
+    RESideMenuItem *itemWithSubItems = [[RESideMenuItem alloc] initWithTitle:@"Sub items +" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        NSLog(@"Item %@", item);
+    }];
+    itemWithSubItems.subItems = @[aroundMeItem,helpCenterItem];
+    
+    RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
+        [alertView show];
+    }];
+    
+    _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem,itemWithSubItems, logOutItem]];
+    
+    _sideMenu.verticalPortraitOffset = IS_WIDESCREEN ? 110 : 76;
+    _sideMenu.verticalLandscapeOffset = 16;
+    
+    _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
+    
+    _sideMenu.openStatusBarStyle = UIStatusBarStyleBlackTranslucent;
+    
+    // Call the home action rather than duplicating the initialisation
+    homeItem.action(_sideMenu, homeItem);
+    
+    self.window.rootViewController = _sideMenu;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -38,7 +106,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
