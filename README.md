@@ -101,8 +101,9 @@ You can customize the following properties of `RESideMenu`:
 
 ## Contributors
 
-Sam Oakley ([@blork](https://github.com/blork))
-Alexis Creuzot ([@kirualex](https://github.com/kirualex))
+Sam Oakley ([@blork](https://github.com/blork))<br />
+Alexis Creuzot ([@kirualex](https://github.com/kirualex))<br />
+Marc Chambers ([@mchambers](https://github.com/mchambers))
 
 ## Contact
 
