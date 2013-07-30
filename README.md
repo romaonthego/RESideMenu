@@ -99,6 +99,10 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
 ```
 
+## Contributors
+
+Sam Oakley ([@blork](https://github.com/blork))
+
 ## Contact
 
 Roman Efimov
