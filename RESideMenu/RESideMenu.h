@@ -29,7 +29,7 @@
 #import "RESideMenuCell.h"
 #import "RESideMenuItem.h"
 
-@interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (strong, readonly, nonatomic) NSArray *items;
 @property (assign, readwrite, nonatomic) CGFloat verticalLandscapeOffset;
@@ -45,8 +45,12 @@
 @property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
 @property (assign, readwrite, nonatomic) BOOL isShowing;
 
+@property (strong, readonly, nonatomic) NSString *lastFieldInput;
+
 - (id)initWithItems:(NSArray *)items;
+- (void)reloadWithItems:(NSArray *)items;
 - (void)show;
+- (void)showFromPanGesture:(UIPanGestureRecognizer *)sender;
 - (void)hide;
 - (void) displayContentController: (UIViewController*) content;
 

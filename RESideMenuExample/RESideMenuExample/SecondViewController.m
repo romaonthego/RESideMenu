@@ -10,10 +10,6 @@
 #import "DemoViewController.h"
 #import "AppDelegate.h"
 
-@interface SecondViewController ()
-
-@end
-
 @implementation SecondViewController
 
 - (void)viewDidLoad

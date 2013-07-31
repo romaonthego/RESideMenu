@@ -28,6 +28,7 @@
 		30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */; };
 		30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD53A176F698A00CF3CB3 /* RESideMenu.m */; };
 		30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E884F0177B5C57007D0E38 /* RootViewController.m */; };
+		FA8D99DA178823BE00055CF9 /* minus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D99D9178823BE00055CF9 /* minus@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		30DBD53A176F698A00CF3CB3 /* RESideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		30E884EF177B5C57007D0E38 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		30E884F0177B5C57007D0E38 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		FA8D99D9178823BE00055CF9 /* minus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minus@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		30D7C39C176B71A500FB3018 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FA8D99D9178823BE00055CF9 /* minus@2x.png */,
 				30D7C39D176B71A500FB3018 /* RESideMenuExample-Info.plist */,
 				30D7C39E176B71A500FB3018 /* InfoPlist.strings */,
 				30D7C3A1176B71A500FB3018 /* main.m */,
@@ -222,6 +225,7 @@
 				30D7C3A8176B71A500FB3018 /* Default.png in Resources */,
 				30D7C3AA176B71A500FB3018 /* Default@2x.png in Resources */,
 				30D7C3AC176B71A500FB3018 /* Default-568h@2x.png in Resources */,
+				FA8D99DA178823BE00055CF9 /* minus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
