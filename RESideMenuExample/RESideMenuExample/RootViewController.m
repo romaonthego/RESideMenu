@@ -26,11 +26,10 @@
     [self.view addGestureRecognizer:gestureRecognizer];
 }
 
--(void)swipeHandler:(UIPanGestureRecognizer *)sender
+- (void)swipeHandler:(UIPanGestureRecognizer *)sender
 {
     [[(AppDelegate*)([[UIApplication sharedApplication] delegate]) sideMenu] showFromPanGesture:sender];
 }
-
 
 #pragma mark -
 #pragma mark Button actions

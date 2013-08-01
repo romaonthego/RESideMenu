@@ -133,7 +133,7 @@ const int INTERSTITIAL_STEPS = 99;
     //
     _appIsHidingStatusBar = [[UIApplication sharedApplication] isStatusBarHidden];
     
-    if(!_appIsHidingStatusBar && _hideStatusBarArea)
+    if (!_appIsHidingStatusBar && _hideStatusBarArea)
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     [self updateStatusBar];
@@ -151,11 +151,14 @@ const int INTERSTITIAL_STEPS = 99;
         
         _isShowing = YES;
         
-        if (!_appIsHidingStatusBar)
+        if (!_appIsHidingStatusBar && _hideStatusBarArea)
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+        
+        [self updateStatusBar];
         
         [self updateViews];
         _screenshotView.frame = CGRectMake(0, 0, _originalSize.width, _originalSize.height);
+        
 	}
     
     [self panGestureRecognized:sender];
