@@ -9,12 +9,13 @@
 #import "UINavigationController+DelegateFixes.h"
 
 @implementation UINavigationController (DelegateFixes)
--(BOOL)shouldAutorotate
+
+- (BOOL)shouldAutorotate
 {
     return [[self.viewControllers lastObject] shouldAutorotate];
 }
 
--(NSUInteger)supportedInterfaceOrientations
+- (NSUInteger)supportedInterfaceOrientations
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
@@ -23,7 +24,6 @@
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         }
     }
-    
     return [[self.viewControllers lastObject] supportedInterfaceOrientations];
 }
 
@@ -36,4 +36,5 @@
 {
     return [[self.viewControllers lastObject] preferredStatusBarStyle];
 }
+
 @end

@@ -23,7 +23,6 @@
 // THE SOFTWARE.
 //
 
-
 #import "RESideMenuItem.h"
 
 @implementation RESideMenuItem

@@ -10,7 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation UIView (ImageSnapshot)
--(UIImage*) snapshotImage
+
+- (UIImage*)snapshotImage
 {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
@@ -34,6 +35,6 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
-
 }
+
 @end

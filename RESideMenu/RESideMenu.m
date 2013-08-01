@@ -64,22 +64,6 @@ const int INTERSTITIAL_STEPS = 99;
         self.hideStatusBarArea = YES;
         self.openStatusBarStyle = UIStatusBarStyleDefault;
         self.menuStack = [NSMutableArray array];
-        
-        CGRect screen = [UIScreen mainScreen].bounds;
-        
-        // Back
-        _backgroundView = [[REBackgroundView alloc] initWithFrame:screen];
-        _backgroundView.backgroundImage = _backgroundImage;
-        
-        
-        // Table
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.height)];
-        [_tableView setShowsVerticalScrollIndicator:NO];
-        _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, self.verticalOffset)];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     
     return self;
@@ -112,7 +96,7 @@ const int INTERSTITIAL_STEPS = 99;
     // Set items and reload
     //
     RESideMenuItem * firstItem = items[0];
-    if (_isInSubMenu && firstItem!=_backMenu){
+    if (_isInSubMenu && firstItem!=_backMenu) {
         NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
         [array addObjectsFromArray:items];
         _items = array;
@@ -147,7 +131,7 @@ const int INTERSTITIAL_STEPS = 99;
     
     // Keep track of whether or not it was already hidden
     //
-    _appIsHidingStatusBar=[[UIApplication sharedApplication] isStatusBarHidden];
+    _appIsHidingStatusBar = [[UIApplication sharedApplication] isStatusBarHidden];
     
     if(!_appIsHidingStatusBar && _hideStatusBarArea)
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
@@ -158,7 +142,6 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender
 {
-    
     CGPoint translation = [sender translationInView:self.view];
     
     _showFromPan = YES;
@@ -168,7 +151,7 @@ const int INTERSTITIAL_STEPS = 99;
         
         _isShowing = YES;
         
-        if(!_appIsHidingStatusBar)
+        if (!_appIsHidingStatusBar)
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         
         [self updateViews];
@@ -181,13 +164,14 @@ const int INTERSTITIAL_STEPS = 99;
 - (void)hide
 {
     if (!_isShowing)
-        return
+        return;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [self restoreFromRect:_screenshotView.frame];
 }
 
-- (void) displayContentController: (UIViewController*) content;
+- (void)displayContentController:(UIViewController *)content;
 {
     [self addChildViewController:content];
     content.view.frame = self.view.bounds;
@@ -237,7 +221,7 @@ const int INTERSTITIAL_STEPS = 99;
     [self minimizeFromRect:CGRectMake(0, 0, _originalSize.width, _originalSize.height)];
 }
 
-- (void) updateViews
+- (void)updateViews
 {    
     // Take a snapshot
     //
@@ -282,7 +266,7 @@ const int INTERSTITIAL_STEPS = 99;
 {
     CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 4 : 3);
     
-    CGFloat m = 1 - (((self.view.bounds.size.width - widthOffset) / self.view.bounds.size.width) * 210/self.view.bounds.size.width);
+    CGFloat m = 1 - (((self.view.bounds.size.width - widthOffset) / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
     CGFloat newWidth = _originalSize.width * m;
     CGFloat newHeight = _originalSize.height * m;
     
@@ -370,7 +354,7 @@ const int INTERSTITIAL_STEPS = 99;
     }];
 }
 
--(CGFloat) verticalOffset
+- (CGFloat)verticalOffset
 {
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         return self.verticalPortraitOffset;
@@ -379,7 +363,7 @@ const int INTERSTITIAL_STEPS = 99;
     }
 }
 
--(CGFloat) horizontalOffset
+- (CGFloat)horizontalOffset
 {
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         return self.horizontalPortraitOffset;
@@ -404,14 +388,11 @@ const int INTERSTITIAL_STEPS = 99;
 	}
 	
     if (sender.state == UIGestureRecognizerStateChanged) {
-        
         _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
         
         CGFloat x = translation.x + _initialX ;
-        CGFloat m = 1 - ((x / self.view.bounds.size.width) * 210/self.view.bounds.size.width);
+        CGFloat m = 1 - ((x / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
         CGFloat y = (self.view.bounds.size.height - _originalSize.height * m) / 2.0;
-        
-       // NSLog(@"%f, %f",  1 - ((_initialX/ self.view.bounds.size.width) * 210/self.view.bounds.size.width), _initialX);
         
         CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 4 : 3);
         
@@ -580,7 +561,7 @@ const int INTERSTITIAL_STEPS = 99;
 #pragma mark - Status bar
 
 #ifdef __IPHONE_7_0
--(UIStatusBarStyle)preferredStatusBarStyle
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
     return _isShowing ? self.openStatusBarStyle : [self.topController preferredStatusBarStyle];
 }
@@ -588,7 +569,7 @@ const int INTERSTITIAL_STEPS = 99;
 
 #pragma mark - Rotation
 
--(void) deviceOrientationDidChange
+- (void)deviceOrientationDidChange
 {
     if (_isShowing) {
         [self performSelector:@selector(hide) withObject:nil afterDelay:0.1];
@@ -596,16 +577,15 @@ const int INTERSTITIAL_STEPS = 99;
     }
 }
 
-- (BOOL) shouldAutorotate
+- (BOOL)shouldAutorotate
 {
     return !_isShowing;
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return !_isShowing;
 }
-
 
 - (NSUInteger)supportedInterfaceOrientations
 {
@@ -622,7 +602,7 @@ const int INTERSTITIAL_STEPS = 99;
         return [self.topController preferredInterfaceOrientationForPresentation];
     } else {
         return [super preferredInterfaceOrientationForPresentation];
-    }}
-
+    }
+}
 
 @end

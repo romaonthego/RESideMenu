@@ -52,6 +52,6 @@
 - (void)show;
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender;
 - (void)hide;
-- (void) displayContentController: (UIViewController*) content;
+- (void)displayContentController:(UIViewController*)content;
 
 @end

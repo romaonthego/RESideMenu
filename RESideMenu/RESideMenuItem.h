@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, RESideMenuItemType) {
 @property (copy, readwrite, nonatomic) void (^imageAction)(RESideMenu *menu, RESideMenuItem *item);
 @property (copy, readwrite, nonatomic) void (^action)(RESideMenu *menu, RESideMenuItem *item);
 
-@property (nonatomic) RESideMenuItemType type;
+@property (assign, readwrite, nonatomic) RESideMenuItemType type;
 @property (strong, readwrite, nonatomic) NSArray *subItems;
 
 - (id)initWithTitle:(NSString *)title action:(void(^)(RESideMenu *menu, RESideMenuItem *item))action;
