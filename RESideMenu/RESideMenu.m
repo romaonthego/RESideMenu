@@ -158,7 +158,8 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender
 {
-    CGPoint translation = [sender translationInView:sender.view];
+    
+    CGPoint translation = [sender translationInView:self.view];
     
     _showFromPan = YES;
 	if (sender.state == UIGestureRecognizerStateBegan) {
@@ -171,7 +172,9 @@ const int INTERSTITIAL_STEPS = 99;
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         
         [self updateViews];
+        _screenshotView.frame = CGRectMake(0, 0, _originalSize.width, _originalSize.height);
 	}
+    
     [self panGestureRecognized:sender];
 }
 
@@ -401,7 +404,6 @@ const int INTERSTITIAL_STEPS = 99;
 	}
 	
     if (sender.state == UIGestureRecognizerStateChanged) {
-
         
         _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
         
