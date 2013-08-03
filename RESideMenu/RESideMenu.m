@@ -176,16 +176,16 @@ const int INTERSTITIAL_STEPS = 99;
 
 - (void)displayContentController:(UIViewController *)content;
 {
-    [self addChildViewController:content];
-    content.view.frame = self.view.bounds;
-    [self.view addSubview:content.view];
-    [content didMoveToParentViewController:self];
-
     if (self.topController) {
         [self.topController willMoveToParentViewController:nil];
         [self.topController.view removeFromSuperview];
         [self.topController removeFromParentViewController];
     }
+    
+    [self addChildViewController:content];
+    content.view.frame = self.view.bounds;
+    [self.view addSubview:content.view];
+    [content didMoveToParentViewController:self];
     
     self.topController = content;
     
