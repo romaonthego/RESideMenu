@@ -28,6 +28,7 @@
 		30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */; };
 		30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD53A176F698A00CF3CB3 /* RESideMenu.m */; };
 		30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E884F0177B5C57007D0E38 /* RootViewController.m */; };
+		9808014517AE21E500E2AD0E /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9808014417AE21E500E2AD0E /* UIViewController+RESideMenu.m */; };
 		FA8D99DA178823BE00055CF9 /* minus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D99D9178823BE00055CF9 /* minus@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		30DBD53A176F698A00CF3CB3 /* RESideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		30E884EF177B5C57007D0E38 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		30E884F0177B5C57007D0E38 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		9808014317AE21E500E2AD0E /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		9808014417AE21E500E2AD0E /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		FA8D99D9178823BE00055CF9 /* minus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minus@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +168,8 @@
 				30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */,
 				30DBD52E176BB88700CF3CB3 /* RESideMenuItem.h */,
 				30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */,
+				9808014317AE21E500E2AD0E /* UIViewController+RESideMenu.h */,
+				9808014417AE21E500E2AD0E /* UIViewController+RESideMenu.m */,
 			);
 			name = RESideMenu;
 			path = ../RESideMenu;
@@ -241,6 +246,7 @@
 				30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */,
 				30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */,
 				30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */,
+				9808014517AE21E500E2AD0E /* UIViewController+RESideMenu.m in Sources */,
 				30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */,
 				30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */,
 				30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */,
