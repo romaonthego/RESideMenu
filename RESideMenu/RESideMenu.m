@@ -107,7 +107,7 @@ const int INTERSTITIAL_STEPS = 99;
     RESideMenuItem * firstItem = items[0];
     if(!_backMenu)
         [self initBackMenuItem];
-    if (_isInSubMenu && ![firstItem isEqual:_backMenu]) {
+    if (_isInSubMenu && firstItem!=_backMenu) {
         NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
         [array addObjectsFromArray:items];
         _items = array;
