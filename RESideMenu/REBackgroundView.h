@@ -28,5 +28,6 @@
 @interface REBackgroundView : UIView
 
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
+@property (strong, nonatomic) UIColor *fillColor;
 
 @end

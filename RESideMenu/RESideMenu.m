@@ -50,6 +50,8 @@ const int INTERSTITIAL_STEPS = 99;
 @end
 
 @implementation RESideMenu
+@synthesize backgroundView = _backgroundView;
+@synthesize tableView = _tableView;
 
 - (id)init
 {
@@ -233,8 +235,33 @@ const int INTERSTITIAL_STEPS = 99;
     [self minimizeFromRect:CGRectMake(0, 0, _originalSize.width, _originalSize.height)];
 }
 
+- (REBackgroundView*)backgroundView
+{
+    if(!_backgroundView) {        
+        _backgroundView = [[REBackgroundView alloc] initWithFrame:CGRectMake(0, -20, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
+        _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _backgroundView.backgroundImage = _backgroundImage;
+    }
+    return _backgroundView;
+}
+
+- (UITableView*)tableView
+{
+    if(!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundView = nil;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.verticalOffset)];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.alpha = 0;
+    }
+    return _tableView;
+}
+
 - (void)updateViews
-{    
+{
     // Take a snapshot
     //
     _screenshotView = [[UIImageView alloc] initWithFrame:CGRectNull];
@@ -245,24 +272,14 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     _originalSize = _screenshotView.frame.size;
     
-    _tableView.alpha = 0;
     
     // Add views
     //
-    _backgroundView = [[REBackgroundView alloc] initWithFrame:CGRectMake(0, -20, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
-    _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _backgroundView.backgroundImage = _backgroundImage;
-    [self.view addSubview:_backgroundView];
+    if(!self.backgroundView.superview)
+        [self.view addSubview:_backgroundView];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.backgroundView = nil;
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.verticalOffset)];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.alpha = 0;
-    [self.view addSubview:_tableView];
+    self.tableView.alpha = 0;
+    [self.view addSubview:self.tableView];
     
     [self.view addSubview:_screenshotView];
     

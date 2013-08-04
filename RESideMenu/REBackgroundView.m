@@ -55,9 +55,12 @@
     if (self.backgroundImage)
         return;
     
-//    [self drawGradientInRect:rect];
-    [[Theme greenColor] setFill];
-    UIRectFill(rect);
+    if(_fillColor) {
+        [_fillColor setFill];
+        UIRectFill(rect);
+    } else {
+        [self drawGradientInRect:rect];
+    }
 }
 
 - (void)drawGradientInRect:(CGRect)rect
