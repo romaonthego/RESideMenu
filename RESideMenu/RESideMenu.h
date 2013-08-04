@@ -28,6 +28,7 @@
 #import "REBackgroundView.h"
 #import "RESideMenuCell.h"
 #import "RESideMenuItem.h"
+#import "UIViewController+RESideMenu.h"
 
 @interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 

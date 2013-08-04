@@ -28,7 +28,7 @@
 
 - (void)swipeHandler:(UIPanGestureRecognizer *)sender
 {
-    [[(AppDelegate*)([[UIApplication sharedApplication] delegate]) sideMenu] showFromPanGesture:sender];
+    [[self sideMenu] showFromPanGesture:sender];
 }
 
 #pragma mark -
@@ -36,7 +36,7 @@
 
 - (void)showMenu
 {
-    [[(AppDelegate*)([[UIApplication sharedApplication] delegate]) sideMenu] show];
+    [[self sideMenu] show];
 }
 
 @end
