@@ -55,6 +55,13 @@
     if (self.backgroundImage)
         return;
     
+//    [self drawGradientInRect:rect];
+    [[Theme greenColor] setFill];
+    UIRectFill(rect);
+}
+
+- (void)drawGradientInRect:(CGRect)rect
+{    
     //// General Declarations
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = UIGraphicsGetCurrentContext();

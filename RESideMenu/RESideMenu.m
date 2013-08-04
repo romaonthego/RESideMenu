@@ -39,7 +39,6 @@ const int INTERSTITIAL_STEPS = 99;
 
 @property (assign, readwrite, nonatomic) CGFloat initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
-@property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
 @property (strong, readonly, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIViewController *topController;
@@ -77,13 +76,21 @@ const int INTERSTITIAL_STEPS = 99;
     
     _items = items;
     [_menuStack addObject:items];
-    _backMenu = [[RESideMenuItem alloc] initWithTitle:@"<" action:nil];
+    [self initBackMenuItem];
     
     return self;
 }
 
+- (void)initBackMenuItem
+{
+    _backMenu = [[RESideMenuItem alloc] initWithTitle:@"<" action:nil];
+}
+
 - (void)reloadWithItems:(NSArray *)items
 {
+    if(![_menuStack containsObject:items])
+        [_menuStack addObject:items];
+    
     // Animate to disappear
     //
     __typeof (&*self) __weak weakSelf = self;
@@ -96,7 +103,9 @@ const int INTERSTITIAL_STEPS = 99;
     // Set items and reload
     //
     RESideMenuItem * firstItem = items[0];
-    if (_isInSubMenu && firstItem!=_backMenu) {
+    if(!_backMenu)
+        [self initBackMenuItem];
+    if (_isInSubMenu && ![firstItem isEqual:_backMenu]) {
         NSMutableArray * array = [NSMutableArray arrayWithObject:_backMenu];
         [array addObjectsFromArray:items];
         _items = array;
@@ -554,10 +563,6 @@ const int INTERSTITIAL_STEPS = 99;
     if (item.subItems) {
         _isInSubMenu = YES;
         [self reloadWithItems:item.subItems];
-        
-        // Push new menu on stack
-        //
-        [_menuStack addObject:item.subItems];
     }
 }
 
