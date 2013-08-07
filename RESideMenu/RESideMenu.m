@@ -73,7 +73,7 @@ const int INTERSTITIAL_STEPS = 99;
 {
     if (_isShowing)
         return;
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willOpenSideMenu" object:nil];
     _isShowing = YES;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
@@ -216,6 +216,7 @@ const int INTERSTITIAL_STEPS = 99;
         weakSelf.screenshotView.alpha = 0;
     } completion:^(BOOL finished) {
         [weakSelf.screenshotView removeFromSuperview];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"closedSideMenu" object:nil];
     }];
     [_backgroundView removeFromSuperview];
     [_tableView removeFromSuperview];
