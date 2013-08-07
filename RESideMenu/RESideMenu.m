@@ -146,6 +146,8 @@ const int INTERSTITIAL_STEPS = 99;
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognized:)];
     [_screenshotView addGestureRecognizer:tapGestureRecognizer];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didOpenSideMenu" object:nil];
 }
 
 - (void)minimizeFromRect:(CGRect)rect
