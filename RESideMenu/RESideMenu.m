@@ -133,10 +133,10 @@ const int INTERSTITIAL_STEPS = 99;
 {
     if (_isShowing)
         return;
-    
+
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willOpenSideMenu" object:nil];
     _isShowing = YES;
     _showFromPan = NO;
     
@@ -289,6 +289,8 @@ const int INTERSTITIAL_STEPS = 99;
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognized:)];
     [_screenshotView addGestureRecognizer:tapGestureRecognizer];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didOpenSideMenu" object:nil];
 }
 
 - (void)minimizeFromRect:(CGRect)rect
@@ -380,6 +382,7 @@ const int INTERSTITIAL_STEPS = 99;
     } completion:^(BOOL finished) {
         [weakSelf.screenshotView removeFromSuperview];
         _isShowing = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"closedSideMenu" object:nil];
     }];
 }
 
