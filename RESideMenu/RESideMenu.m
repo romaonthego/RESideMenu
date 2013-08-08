@@ -140,7 +140,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"willOpenSideMenu" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESideMenuWillOpen object:nil];
     _isShowing = YES;
     _showFromPan = NO;
     
@@ -294,7 +294,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognized:)];
     [_screenshotView addGestureRecognizer:tapGestureRecognizer];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didOpenSideMenu" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESideMenuDidOpen object:nil];
 }
 
 - (void)minimizeFromRect:(CGRect)rect
@@ -386,7 +386,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     } completion:^(BOOL finished) {
         [weakSelf.screenshotView removeFromSuperview];
         _isShowing = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"closedSideMenu" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:RESideMenuDidClose object:nil];
     }];
 }
 
