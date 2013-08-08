@@ -30,6 +30,10 @@
 #import "RESideMenuItem.h"
 #import "UIViewController+RESideMenu.h"
 
+extern NSString * const RESideMenuWillOpen;
+extern NSString * const RESideMenuDidOpen;
+extern NSString * const RESideMenuDidClose;
+
 @interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (strong, readonly, nonatomic) NSArray *items;

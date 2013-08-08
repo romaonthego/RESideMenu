@@ -31,6 +31,10 @@
 
 const int INTERSTITIAL_STEPS = 99;
 
+NSString * const RESideMenuWillOpen = @"RESideMenuWillOpen";
+NSString * const RESideMenuDidOpen = @"RESideMenuDidOpen";
+NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
+
 @interface RESideMenu () {
     BOOL _appIsHidingStatusBar;
     BOOL _isInSubMenu;
