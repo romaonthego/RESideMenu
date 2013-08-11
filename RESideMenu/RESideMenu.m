@@ -603,9 +603,15 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)deviceOrientationDidChange
 {
-    if (_isShowing) {
-        [self performSelector:@selector(hide) withObject:nil afterDelay:0.1];
-        [[self class] performSelector:@selector(attemptRotationToDeviceOrientation) withObject:nil afterDelay:0.5];
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if (orientation == UIDeviceOrientationPortrait ||
+        orientation == UIDeviceOrientationPortraitUpsideDown ||
+        orientation == UIDeviceOrientationLandscapeLeft ||
+        orientation == UIDeviceOrientationLandscapeRight) {
+        if ((UIInterfaceOrientation)orientation != self.interfaceOrientation && _isShowing) {
+            [self performSelector:@selector(hide) withObject:nil afterDelay:0.1];
+            [[self class] performSelector:@selector(attemptRotationToDeviceOrientation) withObject:nil afterDelay:0.5];
+        }
     }
 }
 
