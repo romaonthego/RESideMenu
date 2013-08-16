@@ -72,9 +72,9 @@ RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:
     secondViewController.title = item.title;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
 
-    // Use setRootViewController to switch between view controllers
+    // Use displayContentController to switch between view controllers
     //
-    [menu setRootViewController:navigationController];
+    [menu displayContentController:navigationController];
 }];
 RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
     [menu hide];
