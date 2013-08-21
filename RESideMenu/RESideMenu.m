@@ -252,7 +252,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 - (UITableView*)tableView
 {
     if(!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.backgroundView.frame.origin.x, self.backgroundView.frame.origin.y, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height)];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.backgroundView = nil;
         _tableView.delegate = self;
@@ -260,6 +260,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.verticalOffset)];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.alpha = 0;
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
     return _tableView;
 }
