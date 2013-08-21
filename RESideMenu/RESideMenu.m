@@ -94,8 +94,20 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)reloadWithItems:(NSArray *)items
 {
-    if(![_menuStack containsObject:items])
+    [self reloadWithItems:items push:YES];
+}
+
+- (void)reloadWithItems:(NSArray *)items push:(BOOL)push
+{
+    if(push && ![_menuStack containsObject:items])
         [_menuStack addObject:items];
+    else {
+        // Make sure the last object in the stack is our new menu
+        NSInteger lastObjectIndex = [_menuStack indexOfObject:[_menuStack lastObject]];
+        if (lastObjectIndex != NSNotFound) {
+            [_menuStack replaceObjectAtIndex:lastObjectIndex withObject:items];
+        }
+    }
     
     // Animate to disappear
     //
@@ -252,7 +264,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 - (UITableView*)tableView
 {
     if(!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.backgroundView.frame.origin.x, self.backgroundView.frame.origin.y, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height)];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.backgroundView = nil;
         _tableView.delegate = self;
@@ -260,6 +272,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.verticalOffset)];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.alpha = 0;
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
     return _tableView;
 }

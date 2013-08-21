@@ -73,7 +73,7 @@
             NSMutableArray * items = menu.items.mutableCopy;
             [items removeObject:newTagItem];
             [_addedItems removeObject:newTagItem];
-            [menu reloadWithItems:items];
+            [menu reloadWithItems:items push:NO];
         } action:^(RESideMenu *menu, RESideMenuItem *item) {
             NSLog(@"Item %@", item);
             [menu hide];
@@ -82,7 +82,7 @@
         NSMutableArray * items = menu.items.mutableCopy;
         [items insertObject:newTagItem atIndex:2];
         [_addedItems addObject:newTagItem];
-        [menu reloadWithItems:items];
+        [menu reloadWithItems:items push:NO];
     }];
     
     RESideMenuItem *tagMakerItem = [[RESideMenuItem alloc] initWithTitle:@"Tags +" action:^(RESideMenu *menu, RESideMenuItem *item) {
