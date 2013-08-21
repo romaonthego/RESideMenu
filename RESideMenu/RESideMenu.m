@@ -94,8 +94,20 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)reloadWithItems:(NSArray *)items
 {
-    if(![_menuStack containsObject:items])
+    [self reloadWithItems:items push:YES];
+}
+
+- (void)reloadWithItems:(NSArray *)items push:(BOOL)push
+{
+    if(push && ![_menuStack containsObject:items])
         [_menuStack addObject:items];
+    else {
+        // Make sure the last object in the stack is our new menu
+        NSInteger lastObjectIndex = [_menuStack indexOfObject:[_menuStack lastObject]];
+        if (lastObjectIndex != NSNotFound) {
+            [_menuStack replaceObjectAtIndex:lastObjectIndex withObject:items];
+        }
+    }
     
     // Animate to disappear
     //
