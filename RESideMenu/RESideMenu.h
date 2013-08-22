@@ -55,6 +55,7 @@ extern NSString * const RESideMenuDidClose;
 
 - (id)initWithItems:(NSArray *)items;
 - (void)reloadWithItems:(NSArray *)items;
+- (void)reloadWithItems:(NSArray *)items push:(BOOL)push;
 - (void)show;
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender;
 - (void)hide;
