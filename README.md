@@ -80,8 +80,8 @@ RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" a
     [menu hide];
 }];
 
-_sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem]];
-[_sideMenu show];
+self.sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem]];
+[self.sideMenu show];
 ```
 
 ## Customization
