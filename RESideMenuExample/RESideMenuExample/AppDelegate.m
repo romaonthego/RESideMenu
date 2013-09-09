@@ -107,6 +107,7 @@
     _sideMenu.verticalLandscapeOffset = 16;
     
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
+    _sideMenu.shouldNotScaleRootView = YES;
     
     _sideMenu.openStatusBarStyle = UIStatusBarStyleBlackTranslucent;
     

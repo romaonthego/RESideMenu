@@ -314,7 +314,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 {
     CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 4 : 3);
     
-    CGFloat m = 1 - (((self.view.bounds.size.width - widthOffset) / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
+    CGFloat m = (_shouldNotScaleRootView == YES) ? 1.0 : 1 - (((self.view.bounds.size.width - widthOffset) / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
     CGFloat newWidth = _originalSize.width * m;
     CGFloat newHeight = _originalSize.height * m;
     
@@ -440,7 +440,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
         
         CGFloat x = translation.x + _initialX ;
-        CGFloat m = 1 - ((x / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
+        CGFloat m = (_shouldNotScaleRootView == YES) ? 1.0 : 1 - ((x / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
         CGFloat y = (self.view.bounds.size.height - _originalSize.height * m) / 2.0;
         
         CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 4 : 3);
