@@ -165,7 +165,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     [self updateStatusBar];
-    [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.18];
 }
 
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender
