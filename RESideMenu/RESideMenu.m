@@ -575,7 +575,9 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    RESideMenuCell *cell = (RESideMenuCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.highlightedTextColor = self.textColor;
+    
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     
     if (item.type == RESideMenuItemTypeField) {
@@ -607,6 +609,12 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _isInSubMenu = YES;
         [self reloadWithItems:item.subItems];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RESideMenuCell *cell = (RESideMenuCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.highlightedTextColor = self.highlightedTextColor;
 }
 
 #pragma mark - Status bar
