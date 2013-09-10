@@ -69,6 +69,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         self.openStatusBarStyle = UIStatusBarStyleDefault;
         self.menuStack = [NSMutableArray array];
         self.isScrollingEnabled = YES;
+        self.shouldShowContentViewShadow = NO;
     }
     
     return self;
@@ -291,6 +292,14 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
+    
+    if (_shouldShowContentViewShadow) {
+        _screenshotView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        _screenshotView.layer.shadowOpacity = 0.5;
+        _screenshotView.layer.shadowRadius = 25.0;
+        _screenshotView.layer.masksToBounds = NO;
+    }
+    
     _screenshotView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     _originalSize = _screenshotView.frame.size;
     

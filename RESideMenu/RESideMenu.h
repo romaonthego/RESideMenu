@@ -50,6 +50,7 @@ extern NSString * const RESideMenuDidClose;
 @property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
 @property (assign, readwrite, nonatomic) BOOL isShowing;
 @property (assign, readwrite, nonatomic) BOOL shouldNotScaleRootView;
+@property (assign, readwrite, nonatomic) BOOL shouldShowContentViewShadow;
 @property (assign, readwrite, nonatomic) BOOL isScrollingEnabled;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 
