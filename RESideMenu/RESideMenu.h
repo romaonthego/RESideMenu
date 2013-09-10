@@ -53,6 +53,7 @@ extern NSString * const RESideMenuDidClose;
 @property (assign, readwrite, nonatomic) BOOL isScrollingEnabled;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 
+@property (strong, readonly, nonatomic) UITableView *tableView;
 @property (strong, readonly, nonatomic) UIViewController *displayedContentController;
 
 @property (strong, readonly, nonatomic) NSString *lastFieldInput;

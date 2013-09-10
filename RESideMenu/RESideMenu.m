@@ -44,7 +44,6 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 @property (assign, readwrite, nonatomic) CGFloat initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
-@property (strong, readonly, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIViewController *topController;
 
 // Array containing menu (which are array of items)
