@@ -261,6 +261,10 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     return _backgroundView;
 }
 
+- (UIViewController *)displayedContentController {
+    return self.topController;
+}
+
 - (UITableView*)tableView
 {
     if(!_tableView) {

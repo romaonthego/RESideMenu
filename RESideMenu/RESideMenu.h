@@ -52,6 +52,8 @@ extern NSString * const RESideMenuDidClose;
 @property (assign, readwrite, nonatomic) BOOL shouldNotScaleRootView;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 
+@property (strong, readonly, nonatomic) UIViewController *displayedContentController;
+
 @property (strong, readonly, nonatomic) NSString *lastFieldInput;
 
 - (id)initWithItems:(NSArray *)items;
