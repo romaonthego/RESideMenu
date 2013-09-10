@@ -69,6 +69,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         self.hideStatusBarArea = YES;
         self.openStatusBarStyle = UIStatusBarStyleDefault;
         self.menuStack = [NSMutableArray array];
+        self.isScrollingEnabled = YES;
     }
     
     return self;
@@ -277,6 +278,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.alpha = 0;
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _tableView.scrollEnabled = _isScrollingEnabled;
     }
     return _tableView;
 }
