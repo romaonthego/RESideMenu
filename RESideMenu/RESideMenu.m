@@ -142,6 +142,12 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     }];
 }
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.view.clipsToBounds = YES;
+}
+
 #pragma mark -
 #pragma markPublic API
 
