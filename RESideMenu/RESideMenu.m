@@ -44,7 +44,6 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 @property (assign, readwrite, nonatomic) CGFloat initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
-@property (strong, readonly, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIViewController *topController;
 
 // Array containing menu (which are array of items)
@@ -69,6 +68,8 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         self.hideStatusBarArea = YES;
         self.openStatusBarStyle = UIStatusBarStyleDefault;
         self.menuStack = [NSMutableArray array];
+        self.isScrollingEnabled = YES;
+        self.shouldShowContentViewShadow = NO;
     }
     
     return self;
@@ -170,7 +171,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     [self updateStatusBar];
-    [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(showAfterDelay) withObject:nil afterDelay:0.18];
 }
 
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender
@@ -204,7 +205,10 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    
+    [self menuWillDisappear];
     [self restoreFromRect:_screenshotView.frame];
+    [self menuDidDisappear];
 }
 
 - (void)displayContentController:(UIViewController *)content;
@@ -253,8 +257,10 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)showAfterDelay
 {
+    [self menuWillAppear];
     [self updateViews];
     [self minimizeFromRect:CGRectMake(0, 0, _originalSize.width, _originalSize.height)];
+    [self menuDidAppear];
 }
 
 - (REBackgroundView*)backgroundView
@@ -265,6 +271,10 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _backgroundView.backgroundImage = _backgroundImage;
     }
     return _backgroundView;
+}
+
+- (UIViewController *)displayedContentController {
+    return self.topController;
 }
 
 - (UITableView*)tableView
@@ -279,6 +289,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.alpha = 0;
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _tableView.scrollEnabled = _isScrollingEnabled;
     }
     return _tableView;
 }
@@ -292,6 +303,14 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _screenshotView.userInteractionEnabled = YES;
     _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
+    
+    if (_shouldShowContentViewShadow) {
+        _screenshotView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        _screenshotView.layer.shadowOpacity = 0.5;
+        _screenshotView.layer.shadowRadius = 25.0;
+        _screenshotView.layer.masksToBounds = NO;
+    }
+    
     _screenshotView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     _originalSize = _screenshotView.frame.size;
     
@@ -320,7 +339,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 {
     CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 4 : 3);
     
-    CGFloat m = 1 - (((self.view.bounds.size.width - widthOffset) / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
+    CGFloat m = (_shouldNotScaleRootView == YES) ? 1.0 : 1 - (((self.view.bounds.size.width - widthOffset) / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
     CGFloat newWidth = _originalSize.width * m;
     CGFloat newHeight = _originalSize.height * m;
     
@@ -446,7 +465,7 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _screenshotView.layer.anchorPoint = CGPointMake(0, 0);
         
         CGFloat x = translation.x + _initialX ;
-        CGFloat m = 1 - ((x / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
+        CGFloat m = (_shouldNotScaleRootView == YES) ? 1.0 : 1 - ((x / self.view.bounds.size.width) * 210.0 / self.view.bounds.size.width);
         CGFloat y = (self.view.bounds.size.height - _originalSize.height * m) / 2.0;
         
         CGFloat widthOffset = self.view.bounds.size.width / (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? 4 : 3);
@@ -575,7 +594,9 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    RESideMenuCell *cell = (RESideMenuCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.highlightedTextColor = self.textColor;
+    
     RESideMenuItem *item = [_items objectAtIndex:indexPath.row];
     
     if (item.type == RESideMenuItemTypeField) {
@@ -607,6 +628,12 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
         _isInSubMenu = YES;
         [self reloadWithItems:item.subItems];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RESideMenuCell *cell = (RESideMenuCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.highlightedTextColor = self.highlightedTextColor;
 }
 
 #pragma mark - Status bar
@@ -660,6 +687,26 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     } else {
         return [super preferredInterfaceOrientationForPresentation];
     }
+}
+
+
+#pragma mark - Overridden Methods
+// Following methods should be overridden in the subclass
+
+- (void)menuWillAppear {
+    
+}
+
+- (void)menuDidAppear {
+    
+}
+
+- (void)menuWillDisappear {
+    
+}
+
+- (void)menuDidDisappear {
+    
 }
 
 @end

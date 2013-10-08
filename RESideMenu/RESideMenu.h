@@ -49,7 +49,13 @@ extern NSString * const RESideMenuDidClose;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle openStatusBarStyle;
 @property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
 @property (assign, readwrite, nonatomic) BOOL isShowing;
+@property (assign, readwrite, nonatomic) BOOL shouldNotScaleRootView;
+@property (assign, readwrite, nonatomic) BOOL shouldShowContentViewShadow;
+@property (assign, readwrite, nonatomic) BOOL isScrollingEnabled;
 @property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
+
+@property (strong, readonly, nonatomic) UITableView *tableView;
+@property (strong, readonly, nonatomic) UIViewController *displayedContentController;
 
 @property (strong, readonly, nonatomic) NSString *lastFieldInput;
 
@@ -60,5 +66,10 @@ extern NSString * const RESideMenuDidClose;
 - (void)showFromPanGesture:(UIPanGestureRecognizer *)sender;
 - (void)hide;
 - (void)displayContentController:(UIViewController*)content;
+
+- (void)menuWillAppear;
+- (void)menuDidAppear;
+- (void)menuWillDisappear;
+- (void)menuDidDisappear;
 
 @end
