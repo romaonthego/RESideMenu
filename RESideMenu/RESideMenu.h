@@ -67,4 +67,9 @@ extern NSString * const RESideMenuDidClose;
 - (void)hide;
 - (void)displayContentController:(UIViewController*)content;
 
+- (void)menuWillAppear;
+- (void)menuDidAppear;
+- (void)menuWillDisappear;
+- (void)menuDidDisappear;
+
 @end

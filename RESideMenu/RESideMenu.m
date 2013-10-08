@@ -199,7 +199,10 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    
+    [self menuWillDisappear];
     [self restoreFromRect:_screenshotView.frame];
+    [self menuDidDisappear];
 }
 
 - (void)displayContentController:(UIViewController *)content;
@@ -248,8 +251,10 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
 
 - (void)showAfterDelay
 {
+    [self menuWillAppear];
     [self updateViews];
     [self minimizeFromRect:CGRectMake(0, 0, _originalSize.width, _originalSize.height)];
+    [self menuDidAppear];
 }
 
 - (REBackgroundView*)backgroundView
@@ -676,6 +681,26 @@ NSString * const RESideMenuDidClose = @"RESideMenuDidClose";
     } else {
         return [super preferredInterfaceOrientationForPresentation];
     }
+}
+
+
+#pragma mark - Overridden Methods
+// Following methods should be overridden in the subclass
+
+- (void)menuWillAppear {
+    
+}
+
+- (void)menuDidAppear {
+    
+}
+
+- (void)menuWillDisappear {
+    
+}
+
+- (void)menuDidDisappear {
+    
 }
 
 @end
