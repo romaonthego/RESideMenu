@@ -25,6 +25,7 @@
 		3032B958180736E200064F85 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B957180736E200064F85 /* DEMOSecondViewController.m */; };
 		3032B95B180736F300064F85 /* DEMONavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B95A180736F300064F85 /* DEMONavigationController.m */; };
 		3032B95E1807372B00064F85 /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B95D1807372B00064F85 /* DEMOMenuViewController.m */; };
+		3032B96118086F7300064F85 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B96018086F7300064F85 /* RECommonFunctions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		3032B95A180736F300064F85 /* DEMONavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMONavigationController.m; sourceTree = "<group>"; };
 		3032B95C1807372B00064F85 /* DEMOMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOMenuViewController.h; sourceTree = "<group>"; };
 		3032B95D1807372B00064F85 /* DEMOMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOMenuViewController.m; sourceTree = "<group>"; };
+		3032B95F18086F7300064F85 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		3032B96018086F7300064F85 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 		3032B941180733C400064F85 /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				3032B95F18086F7300064F85 /* RECommonFunctions.h */,
+				3032B96018086F7300064F85 /* RECommonFunctions.m */,
 				3032B946180733C400064F85 /* RESideMenu.h */,
 				3032B947180733C400064F85 /* RESideMenu.m */,
 				3032B94E1807352B00064F85 /* UIViewController+RESideMenu.h */,
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3032B954180736C900064F85 /* DEMOFirstViewController.m in Sources */,
+				3032B96118086F7300064F85 /* RECommonFunctions.m in Sources */,
 				3032B91F1807338200064F85 /* main.m in Sources */,
 				3032B95E1807372B00064F85 /* DEMOMenuViewController.m in Sources */,
 				3032B9231807338200064F85 /* DEMOAppDelegate.m in Sources */,

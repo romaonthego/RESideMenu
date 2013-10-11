@@ -25,6 +25,7 @@
 
 #import "RESideMenu.h"
 #import "UIViewController+RESideMenu.h"
+#import "RECommonFunctions.h"
 
 @interface RESideMenu ()
 
@@ -225,7 +226,11 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+    UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
+    IF_IOS7_OR_GREATER(
+        statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+    );
+    return statusBarStyle;
 }
 
 #pragma mark -
