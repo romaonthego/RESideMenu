@@ -59,7 +59,7 @@
     self.wantsFullScreenLayout = YES;
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
-    _scaleContentView = g;
+    _scaleContentView = YES;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
