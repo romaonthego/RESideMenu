@@ -25,7 +25,6 @@
 
 #import "RESideMenu.h"
 #import "UIViewController+RESideMenu.h"
-#import "RECommonFunctions.h"
 
 @interface RESideMenu ()
 
