@@ -61,6 +61,12 @@
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
     _scaleContentView = YES;
+    _parallaxEnabled = YES;
+    _parallaxMenuMinimumRelativeValue = @(-15);
+    _parallaxMenuMaximumRelativeValue = @(15);
+    
+    _parallaxContentMinimumRelativeValue = @(-25);
+    _parallaxContentMaximumRelativeValue = @(25);
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -88,6 +94,21 @@
     [self.view addSubview:self.backgroundImageView];
     [self re_displayController:self.menuViewController frame:self.view.frame];
     [self re_displayController:self.contentViewController frame:self.view.frame];
+    
+    if (self.parallaxEnabled) {
+        IF_IOS7_OR_GREATER(
+           UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+           interpolationHorizontal.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
+           interpolationHorizontal.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
+           
+           UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+           interpolationVertical.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
+           interpolationVertical.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
+           
+           [self.menuViewController.view addMotionEffect:interpolationHorizontal];
+           [self.menuViewController.view addMotionEffect:interpolationVertical];
+        );
+    }
     
     if (self.panGestureEnabled) {
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -140,6 +161,23 @@
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         self.backgroundImageView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        if (self.parallaxEnabled) {
+            IF_IOS7_OR_GREATER(
+                [UIView animateWithDuration:0.2 animations:^{
+                    UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+                    interpolationHorizontal.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
+                    interpolationHorizontal.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
+                    
+                    UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+                    interpolationVertical.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
+                    interpolationVertical.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
+                    
+                    [self.contentViewController.view addMotionEffect:interpolationHorizontal];
+                    [self.contentViewController.view addMotionEffect:interpolationVertical];
+                }];
+            );
+        }
     }];
     self.visible = YES;
     [self updateStatusBar];
@@ -154,6 +192,13 @@
         self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
         self.menuViewController.view.alpha = 0;
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        if (self.parallaxEnabled) {
+            IF_IOS7_OR_GREATER(
+               for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
+                   [self.contentViewController.view removeMotionEffect:effect];
+               }
+            );
+        }
     } completion:^(BOOL finished) {
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];

@@ -32,6 +32,12 @@
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
+@property (strong, readwrite, nonatomic) id parallaxMenuMinimumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxMenuMaximumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
+
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 

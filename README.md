@@ -1,6 +1,6 @@
 # RESideMenu
 
-iOS 7 style side menu inspired by Dribbble shots ([first](http://dribbble.com/shots/1116265-Instasave-iPhone-App) and [second](http://dribbble.com/shots/1114754-Social-Feed-iOS7)).
+iOS 7 style side menu with parallax effect inspired by Dribbble shots ([first](http://dribbble.com/shots/1116265-Instasave-iPhone-App) and [second](http://dribbble.com/shots/1114754-Social-Feed-iOS7)).
 
 <img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="400" height="568" />
 <img src="https://github.com/romaonthego/RESideMenu/raw/master/Demo.gif" alt="RESideMenu Screenshot" width="320" height="568" />
@@ -41,7 +41,7 @@ Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'RESideMenu', '~> 3.0'
+pod 'RESideMenu', '~> 3.1'
 ```
 
 Install into your Xcode project:
@@ -114,6 +114,9 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
+@property (strong, readwrite, nonatomic) id parallaxMinimumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 ```
 
 ## Contact
