@@ -28,10 +28,8 @@
 
 @interface RESideMenu ()
 
-@property (assign, readwrite, nonatomic) CGFloat imageViewWidth;
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL visible;
-@property (assign, readwrite, nonatomic) UIViewAutoresizing contentViewAutoresizingMask;
 @property (assign, readwrite, nonatomic) CGPoint originalPoint;
 
 @end
@@ -61,6 +59,7 @@
     self.wantsFullScreenLayout = YES;
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
+    _scaleContentView = g;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -133,7 +132,9 @@
 - (void)showMenuViewController
 {
     [UIView animateWithDuration:self.animationDuration animations:^{
-        self.contentViewController.view.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
+        if (self.scaleContentView) {
+            self.contentViewController.view.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
+        }
         self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.view.frame.size.height : self.view.frame.size.width) + 30.0f, self.contentViewController.view.center.y);
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
@@ -178,7 +179,7 @@
     if (recognizer.state == UIGestureRecognizerStateChanged) {
         CGFloat delta = self.visible ? (point.x + self.originalPoint.x) / self.originalPoint.x : point.x / self.view.frame.size.width;
         
-        CGFloat contentViewScale = 1 - (0.3f * delta);
+        CGFloat contentViewScale = self.scaleContentView ? 1 - (0.3f * delta) : 1;
         CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
