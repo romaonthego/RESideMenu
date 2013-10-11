@@ -114,8 +114,10 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
-@property (strong, readwrite, nonatomic) id parallaxMinimumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxMaximumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxMenuMinimumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxMenuMaximumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
+@property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 ```
 
