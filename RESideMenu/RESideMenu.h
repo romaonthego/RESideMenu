@@ -1,5 +1,5 @@
 //
-//  RESideMenu.h
+// REFrostedViewController.h
 // RESideMenu
 //
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
@@ -24,41 +24,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "REBackgroundView.h"
-#import "RESideMenuCell.h"
-#import "RESideMenuItem.h"
 #import "UIViewController+RESideMenu.h"
 
-extern NSString * const RESideMenuWillOpen;
-extern NSString * const RESideMenuDidOpen;
-extern NSString * const RESideMenuDidClose;
+@interface RESideMenu : UIViewController
 
-@interface RESideMenu : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
-
-@property (strong, readonly, nonatomic) NSArray *items;
-@property (assign, readwrite, nonatomic) CGFloat verticalLandscapeOffset;
-@property (assign, readwrite, nonatomic) CGFloat horizontalLandscapeOffset;
-@property (assign, readwrite, nonatomic) CGFloat verticalPortraitOffset;
-@property (assign, readwrite, nonatomic) CGFloat horizontalPortraitOffset;
-@property (assign, readwrite, nonatomic) CGFloat itemHeight;
-@property (strong, readwrite, nonatomic) UIFont *font;
-@property (strong, readwrite, nonatomic) UIColor *textColor;
-@property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
+@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
-@property (assign, readwrite, nonatomic) UIStatusBarStyle openStatusBarStyle;
-@property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
-@property (assign, readwrite, nonatomic) BOOL isShowing;
-@property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
+@property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
+@property (strong, readwrite, nonatomic) UIViewController *contentViewController;
+@property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
-@property (strong, readonly, nonatomic) NSString *lastFieldInput;
-
-- (id)initWithItems:(NSArray *)items;
-- (void)reloadWithItems:(NSArray *)items;
-- (void)reloadWithItems:(NSArray *)items push:(BOOL)push;
-- (void)show;
-- (void)showFromPanGesture:(UIPanGestureRecognizer *)sender;
-- (void)hide;
-- (void)displayContentController:(UIViewController*)content;
+- (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
+- (void)presentMenuViewController;
+- (void)hideMenuViewController;
 
 @end

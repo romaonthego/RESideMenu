@@ -2,13 +2,13 @@
 
 iOS 7 style side menu inspired by Dribbble shots ([first](http://dribbble.com/shots/1116265-Instasave-iPhone-App) and [second](http://dribbble.com/shots/1114754-Social-Feed-iOS7)).
 
-<img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="400" height="480" />
-<img src="https://github.com/romaonthego/RESideMenu/raw/master/Demo.gif" alt="RESideMenu Screenshot" width="320" height="480" />
+<img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="400" height="568" />
+<img src="https://github.com/romaonthego/RESideMenu/raw/master/Demo.gif" alt="RESideMenu Screenshot" width="320" height="568" />
 
 ## Requirements
-* Xcode 4.5 or higher
+* Xcode 5 or higher
 * Apple LLVM compiler
-* iOS 5.0 or higher
+* iOS 6.0 or higher
 * ARC
 
 ## Demo
@@ -20,7 +20,7 @@ Build and run the `RESideMenuExample` project in Xcode to see `RESideMenu` in ac
 ### CocoaPods
 
 The recommended approach for installating `RESideMenu` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
-For best results, it is recommended that you install via CocoaPods >= **0.15.2** using Git >= **1.8.0** installed via Homebrew.
+For best results, it is recommended that you install via CocoaPods >= **0.26.2** using Git >= **1.8.0** installed via Homebrew.
 
 Install CocoaPods if not already available:
 
@@ -41,7 +41,7 @@ Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'RESideMenu', '~> 2.0.2'
+pod 'RESideMenu', '~> 3.0'
 ```
 
 Install into your Xcode project:
@@ -64,24 +64,46 @@ All you need to do is drop `RESideMenu` files into your project, and add `#inclu
 
 ## Example Usage
 
+In your AppDelegate's `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` create the view controller and assign content and menu view controllers.
+
 ``` objective-c
-RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
-    [menu hide];
+// Create content and menu controllers
+//
+DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
+DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
 
-    SecondViewController *secondViewController = [[SecondViewController alloc] init];
-    secondViewController.title = item.title;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+// Create side menu controller
+//
+RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
 
-    // Use displayContentController to switch between view controllers
-    //
-    [menu displayContentController:navigationController];
-}];
-RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
-    [menu hide];
-}];
+// Make it a root controller
+//
+self.window.rootViewController = sideMenuViewController;
+```
 
-self.sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem]];
-[self.sideMenu show];
+Present the view controller:
+
+```objective-c
+[self.sideMenuViewController presentMenuViewController];
+```
+
+## Storyboards Example
+
+1. Create a subclass of `RESideMenu`. In this example we call it `DEMORootViewController`.
+2. In the Storyboard designate the root view's owner as `DEMORootViewController`.
+3. Make sure to `#import "RESideMenu.h"` in `DEMORootViewController.h`.
+4. Add more view controllers to your Storyboard, and give them identifiers "menuViewController" and "contentViewController". Note that in the new XCode the identifier is called "Storyboard ID" and can be found in the Identity inspector.
+5. Add a method `awakeFromNib` to `DEMORootViewController.m` with the following code:
+
+```objective-c
+
+- (void)awakeFromNib
+{
+    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
+    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"menuController"];
+}
+
 ```
 
 ## Customization
@@ -89,21 +111,10 @@ self.sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem]];
 You can customize the following properties of `RESideMenu`:
 
 ``` objective-c
-@property (assign, readwrite, nonatomic) CGFloat verticalOffset;
-@property (assign, readwrite, nonatomic) CGFloat horizontalOffset;
-@property (assign, readwrite, nonatomic) CGFloat itemHeight;
-@property (strong, readwrite, nonatomic) UIFont *font;
-@property (strong, readwrite, nonatomic) UIColor *textColor;
-@property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
+@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
-@property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
+@property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 ```
-
-## Contributors
-
-Sam Oakley ([@blork](https://github.com/blork))<br />
-Alexis Creuzot ([@kirualex](https://github.com/kirualex))<br />
-Marc Chambers ([@mchambers](https://github.com/mchambers))
 
 ## Contact
 

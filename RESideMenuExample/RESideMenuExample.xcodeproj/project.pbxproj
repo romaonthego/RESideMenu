@@ -7,184 +7,205 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22778077179D757100A68874 /* UIView+ImageSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 22778076179D757100A68874 /* UIView+ImageSnapshot.m */; };
-		22F47C73179F10E500F544CC /* UINavigationController+DelegateFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */; };
-		30D7C396176B71A500FB3018 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C395176B71A500FB3018 /* UIKit.framework */; };
-		30D7C398176B71A500FB3018 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C397176B71A500FB3018 /* Foundation.framework */; };
-		30D7C39A176B71A500FB3018 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C399176B71A500FB3018 /* CoreGraphics.framework */; };
-		30D7C3A0176B71A500FB3018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C39E176B71A500FB3018 /* InfoPlist.strings */; };
-		30D7C3A2176B71A500FB3018 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3A1176B71A500FB3018 /* main.m */; };
-		30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3A5176B71A500FB3018 /* AppDelegate.m */; };
-		30D7C3A8176B71A500FB3018 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3A7176B71A500FB3018 /* Default.png */; };
-		30D7C3AA176B71A500FB3018 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3A9176B71A500FB3018 /* Default@2x.png */; };
-		30D7C3AC176B71A500FB3018 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */; };
-		30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3B3176B71CD00FB3018 /* DemoViewController.m */; };
-		30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3B7176B720000FB3018 /* REBackgroundView.m */; };
-		30D7C3C4176B82F100FB3018 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D7C3C3176B82F100FB3018 /* QuartzCore.framework */; };
-		30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C0176B81CD00FB3018 /* Evaluate.m */; };
-		30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */; };
-		30DBD52D176BB3FC00CF3CB3 /* RESideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */; };
-		30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */; };
-		30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */; };
-		30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DBD53A176F698A00CF3CB3 /* RESideMenu.m */; };
-		30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E884F0177B5C57007D0E38 /* RootViewController.m */; };
-		9808014517AE21E500E2AD0E /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9808014417AE21E500E2AD0E /* UIViewController+RESideMenu.m */; };
-		FA8D99DA178823BE00055CF9 /* minus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8D99D9178823BE00055CF9 /* minus@2x.png */; };
+		3032B9131807338200064F85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B9121807338200064F85 /* Foundation.framework */; };
+		3032B9151807338200064F85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B9141807338200064F85 /* CoreGraphics.framework */; };
+		3032B9171807338200064F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B9161807338200064F85 /* UIKit.framework */; };
+		3032B91D1807338200064F85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3032B91B1807338200064F85 /* InfoPlist.strings */; };
+		3032B91F1807338200064F85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B91E1807338200064F85 /* main.m */; };
+		3032B9231807338200064F85 /* DEMOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B9221807338200064F85 /* DEMOAppDelegate.m */; };
+		3032B9251807338200064F85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032B9241807338200064F85 /* Images.xcassets */; };
+		3032B92C1807338200064F85 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B92B1807338200064F85 /* XCTest.framework */; };
+		3032B92D1807338200064F85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B9121807338200064F85 /* Foundation.framework */; };
+		3032B92E1807338200064F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B9161807338200064F85 /* UIKit.framework */; };
+		3032B9361807338200064F85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3032B9341807338200064F85 /* InfoPlist.strings */; };
+		3032B9381807338200064F85 /* RESideMenuExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B9371807338200064F85 /* RESideMenuExampleTests.m */; };
+		3032B94A180733C400064F85 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B943180733C400064F85 /* RECommonFunctions.m */; };
+		3032B94C180733C400064F85 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B947180733C400064F85 /* RESideMenu.m */; };
+		3032B94D180733C400064F85 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B949180733C400064F85 /* UIViewController+RESideMenu.m */; };
+		3032B954180736C900064F85 /* DEMOFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B953180736C900064F85 /* DEMOFirstViewController.m */; };
+		3032B958180736E200064F85 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B957180736E200064F85 /* DEMOSecondViewController.m */; };
+		3032B95B180736F300064F85 /* DEMONavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B95A180736F300064F85 /* DEMONavigationController.m */; };
+		3032B95E1807372B00064F85 /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B95D1807372B00064F85 /* DEMOMenuViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3032B92F1807338200064F85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3032B9071807338200064F85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3032B90E1807338200064F85;
+			remoteInfo = RESideMenuExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		22778075179D757100A68874 /* UIView+ImageSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageSnapshot.h"; sourceTree = "<group>"; };
-		22778076179D757100A68874 /* UIView+ImageSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageSnapshot.m"; sourceTree = "<group>"; };
-		22F47C71179F10E500F544CC /* UINavigationController+DelegateFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+DelegateFixes.h"; sourceTree = "<group>"; };
-		22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+DelegateFixes.m"; sourceTree = "<group>"; };
-		30D7C392176B71A500FB3018 /* RESideMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESideMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30D7C395176B71A500FB3018 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		30D7C397176B71A500FB3018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		30D7C399176B71A500FB3018 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		30D7C39D176B71A500FB3018 /* RESideMenuExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RESideMenuExample-Info.plist"; sourceTree = "<group>"; };
-		30D7C39F176B71A500FB3018 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		30D7C3A1176B71A500FB3018 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		30D7C3A3176B71A500FB3018 /* RESideMenuExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RESideMenuExample-Prefix.pch"; sourceTree = "<group>"; };
-		30D7C3A4176B71A500FB3018 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		30D7C3A5176B71A500FB3018 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		30D7C3A7176B71A500FB3018 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		30D7C3A9176B71A500FB3018 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		30D7C3B2176B71CD00FB3018 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
-		30D7C3B3176B71CD00FB3018 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
-		30D7C3B6176B720000FB3018 /* REBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REBackgroundView.h; sourceTree = "<group>"; };
-		30D7C3B7176B720000FB3018 /* REBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REBackgroundView.m; sourceTree = "<group>"; };
-		30D7C3BF176B81CD00FB3018 /* Evaluate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Evaluate.h; sourceTree = "<group>"; };
-		30D7C3C0176B81CD00FB3018 /* Evaluate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evaluate.m; sourceTree = "<group>"; };
-		30D7C3C3176B82F100FB3018 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		30D7C3C6176B830E00FB3018 /* AccelerationAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccelerationAnimation.h; sourceTree = "<group>"; };
-		30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccelerationAnimation.m; sourceTree = "<group>"; };
-		30DBD52B176BB3FC00CF3CB3 /* RESideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenuCell.h; sourceTree = "<group>"; };
-		30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenuCell.m; sourceTree = "<group>"; };
-		30DBD52E176BB88700CF3CB3 /* RESideMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenuItem.h; sourceTree = "<group>"; };
-		30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenuItem.m; sourceTree = "<group>"; };
-		30DBD531176BBDFB00CF3CB3 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		30DBD539176F698A00CF3CB3 /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
-		30DBD53A176F698A00CF3CB3 /* RESideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
-		30E884EF177B5C57007D0E38 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		30E884F0177B5C57007D0E38 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		9808014317AE21E500E2AD0E /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
-		9808014417AE21E500E2AD0E /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
-		FA8D99D9178823BE00055CF9 /* minus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minus@2x.png"; sourceTree = "<group>"; };
+		3032B90F1807338200064F85 /* RESideMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESideMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3032B9121807338200064F85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3032B9141807338200064F85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3032B9161807338200064F85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3032B91A1807338200064F85 /* RESideMenuExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RESideMenuExample-Info.plist"; sourceTree = "<group>"; };
+		3032B91C1807338200064F85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3032B91E1807338200064F85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3032B9201807338200064F85 /* RESideMenuExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RESideMenuExample-Prefix.pch"; sourceTree = "<group>"; };
+		3032B9211807338200064F85 /* DEMOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMOAppDelegate.h; sourceTree = "<group>"; };
+		3032B9221807338200064F85 /* DEMOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMOAppDelegate.m; sourceTree = "<group>"; };
+		3032B9241807338200064F85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3032B92A1807338200064F85 /* RESideMenuExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RESideMenuExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3032B92B1807338200064F85 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3032B9331807338200064F85 /* RESideMenuExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RESideMenuExampleTests-Info.plist"; sourceTree = "<group>"; };
+		3032B9351807338200064F85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3032B9371807338200064F85 /* RESideMenuExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenuExampleTests.m; sourceTree = "<group>"; };
+		3032B942180733C400064F85 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		3032B943180733C400064F85 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		3032B946180733C400064F85 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		3032B947180733C400064F85 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		3032B949180733C400064F85 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		3032B94E1807352B00064F85 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		3032B952180736C900064F85 /* DEMOFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOFirstViewController.h; sourceTree = "<group>"; };
+		3032B953180736C900064F85 /* DEMOFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOFirstViewController.m; sourceTree = "<group>"; };
+		3032B956180736E200064F85 /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
+		3032B957180736E200064F85 /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
+		3032B959180736F300064F85 /* DEMONavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMONavigationController.h; sourceTree = "<group>"; };
+		3032B95A180736F300064F85 /* DEMONavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMONavigationController.m; sourceTree = "<group>"; };
+		3032B95C1807372B00064F85 /* DEMOMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOMenuViewController.h; sourceTree = "<group>"; };
+		3032B95D1807372B00064F85 /* DEMOMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		30D7C38F176B71A500FB3018 /* Frameworks */ = {
+		3032B90C1807338200064F85 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D7C3C4176B82F100FB3018 /* QuartzCore.framework in Frameworks */,
-				30D7C396176B71A500FB3018 /* UIKit.framework in Frameworks */,
-				30D7C398176B71A500FB3018 /* Foundation.framework in Frameworks */,
-				30D7C39A176B71A500FB3018 /* CoreGraphics.framework in Frameworks */,
+				3032B9151807338200064F85 /* CoreGraphics.framework in Frameworks */,
+				3032B9171807338200064F85 /* UIKit.framework in Frameworks */,
+				3032B9131807338200064F85 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3032B9271807338200064F85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3032B92C1807338200064F85 /* XCTest.framework in Frameworks */,
+				3032B92E1807338200064F85 /* UIKit.framework in Frameworks */,
+				3032B92D1807338200064F85 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30D7C389176B71A500FB3018 = {
+		3032B9061807338200064F85 = {
 			isa = PBXGroup;
 			children = (
-				30D7C3B5176B71E500FB3018 /* RESideMenu */,
-				30D7C39B176B71A500FB3018 /* RESideMenuExample */,
-				30D7C394176B71A500FB3018 /* Frameworks */,
-				30D7C393176B71A500FB3018 /* Products */,
+				3032B941180733C400064F85 /* RESideMenu */,
+				3032B9181807338200064F85 /* RESideMenuExample */,
+				3032B9311807338200064F85 /* RESideMenuExampleTests */,
+				3032B9111807338200064F85 /* Frameworks */,
+				3032B9101807338200064F85 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		30D7C393176B71A500FB3018 /* Products */ = {
+		3032B9101807338200064F85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30D7C392176B71A500FB3018 /* RESideMenuExample.app */,
+				3032B90F1807338200064F85 /* RESideMenuExample.app */,
+				3032B92A1807338200064F85 /* RESideMenuExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		30D7C394176B71A500FB3018 /* Frameworks */ = {
+		3032B9111807338200064F85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				30D7C3C3176B82F100FB3018 /* QuartzCore.framework */,
-				30D7C395176B71A500FB3018 /* UIKit.framework */,
-				30D7C397176B71A500FB3018 /* Foundation.framework */,
-				30D7C399176B71A500FB3018 /* CoreGraphics.framework */,
+				3032B9121807338200064F85 /* Foundation.framework */,
+				3032B9141807338200064F85 /* CoreGraphics.framework */,
+				3032B9161807338200064F85 /* UIKit.framework */,
+				3032B92B1807338200064F85 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		30D7C39B176B71A500FB3018 /* RESideMenuExample */ = {
+		3032B9181807338200064F85 /* RESideMenuExample */ = {
 			isa = PBXGroup;
 			children = (
-				30D7C3A4176B71A500FB3018 /* AppDelegate.h */,
-				30D7C3A5176B71A500FB3018 /* AppDelegate.m */,
-				30E884EF177B5C57007D0E38 /* RootViewController.h */,
-				30E884F0177B5C57007D0E38 /* RootViewController.m */,
-				30D7C3B2176B71CD00FB3018 /* DemoViewController.h */,
-				30D7C3B3176B71CD00FB3018 /* DemoViewController.m */,
-				30DBD531176BBDFB00CF3CB3 /* SecondViewController.h */,
-				30DBD532176BBDFB00CF3CB3 /* SecondViewController.m */,
-				30D7C39C176B71A500FB3018 /* Supporting Files */,
+				3032B9211807338200064F85 /* DEMOAppDelegate.h */,
+				3032B9221807338200064F85 /* DEMOAppDelegate.m */,
+				3032B955180736CC00064F85 /* Controllers */,
+				3032B9191807338200064F85 /* Supporting Files */,
 			);
 			path = RESideMenuExample;
 			sourceTree = "<group>";
 		};
-		30D7C39C176B71A500FB3018 /* Supporting Files */ = {
+		3032B9191807338200064F85 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FA8D99D9178823BE00055CF9 /* minus@2x.png */,
-				30D7C39D176B71A500FB3018 /* RESideMenuExample-Info.plist */,
-				30D7C39E176B71A500FB3018 /* InfoPlist.strings */,
-				30D7C3A1176B71A500FB3018 /* main.m */,
-				30D7C3A3176B71A500FB3018 /* RESideMenuExample-Prefix.pch */,
-				30D7C3A7176B71A500FB3018 /* Default.png */,
-				30D7C3A9176B71A500FB3018 /* Default@2x.png */,
-				30D7C3AB176B71A500FB3018 /* Default-568h@2x.png */,
+				3032B9241807338200064F85 /* Images.xcassets */,
+				3032B91A1807338200064F85 /* RESideMenuExample-Info.plist */,
+				3032B91B1807338200064F85 /* InfoPlist.strings */,
+				3032B91E1807338200064F85 /* main.m */,
+				3032B9201807338200064F85 /* RESideMenuExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		30D7C3B5176B71E500FB3018 /* RESideMenu */ = {
+		3032B9311807338200064F85 /* RESideMenuExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				30D7C3C6176B830E00FB3018 /* AccelerationAnimation.h */,
-				30D7C3C7176B830E00FB3018 /* AccelerationAnimation.m */,
-				30D7C3BF176B81CD00FB3018 /* Evaluate.h */,
-				30D7C3C0176B81CD00FB3018 /* Evaluate.m */,
-				30D7C3B6176B720000FB3018 /* REBackgroundView.h */,
-				30D7C3B7176B720000FB3018 /* REBackgroundView.m */,
-				22778075179D757100A68874 /* UIView+ImageSnapshot.h */,
-				22778076179D757100A68874 /* UIView+ImageSnapshot.m */,
-				22F47C71179F10E500F544CC /* UINavigationController+DelegateFixes.h */,
-				22F47C72179F10E500F544CC /* UINavigationController+DelegateFixes.m */,
-				30DBD539176F698A00CF3CB3 /* RESideMenu.h */,
-				30DBD53A176F698A00CF3CB3 /* RESideMenu.m */,
-				30DBD52B176BB3FC00CF3CB3 /* RESideMenuCell.h */,
-				30DBD52C176BB3FC00CF3CB3 /* RESideMenuCell.m */,
-				30DBD52E176BB88700CF3CB3 /* RESideMenuItem.h */,
-				30DBD52F176BB88800CF3CB3 /* RESideMenuItem.m */,
-				9808014317AE21E500E2AD0E /* UIViewController+RESideMenu.h */,
-				9808014417AE21E500E2AD0E /* UIViewController+RESideMenu.m */,
+				3032B9371807338200064F85 /* RESideMenuExampleTests.m */,
+				3032B9321807338200064F85 /* Supporting Files */,
+			);
+			path = RESideMenuExampleTests;
+			sourceTree = "<group>";
+		};
+		3032B9321807338200064F85 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3032B9331807338200064F85 /* RESideMenuExampleTests-Info.plist */,
+				3032B9341807338200064F85 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3032B941180733C400064F85 /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3032B942180733C400064F85 /* RECommonFunctions.h */,
+				3032B943180733C400064F85 /* RECommonFunctions.m */,
+				3032B946180733C400064F85 /* RESideMenu.h */,
+				3032B947180733C400064F85 /* RESideMenu.m */,
+				3032B94E1807352B00064F85 /* UIViewController+RESideMenu.h */,
+				3032B949180733C400064F85 /* UIViewController+RESideMenu.m */,
 			);
 			name = RESideMenu;
 			path = ../RESideMenu;
 			sourceTree = "<group>";
 		};
+		3032B955180736CC00064F85 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3032B952180736C900064F85 /* DEMOFirstViewController.h */,
+				3032B953180736C900064F85 /* DEMOFirstViewController.m */,
+				3032B956180736E200064F85 /* DEMOSecondViewController.h */,
+				3032B957180736E200064F85 /* DEMOSecondViewController.m */,
+				3032B959180736F300064F85 /* DEMONavigationController.h */,
+				3032B95A180736F300064F85 /* DEMONavigationController.m */,
+				3032B95C1807372B00064F85 /* DEMOMenuViewController.h */,
+				3032B95D1807372B00064F85 /* DEMOMenuViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30D7C391176B71A500FB3018 /* RESideMenuExample */ = {
+		3032B90E1807338200064F85 /* RESideMenuExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30D7C3AF176B71A500FB3018 /* Build configuration list for PBXNativeTarget "RESideMenuExample" */;
+			buildConfigurationList = 3032B93B1807338200064F85 /* Build configuration list for PBXNativeTarget "RESideMenuExample" */;
 			buildPhases = (
-				30D7C38E176B71A500FB3018 /* Sources */,
-				30D7C38F176B71A500FB3018 /* Frameworks */,
-				30D7C390176B71A500FB3018 /* Resources */,
+				3032B90B1807338200064F85 /* Sources */,
+				3032B90C1807338200064F85 /* Frameworks */,
+				3032B90D1807338200064F85 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -192,79 +213,128 @@
 			);
 			name = RESideMenuExample;
 			productName = RESideMenuExample;
-			productReference = 30D7C392176B71A500FB3018 /* RESideMenuExample.app */;
+			productReference = 3032B90F1807338200064F85 /* RESideMenuExample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		3032B9291807338200064F85 /* RESideMenuExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3032B93E1807338200064F85 /* Build configuration list for PBXNativeTarget "RESideMenuExampleTests" */;
+			buildPhases = (
+				3032B9261807338200064F85 /* Sources */,
+				3032B9271807338200064F85 /* Frameworks */,
+				3032B9281807338200064F85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3032B9301807338200064F85 /* PBXTargetDependency */,
+			);
+			name = RESideMenuExampleTests;
+			productName = RESideMenuExampleTests;
+			productReference = 3032B92A1807338200064F85 /* RESideMenuExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		30D7C38A176B71A500FB3018 /* Project object */ = {
+		3032B9071807338200064F85 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				CLASSPREFIX = DEMO;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Roman Efimov";
+				TargetAttributes = {
+					3032B9291807338200064F85 = {
+						TestTargetID = 3032B90E1807338200064F85;
+					};
+				};
 			};
-			buildConfigurationList = 30D7C38D176B71A500FB3018 /* Build configuration list for PBXProject "RESideMenuExample" */;
+			buildConfigurationList = 3032B90A1807338200064F85 /* Build configuration list for PBXProject "RESideMenuExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 30D7C389176B71A500FB3018;
-			productRefGroup = 30D7C393176B71A500FB3018 /* Products */;
+			mainGroup = 3032B9061807338200064F85;
+			productRefGroup = 3032B9101807338200064F85 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30D7C391176B71A500FB3018 /* RESideMenuExample */,
+				3032B90E1807338200064F85 /* RESideMenuExample */,
+				3032B9291807338200064F85 /* RESideMenuExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30D7C390176B71A500FB3018 /* Resources */ = {
+		3032B90D1807338200064F85 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D7C3A0176B71A500FB3018 /* InfoPlist.strings in Resources */,
-				30D7C3A8176B71A500FB3018 /* Default.png in Resources */,
-				30D7C3AA176B71A500FB3018 /* Default@2x.png in Resources */,
-				30D7C3AC176B71A500FB3018 /* Default-568h@2x.png in Resources */,
-				FA8D99DA178823BE00055CF9 /* minus@2x.png in Resources */,
+				3032B91D1807338200064F85 /* InfoPlist.strings in Resources */,
+				3032B9251807338200064F85 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3032B9281807338200064F85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3032B9361807338200064F85 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30D7C38E176B71A500FB3018 /* Sources */ = {
+		3032B90B1807338200064F85 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D7C3A2176B71A500FB3018 /* main.m in Sources */,
-				22F47C73179F10E500F544CC /* UINavigationController+DelegateFixes.m in Sources */,
-				30D7C3A6176B71A500FB3018 /* AppDelegate.m in Sources */,
-				30D7C3C8176B831000FB3018 /* AccelerationAnimation.m in Sources */,
-				30D7C3B4176B71CD00FB3018 /* DemoViewController.m in Sources */,
-				9808014517AE21E500E2AD0E /* UIViewController+RESideMenu.m in Sources */,
-				30D7C3C5176B830100FB3018 /* Evaluate.m in Sources */,
-				30D7C3B8176B720000FB3018 /* REBackgroundView.m in Sources */,
-				30DBD53B176F699900CF3CB3 /* RESideMenu.m in Sources */,
-				30DBD52D176BB3FC00CF3CB3 /* RESideMenuCell.m in Sources */,
-				22778077179D757100A68874 /* UIView+ImageSnapshot.m in Sources */,
-				30DBD530176BB88800CF3CB3 /* RESideMenuItem.m in Sources */,
-				30DBD533176BBDFB00CF3CB3 /* SecondViewController.m in Sources */,
-				30E884F1177B5C57007D0E38 /* RootViewController.m in Sources */,
+				3032B954180736C900064F85 /* DEMOFirstViewController.m in Sources */,
+				3032B91F1807338200064F85 /* main.m in Sources */,
+				3032B95E1807372B00064F85 /* DEMOMenuViewController.m in Sources */,
+				3032B94A180733C400064F85 /* RECommonFunctions.m in Sources */,
+				3032B9231807338200064F85 /* DEMOAppDelegate.m in Sources */,
+				3032B958180736E200064F85 /* DEMOSecondViewController.m in Sources */,
+				3032B94C180733C400064F85 /* RESideMenu.m in Sources */,
+				3032B95B180736F300064F85 /* DEMONavigationController.m in Sources */,
+				3032B94D180733C400064F85 /* UIViewController+RESideMenu.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3032B9261807338200064F85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3032B9381807338200064F85 /* RESideMenuExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3032B9301807338200064F85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3032B90E1807338200064F85 /* RESideMenuExample */;
+			targetProxy = 3032B92F1807338200064F85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		30D7C39E176B71A500FB3018 /* InfoPlist.strings */ = {
+		3032B91B1807338200064F85 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				30D7C39F176B71A500FB3018 /* en */,
+				3032B91C1807338200064F85 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3032B9341807338200064F85 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3032B9351807338200064F85 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -272,17 +342,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		30D7C3AD176B71A500FB3018 /* Debug */ = {
+		3032B9391807338200064F85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -294,84 +369,154 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		30D7C3AE176B71A500FB3018 /* Release */ = {
+		3032B93A1807338200064F85 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		30D7C3B0176B71A500FB3018 /* Debug */ = {
+		3032B93C1807338200064F85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuExample/RESideMenuExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuExample/RESideMenuExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		30D7C3B1176B71A500FB3018 /* Release */ = {
+		3032B93D1807338200064F85 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuExample/RESideMenuExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuExample/RESideMenuExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3032B93F1807338200064F85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RESideMenuExample.app/RESideMenuExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RESideMenuExample/RESideMenuExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RESideMenuExampleTests/RESideMenuExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3032B9401807338200064F85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RESideMenuExample.app/RESideMenuExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RESideMenuExample/RESideMenuExample-Prefix.pch";
+				INFOPLIST_FILE = "RESideMenuExampleTests/RESideMenuExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30D7C38D176B71A500FB3018 /* Build configuration list for PBXProject "RESideMenuExample" */ = {
+		3032B90A1807338200064F85 /* Build configuration list for PBXProject "RESideMenuExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30D7C3AD176B71A500FB3018 /* Debug */,
-				30D7C3AE176B71A500FB3018 /* Release */,
+				3032B9391807338200064F85 /* Debug */,
+				3032B93A1807338200064F85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30D7C3AF176B71A500FB3018 /* Build configuration list for PBXNativeTarget "RESideMenuExample" */ = {
+		3032B93B1807338200064F85 /* Build configuration list for PBXNativeTarget "RESideMenuExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30D7C3B0176B71A500FB3018 /* Debug */,
-				30D7C3B1176B71A500FB3018 /* Release */,
+				3032B93C1807338200064F85 /* Debug */,
+				3032B93D1807338200064F85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3032B93E1807338200064F85 /* Build configuration list for PBXNativeTarget "RESideMenuExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3032B93F1807338200064F85 /* Debug */,
+				3032B9401807338200064F85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 30D7C38A176B71A500FB3018 /* Project object */;
+	rootObject = 3032B9071807338200064F85 /* Project object */;
 }

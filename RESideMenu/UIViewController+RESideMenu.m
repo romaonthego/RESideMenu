@@ -1,5 +1,5 @@
 //
-//  UIViewController+RESideMenu.m
+// UIViewController+RESideMenu.m
 // RESideMenu
 //
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
@@ -24,17 +24,38 @@
 //
 
 #import "UIViewController+RESideMenu.h"
+#import "RESideMenu.h"
 
-@implementation UIViewController (RESideMenu)
+@implementation UIViewController (REFrostedViewController)
 
-- (RESideMenu *)sideMenu{
-	if ([self isKindOfClass:[RESideMenu class]]) {
-		return (RESideMenu *)self;
-	} else if (self.parentViewController) {
-		return [self.parentViewController sideMenu];
-	} else {
-		return nil;
-	}
+- (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame
+{
+    [self addChildViewController:controller];
+    controller.view.frame = frame;
+    [self.view addSubview:controller.view];
+    [controller didMoveToParentViewController:self];
+}
+
+- (void)re_hideController:(UIViewController *)controller
+{
+    [controller willMoveToParentViewController:nil];
+    [controller.view removeFromSuperview];
+    [controller removeFromParentViewController];
+}
+
+- (RESideMenu *)sideMenuViewController
+{
+    UIViewController *iter = self.parentViewController;
+    while (iter) {
+        if ([iter isKindOfClass:[RESideMenu class]]) {
+            return (RESideMenu *)iter;
+        } else if (iter.parentViewController && iter.parentViewController != iter) {
+            iter = iter.parentViewController;
+        } else {
+            iter = nil;
+        }
+    }
+    return nil;
 }
 
 @end

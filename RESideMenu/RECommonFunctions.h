@@ -1,5 +1,5 @@
 //
-// UIViewController+RESideMenu.h
+// RECommonFunctions.h
 // RESideMenu
 //
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
@@ -23,15 +23,9 @@
 // THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class RESideMenu;
-
-@interface UIViewController (RESideMenu)
-
-@property (strong, readonly, nonatomic) RESideMenu *sideMenuViewController;
-
-- (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame;
-- (void)re_hideController:(UIViewController *)controller;
-
-@end
+#ifndef REUIKitIsFlatModeFunction
+#define REUIKitIsFlatModeFunction
+BOOL REUIKitIsFlatMode();
+#endif
