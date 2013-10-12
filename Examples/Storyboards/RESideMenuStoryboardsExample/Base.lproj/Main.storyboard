@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController storyboardIdentifier="rootController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="DEMORootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hd2-Gn-yG1"/>
+                        <viewControllerLayoutGuide type="bottom" id="uRW-ay-hRF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="431" y="298"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jO9-85-nrD">
+            <objects>
+                <navigationController storyboardIdentifier="contentController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EPR-YW-obD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bHH-Lh-tAZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yCR-g2-AAt">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="jsP-Dz-DYG" kind="relationship" relationship="rootViewController" id="LUF-1Q-jf3"/>
+                        <segue destination="yGP-ij-jME" kind="push" identifier="Second" id="fOf-2J-bLN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zzD-df-7on" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923" y="298"/>
+        </scene>
+        <!--First View Controller - Home Controller-->
+        <scene sceneID="4d1-Jz-tGk">
+            <objects>
+                <viewController storyboardIdentifier="firstController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jsP-Dz-DYG" customClass="DEMOFirstViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xlu-DO-MyB"/>
+                        <viewControllerLayoutGuide type="bottom" id="bit-6w-mne"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NKZ-RZ-CBv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Balloon" translatesAutoresizingMaskIntoConstraints="NO" id="sCD-GZ-hDv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home Controller" id="HIf-bS-REK">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="SZg-Pf-I50">
+                            <connections>
+                                <action selector="showMenu" destination="jsP-Dz-DYG" id="Fp7-R0-lXj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Awc-v8-Z61" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="298"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="zM8-E4-2tq">
+            <objects>
+                <viewController restorationIdentifier="menuController" storyboardIdentifier="menuController" id="NMs-sm-msE" customClass="DEMOMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="id6-Fp-hb3"/>
+                        <viewControllerLayoutGuide type="bottom" id="2je-WQ-9U5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ovT-uA-eEb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-V3-1kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="957" y="993"/>
+        </scene>
+        <!--Second View Controller - Second Controller-->
+        <scene sceneID="ajy-0O-wjT">
+            <objects>
+                <viewController restorationIdentifier="secondController" storyboardIdentifier="secondController" id="yGP-ij-jME" customClass="DEMOSecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jey-hc-MDe"/>
+                        <viewControllerLayoutGuide type="bottom" id="IhS-Kp-4Ur"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zr4-Ue-MTR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.7902456898061645" blue="0.39722655648262306" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Second Controller" id="8VR-6H-mGr">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="3gh-ed-0Ek">
+                            <connections>
+                                <action selector="showMenu" destination="yGP-ij-jME" id="ZoY-gJ-XvS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SBM-yN-hYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="979"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Balloon" width="320" height="568"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

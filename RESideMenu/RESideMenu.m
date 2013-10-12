@@ -57,7 +57,9 @@
 
 - (void)commonInit
 {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_6_1
     self.wantsFullScreenLayout = YES;
+#endif
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
     _scaleContentView = YES;
