@@ -57,9 +57,10 @@
 
 - (void)commonInit
 {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_6_1
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.wantsFullScreenLayout = YES;
-#endif
+#pragma clang diagnostic pop
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
     _scaleContentView = YES;
