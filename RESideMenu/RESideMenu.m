@@ -249,6 +249,8 @@
             frame.origin.x = point.x + self.originalPoint.x;
             self.contentViewController.view.frame = frame;
         }
+        
+        [self updateStatusBar];
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
@@ -273,7 +275,12 @@
 {
     UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
     IF_IOS7_OR_GREATER(
-        statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+       statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+       if (self.contentViewController.view.frame.origin.y > 10) {
+           statusBarStyle = self.menuViewController.preferredStatusBarStyle;
+       } else {
+           statusBarStyle = self.contentViewController.preferredStatusBarStyle;
+       }
     );
     return statusBarStyle;
 }
