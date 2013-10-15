@@ -98,36 +98,12 @@
     [self re_displayController:self.menuViewController frame:self.view.frame];
     [self re_displayController:self.contentViewController frame:self.view.frame];
     
-    if (self.parallaxEnabled) {
-        IF_IOS7_OR_GREATER(
-           UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-           interpolationHorizontal.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
-           interpolationHorizontal.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
-           
-           UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-           interpolationVertical.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
-           interpolationVertical.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
-           
-           [self.menuViewController.view addMotionEffect:interpolationHorizontal];
-           [self.menuViewController.view addMotionEffect:interpolationVertical];
-        );
-    }
+    [self addMenuViewControllerMotionEffects];
     
     if (self.panGestureEnabled) {
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
-}
-
-- (void)setContentViewController:(UIViewController *)contentViewController
-{
-    CGRect frame = _contentViewController.view.frame;
-    CGAffineTransform transform = _contentViewController.view.transform;
-    [self re_hideController:_contentViewController];
-    _contentViewController = contentViewController;
-    [self re_displayController:contentViewController frame:self.view.frame];
-    contentViewController.view.transform = transform;
-    contentViewController.view.frame = frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -176,22 +152,7 @@
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         self.backgroundImageView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        if (self.parallaxEnabled) {
-            IF_IOS7_OR_GREATER(
-                [UIView animateWithDuration:0.2 animations:^{
-                    UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-                    interpolationHorizontal.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
-                    interpolationHorizontal.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
-                    
-                    UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-                    interpolationVertical.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
-                    interpolationVertical.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
-                    
-                    [self.contentViewController.view addMotionEffect:interpolationHorizontal];
-                    [self.contentViewController.view addMotionEffect:interpolationVertical];
-                }];
-            );
-        }
+        [self addContentViewControllerMotionEffects];
     }];
     self.visible = YES;
     [self updateStatusBar];
@@ -220,6 +181,56 @@
     self.contentViewController.view.userInteractionEnabled = YES;
     [self updateStatusBar];
 }
+
+#pragma mark -
+#pragma mark Motion effects
+
+- (void)addMenuViewControllerMotionEffects
+{
+    if (self.parallaxEnabled) {
+        IF_IOS7_OR_GREATER(
+           for (UIMotionEffect *effect in self.menuViewController.view.motionEffects) {
+               [self.menuViewController.view removeMotionEffect:effect];
+           }
+           UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+           interpolationHorizontal.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
+           interpolationHorizontal.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
+           
+           UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+           interpolationVertical.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
+           interpolationVertical.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
+           
+           [self.menuViewController.view addMotionEffect:interpolationHorizontal];
+           [self.menuViewController.view addMotionEffect:interpolationVertical];
+        );
+    }
+}
+
+- (void)addContentViewControllerMotionEffects
+{
+    if (self.parallaxEnabled) {
+        IF_IOS7_OR_GREATER(
+            for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
+               [self.contentViewController.view removeMotionEffect:effect];
+            }
+            [UIView animateWithDuration:0.2 animations:^{
+                UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+                interpolationHorizontal.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
+                interpolationHorizontal.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
+
+                UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+                interpolationVertical.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
+                interpolationVertical.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
+
+                [self.contentViewController.view addMotionEffect:interpolationHorizontal];
+                [self.contentViewController.view addMotionEffect:interpolationVertical];
+            }];
+        );
+    }
+}
+
+#pragma mark -
+#pragma mark Gesture recognizer
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
@@ -297,6 +308,40 @@
        }
     );
     return statusBarStyle;
+}
+
+#pragma mark -
+#pragma mark Setters
+
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    if (!_contentViewController) {
+        _contentViewController = contentViewController;
+        return;
+    }
+    CGRect frame = _contentViewController.view.frame;
+    CGAffineTransform transform = _contentViewController.view.transform;
+    [self re_hideController:_contentViewController];
+    _contentViewController = contentViewController;
+    [self re_displayController:contentViewController frame:self.view.frame];
+    contentViewController.view.transform = transform;
+    contentViewController.view.frame = frame;
+    
+    [self addContentViewControllerMotionEffects];
+}
+
+- (void)setMenuViewController:(UIViewController *)menuViewController
+{
+    if (!_menuViewController) {
+        _menuViewController = menuViewController;
+        return;
+    }
+    [self re_hideController:_menuViewController];
+    _menuViewController = menuViewController;
+    [self re_displayController:menuViewController frame:self.view.frame];
+    
+    [self addMenuViewControllerMotionEffects];
+    [self.view bringSubviewToFront:self.contentViewController.view];
 }
 
 #pragma mark -
