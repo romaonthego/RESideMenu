@@ -119,6 +119,17 @@
     }
 }
 
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    CGRect frame = _contentViewController.view.frame;
+    CGAffineTransform transform = _contentViewController.view.transform;
+    [self re_hideController:_contentViewController];
+    _contentViewController = contentViewController;
+    [self re_displayController:contentViewController frame:self.view.frame];
+    contentViewController.view.transform = transform;
+    contentViewController.view.frame = frame;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.contentViewController beginAppearanceTransition:YES animated:animated];
