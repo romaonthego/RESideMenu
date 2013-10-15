@@ -313,6 +313,13 @@
 #pragma mark -
 #pragma mark Setters
 
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    _backgroundImage = backgroundImage;
+    if (self.backgroundImageView)
+        self.backgroundImageView.image = backgroundImage;
+}
+
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
     if (!_contentViewController) {
