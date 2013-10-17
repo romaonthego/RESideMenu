@@ -32,6 +32,7 @@
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL visible;
 @property (assign, readwrite, nonatomic) CGPoint originalPoint;
+@property (strong, readwrite, nonatomic) UIButton *contentButton;
 
 @end
 
@@ -93,6 +94,11 @@
         imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         imageView;
     });
+    self.contentButton = ({
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectNull];
+        [button addTarget:self action:@selector(hideMenuViewController) forControlEvents:UIControlEventTouchUpInside];
+        button;
+    });
     
     [self.view addSubview:self.backgroundImageView];
     [self re_displayController:self.menuViewController frame:self.view.frame];
@@ -130,7 +136,7 @@
 
 - (void)presentMenuViewController
 {
-    self.contentViewController.view.userInteractionEnabled = NO;
+
     self.menuViewController.view.transform = CGAffineTransformIdentity;
     self.backgroundImageView.transform = CGAffineTransformIdentity;
     self.backgroundImageView.frame = self.view.bounds;
@@ -143,6 +149,7 @@
 
 - (void)showMenuViewController
 {
+    [self addContentButton];
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
@@ -160,6 +167,7 @@
 
 - (void)hideMenuViewController
 {
+    [self.contentButton removeFromSuperview];
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
         self.contentViewController.view.transform = CGAffineTransformIdentity;
@@ -178,8 +186,18 @@
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
     self.visible = NO;
-    self.contentViewController.view.userInteractionEnabled = YES;
     [self updateStatusBar];
+}
+
+- (void)addContentButton
+{
+    if (self.contentButton.superview)
+        return;
+
+    self.contentButton.autoresizingMask = UIViewAutoresizingNone;
+    self.contentButton.frame = self.contentViewController.view.bounds;
+    self.contentButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.contentViewController.view addSubview:self.contentButton];
 }
 
 #pragma mark -
@@ -245,6 +263,7 @@
         self.backgroundImageView.transform = CGAffineTransformIdentity;
         self.backgroundImageView.frame = self.view.bounds;
         self.menuViewController.view.frame = self.view.bounds;
+        [self addContentButton];
     }
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -255,7 +274,6 @@
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
         self.menuViewController.view.alpha = delta;
-        self.contentViewController.view.userInteractionEnabled = NO;
         self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
         self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
