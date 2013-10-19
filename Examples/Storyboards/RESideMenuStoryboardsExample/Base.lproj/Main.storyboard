@@ -54,11 +54,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Balloon" translatesAutoresizingMaskIntoConstraints="NO" id="sCD-GZ-hDv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Balloon" translatesAutoresizingMaskIntoConstraints="NO" id="sCD-GZ-hDv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="768" id="8hr-Lu-BiY"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="BeS-Ho-eaL"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="568" id="bhi-Bh-r6T"/>
+                                </constraints>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="sCD-GZ-hDv" secondAttribute="centerY" id="HxT-uK-Wbe"/>
+                            <constraint firstItem="sCD-GZ-hDv" firstAttribute="leading" secondItem="NKZ-RZ-CBv" secondAttribute="leading" id="Pc5-8q-fRz"/>
+                            <constraint firstAttribute="centerX" secondItem="sCD-GZ-hDv" secondAttribute="centerX" id="VLu-VP-icH"/>
+                            <constraint firstItem="sCD-GZ-hDv" firstAttribute="top" secondItem="NKZ-RZ-CBv" secondAttribute="top" id="p5s-L6-xoW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home Controller" id="HIf-bS-REK">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="SZg-Pf-I50">
