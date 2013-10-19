@@ -274,7 +274,6 @@
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
         self.menuViewController.view.alpha = delta;
-        self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
         self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
@@ -283,14 +282,13 @@
         }
         
         if (contentViewScale > 1) {
-            self.contentViewController.view.transform = CGAffineTransformIdentity;
-            CGRect frame = self.contentViewController.view.frame;
-            frame.origin.x = 0;
-            self.contentViewController.view.frame = frame;
+            if (!self.visible) {
+                self.contentViewController.view.transform = CGAffineTransformIdentity;
+            }
+            self.contentViewController.view.frame = self.view.bounds;
         } else {
-            CGRect frame = self.contentViewController.view.frame;
-            frame.origin.x = point.x + self.originalPoint.x;
-            self.contentViewController.view.frame = frame;
+            self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
+            self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, self.visible ? point.x * 0.8 : point.x, 0);
         }
         
         [self updateStatusBar];
