@@ -286,6 +286,9 @@
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             CGRect frame = self.contentViewController.view.frame;
             frame.origin.x = 0;
+            frame.origin.y = 0;
+            frame.size.width = self.view.frame.size.width;
+            frame.size.height = self.view.frame.size.height;
             self.contentViewController.view.frame = frame;
         } else {
             CGRect frame = self.contentViewController.view.frame;
