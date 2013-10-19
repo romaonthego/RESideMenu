@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E7AB4802-56F7-4B72-93E0-E78277D1EAF8</string>
+	<string>D132F5A6-479E-457A-B606-29EBA0732188</string>
 	<key>IDESourceControlProjectName</key>
 	<string>RESideMenuExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AF43943D-B4D6-48A2-BEC0-2CF2B431BEBA</key>
-		<string>ssh://github.com/romaonthego/RESideMenu.git</string>
+		<key>7488F6D6-DFD6-4A86-BBF2-550377D6B227</key>
+		<string>https://github.com/psy2k/RESideMenu.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Examples/Simple/RESideMenuExample.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AF43943D-B4D6-48A2-BEC0-2CF2B431BEBA</key>
+		<key>7488F6D6-DFD6-4A86-BBF2-550377D6B227</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/romaonthego/RESideMenu.git</string>
+	<string>https://github.com/psy2k/RESideMenu.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AF43943D-B4D6-48A2-BEC0-2CF2B431BEBA</string>
+	<string>7488F6D6-DFD6-4A86-BBF2-550377D6B227</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AF43943D-B4D6-48A2-BEC0-2CF2B431BEBA</string>
+			<string>7488F6D6-DFD6-4A86-BBF2-550377D6B227</string>
 			<key>IDESourceControlWCCName</key>
 			<string>RESideMenu</string>
 		</dict>
