@@ -114,21 +114,25 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.contentViewController beginAppearanceTransition:YES animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.contentViewController endAppearanceTransition];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [self.contentViewController beginAppearanceTransition:NO animated:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     [self.contentViewController endAppearanceTransition];
 }
 
@@ -150,6 +154,13 @@
 - (void)showMenuViewController
 {
     [self addContentButton];
+    
+    if([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state]!=UIGestureRecognizerStateEnded)
+    {
+        [self.contentViewController beginAppearanceTransition:NO animated:YES];
+        [self.menuViewController beginAppearanceTransition:YES animated:YES];
+    }
+    
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
@@ -160,6 +171,10 @@
         self.backgroundImageView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
+        
+        [self.contentViewController endAppearanceTransition];
+        [self.menuViewController endAppearanceTransition];
+        
     }];
     self.visible = YES;
     [self updateStatusBar];
@@ -168,6 +183,13 @@
 - (void)hideMenuViewController
 {
     [self.contentButton removeFromSuperview];
+    
+    if([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state]!=UIGestureRecognizerStateEnded)
+    {
+        [self.menuViewController beginAppearanceTransition:NO animated:YES];
+        [self.contentViewController beginAppearanceTransition:YES animated:YES];
+    }
+    
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
         self.contentViewController.view.transform = CGAffineTransformIdentity;
@@ -184,6 +206,10 @@
         }
     } completion:^(BOOL finished) {
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        
+        [self.menuViewController endAppearanceTransition];
+        [self.contentViewController endAppearanceTransition];
+        
     }];
     self.visible = NO;
     [self updateStatusBar];
@@ -264,6 +290,9 @@
         self.backgroundImageView.frame = self.view.bounds;
         self.menuViewController.view.frame = self.view.bounds;
         [self addContentButton];
+        
+        [self.contentViewController beginAppearanceTransition:self.visible animated:YES];
+        [self.menuViewController beginAppearanceTransition:!self.visible animated:YES];
     }
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
