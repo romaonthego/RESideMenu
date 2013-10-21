@@ -103,6 +103,8 @@
     [self.view addSubview:self.backgroundImageView];
     [self re_displayController:self.menuViewController frame:self.view.frame];
     [self re_displayController:self.contentViewController frame:self.view.frame];
+    self.menuViewController.view.alpha = 0;
+    self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
     [self addMenuViewControllerMotionEffects];
     
@@ -140,7 +142,6 @@
 
 - (void)presentMenuViewController
 {
-
     self.menuViewController.view.transform = CGAffineTransformIdentity;
     self.backgroundImageView.transform = CGAffineTransformIdentity;
     self.backgroundImageView.frame = self.view.bounds;
@@ -299,7 +300,7 @@
         [self.menuViewController beginAppearanceTransition:!self.visible animated:YES];
     }
     
-    if (recognizer.state == UIGestureRecognizerStateChanged) {
+    if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
         CGFloat delta = self.visible ? (point.x + self.originalPoint.x) / self.originalPoint.x : point.x / self.view.frame.size.width;
         
         CGFloat contentViewScale = self.scaleContentView ? 1 - (0.3f * delta) : 1;
