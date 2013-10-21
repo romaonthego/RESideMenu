@@ -276,8 +276,12 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
-    if (!self.panGestureEnabled)
+    if (!self.panGestureEnabled) {
+        if ([self.contentViewController conformsToProtocol:@protocol(REGestureRecipient)]) {
+            [((id <REGestureRecipient>) self.contentViewController) panGestureRecognized:recognizer];
+        }
         return;
+    }
     
     CGPoint point = [recognizer translationInView:self.view];
     

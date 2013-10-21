@@ -26,6 +26,10 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+RESideMenu.h"
 
+@protocol REGestureRecipient <NSObject>
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
+@end
+
 @interface RESideMenu : UIViewController
 
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
