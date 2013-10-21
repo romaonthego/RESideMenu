@@ -184,7 +184,7 @@
 {
     [self.contentButton removeFromSuperview];
     
-    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state]!=UIGestureRecognizerStateEnded) {
+    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
         [self.menuViewController beginAppearanceTransition:NO animated:YES];
         [self.contentViewController beginAppearanceTransition:YES animated:YES];
     }
@@ -293,6 +293,7 @@
         self.backgroundImageView.frame = self.view.bounds;
         self.menuViewController.view.frame = self.view.bounds;
         [self addContentButton];
+        [self.view.window endEditing:YES];
         
         [self.contentViewController beginAppearanceTransition:self.visible animated:YES];
         [self.menuViewController beginAppearanceTransition:!self.visible animated:YES];
