@@ -153,6 +153,7 @@
 
 - (void)showMenuViewController
 {
+    [self.view.window endEditing:YES];
     [self addContentButton];
     
     if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
