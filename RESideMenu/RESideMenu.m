@@ -278,7 +278,7 @@
 {
     if (!self.panGestureEnabled) {
         if ([self.contentViewController conformsToProtocol:@protocol(REGestureRecipient)]) {
-            [((id <REGestureRecipient>) self.contentViewController) panGestureRecognized:recognizer];
+            [((id <REGestureRecipient>)self.contentViewController) panGestureRecognized:recognizer];
         }
         return;
     }
