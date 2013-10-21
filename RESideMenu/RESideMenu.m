@@ -136,10 +136,27 @@
     [self.contentViewController endAppearanceTransition];
 }
 
+-(void)setUserinteractionForContentButton:(BOOL)yesOrNoButton AndContentViewControllerView:(BOOL)yesOrNoViewController {
+    
+    
+    for (UIView *view in [self.contentViewController.view subviews])
+    {
+        if (view.tag == 101)  // the button (tag) shouldn´t be disabled
+            [view setUserInteractionEnabled:yesOrNoButton];
+		else
+		    [view setUserInteractionEnabled:yesOrNoViewController];
+        
+    }
+}
+
+
+
 #pragma mark -
 
 - (void)presentMenuViewController
 {
+    
+    [self setUserinteractionForContentButton:YES AndContentViewControllerView:NO];
 
     self.menuViewController.view.transform = CGAffineTransformIdentity;
     self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -211,6 +228,7 @@
         
     }];
     self.visible = NO;
+    [self setUserinteractionForContentButton:NO AndContentViewControllerView:YES];
     [self updateStatusBar];
 }
 
@@ -222,6 +240,7 @@
     self.contentButton.autoresizingMask = UIViewAutoresizingNone;
     self.contentButton.frame = self.contentViewController.view.bounds;
     self.contentButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.contentButton.tag = 101;
     [self.contentViewController.view addSubview:self.contentButton];
 }
 
@@ -307,6 +326,7 @@
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
         self.menuViewController.view.alpha = delta;
+        [self setUserinteractionForContentButton:YES AndContentViewControllerView:NO];
         self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
