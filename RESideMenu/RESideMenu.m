@@ -64,7 +64,10 @@
 #pragma clang diagnostic pop
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
-    _scaleContentView = YES;
+  
+    _scaleContentView      = YES;
+    _contentViewScaleValue = 0.7f;
+  
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = @(-15);
     _parallaxMenuMaximumRelativeValue = @(15);
@@ -86,6 +89,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
+    if (! _contentViewInLandscapeOffsetCenterX) _contentViewInLandscapeOffsetCenterX = CGRectGetHeight(self.view.frame) + 30.f;
+    if (! _contentViewInPortraitOffsetCenterX)  _contentViewInPortraitOffsetCenterX  = CGRectGetWidth(self.view.frame)  + 30.f;
+    
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundImageView = ({
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -164,9 +171,9 @@
     
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
-            self.contentViewController.view.transform = CGAffineTransformMakeScale(0.7f, 0.7f);
+            self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         }
-        self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.view.frame.size.height : self.view.frame.size.width) + 30.0f, self.contentViewController.view.center.y);
+        self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         self.backgroundImageView.transform = CGAffineTransformIdentity;
