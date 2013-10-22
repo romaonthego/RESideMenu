@@ -90,8 +90,11 @@
 {
     [super viewDidLoad];
   
-    if (! _contentViewInLandscapeOffsetCenterX) _contentViewInLandscapeOffsetCenterX = CGRectGetHeight(self.view.frame) + 30.f;
-    if (! _contentViewInPortraitOffsetCenterX)  _contentViewInPortraitOffsetCenterX  = CGRectGetWidth(self.view.frame)  + 30.f;
+    if (!_contentViewInLandscapeOffsetCenterX)
+        _contentViewInLandscapeOffsetCenterX = CGRectGetHeight(self.view.frame) + 30.f;
+    
+    if (!_contentViewInPortraitOffsetCenterX)
+        _contentViewInPortraitOffsetCenterX  = CGRectGetWidth(self.view.frame) + 30.f;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundImageView = ({
