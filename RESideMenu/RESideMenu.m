@@ -175,6 +175,11 @@
 
 - (void)showMenuViewController
 {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
+    {
+        [self.delegate RESideMenuWillPresentMenu];
+    }
+    
     [self.view.window endEditing:YES];
     [self addContentButton];
     
@@ -200,6 +205,10 @@
         [self.contentViewController endAppearanceTransition];
         [self.menuViewController endAppearanceTransition];
         
+        if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidPresentMenu)])
+        {
+            [self.delegate RESideMenuDidPresentMenu];
+        }
     }];
     self.visible = YES;
     [self updateStatusBar];
@@ -207,6 +216,11 @@
 
 - (void)hideMenuViewController
 {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillHideMenu)])
+    {
+        [self.delegate RESideMenuWillHideMenu];
+    }
+    
     [self.contentButton removeFromSuperview];
     
     if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
@@ -237,6 +251,10 @@
         [self.menuViewController endAppearanceTransition];
         [self.contentViewController endAppearanceTransition];
         
+        if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidHideMenu)])
+        {
+            [self.delegate RESideMenuDidHideMenu];
+        }
     }];
     self.visible = NO;
     [self updateStatusBar];

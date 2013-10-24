@@ -32,6 +32,16 @@
 
 @end
 
+@protocol RESideMenuDelegate <NSObject>
+
+- (void)RESideMenuWillPresentMenu;
+- (void)RESideMenuDidPresentMenu;
+
+- (void)RESideMenuWillHideMenu;
+- (void)RESideMenuDidHideMenu;
+
+@end
+
 @interface RESideMenu : UIViewController
 
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
@@ -50,6 +60,8 @@
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
+
+@property (nonatomic, weak) id <RESideMenuDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
