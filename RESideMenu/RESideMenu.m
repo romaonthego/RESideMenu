@@ -67,6 +67,8 @@
   
     _scaleContentView      = YES;
     _contentViewScaleValue = 0.7f;
+    
+    _scaleBackgroundImage = YES;
   
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = @(-15);
@@ -114,7 +116,10 @@
     [self re_displayController:self.menuViewController frame:self.view.frame];
     [self re_displayController:self.contentViewController frame:self.view.frame];
     self.menuViewController.view.alpha = 0;
-    self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    if (self.scaleBackgroundImage)
+    {
+        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    }
     
     [self addMenuViewControllerMotionEffects];
     
@@ -153,12 +158,18 @@
 - (void)presentMenuViewController
 {
     self.menuViewController.view.transform = CGAffineTransformIdentity;
-    self.backgroundImageView.transform = CGAffineTransformIdentity;
-    self.backgroundImageView.frame = self.view.bounds;
+    if (self.scaleBackgroundImage)
+    {
+        self.backgroundImageView.transform = CGAffineTransformIdentity;
+        self.backgroundImageView.frame = self.view.bounds;
+    }
     self.menuViewController.view.frame = self.view.bounds;
     self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
     self.menuViewController.view.alpha = 0;
-    self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    if (self.scaleBackgroundImage)
+    {
+        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    }
     [self showMenuViewController];
 }
 
@@ -179,7 +190,10 @@
         self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
-        self.backgroundImageView.transform = CGAffineTransformIdentity;
+        if (self.scaleBackgroundImage)
+        {
+            self.backgroundImageView.transform = CGAffineTransformIdentity;
+        }
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
         
@@ -206,7 +220,10 @@
         self.contentViewController.view.frame = self.view.bounds;
         self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
         self.menuViewController.view.alpha = 0;
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        if (self.scaleBackgroundImage)
+        {
+            self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        }
         if (self.parallaxEnabled) {
             IF_IOS7_OR_GREATER(
                for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
@@ -300,8 +317,11 @@
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.originalPoint = self.contentViewController.view.frame.origin;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
-        self.backgroundImageView.transform = CGAffineTransformIdentity;
-        self.backgroundImageView.frame = self.view.bounds;
+        if (self.scaleBackgroundImage)
+        {
+            self.backgroundImageView.transform = CGAffineTransformIdentity;
+            self.backgroundImageView.frame = self.view.bounds;
+        }
         self.menuViewController.view.frame = self.view.bounds;
         [self addContentButton];
         [self.view.window endEditing:YES];
@@ -318,11 +338,18 @@
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
         self.menuViewController.view.alpha = delta;
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
+        if (self.scaleBackgroundImage)
+        {
+            self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
+        }
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
-        if (backgroundViewScale < 1) {
-            self.backgroundImageView.transform = CGAffineTransformIdentity;
+        if (self.scaleBackgroundImage)
+        {
+            if (backgroundViewScale < 1)
+            {
+                self.backgroundImageView.transform = CGAffineTransformIdentity;
+            }
         }
         
         if (contentViewScale > 1) {
