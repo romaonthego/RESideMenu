@@ -41,7 +41,7 @@ Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'RESideMenu', '~> 3.1.6'
+pod 'RESideMenu', '~> 3.1.7'
 ```
 
 Install into your Xcode project:
@@ -114,6 +114,10 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
+@property (assign, readwrite, nonatomic) BOOL scaleContentView;
+@property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
+@property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
+@property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
 @property (strong, readwrite, nonatomic) id parallaxMenuMinimumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxMenuMaximumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
