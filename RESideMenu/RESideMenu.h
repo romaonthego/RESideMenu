@@ -34,7 +34,7 @@
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
-@property (assign, readwrite, nonatomic) BOOL scaleBackgroundImage;
+@property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
