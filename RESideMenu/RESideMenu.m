@@ -385,57 +385,6 @@
     }
 }
 
-- (void)updateStatusBar
-{
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [UIView animateWithDuration:0.3f animations:^{
-            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-        }];
-    }
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
-    IF_IOS7_OR_GREATER(
-       statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
-       if (self.contentViewController.view.frame.origin.y > 10) {
-           statusBarStyle = self.menuViewController.preferredStatusBarStyle;
-       } else {
-           statusBarStyle = self.contentViewController.preferredStatusBarStyle;
-       }
-    );
-    return statusBarStyle;
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    BOOL statusBarHidden = NO;
-    IF_IOS7_OR_GREATER(
-        statusBarHidden = self.visible ? self.menuViewController.prefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
-        if (self.contentViewController.view.frame.origin.y > 10) {
-            statusBarHidden = self.menuViewController.prefersStatusBarHidden;
-        } else {
-            statusBarHidden = self.contentViewController.prefersStatusBarHidden;
-        }
-    );
-    return statusBarHidden;
-}
-
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
-{
-    UIStatusBarAnimation statusBarAnimation = UIStatusBarAnimationNone;
-    IF_IOS7_OR_GREATER(
-        statusBarAnimation = self.visible ? self.menuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
-        if (self.contentViewController.view.frame.origin.y > 10) {
-            statusBarAnimation = self.menuViewController.preferredStatusBarUpdateAnimation;
-        } else {
-            statusBarAnimation = self.contentViewController.preferredStatusBarUpdateAnimation;
-        }
-    );
-    return statusBarAnimation;
-}
-
 #pragma mark -
 #pragma mark Setters
 
@@ -486,6 +435,60 @@
         return NO;
     
     return self.contentViewController.shouldAutorotate;
+}
+
+#pragma mark -
+#pragma mark Status bar appearance management
+
+- (void)updateStatusBar
+{
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [UIView animateWithDuration:0.3f animations:^{
+            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+        }];
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
+    IF_IOS7_OR_GREATER(
+       statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+       if (self.contentViewController.view.frame.origin.y > 10) {
+           statusBarStyle = self.menuViewController.preferredStatusBarStyle;
+       } else {
+           statusBarStyle = self.contentViewController.preferredStatusBarStyle;
+       }
+    );
+    return statusBarStyle;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    BOOL statusBarHidden = NO;
+    IF_IOS7_OR_GREATER(
+        statusBarHidden = self.visible ? self.menuViewController.prefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
+        if (self.contentViewController.view.frame.origin.y > 10) {
+            statusBarHidden = self.menuViewController.prefersStatusBarHidden;
+        } else {
+            statusBarHidden = self.contentViewController.prefersStatusBarHidden;
+        }
+    );
+    return statusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    UIStatusBarAnimation statusBarAnimation = UIStatusBarAnimationNone;
+    IF_IOS7_OR_GREATER(
+        statusBarAnimation = self.visible ? self.menuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
+        if (self.contentViewController.view.frame.origin.y > 10) {
+            statusBarAnimation = self.menuViewController.preferredStatusBarUpdateAnimation;
+        } else {
+            statusBarAnimation = self.contentViewController.preferredStatusBarUpdateAnimation;
+        }
+    );
+    return statusBarAnimation;
 }
 
 @end
