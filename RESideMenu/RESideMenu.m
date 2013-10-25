@@ -315,10 +315,10 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
+        [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
+    
     if (!self.panGestureEnabled) {
-        if ([self.contentViewController conformsToProtocol:@protocol(REGestureRecipient)]) {
-            [((id <REGestureRecipient>)self.contentViewController) panGestureRecognized:recognizer];
-        }
         return;
     }
     

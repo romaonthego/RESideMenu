@@ -55,14 +55,10 @@
 
 @end
 
-@protocol REGestureRecipient <NSObject>
-
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
-
-@end
-
 @protocol RESideMenuDelegate <NSObject>
 
+@optional
+- (void)sideMenu:(RESideMenu *)sideMenu didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer;
 - (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController;
 - (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController;
 - (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController;
