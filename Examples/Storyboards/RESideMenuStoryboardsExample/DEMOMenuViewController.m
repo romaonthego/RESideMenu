@@ -36,8 +36,6 @@
         tableView;
     });
     [self.view addSubview:self.tableView];
-    
-    self.sideMenuViewController.delegate = self;
 }
 
 #pragma mark -
