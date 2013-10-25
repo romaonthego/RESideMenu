@@ -11,7 +11,7 @@
 #import "DEMOSecondViewController.h"
 #import "UIViewController+RESideMenu.h"
 
-@interface DEMOMenuViewController () <RESideMenuDelegate>
+@interface DEMOMenuViewController ()
 
 @end
 
@@ -111,24 +111,24 @@
 #pragma mark -
 #pragma mark RESideMenu Delegate
 
--(void)RESideMenuWillPresentMenu
+- (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"RESideMenuWillPresentMenu");
+    NSLog(@"willShowMenuViewController");
 }
 
--(void)RESideMenuDidPresentMenu
+- (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"RESideMenuDidPresentMenu");
+    NSLog(@"didShowMenuViewController");
 }
 
--(void)RESideMenuWillHideMenu
+- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"RESideMenuWillHideMenu");
+    NSLog(@"willHideMenuViewController");
 }
 
--(void)RESideMenuDidHideMenu
+- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"RESideMenuDidHideMenu");
+    NSLog(@"didHideMenuViewController");
 }
 
 @end

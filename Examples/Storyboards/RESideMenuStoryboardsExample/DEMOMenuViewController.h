@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface DEMOMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DEMOMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 

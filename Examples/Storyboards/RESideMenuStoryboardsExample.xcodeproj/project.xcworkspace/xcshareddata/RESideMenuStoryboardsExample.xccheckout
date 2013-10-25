@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3A445867-CAF9-4C61-AC0F-A5201F176FDF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RESideMenuStoryboardsExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D8E9CD00-2368-4ABD-BD15-AB69D787B293</key>
+		<string>ssh://github.com/romaonthego/RESideMenu.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Examples/Storyboards/RESideMenuStoryboardsExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D8E9CD00-2368-4ABD-BD15-AB69D787B293</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/romaonthego/RESideMenu.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D8E9CD00-2368-4ABD-BD15-AB69D787B293</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D8E9CD00-2368-4ABD-BD15-AB69D787B293</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RESideMenu</string>
+		</dict>
+	</array>
+</dict>
+</plist>
