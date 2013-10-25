@@ -32,6 +32,7 @@
         tableView.backgroundColor = [UIColor clearColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
+        tableView.scrollsToTop = NO;
         tableView;
     });
     [self.view addSubview:self.tableView];
