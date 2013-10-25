@@ -181,8 +181,6 @@
 
 - (void)showMenuViewController
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
-    
     [self.view.window endEditing:YES];
     [self addContentButton];
     
@@ -424,6 +422,34 @@
        }
     );
     return statusBarStyle;
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+    BOOL statusBarHidden = NO;
+    IF_IOS7_OR_GREATER(
+        statusBarHidden = self.visible ? self.menuViewController.prefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
+        if (self.contentViewController.view.frame.origin.y > 10) {
+            statusBarHidden = self.menuViewController.prefersStatusBarHidden;
+        } else {
+            statusBarHidden = self.contentViewController.prefersStatusBarHidden;
+        }
+    );
+    return statusBarHidden;
+}
+
+-(UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    UIStatusBarAnimation statusBarAnimation = UIStatusBarAnimationNone;
+    IF_IOS7_OR_GREATER(
+        statusBarAnimation = self.visible ? self.menuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
+        if (self.contentViewController.view.frame.origin.y > 10) {
+            statusBarAnimation = self.menuViewController.preferredStatusBarUpdateAnimation;
+        } else {
+            statusBarAnimation = self.contentViewController.preferredStatusBarUpdateAnimation;
+        }
+    );
+    return statusBarAnimation;
 }
 
 #pragma mark -
