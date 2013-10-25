@@ -116,8 +116,7 @@
     [self re_displayController:self.menuViewController frame:self.view.frame];
     [self re_displayController:self.contentViewController frame:self.view.frame];
     self.menuViewController.view.alpha = 0;
-    if (self.scaleBackgroundImage)
-    {
+    if (self.scaleBackgroundImage) {
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
     
@@ -158,21 +157,18 @@
 - (void)presentMenuViewController
 {
     self.menuViewController.view.transform = CGAffineTransformIdentity;
-    if (self.scaleBackgroundImage)
-    {
+    if (self.scaleBackgroundImage) {
         self.backgroundImageView.transform = CGAffineTransformIdentity;
         self.backgroundImageView.frame = self.view.bounds;
     }
     self.menuViewController.view.frame = self.view.bounds;
     self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
     self.menuViewController.view.alpha = 0;
-    if (self.scaleBackgroundImage)
-    {
+    if (self.scaleBackgroundImage) {
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
     
-    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)])
-    {
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
         [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
     }
     
@@ -206,8 +202,7 @@
         [self.contentViewController endAppearanceTransition];
         [self.menuViewController endAppearanceTransition];
         
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)])
-        {
+        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.menuViewController];
         }
         
@@ -219,8 +214,7 @@
 
 - (void)hideMenuViewController
 {
-    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)])
-    {
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
         [self.delegate sideMenu:self willHideMenuViewController:self.menuViewController];
     }
     
@@ -237,8 +231,7 @@
         self.contentViewController.view.frame = self.view.bounds;
         self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
         self.menuViewController.view.alpha = 0;
-        if (self.scaleBackgroundImage)
-        {
+        if (self.scaleBackgroundImage) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
         if (self.parallaxEnabled) {
@@ -254,8 +247,7 @@
         [self.menuViewController endAppearanceTransition];
         [self.contentViewController endAppearanceTransition];
         
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)])
-        {
+        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
             [self.delegate sideMenu:self didHideMenuViewController:self.menuViewController];
         }
     }];
@@ -337,15 +329,13 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)])
-        {
+        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
             [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
         }
         
         self.originalPoint = self.contentViewController.view.frame.origin;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
-        if (self.scaleBackgroundImage)
-        {
+        if (self.scaleBackgroundImage) {
             self.backgroundImageView.transform = CGAffineTransformIdentity;
             self.backgroundImageView.frame = self.view.bounds;
         }
@@ -365,16 +355,13 @@
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
         
         self.menuViewController.view.alpha = delta;
-        if (self.scaleBackgroundImage)
-        {
+        if (self.scaleBackgroundImage) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
         }
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         
-        if (self.scaleBackgroundImage)
-        {
-            if (backgroundViewScale < 1)
-            {
+        if (self.scaleBackgroundImage) {
+            if (backgroundViewScale < 1) {
                 self.backgroundImageView.transform = CGAffineTransformIdentity;
             }
         }
@@ -424,7 +411,7 @@
     return statusBarStyle;
 }
 
--(BOOL)prefersStatusBarHidden
+- (BOOL)prefersStatusBarHidden
 {
     BOOL statusBarHidden = NO;
     IF_IOS7_OR_GREATER(
@@ -438,7 +425,7 @@
     return statusBarHidden;
 }
 
--(UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
     UIStatusBarAnimation statusBarAnimation = UIStatusBarAnimationNone;
     IF_IOS7_OR_GREATER(
