@@ -11,7 +11,7 @@
 #import "DEMOSecondViewController.h"
 #import "UIViewController+RESideMenu.h"
 
-@interface DEMOMenuViewController ()
+@interface DEMOMenuViewController () <RESideMenuDelegate>
 
 @end
 
@@ -32,9 +32,12 @@
         tableView.backgroundColor = [UIColor clearColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
+        tableView.scrollsToTop = NO;
         tableView;
     });
     [self.view addSubview:self.tableView];
+    
+    self.sideMenuViewController.delegate = self;
 }
 
 #pragma mark -
@@ -103,6 +106,29 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark -
+#pragma mark RESideMenu Delegate
+
+-(void)RESideMenuWillPresentMenu
+{
+    NSLog(@"RESideMenuWillPresentMenu");
+}
+
+-(void)RESideMenuDidPresentMenu
+{
+    NSLog(@"RESideMenuDidPresentMenu");
+}
+
+-(void)RESideMenuWillHideMenu
+{
+    NSLog(@"RESideMenuWillHideMenu");
+}
+
+-(void)RESideMenuDidHideMenu
+{
+    NSLog(@"RESideMenuDidHideMenu");
 }
 
 @end

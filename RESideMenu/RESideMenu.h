@@ -32,12 +32,23 @@
 
 @end
 
+@protocol RESideMenuDelegate <NSObject>
+
+- (void)RESideMenuWillPresentMenu;
+- (void)RESideMenuDidPresentMenu;
+
+- (void)RESideMenuWillHideMenu;
+- (void)RESideMenuDidHideMenu;
+
+@end
+
 @interface RESideMenu : UIViewController
 
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
+@property (assign, readwrite, nonatomic) BOOL scaleBackgroundImage;
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
@@ -49,6 +60,8 @@
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
+
+@property (nonatomic, weak) id <RESideMenuDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
