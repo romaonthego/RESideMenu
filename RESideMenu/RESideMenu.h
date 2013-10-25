@@ -60,7 +60,7 @@
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
-@property (nonatomic, weak) id<RESideMenuDelegate> delegate;
+@property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
