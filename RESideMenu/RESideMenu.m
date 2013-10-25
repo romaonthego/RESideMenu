@@ -170,15 +170,18 @@
     {
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
+    {
+        [self.delegate RESideMenuWillPresentMenu];
+    }
+    
     [self showMenuViewController];
 }
 
 - (void)showMenuViewController
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
-    {
-        [self.delegate RESideMenuWillPresentMenu];
-    }
     
     [self.view.window endEditing:YES];
     [self addContentButton];
@@ -205,12 +208,14 @@
         [self.contentViewController endAppearanceTransition];
         [self.menuViewController endAppearanceTransition];
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidPresentMenu)])
+        if (!self.visible && self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidPresentMenu)])
         {
             [self.delegate RESideMenuDidPresentMenu];
         }
+        
+        self.visible = YES;
     }];
-    self.visible = YES;
+    
     [self updateStatusBar];
 }
 
@@ -251,7 +256,7 @@
         [self.menuViewController endAppearanceTransition];
         [self.contentViewController endAppearanceTransition];
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidHideMenu)])
+        if (!self.visible && self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidHideMenu)])
         {
             [self.delegate RESideMenuDidHideMenu];
         }
@@ -333,6 +338,12 @@
     CGPoint point = [recognizer translationInView:self.view];
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
+        
+        if (!self.visible && self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
+        {
+            [self.delegate RESideMenuWillPresentMenu];
+        }
+        
         self.originalPoint = self.contentViewController.view.frame.origin;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImage)
