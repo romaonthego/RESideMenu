@@ -171,9 +171,9 @@
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     }
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)])
     {
-        [self.delegate RESideMenuWillPresentMenu];
+        [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
     }
     
     [self showMenuViewController];
@@ -206,9 +206,9 @@
         [self.contentViewController endAppearanceTransition];
         [self.menuViewController endAppearanceTransition];
         
-        if (!self.visible && self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidPresentMenu)])
+        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)])
         {
-            [self.delegate RESideMenuDidPresentMenu];
+            [self.delegate sideMenu:self didShowMenuViewController:self.menuViewController];
         }
         
         self.visible = YES;
@@ -219,9 +219,9 @@
 
 - (void)hideMenuViewController
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillHideMenu)])
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)])
     {
-        [self.delegate RESideMenuWillHideMenu];
+        [self.delegate sideMenu:self willHideMenuViewController:self.menuViewController];
     }
     
     [self.contentButton removeFromSuperview];
@@ -254,9 +254,9 @@
         [self.menuViewController endAppearanceTransition];
         [self.contentViewController endAppearanceTransition];
         
-        if (!self.visible && self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuDidHideMenu)])
+        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)])
         {
-            [self.delegate RESideMenuDidHideMenu];
+            [self.delegate sideMenu:self didHideMenuViewController:self.menuViewController];
         }
     }];
     self.visible = NO;
@@ -337,9 +337,9 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
-        if (!self.visible && self.delegate && [self.delegate respondsToSelector:@selector(RESideMenuWillPresentMenu)])
+        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)])
         {
-            [self.delegate RESideMenuWillPresentMenu];
+            [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
         }
         
         self.originalPoint = self.contentViewController.view.frame.origin;

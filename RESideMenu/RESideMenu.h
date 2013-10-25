@@ -34,11 +34,10 @@
 
 @protocol RESideMenuDelegate <NSObject>
 
-- (void)RESideMenuWillPresentMenu;
-- (void)RESideMenuDidPresentMenu;
-
-- (void)RESideMenuWillHideMenu;
-- (void)RESideMenuDidHideMenu;
+- (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController;
+- (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController;
+- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController;
+- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController;
 
 @end
 
@@ -61,7 +60,7 @@
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
-@property (nonatomic, weak) id <RESideMenuDelegate> delegate;
+@property (nonatomic, weak) id<RESideMenuDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
