@@ -116,9 +116,8 @@
     [self re_displayController:self.menuViewController frame:self.view.frame];
     [self re_displayController:self.contentViewController frame:self.view.frame];
     self.menuViewController.view.alpha = 0;
-    if (self.scaleBackgroundImage) {
+    if (self.scaleBackgroundImage)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
-    }
     
     [self addMenuViewControllerMotionEffects];
     
@@ -164,9 +163,8 @@
     self.menuViewController.view.frame = self.view.bounds;
     self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
     self.menuViewController.view.alpha = 0;
-    if (self.scaleBackgroundImage) {
+    if (self.scaleBackgroundImage)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
-    }
     
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
         [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
@@ -193,9 +191,8 @@
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImage)
-        {
             self.backgroundImageView.transform = CGAffineTransformIdentity;
-        }
+            
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
         
