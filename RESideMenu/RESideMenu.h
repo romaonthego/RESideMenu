@@ -26,20 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+RESideMenu.h"
 
-@protocol REGestureRecipient <NSObject>
-
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
-
-@end
-
-@protocol RESideMenuDelegate <NSObject>
-
-- (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController;
-- (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController;
-- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController;
-- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController;
-
-@end
+@protocol RESideMenuDelegate;
 
 @interface RESideMenu : UIViewController
 
@@ -65,5 +52,20 @@
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
 - (void)hideMenuViewController;
+
+@end
+
+@protocol REGestureRecipient <NSObject>
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
+
+@end
+
+@protocol RESideMenuDelegate <NSObject>
+
+- (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController;
+- (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController;
+- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController;
+- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController;
 
 @end
