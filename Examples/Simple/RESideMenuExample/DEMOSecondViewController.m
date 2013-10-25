@@ -7,11 +7,6 @@
 //
 
 #import "DEMOSecondViewController.h"
-#import "DEMONavigationController.h"
-
-@interface DEMOSecondViewController ()
-
-@end
 
 @implementation DEMOSecondViewController
 
@@ -22,8 +17,13 @@
     self.view.backgroundColor = [UIColor orangeColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                              style:UIBarButtonItemStylePlain
-                                                                            target:(DEMONavigationController *)self.navigationController
+                                                                            target:self
                                                                             action:@selector(showMenu)];
+}
+
+- (void)showMenu
+{
+    [self.sideMenuViewController presentMenuViewController];
 }
 
 @end

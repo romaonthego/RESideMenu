@@ -19,7 +19,6 @@
 		3032B92E1807338200064F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B9161807338200064F85 /* UIKit.framework */; };
 		3032B954180736C900064F85 /* DEMOFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B953180736C900064F85 /* DEMOFirstViewController.m */; };
 		3032B958180736E200064F85 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B957180736E200064F85 /* DEMOSecondViewController.m */; };
-		3032B95B180736F300064F85 /* DEMONavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B95A180736F300064F85 /* DEMONavigationController.m */; };
 		3032B95E1807372B00064F85 /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B95D1807372B00064F85 /* DEMOMenuViewController.m */; };
 		3076CE171809B5EF00527E6C /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE121809B5EF00527E6C /* RECommonFunctions.m */; };
 		3076CE181809B5EF00527E6C /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE141809B5EF00527E6C /* RESideMenu.m */; };
@@ -54,8 +53,6 @@
 		3032B953180736C900064F85 /* DEMOFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOFirstViewController.m; sourceTree = "<group>"; };
 		3032B956180736E200064F85 /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
 		3032B957180736E200064F85 /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
-		3032B959180736F300064F85 /* DEMONavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMONavigationController.h; sourceTree = "<group>"; };
-		3032B95A180736F300064F85 /* DEMONavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMONavigationController.m; sourceTree = "<group>"; };
 		3032B95C1807372B00064F85 /* DEMOMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOMenuViewController.h; sourceTree = "<group>"; };
 		3032B95D1807372B00064F85 /* DEMOMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOMenuViewController.m; sourceTree = "<group>"; };
 		3076CE111809B5EF00527E6C /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -150,8 +147,6 @@
 				3032B953180736C900064F85 /* DEMOFirstViewController.m */,
 				3032B956180736E200064F85 /* DEMOSecondViewController.h */,
 				3032B957180736E200064F85 /* DEMOSecondViewController.m */,
-				3032B959180736F300064F85 /* DEMONavigationController.h */,
-				3032B95A180736F300064F85 /* DEMONavigationController.m */,
 				3032B95C1807372B00064F85 /* DEMOMenuViewController.h */,
 				3032B95D1807372B00064F85 /* DEMOMenuViewController.m */,
 			);
@@ -273,7 +268,6 @@
 				3032B95E1807372B00064F85 /* DEMOMenuViewController.m in Sources */,
 				3032B9231807338200064F85 /* DEMOAppDelegate.m in Sources */,
 				3032B958180736E200064F85 /* DEMOSecondViewController.m in Sources */,
-				3032B95B180736F300064F85 /* DEMONavigationController.m in Sources */,
 				3076CE171809B5EF00527E6C /* RECommonFunctions.m in Sources */,
 				3076CE191809B5EF00527E6C /* UIViewController+RESideMenu.m in Sources */,
 			);

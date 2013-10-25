@@ -7,7 +7,6 @@
 //
 
 #import "DEMOFirstViewController.h"
-#import "DEMONavigationController.h"
 
 @interface DEMOFirstViewController ()
 
@@ -21,7 +20,7 @@
 	self.title = @"First Controller";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                              style:UIBarButtonItemStylePlain
-                                                                            target:(DEMONavigationController *)self.navigationController
+                                                                            target:self
                                                                             action:@selector(showMenu)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -29,6 +28,11 @@
     imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     imageView.image = [UIImage imageNamed:@"Balloon"];
     [self.view addSubview:imageView];
+}
+
+- (void)showMenu
+{
+    [self.sideMenuViewController presentMenuViewController];
 }
 
 @end

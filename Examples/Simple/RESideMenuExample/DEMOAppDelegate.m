@@ -7,7 +7,6 @@
 //
 
 #import "DEMOAppDelegate.h"
-#import "DEMONavigationController.h"
 #import "DEMOMenuViewController.h"
 #import "DEMOFirstViewController.h"
 
@@ -17,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOFirstViewController alloc] init]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[DEMOFirstViewController alloc] init]];
     DEMOMenuViewController *menuViewController = [[DEMOMenuViewController alloc] init];
     
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
