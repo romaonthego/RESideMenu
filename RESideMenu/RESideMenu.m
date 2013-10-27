@@ -58,7 +58,7 @@
 
 - (void)commonInit
 {
-    _animationDuration = 0.35f;
+    _animationDuration = 0.7f;
     _panGestureEnabled = YES;
     _interactivePopGestureRecognizerEnabled = YES;
   
@@ -75,6 +75,10 @@
     _parallaxContentMaximumRelativeValue = @(25);
 
     _bouncesHorizontally = YES;
+    
+    _springEnabled = YES;
+    _springDamping = 0.7;
+    _springVelocity = 0.3;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -174,7 +178,12 @@
     [self.view.window endEditing:YES];
     [self addContentButton];
     
-    [UIView animateWithDuration:self.animationDuration animations:^{
+    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
+        [self.contentViewController beginAppearanceTransition:NO animated:YES];
+        [self.menuViewController beginAppearanceTransition:YES animated:YES];
+    }
+    
+    void (^animations)(void) = ^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         }
@@ -182,10 +191,10 @@
 
         self.menuViewController.view.alpha = 1.0f;
         self.menuViewController.view.transform = CGAffineTransformIdentity;
-        if (self.scaleBackgroundImageView)
-            self.backgroundImageView.transform = CGAffineTransformIdentity;
-            
-    } completion:^(BOOL finished) {
+    };
+    
+
+    void (^completion)(BOOL) = ^(BOOL finished){
         [self addContentViewControllerMotionEffects];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
@@ -193,7 +202,29 @@
         }
         
         self.visible = YES;
-    }];
+    };
+    
+    if (self.springEnabled && [UIView respondsToSelector:@selector(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)]) {
+        [UIView animateWithDuration:self.animationDuration
+                              delay:0
+             usingSpringWithDamping:self.springDamping
+              initialSpringVelocity:self.springVelocity
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:animations
+                         completion:completion];
+    } else {
+        [UIView animateWithDuration:self.animationDuration animations:animations completion:completion];
+    }
+    
+    if (self.scaleBackgroundImageView) {
+        [UIView animateWithDuration:self.animationDuration / 2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.backgroundImageView.transform = CGAffineTransformIdentity;
+                         } completion:nil];
+    }
+
     
     [self updateStatusBar];
 }
@@ -206,8 +237,12 @@
     
     [self.contentButton removeFromSuperview];
     
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [UIView animateWithDuration:self.animationDuration animations:^{
+    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
+        [self.menuViewController beginAppearanceTransition:NO animated:YES];
+        [self.contentViewController beginAppearanceTransition:YES animated:YES];
+    }
+    
+    void (^animations)(void) = ^{
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
         self.menuViewController.view.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
@@ -222,13 +257,36 @@
                }
             );
         }
-    } completion:^(BOOL finished) {
+    };
+    
+    void (^completion)(BOOL) = ^(BOOL finished) {
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
             [self.delegate sideMenu:self didHideMenuViewController:self.menuViewController];
         }
-    }];
+    };
+    
+    if (self.springEnabled && [UIView respondsToSelector:@selector(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)]) {
+        [UIView animateWithDuration:self.animationDuration
+                              delay:0
+             usingSpringWithDamping:self.springDamping
+              initialSpringVelocity:self.springVelocity
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:animations
+                         completion:completion];
+    } else {
+        [UIView animateWithDuration:self.animationDuration animations:animations completion:completion];
+    }
+    
+    
+    if (self.scaleBackgroundImageView) {
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        }];
+    }
+
+    
     self.visible = NO;
     [self updateStatusBar];
 }
@@ -359,14 +417,12 @@
         }
         
         self.menuViewController.view.alpha = delta;
-        if (self.scaleBackgroundImageView) {
-            self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
-        }
         self.menuViewController.view.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
-        
         if (self.scaleBackgroundImageView) {
             if (backgroundViewScale < 1) {
                 self.backgroundImageView.transform = CGAffineTransformIdentity;
+            } else {
+                self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
             }
         }
         
