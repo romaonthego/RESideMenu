@@ -388,10 +388,14 @@
         } else {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
             CGPoint velocity = [recognizer velocityInView:self.view];
-            self.contentViewController.view.frame = CGRectMake(self.contentViewController.view.frame.origin.x + velocity.x * 0.02f,
-                                                               self.contentViewController.view.frame.origin.y,
-                                                               self.contentViewController.view.frame.size.width,
-                                                               self.contentViewController.view.frame.size.height);
+            CGFloat contentViewNewOriginX = self.contentViewController.view.frame.origin.x + velocity.x * 0.02f;
+            if (contentViewNewOriginX >= 0) {
+                
+                self.contentViewController.view.frame = CGRectMake(contentViewNewOriginX,
+                                                                   self.contentViewController.view.frame.origin.y,
+                                                                   self.contentViewController.view.frame.size.width,
+                                                                   self.contentViewController.view.frame.size.height);
+            }
         }
         
         [self updateStatusBar];

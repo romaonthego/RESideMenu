@@ -26,6 +26,7 @@
     sideMenuViewController.scaleContentView = NO;
     sideMenuViewController.menuViewScaleValue = 0.9f;
     sideMenuViewController.menuViewAlphaChangeable = NO;
+    sideMenuViewController.animationDuration = 0.5f;
     self.window.rootViewController = sideMenuViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];
