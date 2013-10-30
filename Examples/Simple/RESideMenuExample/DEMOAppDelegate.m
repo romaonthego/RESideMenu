@@ -22,6 +22,10 @@
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.delegate = self;
+    sideMenuViewController.scaleBackgroundImageView = NO;
+    sideMenuViewController.scaleContentView = NO;
+    sideMenuViewController.menuViewScaleValue = 0.9f;
+    sideMenuViewController.menuViewAlphaChangeable = NO;
     self.window.rootViewController = sideMenuViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];

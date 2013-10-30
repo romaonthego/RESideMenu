@@ -35,9 +35,11 @@
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
+@property (assign, readwrite, nonatomic) BOOL menuViewAlphaChangeable;
+@property (assign, readwrite, nonatomic) CGFloat menuViewScaleValue;
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
-@property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
-@property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
+@property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOriginX;
+@property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOriginX;
 @property (strong, readwrite, nonatomic) id parallaxMenuMinimumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxMenuMaximumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
