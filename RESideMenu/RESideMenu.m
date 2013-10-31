@@ -130,25 +130,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.contentViewController beginAppearanceTransition:YES animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.contentViewController endAppearanceTransition];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.contentViewController beginAppearanceTransition:NO animated:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.contentViewController endAppearanceTransition];
 }
 
 #pragma mark -
@@ -178,11 +174,6 @@
     [self.view.window endEditing:YES];
     [self addContentButton];
     
-    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
-        [self.contentViewController beginAppearanceTransition:NO animated:YES];
-        [self.menuViewController beginAppearanceTransition:YES animated:YES];
-    }
-    
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
@@ -195,9 +186,6 @@
             
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
-        
-        [self.contentViewController endAppearanceTransition];
-        [self.menuViewController endAppearanceTransition];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.menuViewController];
@@ -217,13 +205,6 @@
     
     [self.contentButton removeFromSuperview];
     
-    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
-       // dispatch_async(dispatch_get_main_queue(), ^{
-            [self.menuViewController beginAppearanceTransition:NO animated:YES];
-            [self.contentViewController beginAppearanceTransition:YES animated:YES];
-        //});
-    }
-    
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
         self.contentViewController.view.transform = CGAffineTransformIdentity;
@@ -242,11 +223,6 @@
         }
     } completion:^(BOOL finished) {
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        
-        //dispatch_async(dispatch_get_main_queue(), ^{
-            [self.menuViewController endAppearanceTransition];
-            [self.contentViewController endAppearanceTransition];
-       // });
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
             [self.delegate sideMenu:self didHideMenuViewController:self.menuViewController];
@@ -343,9 +319,6 @@
         self.menuViewController.view.frame = self.view.bounds;
         [self addContentButton];
         [self.view.window endEditing:YES];
-        
-        [self.contentViewController beginAppearanceTransition:self.visible animated:YES];
-        [self.menuViewController beginAppearanceTransition:!self.visible animated:YES];
     }
     
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
@@ -412,9 +385,6 @@
     [self re_displayController:contentViewController frame:self.view.frame];
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
-    
-    [self.contentViewController beginAppearanceTransition:YES animated:NO];
-    [self.contentViewController endAppearanceTransition];
     
     [self addContentViewControllerMotionEffects];
 }
