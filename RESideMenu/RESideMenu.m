@@ -408,10 +408,17 @@
 
 - (BOOL)shouldAutorotate
 {
-    if (self.visible)
-        return NO;
-    
     return self.contentViewController.shouldAutorotate;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (self.visible) {
+        self.contentViewController.view.transform = CGAffineTransformIdentity;
+        self.contentViewController.view.frame = self.view.bounds;
+        self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
+    }
 }
 
 #pragma mark -
