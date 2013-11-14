@@ -25,12 +25,7 @@
 
 #import "RECommonFunctions.h"
 
-BOOL REDeviceIsUIKit7()
-{
-    return REUIKitIsFlatMode();
-}
-
-BOOL REUIKitIsFlatMode()
+BOOL RESideMenuUIKitIsFlatMode()
 {
     static BOOL isUIKitFlatMode = NO;
     static dispatch_once_t onceToken;

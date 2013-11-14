@@ -25,9 +25,9 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef REUIKitIsFlatModeFunction
-#define REUIKitIsFlatModeFunction
-BOOL REUIKitIsFlatMode();
+
+#ifndef REUIKitIsFlatMode
+#define REUIKitIsFlatMode() RESideMenuUIKitIsFlatMode()
 #endif
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_6_1
@@ -44,4 +44,4 @@ __VA_ARGS__ \
 #define IF_IOS7_OR_GREATER(...)
 #endif
 
-BOOL REDeviceIsUIKit7() __attribute__ ((deprecated));
+BOOL RESideMenuUIKitIsFlatMode();
