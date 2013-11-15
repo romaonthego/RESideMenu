@@ -44,15 +44,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
-    
     switch (indexPath.row) {
         case 0:
-            navigationController.viewControllers = @[[[DEMOFirstViewController alloc] init]];
+            self.sideMenuViewController.contentViewController = [[UINavigationController alloc] initWithRootViewController:[[DEMOFirstViewController alloc] init]];
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            navigationController.viewControllers = @[[[DEMOSecondViewController alloc] init]];
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
+                                                         animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
         default:
