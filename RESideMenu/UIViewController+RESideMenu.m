@@ -26,7 +26,7 @@
 #import "UIViewController+RESideMenu.h"
 #import "RESideMenu.h"
 
-@implementation UIViewController (REFrostedViewController)
+@implementation UIViewController (RESideMenu)
 
 - (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame
 {
