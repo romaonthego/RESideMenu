@@ -58,10 +58,6 @@
 
 - (void)commonInit
 {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.wantsFullScreenLayout = YES;
-#pragma clang diagnostic pop
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
   
@@ -113,8 +109,8 @@
     });
     
     [self.view addSubview:self.backgroundImageView];
-    [self re_displayController:self.menuViewController frame:self.view.frame];
-    [self re_displayController:self.contentViewController frame:self.view.frame];
+    [self re_displayController:self.menuViewController frame:self.view.bounds];
+    [self re_displayController:self.contentViewController frame:self.view.bounds];
     self.menuViewController.view.alpha = 0;
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
@@ -382,7 +378,7 @@
     CGAffineTransform transform = _contentViewController.view.transform;
     [self re_hideController:_contentViewController];
     _contentViewController = contentViewController;
-    [self re_displayController:contentViewController frame:self.view.frame];
+    [self re_displayController:contentViewController frame:self.view.bounds];
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
     
@@ -395,6 +391,7 @@
         [self setContentViewController:contentViewController];
     } else {
         contentViewController.view.alpha = 0;
+        contentViewController.view.frame = self.contentViewController.view.bounds;
         [self.contentViewController.view addSubview:contentViewController.view];
         [UIView animateWithDuration:self.animationDuration animations:^{
             contentViewController.view.alpha = 1;
