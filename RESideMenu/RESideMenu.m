@@ -119,6 +119,7 @@
     
     if (self.panGestureEnabled) {
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+        [panGestureRecognizer setDelegate:self];
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
 }
@@ -289,6 +290,17 @@
 
 #pragma mark -
 #pragma mark Gesture recognizer
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+        CGPoint point = [touch locationInView:gestureRecognizer.view];
+        if (point.x < 30) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    return YES;
+}
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
