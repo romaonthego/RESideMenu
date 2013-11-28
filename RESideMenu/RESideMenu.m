@@ -503,4 +503,16 @@
     return statusBarAnimation;
 }
 
+- (UIViewController *)childViewControllerForStatusBarHidden
+{
+    return (self.visible ? self.menuViewController : self.contentViewController);
+}
+
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return (self.visible ? self.menuViewController : self.contentViewController);
+}
+
+
+
 @end
