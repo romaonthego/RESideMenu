@@ -34,6 +34,7 @@
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL panFromEdge;
+@property (assign, readwrite, nonatomic) BOOL disablePanGestureWhenSwipeBackEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
