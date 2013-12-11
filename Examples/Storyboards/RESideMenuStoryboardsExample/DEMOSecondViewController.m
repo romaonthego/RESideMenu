@@ -21,10 +21,10 @@
 
 - (IBAction)pushController:(id)sender
 {
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.title = @"Pushed Controller";
-    vc.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:vc animated:YES];
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.title = @"Pushed Controller";
+    viewController.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

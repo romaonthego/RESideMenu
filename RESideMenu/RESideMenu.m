@@ -60,7 +60,7 @@
 {
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
-    _disablePanGestureWhenSwipeBackEnabled = YES;
+    _interactivePopGestureRecognizerEnabled = YES;
   
     _scaleContentView      = YES;
     _contentViewScaleValue = 0.7f;
@@ -294,9 +294,9 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if (self.disablePanGestureWhenSwipeBackEnabled && [self.contentViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *nc = (UINavigationController *)self.contentViewController;
-        if (nc.viewControllers.count > 1 && nc.interactivePopGestureRecognizer.enabled) {
+    if (self.interactivePopGestureRecognizerEnabled && [self.contentViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)self.contentViewController;
+        if (navigationController.viewControllers.count > 1 && navigationController.interactivePopGestureRecognizer.enabled) {
             return NO;
         }
     }
