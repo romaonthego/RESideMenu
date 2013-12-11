@@ -60,6 +60,7 @@
 {
     _animationDuration = 0.35f;
     _panGestureEnabled = YES;
+    _disablePanGestureWhenSwipeBackEnabled = YES;
   
     _scaleContentView      = YES;
     _contentViewScaleValue = 0.7f;
@@ -293,6 +294,13 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    if (self.disablePanGestureWhenSwipeBackEnabled && [self.contentViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nc = (UINavigationController *)self.contentViewController;
+        if (nc.viewControllers.count > 1 && nc.interactivePopGestureRecognizer.enabled) {
+            return NO;
+        }
+    }
+  
     if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
         CGPoint point = [touch locationInView:gestureRecognizer.view];
         if (point.x < 30) {

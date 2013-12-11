@@ -19,4 +19,12 @@
     [self.sideMenuViewController presentMenuViewController];
 }
 
+- (IBAction)pushController:(id)sender
+{
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.title = @"Pushed Controller";
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end
