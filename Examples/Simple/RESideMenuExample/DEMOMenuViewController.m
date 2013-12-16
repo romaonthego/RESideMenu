@@ -10,19 +10,34 @@
 #import "DEMOFirstViewController.h"
 #import "DEMOSecondViewController.h"
 
+static const int CELL_HEIGHT = 54 ;
+static const int ROWS = 5 ;
+static const int ICON_WIDTH = 64 ;
+static const int PADDING = 20 ;
+
 @interface DEMOMenuViewController ()
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
+@property (assign, readwrite, nonatomic) MenuAligment alignment; //EDITED
 
 @end
 
 @implementation DEMOMenuViewController
 
+- (id)initWithAlignment:(MenuAligment)position //EDIT
+{
+    self = [super init];
+    if (self) {
+        _alignment = position;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];
+       UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake([self getTableViewOriginX], (self.view.frame.size.height - CELL_HEIGHT * ROWS) / 2.0f, self.view.frame.size.width, CELL_HEIGHT * ROWS) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -64,7 +79,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    return CELL_HEIGHT;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -74,7 +89,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return ROWS;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,6 +118,28 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (float)getTableViewOriginX {
+    //calculates starting position of menu
+    if (self.alignment == MenuAligmentLeft)
+        return 0;
+    
+    NSArray *titles = @[@"Home", @"Calendar", @"Profile", @"Settings", @"Log Out"];
+    NSString *longestTitle = nil;
+    //finds width of longest title
+    for(NSString *str in titles)
+        if (longestTitle == nil || [str length] > [longestTitle length])
+            longestTitle = str;
+    CGRect titleFrame = [longestTitle boundingRectWithSize:self.view.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:21] } context:nil];
+    float screenWidth = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.view.frame.size.height : self.view.frame.size.width;
+    return screenWidth - (titleFrame.size.width + ICON_WIDTH + PADDING); //approximately length of pic + text
+    
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    self.tableView.frame = CGRectMake([self getTableViewOriginX], self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
 }
 
 @end

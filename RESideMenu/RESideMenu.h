@@ -28,6 +28,11 @@
 
 @protocol RESideMenuDelegate;
 
+typedef enum {
+    MenuAligmentLeft = 0,
+    MenuAligmentRight = 1
+}MenuAligment;
+
 @interface RESideMenu : UIViewController <UIGestureRecognizerDelegate>
 
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
@@ -45,6 +50,7 @@
 @property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
+@property (assign, readwrite, nonatomic) MenuAligment menuAlignment; //EDITED
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;

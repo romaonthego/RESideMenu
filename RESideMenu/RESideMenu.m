@@ -73,6 +73,8 @@
     
     _parallaxContentMinimumRelativeValue = @(-25);
     _parallaxContentMaximumRelativeValue = @(25);
+    
+    _menuAlignment = MenuAligmentLeft;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -89,11 +91,15 @@
 {
     [super viewDidLoad];
   
+    float landscapeDisp = CGRectGetHeight(self.view.frame)/2 + 30.0f;
+    float portraitDisp = CGRectGetWidth(self.view.frame)/2 + 30.0f;
     if (!_contentViewInLandscapeOffsetCenterX)
-        _contentViewInLandscapeOffsetCenterX = CGRectGetHeight(self.view.frame) + 30.f;
+        _contentViewInLandscapeOffsetCenterX = (self.menuAlignment == MenuAligmentLeft ?
+                                                CGRectGetHeight(self.view.frame)/2 + landscapeDisp : CGRectGetHeight(self.view.frame)/2 - landscapeDisp); //assuming CGRectGetHeight(self.view.frame)/2 as landscape center
     
     if (!_contentViewInPortraitOffsetCenterX)
-        _contentViewInPortraitOffsetCenterX  = CGRectGetWidth(self.view.frame) + 30.f;
+        _contentViewInPortraitOffsetCenterX = (self.menuAlignment == MenuAligmentLeft ?
+                                               self.contentViewController.view.center.x + portraitDisp : self.contentViewController.view.center.x - portraitDisp);
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundImageView = ({

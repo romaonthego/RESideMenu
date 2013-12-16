@@ -11,4 +11,7 @@
 
 @interface DEMOMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+- (id)initWithAlignment:(MenuAligment)position;
+- (float) getTableViewOriginX;
+
 @end
