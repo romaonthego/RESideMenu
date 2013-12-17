@@ -125,7 +125,7 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 ```
 
-You can implement `RESideMenuDelegate` protocol delegate to receive notifications:
+You can implement `RESideMenuDelegate` protocol delegate to receive the following messages:
 
 ```objective-c
 ```
