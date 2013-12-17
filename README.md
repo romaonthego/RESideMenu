@@ -97,13 +97,11 @@ Present the view controller:
 5. Add a method `awakeFromNib` to `DEMORootViewController.m` with the following code:
 
 ```objective-c
-
 - (void)awakeFromNib
 {
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
     self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"menuController"];
 }
-
 ```
 
 ## Customization
