@@ -125,7 +125,7 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 ```
 
-You can implement `RESideMenuDelegate` protocol delegate to receive the following messages:
+You can implement `RESideMenuDelegate` protocol to receive the following messages:
 
 ```objective-c
 - (void)sideMenu:(RESideMenu *)sideMenu didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer;
