@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage    = 'https://github.com/romaonthego/RESideMenu'
   s.summary     = 'iOS 7 style side menu.'
   s.source      = { :git => 'https://github.com/romaonthego/RESideMenu.git',
-                    :tag => '3.3.3' }
+                    :tag => '3.4' }
   s.license     = { :type => "MIT", :file => "LICENSE" }
 
   s.platform = :ios, '6.0'
