@@ -123,6 +123,7 @@ You can customize the following properties of `RESideMenu`:
 @property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
+@property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 ```
 
 You can implement `RESideMenuDelegate` protocol to receive the following messages:

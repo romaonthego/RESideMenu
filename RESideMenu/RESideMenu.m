@@ -73,6 +73,8 @@
     
     _parallaxContentMinimumRelativeValue = @(-25);
     _parallaxContentMaximumRelativeValue = @(25);
+
+    _bouncesHorizontally = YES;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -349,6 +351,12 @@
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
+
+        if (!_bouncesHorizontally) {
+            contentViewScale = MAX(contentViewScale, self.contentViewScaleValue);
+            backgroundViewScale = MAX(backgroundViewScale, 1.0);
+            menuViewScale = MAX(menuViewScale, 1.0);
+        }
         
         self.menuViewController.view.alpha = delta;
         if (self.scaleBackgroundImageView) {
@@ -368,6 +376,10 @@
             }
             self.contentViewController.view.frame = self.view.bounds;
         } else {
+            if (!_bouncesHorizontally && self.visible) {
+                point.x = MIN(0.0, point.x);
+                [recognizer setTranslation:point inView:self.view];
+            }
             self.contentViewController.view.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
             self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, point.x, 0);
         }
