@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'RESideMenu'
-  s.version     = '3.3.3'
+  s.version     = '3.4'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/romaonthego/RESideMenu'
   s.summary     = 'iOS 7 style side menu.'
