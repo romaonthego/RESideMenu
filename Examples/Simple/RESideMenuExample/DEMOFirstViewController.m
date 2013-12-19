@@ -21,7 +21,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(showMenu)];
+                                                                            action:@selector(showLeftMenu)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(showRightMenu)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -30,9 +34,14 @@
     [self.view addSubview:imageView];
 }
 
-- (void)showMenu
+- (void)showLeftMenu
 {
-    [self.sideMenuViewController presentMenuViewController];
+    [self.sideMenuViewController presentMenuViewControllerOnSide:MenuAligmentLeft];
+}
+
+- (void)showRightMenu
+{
+    [self.sideMenuViewController presentMenuViewControllerOnSide:MenuAligmentRight];
 }
 
 @end

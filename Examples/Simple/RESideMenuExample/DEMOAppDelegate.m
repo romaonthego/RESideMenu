@@ -17,10 +17,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[DEMOFirstViewController alloc] init]];
-     DEMOMenuViewController *menuViewController = [[DEMOMenuViewController alloc] initWithAlignment:MenuAligmentRight];
-    
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
-    sideMenuViewController.menuAlignment = MenuAligmentRight;
+     DEMOMenuViewController *menuViewController = [[DEMOMenuViewController alloc] initWithAlignment:MenuAligmentLeft];
+     DEMOMenuViewController *menuViewController2 = [[DEMOMenuViewController alloc] initWithAlignment:MenuAligmentRight];
+    //RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:menuViewController rightMenuViewController:menuViewController2];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.delegate = self;
     self.window.rootViewController = sideMenuViewController;

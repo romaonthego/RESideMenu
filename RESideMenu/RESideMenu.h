@@ -27,7 +27,7 @@
 #import "UIViewController+RESideMenu.h"
 
 @protocol RESideMenuDelegate;
-
+//test
 typedef enum {
     MenuAligmentLeft = 0,
     MenuAligmentRight = 1
@@ -50,16 +50,19 @@ typedef enum {
 @property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
 @property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
-@property (assign, readwrite, nonatomic) MenuAligment menuAlignment; //EDITED
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
+@property (strong, readwrite, nonatomic) UIViewController *leftMenuViewController;
+@property (strong, readwrite, nonatomic) UIViewController *rightMenuViewController;
 
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenu rightMenuViewController:(UIViewController *)rightMenu; //init for left and right controllers
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 - (void)presentMenuViewController;
+- (void)presentMenuViewControllerOnSide:(MenuAligment)side;
 - (void)hideMenuViewController;
 
 @end

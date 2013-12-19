@@ -73,8 +73,6 @@
     
     _parallaxContentMinimumRelativeValue = @(-25);
     _parallaxContentMaximumRelativeValue = @(25);
-    
-    _menuAlignment = MenuAligmentLeft;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -83,24 +81,33 @@
     if (self) {
         _contentViewController = contentViewController;
         _menuViewController = menuViewController;
+        _leftMenuViewController = menuViewController; //edit
     }
     return self;
 }
 
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenu rightMenuViewController:(UIViewController *)rightMenu {
+    
+    self = [self init];
+    if (self) {
+        _contentViewController = contentViewController;
+        _menuViewController = leftMenu; //default to left for status bar setup
+        _leftMenuViewController = leftMenu;
+        _rightMenuViewController = rightMenu;
+        _panGestureEnabled = FALSE; //gesture doesn't work yet
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
   
-    float landscapeDisp = CGRectGetHeight(self.view.frame)/2 + 30.0f;
-    float portraitDisp = CGRectGetWidth(self.view.frame)/2 + 30.0f;
     if (!_contentViewInLandscapeOffsetCenterX)
-        _contentViewInLandscapeOffsetCenterX = (self.menuAlignment == MenuAligmentLeft ?
-                                                CGRectGetHeight(self.view.frame)/2 + landscapeDisp : CGRectGetHeight(self.view.frame)/2 - landscapeDisp); //assuming CGRectGetHeight(self.view.frame)/2 as landscape center
-    
+        _contentViewInLandscapeOffsetCenterX = (_menuViewController == _leftMenuViewController ? CGRectGetHeight(self.view.frame) + 30.0f : -30.0f);
+  
     if (!_contentViewInPortraitOffsetCenterX)
-        _contentViewInPortraitOffsetCenterX = (self.menuAlignment == MenuAligmentLeft ?
-                                               self.contentViewController.view.center.x + portraitDisp : self.contentViewController.view.center.x - portraitDisp);
-    
+        _contentViewInPortraitOffsetCenterX = (_menuViewController == _leftMenuViewController ? CGRectGetWidth(self.view.frame) + 30.0f : -30.0f);
+
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundImageView = ({
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -116,14 +123,24 @@
     });
     
     [self.view addSubview:self.backgroundImageView];
-    [self re_displayController:self.menuViewController frame:self.view.bounds];
-    [self re_displayController:self.contentViewController frame:self.view.bounds];
-    self.menuViewController.view.alpha = 0;
+   
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+
+    if (self.leftMenuViewController) {
+        [self re_displayController:self.leftMenuViewController frame:self.view.bounds];
+        self.leftMenuViewController.view.alpha = 0;
+        [self addMenuViewControllerMotionEffectsToMenu:self.leftMenuViewController];
+
+    }
+    if (self.rightMenuViewController) {
+        [self re_displayController:self.rightMenuViewController frame:self.view.bounds];
+        self.rightMenuViewController.view.alpha = 0; //todo
+        [self addMenuViewControllerMotionEffectsToMenu:self.rightMenuViewController];
+    }
     
-    [self addMenuViewControllerMotionEffects];
-    
+    [self re_displayController:self.contentViewController frame:self.view.bounds];
+
     if (self.panGestureEnabled) {
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
         panGestureRecognizer.delegate = self;
@@ -152,6 +169,20 @@
 }
 
 #pragma mark -
+- (void)presentMenuViewControllerOnSide:(MenuAligment)side
+{
+    
+    if (side == MenuAligmentLeft) {
+        self.menuViewController = self.leftMenuViewController;
+        _contentViewInLandscapeOffsetCenterX = CGRectGetHeight(self.view.frame) + 30.0f;
+        _contentViewInPortraitOffsetCenterX = CGRectGetWidth(self.view.frame) + 30.0f;
+    }
+    else {
+        self.menuViewController = self.rightMenuViewController;
+        _contentViewInLandscapeOffsetCenterX = _contentViewInPortraitOffsetCenterX = - 30.0f;
+    }
+    [self presentMenuViewController];
+}
 
 - (void)presentMenuViewController
 {
@@ -251,12 +282,12 @@
 #pragma mark -
 #pragma mark Motion effects
 
-- (void)addMenuViewControllerMotionEffects
+- (void)addMenuViewControllerMotionEffectsToMenu:(UIViewController *)menuVC
 {
     if (self.parallaxEnabled) {
         IF_IOS7_OR_GREATER(
-           for (UIMotionEffect *effect in self.menuViewController.view.motionEffects) {
-               [self.menuViewController.view removeMotionEffect:effect];
+           for (UIMotionEffect *effect in menuVC.view.motionEffects) {
+               [menuVC.view removeMotionEffect:effect];
            }
            UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
            interpolationHorizontal.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
@@ -266,8 +297,8 @@
            interpolationVertical.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
            interpolationVertical.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
            
-           [self.menuViewController.view addMotionEffect:interpolationHorizontal];
-           [self.menuViewController.view addMotionEffect:interpolationVertical];
+           [menuVC.view addMotionEffect:interpolationHorizontal];
+           [menuVC.view addMotionEffect:interpolationVertical];
         );
     }
 }
@@ -433,17 +464,19 @@
 }
 
 - (void)setMenuViewController:(UIViewController *)menuViewController
-{
-    if (!_menuViewController) {
+{   // if menu vc not set OR if using menu on both sides //TODO
+    if (!_menuViewController || (_leftMenuViewController && _rightMenuViewController)) {
         _menuViewController = menuViewController;
         return;
     }
+
     [self re_hideController:_menuViewController];
     _menuViewController = menuViewController;
     [self re_displayController:menuViewController frame:self.view.frame];
     
-    [self addMenuViewControllerMotionEffects];
+    [self addMenuViewControllerMotionEffectsToMenu:menuViewController];
     [self.view bringSubviewToFront:self.contentViewController.view];
+    
 }
 
 #pragma mark -
@@ -461,6 +494,7 @@
         self.contentViewController.view.frame = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
+        NSLog(@"%f", self.contentViewInPortraitOffsetCenterX);
     }
 }
 

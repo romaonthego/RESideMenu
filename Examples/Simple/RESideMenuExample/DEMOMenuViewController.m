@@ -37,7 +37,7 @@ static const int PADDING = 20 ;
 {
     [super viewDidLoad];
     self.tableView = ({
-       UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake([self getTableViewOriginX], (self.view.frame.size.height - CELL_HEIGHT * ROWS) / 2.0f, self.view.frame.size.width, CELL_HEIGHT * ROWS) style:UITableViewStylePlain];
+       UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake([self getTableViewOriginXForOrientation:[UIDevice currentDevice].orientation], (self.view.frame.size.height - CELL_HEIGHT * ROWS) / 2.0f, self.view.frame.size.width, CELL_HEIGHT * ROWS) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -120,7 +120,7 @@ static const int PADDING = 20 ;
     return UIStatusBarStyleLightContent;
 }
 
-- (float)getTableViewOriginX {
+- (float)getTableViewOriginXForOrientation:(UIInterfaceOrientation)orientation {
     //calculates starting position of menu
     if (self.alignment == MenuAligmentLeft)
         return 0;
@@ -132,14 +132,15 @@ static const int PADDING = 20 ;
         if (longestTitle == nil || [str length] > [longestTitle length])
             longestTitle = str;
     CGRect titleFrame = [longestTitle boundingRectWithSize:self.view.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:21] } context:nil];
-    float screenWidth = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.view.frame.size.height : self.view.frame.size.width;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    float screenWidth = UIDeviceOrientationIsLandscape(orientation) ? screenRect.size.height : screenRect.size.width;
     return screenWidth - (titleFrame.size.width + ICON_WIDTH + PADDING); //approximately length of pic + text
     
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
-    self.tableView.frame = CGRectMake([self getTableViewOriginX], self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    self.tableView.frame = CGRectMake([self getTableViewOriginXForOrientation:toInterfaceOrientation], self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
 }
 
 @end
