@@ -88,6 +88,17 @@ Present the view controller:
 [self.sideMenuViewController presentMenuViewController];
 ```
 
+Switch content view controllers:
+
+```objective-c
+#import <RESideMenu/RESideMenu.h>
+
+....
+
+[self.sideMenuViewController setContentViewController:viewController animated:YES];
+[self.sideMenuViewController hideMenuViewController];
+```
+
 ## Storyboards Example
 
 1. Create a subclass of `RESideMenu`. In this example we call it `DEMORootViewController`.
