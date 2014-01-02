@@ -18,13 +18,20 @@ static const int PADDING = 20 ;
 @interface DEMOMenuViewController ()
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
-@property (assign, readwrite, nonatomic) MenuAligment alignment; //EDITED
+@property (assign, readwrite, nonatomic) MenuAligment alignment;
 
 @end
 
 @implementation DEMOMenuViewController
-
-- (id)initWithAlignment:(MenuAligment)position //EDIT
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _alignment = MenuAligmentLeft; //default 
+    }
+    return self;
+}
+- (id)initWithAlignment:(MenuAligment)position
 {
     self = [super init];
     if (self) {
