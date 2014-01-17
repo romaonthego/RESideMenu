@@ -104,7 +104,7 @@ Switch content view controllers:
 1. Create a subclass of `RESideMenu`. In this example we call it `DEMORootViewController`.
 2. In the Storyboard designate the root view's owner as `DEMORootViewController`.
 3. Make sure to `#import "RESideMenu.h"` in `DEMORootViewController.h`.
-4. Add more view controllers to your Storyboard, and give them identifiers "menuViewController" and "contentViewController". Note that in the new XCode the identifier is called "Storyboard ID" and can be found in the Identity inspector.
+4. Add more view controllers to your Storyboard, and give them identifiers "menuController" and "contentController". Note that in the new XCode the identifier is called "Storyboard ID" and can be found in the Identity inspector.
 5. Add a method `awakeFromNib` to `DEMORootViewController.m` with the following code:
 
 ```objective-c
@@ -136,6 +136,8 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 ```
+
+If you set a backgroundImage, don't forget to set the MenuViewController's background color to clear color.
 
 You can implement `RESideMenuDelegate` protocol to receive the following messages:
 
