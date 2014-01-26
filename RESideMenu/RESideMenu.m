@@ -178,11 +178,6 @@
     [self.view.window endEditing:YES];
     [self addContentButton];
     
-    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
-        [self.contentViewController beginAppearanceTransition:NO animated:YES];
-        [self.menuViewController beginAppearanceTransition:YES animated:YES];
-    }
-    
     void (^animations)(void) = ^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
@@ -239,12 +234,7 @@
     }
     
     [self.contentButton removeFromSuperview];
-    
-    if ([(UIGestureRecognizer*)self.view.gestureRecognizers.lastObject state] != UIGestureRecognizerStateEnded) {
-        [self.menuViewController beginAppearanceTransition:NO animated:YES];
-        [self.contentViewController beginAppearanceTransition:YES animated:YES];
-    }
-    
+
     void (^animations)(void) = ^{
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
