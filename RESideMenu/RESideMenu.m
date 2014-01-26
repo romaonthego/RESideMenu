@@ -196,7 +196,8 @@
 
     void (^completion)(BOOL) = ^(BOOL finished){
         [self addContentViewControllerMotionEffects];
-        
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.menuViewController];
         }
@@ -204,6 +205,8 @@
         self.visible = YES;
     };
     
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
     if (self.springEnabled && [UIView respondsToSelector:@selector(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)]) {
         [UIView animateWithDuration:self.animationDuration
                               delay:0
@@ -267,6 +270,8 @@
         }
     };
     
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
     if (self.springEnabled && [UIView respondsToSelector:@selector(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)]) {
         [UIView animateWithDuration:self.animationDuration
                               delay:0
