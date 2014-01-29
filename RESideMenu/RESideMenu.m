@@ -606,10 +606,9 @@
 {
     UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
     IF_IOS7_OR_GREATER(
-       statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+       statusBarStyle = self.visible ? self.menuPreferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
        if (self.contentViewController.view.frame.origin.y > 10) {
-           NSLog(@"HERE");
-           statusBarStyle = self.menuViewController.preferredStatusBarStyle;
+           statusBarStyle = self.menuPreferredStatusBarStyle;
        } else {
            statusBarStyle = self.contentViewController.preferredStatusBarStyle;
        }
@@ -621,9 +620,9 @@
 {
     BOOL statusBarHidden = NO;
     IF_IOS7_OR_GREATER(
-        statusBarHidden = self.visible ? self.menuViewController.prefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
+        statusBarHidden = self.visible ? self.menuPrefersStatusBarHidden : self.contentViewController.prefersStatusBarHidden;
         if (self.contentViewController.view.frame.origin.y > 10) {
-            statusBarHidden = self.menuViewController.prefersStatusBarHidden;
+            statusBarHidden = self.menuPrefersStatusBarHidden;
         } else {
             statusBarHidden = self.contentViewController.prefersStatusBarHidden;
         }

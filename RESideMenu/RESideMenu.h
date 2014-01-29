@@ -48,6 +48,8 @@
 @property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
+@property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
+@property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
