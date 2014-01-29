@@ -30,6 +30,8 @@
 
 @interface RESideMenu : UIViewController <UIGestureRecognizerDelegate>
 
+@property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
+
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
@@ -50,8 +52,6 @@
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 @property (strong, readwrite, nonatomic) UIViewController *tempViewController;
-
-@property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;

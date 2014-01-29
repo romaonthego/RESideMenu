@@ -480,21 +480,17 @@
         
         //}
         
-        [self updateStatusBar];
-        
         if (!self.menuViewController && self.contentViewController.view.frame.origin.x > 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
-            return;
-        }
-        
-        if (!self.tempViewController && self.contentViewController.view.frame.origin.x < 0) {
+        } else  if (!self.tempViewController && self.contentViewController.view.frame.origin.x < 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
-            return;
         }
+        
+        [self updateStatusBar];
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
@@ -612,6 +608,7 @@
     IF_IOS7_OR_GREATER(
        statusBarStyle = self.visible ? self.menuViewController.preferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
        if (self.contentViewController.view.frame.origin.y > 10) {
+           NSLog(@"HERE");
            statusBarStyle = self.menuViewController.preferredStatusBarStyle;
        } else {
            statusBarStyle = self.contentViewController.preferredStatusBarStyle;
