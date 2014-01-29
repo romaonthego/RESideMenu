@@ -49,6 +49,7 @@
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
+@property (strong, readwrite, nonatomic) UIViewController *tempViewController;
 
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 

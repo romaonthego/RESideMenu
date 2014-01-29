@@ -19,9 +19,14 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[DEMOFirstViewController alloc] init]];
     DEMOMenuViewController *menuViewController = [[DEMOMenuViewController alloc] init];
     
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:nil];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.delegate = self;
+    sideMenuViewController.tempViewController = ({
+        UIViewController *viewController = [[UIViewController alloc] init];
+        viewController.view.backgroundColor = [UIColor redColor];
+        viewController;
+    });
     self.window.rootViewController = sideMenuViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];
