@@ -28,7 +28,7 @@
         viewController.view.backgroundColor = [UIColor redColor];
         viewController;
     });
-    sideMenuViewController.tempViewController = nil;
+    //sideMenuViewController.tempViewController = nil;
     self.window.rootViewController = sideMenuViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];

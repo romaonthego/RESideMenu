@@ -75,6 +75,9 @@
     _parallaxContentMinimumRelativeValue = @(-25);
     _parallaxContentMaximumRelativeValue = @(25);
 
+    _contentViewInLandscapeOffsetCenterX = 30.f;
+    _contentViewInPortraitOffsetCenterX  = 30.f;
+    
     _bouncesHorizontally = YES;
     
     _menuViewContainer = [[UIView alloc] init];
@@ -93,12 +96,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
-    if (!_contentViewInLandscapeOffsetCenterX)
-        _contentViewInLandscapeOffsetCenterX = CGRectGetHeight(self.view.frame) + 30.f;
-    
-    if (!_contentViewInPortraitOffsetCenterX)
-        _contentViewInPortraitOffsetCenterX  = CGRectGetWidth(self.view.frame) + 30.f;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundImageView = ({
@@ -206,7 +203,7 @@
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         }
-        self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
+        self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewController.view.center.y);
 
         self.menuViewContainer.alpha = 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -221,7 +218,6 @@
         }
         
         self.visible = YES;
-        NSLog(@"VISIBLE = YES");
     }];
     
     [self updateStatusBar];
@@ -242,7 +238,7 @@
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         }
-        self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX - CGRectGetHeight(self.view.frame) - 60.0 : self.contentViewInPortraitOffsetCenterX) - CGRectGetWidth(self.view.frame) - 60.0, self.contentViewController.view.center.y);
+        self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? -self.contentViewInLandscapeOffsetCenterX : -self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
         
         self.menuViewContainer.alpha = 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -251,15 +247,12 @@
         
     } completion:^(BOOL finished) {
         self.visible = !(self.contentViewController.view.frame.size.width == self.view.bounds.size.width && self.contentViewController.view.frame.size.height == self.view.bounds.size.height);
-        NSLog(@"VISIBLE = %i, %f:%f = %f:%f", self.visible, self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height,
-              self.view.bounds.size.width, self.view.bounds.size.height);
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         [self addContentViewControllerMotionEffects];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.menuViewController];
         }
-        
     }];
     
     [self updateStatusBar];
@@ -272,7 +265,6 @@
     }
     
     self.visible = NO;
-    NSLog(@"VISIBLE = NO");
     [self.contentButton removeFromSuperview];
     
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -397,17 +389,12 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
-      //  self.visible = !CGRectEqualToRect(self.contentViewController.view.bounds, self.view.bounds);
-        
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
             [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
         }
         
-        NSLog(@"SIZE: %f, %f", CGRectGetWidth(self.contentViewController.view.bounds), CGRectGetHeight(self.contentViewController.view.bounds));
-        
         self.originalPoint = CGPointMake(self.contentViewController.view.center.x - CGRectGetWidth(self.contentViewController.view.bounds) / 2.0,
                                          self.contentViewController.view.center.y - CGRectGetHeight(self.contentViewController.view.bounds) / 2.0);
-        NSLog(@"%f - %f", self.originalPoint.x, self.originalPoint.y);
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -422,25 +409,17 @@
         CGFloat delta = 0;
         if (self.visible) {
             delta = self.originalPoint.x != 0 ? (point.x + self.originalPoint.x) / self.originalPoint.x : 0;
-            NSLog(@"VISIBLE AND %f", delta);
         } else {
             delta = point.x / self.view.frame.size.width;
         }
-       // delta = point.x / self.view.frame.size.width;
         delta = fabs(delta);
-       
-        
-        
-        if (delta > DBL_MAX) {
-            //delta = 0;
-        }
         
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         
         CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
 
-        if (!_bouncesHorizontally) {
+        if (!self.bouncesHorizontally) {
             contentViewScale = MAX(contentViewScale, self.contentViewScaleValue);
             backgroundViewScale = MAX(backgroundViewScale, 1.0);
             menuViewScale = MAX(menuViewScale, 1.0);
@@ -458,7 +437,7 @@
             }
         }
         
-        if (!_bouncesHorizontally && self.visible) {
+        if (!self.bouncesHorizontally && self.visible) {
             point.x = MIN(0.0, point.x);
             [recognizer setTranslation:point inView:self.view];
         }
@@ -472,13 +451,8 @@
             self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, point.x, 0);
         }
         
-       // if (!self.visible) {
         self.menuViewController.view.hidden = self.contentViewController.view.frame.origin.x < 0;
         self.tempViewController.view.hidden = self.contentViewController.view.frame.origin.x > 0;
-        
-        
-        
-        //}
         
         if (!self.menuViewController && self.contentViewController.view.frame.origin.x > 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
