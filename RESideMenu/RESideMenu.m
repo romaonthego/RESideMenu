@@ -141,6 +141,7 @@
     [self addMenuViewControllerMotionEffects];
     
     if (self.panGestureEnabled) {
+        self.view.multipleTouchEnabled = NO;
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
         panGestureRecognizer.delegate = self;
         [self.view addGestureRecognizer:panGestureRecognizer];
@@ -412,7 +413,7 @@
         } else {
             delta = point.x / self.view.frame.size.width;
         }
-        delta = fabs(delta);
+        delta = MIN(fabs(delta), 1.6);
         
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         
@@ -438,14 +439,23 @@
         }
         
        if (!self.bouncesHorizontally && self.visible) {
-           if (self.contentViewController.view.frame.origin.x > 0)
+           if (self.contentViewController.view.frame.origin.x > self.contentViewController.view.frame.size.width / 2.0)
                point.x = MIN(0.0, point.x);
            
-            if (self.contentViewController.view.frame.origin.x < 0)
+            if (self.contentViewController.view.frame.origin.x < -(self.contentViewController.view.frame.size.width / 2.0))
                 point.x = MAX(0.0, point.x);
-            [recognizer setTranslation:point inView:self.view];
         }
         
+        // Limit size
+        //
+        if (point.x < 0) {
+            point.x = MAX(point.x, -[UIScreen mainScreen].bounds.size.height);
+        } else {
+            point.x = MIN(point.x, [UIScreen mainScreen].bounds.size.height);
+        }
+        [recognizer setTranslation:point inView:self.view];
+        
+        NSLog(@"x = %f", point.x);
         
         if (contentViewScale > 1) {
             CGFloat oppositeScale = (1 - (contentViewScale - 1));

@@ -23,7 +23,6 @@
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
     sideMenuViewController.delegate = self;
-    sideMenuViewController.bouncesHorizontally = NO;
     sideMenuViewController.tempViewController = ({
         UIViewController *viewController = [[UIViewController alloc] init];
         viewController.view.backgroundColor = [UIColor redColor];
