@@ -437,10 +437,15 @@
             }
         }
         
-        if (!self.bouncesHorizontally && self.visible) {
-            point.x = MIN(0.0, point.x);
+       if (!self.bouncesHorizontally && self.visible) {
+           if (self.contentViewController.view.frame.origin.x > 0)
+               point.x = MIN(0.0, point.x);
+           
+            if (self.contentViewController.view.frame.origin.x < 0)
+                point.x = MAX(0.0, point.x);
             [recognizer setTranslation:point inView:self.view];
         }
+        
         
         if (contentViewScale > 1) {
             CGFloat oppositeScale = (1 - (contentViewScale - 1));
