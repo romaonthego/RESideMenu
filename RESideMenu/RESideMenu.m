@@ -31,6 +31,8 @@
 
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL visible;
+@property (assign, readwrite, nonatomic) BOOL leftMenuVisible;
+@property (assign, readwrite, nonatomic) BOOL rightMenuVisible;
 @property (assign, readwrite, nonatomic) CGPoint originalPoint;
 @property (strong, readwrite, nonatomic) UIButton *contentButton;
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
@@ -115,6 +117,7 @@
     [self.view addSubview:self.menuViewContainer];
     
     self.menuViewContainer.frame = self.view.bounds;
+    self.menuViewContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     if (self.menuViewController) {
         [self addChildViewController:self.menuViewController];
@@ -219,6 +222,7 @@
         }
         
         self.visible = YES;
+        self.leftMenuVisible = YES;
     }];
     
     [self updateStatusBar];
@@ -248,6 +252,7 @@
         
     } completion:^(BOOL finished) {
         self.visible = !(self.contentViewController.view.frame.size.width == self.view.bounds.size.width && self.contentViewController.view.frame.size.height == self.view.bounds.size.height);
+        self.rightMenuVisible = self.visible;
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         [self addContentViewControllerMotionEffects];
         
@@ -266,6 +271,8 @@
     }
     
     self.visible = NO;
+    self.leftMenuVisible = NO;
+    self.rightMenuVisible = NO;
     [self.contentButton removeFromSuperview];
     
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -473,10 +480,12 @@
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
+            self.leftMenuVisible = NO;
         } else  if (!self.tempViewController && self.contentViewController.view.frame.origin.x < 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
+            self.rightMenuVisible = NO;
         }
         
         [self updateStatusBar];
@@ -572,10 +581,19 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if (self.visible) {
+        self.menuViewContainer.bounds = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
-        self.contentViewController.view.center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
+        
+        CGPoint center;
+        if (self.leftMenuVisible) {
+            center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewController.view.center.y);
+        } else {
+            center = CGPointMake((UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? -self.contentViewInLandscapeOffsetCenterX : -self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
+        }
+        
+        self.contentViewController.view.center = center;
     }
 }
 
