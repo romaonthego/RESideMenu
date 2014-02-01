@@ -362,6 +362,8 @@
 #pragma mark -
 #pragma mark Gesture recognizer
 
+#warning Implement
+
 /*- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     IF_IOS7_OR_GREATER(
