@@ -362,7 +362,7 @@
 #pragma mark -
 #pragma mark Gesture recognizer
 
-/*- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     IF_IOS7_OR_GREATER(
        if (self.interactivePopGestureRecognizerEnabled && [self.contentViewController isKindOfClass:[UINavigationController class]]) {
@@ -373,16 +373,30 @@
        }
     );
   
-    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
-        CGPoint point = [touch locationInView:gestureRecognizer.view];
-        if (point.x < 30) {
-            return YES;
-        } else {
-            return NO;
+#warning Test
+    if (self.menuViewContainer && !self.tempViewController) {
+        if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+            CGPoint point = [touch locationInView:gestureRecognizer.view];
+            if (point.x < 30) {
+                return YES;
+            } else {
+                return NO;
+            }
+        }
+    }
+    
+    if (!self.menuViewContainer && self.tempViewController) {
+        if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+            CGPoint point = [touch locationInView:gestureRecognizer.view];
+            if (point.x > self.view.frame.size.width - 30.0) {
+                return YES;
+            } else {
+                return NO;
+            }
         }
     }
     return YES;
-}*/
+}
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
