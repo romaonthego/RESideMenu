@@ -206,6 +206,8 @@
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        } else {
+            self.contentViewController.view.transform = CGAffineTransformIdentity;
         }
         self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewController.view.center.y);
 
@@ -242,6 +244,8 @@
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        } else {
+            self.contentViewController.view.transform = CGAffineTransformIdentity;
         }
         self.contentViewController.view.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? -self.contentViewInLandscapeOffsetCenterX : -self.contentViewInPortraitOffsetCenterX), self.contentViewController.view.center.y);
         
