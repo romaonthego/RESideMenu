@@ -565,7 +565,30 @@
     }
     [self re_hideController:_menuViewController];
     _menuViewController = menuViewController;
-    [self re_displayController:menuViewController frame:self.view.frame];
+   
+    [self addChildViewController:self.menuViewController];
+    self.menuViewController.view.frame = self.view.bounds;
+    self.menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.menuViewContainer addSubview:self.menuViewController.view];
+    [self.menuViewController didMoveToParentViewController:self];
+    
+    [self addMenuViewControllerMotionEffects];
+    [self.view bringSubviewToFront:self.contentViewController.view];
+}
+
+- (void)setTempViewController:(UIViewController *)tempViewController
+{
+    if (!_tempViewController) {
+        _tempViewController = tempViewController;
+        return;
+    }
+    [self re_hideController:_tempViewController];
+    _tempViewController = tempViewController;
+    [self addChildViewController:self.menuViewController];
+    self.menuViewController.view.frame = self.view.bounds;
+    self.menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.menuViewContainer addSubview:self.menuViewController.view];
+    [self.menuViewController didMoveToParentViewController:self];
     
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewController.view];
