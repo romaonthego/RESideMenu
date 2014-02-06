@@ -373,28 +373,15 @@
        }
     );
   
-#warning Test
-    if (self.menuViewContainer && !self.tempViewController) {
-        if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
-            CGPoint point = [touch locationInView:gestureRecognizer.view];
-            if (point.x < 30) {
-                return YES;
-            } else {
-                return NO;
-            }
+    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+        CGPoint point = [touch locationInView:gestureRecognizer.view];
+        if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
+            return YES;
+        } else {
+            return NO;
         }
     }
     
-    if (!self.menuViewContainer && self.tempViewController) {
-        if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
-            CGPoint point = [touch locationInView:gestureRecognizer.view];
-            if (point.x > self.view.frame.size.width - 30.0) {
-                return YES;
-            } else {
-                return NO;
-            }
-        }
-    }
     return YES;
 }
 
