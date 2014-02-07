@@ -420,7 +420,9 @@
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
     
-    [self addContentViewControllerMotionEffects];
+    if(self.visible) {
+        [self addContentViewControllerMotionEffects];
+    }
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
