@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
-#import "DEMOMenuViewController.h"
+#import "DEMOLeftMenuViewController.h"
 #import "DEMOFirstViewController.h"
 #import "DEMOSecondViewController.h"
 
-@interface DEMOMenuViewController ()
+@interface DEMOLeftMenuViewController ()
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation DEMOMenuViewController
+@implementation DEMOLeftMenuViewController
 
 - (void)viewDidLoad
 {
