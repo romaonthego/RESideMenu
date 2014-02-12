@@ -467,8 +467,6 @@
         }
         [recognizer setTranslation:point inView:self.view];
         
-        NSLog(@"x = %f", point.x);
-        
         if (contentViewScale > 1) {
             CGFloat oppositeScale = (1 - (contentViewScale - 1));
             self.contentViewController.view.transform = CGAffineTransformMakeScale(oppositeScale, oppositeScale);
