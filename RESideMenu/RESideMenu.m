@@ -612,7 +612,12 @@
         self.menuViewContainer.bounds = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
-        self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        
+        if (self.scaleContentView) {
+            self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        } else {
+            self.contentViewController.view.transform = CGAffineTransformIdentity;
+        }
         
         CGPoint center;
         if (self.leftMenuVisible) {
