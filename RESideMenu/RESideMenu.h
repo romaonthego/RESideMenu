@@ -42,10 +42,10 @@
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
-@property (strong, readwrite, nonatomic) id parallaxMenuMinimumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxMenuMaximumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxMenuMinimumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxMenuMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxContentMinimumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
