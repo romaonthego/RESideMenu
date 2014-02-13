@@ -9,6 +9,7 @@
 #import "DEMORightMenuViewController.h"
 #import "DEMOFirstViewController.h"
 #import "DEMOSecondViewController.h"
+#import "DEMOLeftMenuViewController.h"
 
 @interface DEMORightMenuViewController ()
 
@@ -50,9 +51,10 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
+            //[self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
+                                      //                   animated:YES];
+            self.sideMenuViewController.tempViewController = [[DEMOLeftMenuViewController alloc] init];
+            //[self.sideMenuViewController hideMenuViewController];
             break;
         default:
             break;
