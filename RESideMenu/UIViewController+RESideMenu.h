@@ -34,4 +34,8 @@
 - (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame;
 - (void)re_hideController:(UIViewController *)controller;
 
+#pragma mark - Action methods
+
+- (IBAction)showMenu;
+
 @end
