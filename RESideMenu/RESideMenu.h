@@ -49,6 +49,7 @@
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
+@property (strong, readwrite, nonatomic) NSMutableArray *controllerArray;
 
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
