@@ -83,6 +83,7 @@
     if (self) {
         _contentViewController = contentViewController;
         _menuViewController = menuViewController;
+        _controllerArray = [[NSMutableArray alloc]initWithArray:@[contentViewController]];;
     }
     return self;
 }
@@ -242,6 +243,20 @@
     self.contentButton.frame = self.contentViewController.view.bounds;
     self.contentButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentViewController.view addSubview:self.contentButton];
+}
+
+-(UIViewController *)getExistingController:(UINavigationController *)navigation {
+    
+    for(UINavigationController *ctrllr in self.controllerArray) {
+        Class leftClass = [[ctrllr topViewController]class];
+        Class rightClass = [[navigation topViewController] class];
+        if([[NSString stringWithFormat:@"%@", leftClass] isEqualToString:[NSString stringWithFormat:@"%@", rightClass]]){
+            NSLog(@"Loading from Array %@", [[ctrllr topViewController]class] );
+            return (UIViewController*)ctrllr;
+        }
+    }
+    
+    return nil;
 }
 
 #pragma mark -
@@ -406,19 +421,26 @@
         self.backgroundImageView.image = backgroundImage;
 }
 
+
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
+    UIViewController *newView = [self getExistingController:(UINavigationController*)contentViewController];
+    if(!newView) {
+        newView = contentViewController;
+        [self.controllerArray addObject:contentViewController];
+    }
+    
     if (!_contentViewController) {
-        _contentViewController = contentViewController;
+        _contentViewController = newView;
         return;
     }
     CGRect frame = _contentViewController.view.frame;
     CGAffineTransform transform = _contentViewController.view.transform;
     [self re_hideController:_contentViewController];
-    _contentViewController = contentViewController;
-    [self re_displayController:contentViewController frame:self.view.bounds];
-    contentViewController.view.transform = transform;
-    contentViewController.view.frame = frame;
+    _contentViewController = newView;
+    [self re_displayController:newView frame:self.view.bounds];
+    newView.view.transform = transform;
+    newView.view.frame = frame;
     
     if(self.visible) {
         [self addContentViewControllerMotionEffects];
@@ -430,17 +452,39 @@
     if (!animated) {
         [self setContentViewController:contentViewController];
     } else {
-        contentViewController.view.alpha = 0;
-        contentViewController.view.frame = self.contentViewController.view.bounds;
-        [self.contentViewController.view addSubview:contentViewController.view];
-        [UIView animateWithDuration:self.animationDuration animations:^{
-            contentViewController.view.alpha = 1;
-        } completion:^(BOOL finished) {
-            [contentViewController.view removeFromSuperview];
-            [self setContentViewController:contentViewController];
-        }];
+        UIViewController *newView = [self getExistingController:(UINavigationController*)contentViewController];
+        if(!newView) {
+            newView = contentViewController;
+            [self.controllerArray addObject:contentViewController];
+            contentViewController.view.alpha = 0;
+            contentViewController.view.frame = self.contentViewController.view.bounds;
+            [self.contentViewController.view addSubview:contentViewController.view];
+            [UIView animateWithDuration:self.animationDuration animations:^{
+                contentViewController.view.alpha = 1;
+            } completion:^(BOOL finished) {
+                [contentViewController.view removeFromSuperview];
+                [self setContentViewController:contentViewController];
+            }];
+        }else {
+            if (!_contentViewController) {
+                _contentViewController = newView;
+                return;
+            }
+            CGRect frame = _contentViewController.view.frame;
+            CGAffineTransform transform = _contentViewController.view.transform;
+            [self re_hideController:_contentViewController];
+            _contentViewController = newView;
+            [self re_displayController:newView frame:self.view.bounds];
+            newView.view.transform = transform;
+            newView.view.frame = frame;
+            
+            if(self.visible) {
+                [self addContentViewControllerMotionEffects];
+            }
+        }
     }
 }
+
 
 - (void)setMenuViewController:(UIViewController *)menuViewController
 {
