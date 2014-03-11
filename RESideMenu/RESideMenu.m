@@ -71,11 +71,11 @@
     _scaleBackgroundImageView = YES;
   
     _parallaxEnabled = YES;
-    _parallaxMenuMinimumRelativeValue = @(-15);
-    _parallaxMenuMaximumRelativeValue = @(15);
+    _parallaxMenuMinimumRelativeValue = -15;
+    _parallaxMenuMaximumRelativeValue = 15;
     
-    _parallaxContentMinimumRelativeValue = @(-25);
-    _parallaxContentMaximumRelativeValue = @(25);
+    _parallaxContentMinimumRelativeValue = -25;
+    _parallaxContentMaximumRelativeValue = 25;
 
     _contentViewInLandscapeOffsetCenterX = 30.f;
     _contentViewInPortraitOffsetCenterX  = 30.f;
@@ -255,7 +255,7 @@
             self.backgroundImageView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
-        self.visible = !(self.contentViewController.view.frame.size.width == self.view.bounds.size.width && self.contentViewController.view.frame.size.height == self.view.bounds.size.height);
+        self.visible = !(self.contentViewController.view.frame.size.width == self.view.bounds.size.width && self.contentViewController.view.frame.size.height == self.view.bounds.size.height && self.contentViewController.view.frame.origin.x == 0 && self.contentViewController.view.frame.origin.y == 0);
         self.rightMenuVisible = self.visible;
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         [self addContentViewControllerMotionEffects];
@@ -327,12 +327,12 @@
                [self.menuViewContainer removeMotionEffect:effect];
            }
            UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-           interpolationHorizontal.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
-           interpolationHorizontal.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
+           interpolationHorizontal.minimumRelativeValue = @(self.parallaxMenuMinimumRelativeValue);
+           interpolationHorizontal.maximumRelativeValue = @(self.parallaxMenuMaximumRelativeValue);
            
            UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-           interpolationVertical.minimumRelativeValue = self.parallaxMenuMinimumRelativeValue;
-           interpolationVertical.maximumRelativeValue = self.parallaxMenuMaximumRelativeValue;
+           interpolationVertical.minimumRelativeValue = @(self.parallaxMenuMinimumRelativeValue);
+           interpolationVertical.maximumRelativeValue = @(self.parallaxMenuMaximumRelativeValue);
            
            [self.menuViewContainer addMotionEffect:interpolationHorizontal];
            [self.menuViewContainer addMotionEffect:interpolationVertical];
@@ -349,12 +349,12 @@
             }
             [UIView animateWithDuration:0.2 animations:^{
                 UIInterpolatingMotionEffect *interpolationHorizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-                interpolationHorizontal.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
-                interpolationHorizontal.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
+                interpolationHorizontal.minimumRelativeValue = @(self.parallaxContentMinimumRelativeValue);
+                interpolationHorizontal.maximumRelativeValue = @(self.parallaxContentMaximumRelativeValue);
 
                 UIInterpolatingMotionEffect *interpolationVertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-                interpolationVertical.minimumRelativeValue = self.parallaxContentMinimumRelativeValue;
-                interpolationVertical.maximumRelativeValue = self.parallaxContentMaximumRelativeValue;
+                interpolationVertical.minimumRelativeValue = @(self.parallaxContentMinimumRelativeValue);
+                interpolationVertical.maximumRelativeValue = @(self.parallaxContentMaximumRelativeValue);
 
                 [self.contentViewController.view addMotionEffect:interpolationHorizontal];
                 [self.contentViewController.view addMotionEffect:interpolationVertical];
@@ -466,8 +466,6 @@
             point.x = MIN(point.x, [UIScreen mainScreen].bounds.size.height);
         }
         [recognizer setTranslation:point inView:self.view];
-        
-        NSLog(@"x = %f", point.x);
         
         if (contentViewScale > 1) {
             CGFloat oppositeScale = (1 - (contentViewScale - 1));
@@ -590,11 +588,18 @@
     }
     [self re_hideController:_tempViewController];
     _tempViewController = tempViewController;
-    [self addChildViewController:self.menuViewController];
+    
+    [self addChildViewController:self.tempViewController];
+    self.tempViewController.view.frame = self.view.bounds;
+    self.tempViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.menuViewContainer addSubview:self.tempViewController.view];
+    [self.tempViewController didMoveToParentViewController:self];
+    
+    /*[self addChildViewController:self.menuViewController];
     self.menuViewController.view.frame = self.view.bounds;
     self.menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.menuViewContainer addSubview:self.menuViewController.view];
-    [self.menuViewController didMoveToParentViewController:self];
+    [self.menuViewController didMoveToParentViewController:self];*/
     
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewController.view];
@@ -614,7 +619,12 @@
         self.menuViewContainer.bounds = self.view.bounds;
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
-        self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        
+        if (self.scaleContentView) {
+            self.contentViewController.view.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+        } else {
+            self.contentViewController.view.transform = CGAffineTransformIdentity;
+        }
         
         CGPoint center;
         if (self.leftMenuVisible) {

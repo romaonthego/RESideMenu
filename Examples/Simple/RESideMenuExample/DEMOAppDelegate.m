@@ -7,7 +7,8 @@
 //
 
 #import "DEMOAppDelegate.h"
-#import "DEMOMenuViewController.h"
+#import "DEMOLeftMenuViewController.h"
+#import "DEMORightMenuViewController.h"
 #import "DEMOFirstViewController.h"
 
 @implementation DEMOAppDelegate
@@ -17,18 +18,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[DEMOFirstViewController alloc] init]];
-    DEMOMenuViewController *menuViewController = [[DEMOMenuViewController alloc] init];
+    DEMOLeftMenuViewController *leftMenuViewController = [[DEMOLeftMenuViewController alloc] init];
+    DEMORightMenuViewController *rightMenuViewController = [[DEMORightMenuViewController alloc] init];
     
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:leftMenuViewController];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
     sideMenuViewController.delegate = self;
-    sideMenuViewController.scaleContentView = NO;
-    sideMenuViewController.tempViewController = ({
-        UIViewController *viewController = [[UIViewController alloc] init];
-        viewController.view.backgroundColor = [UIColor redColor];
-        viewController;
-    });
+    sideMenuViewController.tempViewController = rightMenuViewController;
     //sideMenuViewController.tempViewController = nil;
     self.window.rootViewController = sideMenuViewController;
     

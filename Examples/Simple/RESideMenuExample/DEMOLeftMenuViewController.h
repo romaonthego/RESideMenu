@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface DEMOMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DEMOLeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

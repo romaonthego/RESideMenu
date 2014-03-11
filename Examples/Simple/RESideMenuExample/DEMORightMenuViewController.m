@@ -1,28 +1,29 @@
 //
-//  DEMOMenuViewController.m
+//  DEMORightMenuViewController.m
 //  RESideMenuExample
 //
-//  Created by Roman Efimov on 10/10/13.
-//  Copyright (c) 2013 Roman Efimov. All rights reserved.
+//  Created by Roman Efimov on 2/11/14.
+//  Copyright (c) 2014 Roman Efimov. All rights reserved.
 //
 
-#import "DEMOMenuViewController.h"
+#import "DEMORightMenuViewController.h"
 #import "DEMOFirstViewController.h"
 #import "DEMOSecondViewController.h"
+#import "DEMOLeftMenuViewController.h"
 
-@interface DEMOMenuViewController ()
+@interface DEMORightMenuViewController ()
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation DEMOMenuViewController
+@implementation DEMORightMenuViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(120, (self.view.frame.size.height - 54 * 2) / 2.0f, self.view.frame.size.width - 120, 54 * 5) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -50,9 +51,10 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
+            //[self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
+                                      //                   animated:YES];
+            self.sideMenuViewController.tempViewController = [[DEMOLeftMenuViewController alloc] init];
+            //[self.sideMenuViewController hideMenuViewController];
             break;
         default:
             break;
@@ -74,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,10 +94,8 @@
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
-    NSArray *titles = @[@"Home", @"Calendar", @"Profile", @"Settings", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"IconProfile", @"IconSettings", @"IconEmpty"];
+    NSArray *titles = @[@"Test 1", @"Test 2"];
     cell.textLabel.text = titles[indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
     return cell;
 }
