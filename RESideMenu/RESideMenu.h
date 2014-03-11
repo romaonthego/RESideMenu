@@ -39,6 +39,11 @@
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
+@property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
+@property (assign, readwrite, nonatomic) UIColor *contentViewShadowColor;
+@property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
+@property (assign, readwrite, nonatomic) CGFloat contentViewShadowOpacity;
+@property (assign, readwrite, nonatomic) CGFloat contentViewShadowRadius;
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
@@ -50,7 +55,6 @@
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
-
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 @property (strong, readwrite, nonatomic) UIViewController *tempViewController;

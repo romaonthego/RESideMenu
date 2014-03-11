@@ -135,6 +135,12 @@ You can customize the following properties of `RESideMenu`:
 @property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
+
+@property (assign, readwrite, nonatomic) BOOL contentViewEnableShadow;
+@property (assign, readwrite, nonatomic) CGColorRef contentViewShadowColor;
+@property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
+@property (assign, readwrite, nonatomic) float contentViewShadowOpacity;
+@property (assign, readwrite, nonatomic) CGFloat contentViewShadowRadius;
 ```
 
 If you set a backgroundImage, don't forget to set the MenuViewController's background color to clear color.
