@@ -47,6 +47,12 @@
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 
+@property (assign, readwrite, nonatomic) BOOL contentViewEnableShadow;
+@property (assign, readwrite, nonatomic) CGColorRef contentViewShadowColor;
+@property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
+@property (assign, readwrite, nonatomic) float contentViewShadowOpacity;
+@property (assign, readwrite, nonatomic) CGFloat contentViewShadowRadius;
+
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
