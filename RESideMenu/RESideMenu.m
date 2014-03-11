@@ -76,10 +76,10 @@
 
     _bouncesHorizontally = YES;
     
-    _contentViewEnableShadow = NO;
-    _contentViewShadowColor = [UIColor blackColor].CGColor;
+    _contentViewShadowEnabled = NO;
+    _contentViewShadowColor = [UIColor blackColor];
     _contentViewShadowOffset = CGSizeZero;
-    _contentViewShadowOpacity = 0.4f;;
+    _contentViewShadowOpacity = 0.4f;
     _contentViewShadowRadius = 8.0f;
 }
 
@@ -132,11 +132,11 @@
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
     
-    if (self.contentViewEnableShadow) {
+    if (self.contentViewShadowEnabled) {
         CALayer *layer = self.contentViewController.view.layer;
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
         layer.shadowPath = path.CGPath;
-        layer.shadowColor = self.contentViewShadowColor;
+        layer.shadowColor = self.contentViewShadowColor.CGColor;
         layer.shadowOffset = self.contentViewShadowOffset;
         layer.shadowOpacity = self.contentViewShadowOpacity;
         layer.shadowRadius = self.contentViewShadowRadius;
