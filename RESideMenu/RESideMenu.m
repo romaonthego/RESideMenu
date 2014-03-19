@@ -36,6 +36,7 @@
 @property (assign, readwrite, nonatomic) CGPoint originalPoint;
 @property (strong, readwrite, nonatomic) UIButton *contentButton;
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
+@property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
 
 @end
 
@@ -427,11 +428,6 @@
     CGPoint point = [recognizer translationInView:self.view];
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
-            [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
-        }
-        
         self.originalPoint = CGPointMake(self.contentViewController.view.center.x - CGRectGetWidth(self.contentViewController.view.bounds) / 2.0,
                                          self.contentViewController.view.center.y - CGRectGetHeight(self.contentViewController.view.bounds) / 2.0);
         self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -442,6 +438,7 @@
         self.menuViewContainer.frame = self.view.bounds;
         [self addContentButton];
         [self.view.window endEditing:YES];
+        self.didNotifyDelegate = NO;
     }
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -493,6 +490,20 @@
         }
         [recognizer setTranslation:point inView:self.view];
         
+        if (!self.didNotifyDelegate) {
+            if (point.x > 0) {
+                if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
+                    [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
+                }
+            }
+            if (point.x < 0) {
+                if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
+                    [self.delegate sideMenu:self willShowMenuViewController:self.tempViewController];
+                }
+            }
+            self.didNotifyDelegate = YES;
+        }
+        
         if (contentViewScale > 1) {
             CGFloat oppositeScale = (1 - (contentViewScale - 1));
             self.contentViewController.view.transform = CGAffineTransformMakeScale(oppositeScale, oppositeScale);
@@ -521,6 +532,7 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
+        self.didNotifyDelegate = NO;
         if ([recognizer velocityInView:self.view].x > 0) {
             if (self.contentViewController.view.frame.origin.x < 0) {
                 [self hideMenuViewController];
