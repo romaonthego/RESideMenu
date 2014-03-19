@@ -39,22 +39,22 @@
 
 - (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"willShowMenuViewController");
+    NSLog(@"willShowMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
 
 - (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"didShowMenuViewController");
+    NSLog(@"didShowMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
 
 - (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"willHideMenuViewController");
+    NSLog(@"willHideMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
 
 - (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"didHideMenuViewController");
+    NSLog(@"didHideMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
 
 @end
