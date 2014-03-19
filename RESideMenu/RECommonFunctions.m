@@ -25,7 +25,7 @@
 
 #import "RECommonFunctions.h"
 
-BOOL RESideMenuUIKitIsFlatMode()
+BOOL RESideMenuUIKitIsFlatMode(void)
 {
     static BOOL isUIKitFlatMode = NO;
     static dispatch_once_t onceToken;

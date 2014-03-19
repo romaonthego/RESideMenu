@@ -44,4 +44,4 @@ __VA_ARGS__ \
 #define IF_IOS7_OR_GREATER(...)
 #endif
 
-BOOL RESideMenuUIKitIsFlatMode();
+BOOL RESideMenuUIKitIsFlatMode(void);
