@@ -297,8 +297,9 @@
 
 - (void)hideMenuViewController
 {
+    BOOL rightMenuVisible = self.rightMenuVisible;
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
-        [self.delegate sideMenu:self willHideMenuViewController:self.menuViewController];
+        [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.tempViewController : self.menuViewController];
     }
     
     self.visible = NO;
@@ -326,7 +327,7 @@
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
-            [self.delegate sideMenu:self didHideMenuViewController:self.menuViewController];
+            [self.delegate sideMenu:self didHideMenuViewController:rightMenuVisible ? self.tempViewController : self.menuViewController];
         }
     }];
     [self updateStatusBar];
