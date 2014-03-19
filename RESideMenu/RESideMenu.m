@@ -191,6 +191,18 @@
 
 - (void)presentMenuViewController
 {
+    [self presentMenuViewContainerWithMenuViewController:self.menuViewController];
+    [self showMenuViewController];
+}
+
+- (void)presentTempViewController
+{
+    [self presentMenuViewContainerWithMenuViewController:self.tempViewController];
+    [self showRightMenuViewController];
+}
+
+- (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
+{
     self.menuViewContainer.transform = CGAffineTransformIdentity;
     if (self.scaleBackgroundImageView) {
         self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -203,10 +215,8 @@
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
-        [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
+        [self.delegate sideMenu:self willShowMenuViewController:menuViewController];
     }
-    
-    [self showMenuViewController];
 }
 
 - (void)showMenuViewController

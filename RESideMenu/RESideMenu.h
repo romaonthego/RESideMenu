@@ -62,6 +62,7 @@
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 - (void)presentMenuViewController;
+- (void)presentTempViewController;
 - (void)hideMenuViewController;
 
 @end

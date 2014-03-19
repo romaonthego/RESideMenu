@@ -18,10 +18,14 @@
 {
     [super viewDidLoad];
 	self.title = @"First Controller";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left Menu"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(showMenu)];
+                                                                            action:@selector(showLeftMenu)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Right Menu"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(showRightMenu)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -30,9 +34,14 @@
     [self.view addSubview:imageView];
 }
 
-- (void)showMenu
+- (void)showLeftMenu
 {
     [self.sideMenuViewController presentMenuViewController];
+}
+
+- (void)showRightMenu
+{
+    [self.sideMenuViewController presentTempViewController];
 }
 
 @end
