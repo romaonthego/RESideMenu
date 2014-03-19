@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(120, (self.view.frame.size.height - 54 * 2) / 2.0f, self.view.frame.size.width - 120, 54 * 5) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 2) / 2.0f, self.view.frame.size.width, 54 * 2) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -51,10 +51,11 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            //[self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
-                                      //                   animated:YES];
-            self.sideMenuViewController.tempViewController = [[DEMOLeftMenuViewController alloc] init];
-            //[self.sideMenuViewController hideMenuViewController];
+            self.sideMenuViewController.tempViewController = ({
+                UIViewController *viewController = [[UIViewController alloc] init];
+                viewController.view.backgroundColor = [UIColor redColor];
+                viewController;
+            });
             break;
         default:
             break;
@@ -96,6 +97,7 @@
     
     NSArray *titles = @[@"Test 1", @"Test 2"];
     cell.textLabel.text = titles[indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentRight;
     
     return cell;
 }
