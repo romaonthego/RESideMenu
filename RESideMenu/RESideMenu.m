@@ -94,12 +94,13 @@
     _contentViewShadowRadius = 8.0f;
 }
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController rightMenuViewController:(UIViewController *)rightMenuViewController
 {
     self = [self init];
     if (self) {
         _contentViewController = contentViewController;
         _leftMenuViewController = leftMenuViewController;
+        _rightMenuViewController = rightMenuViewController;
     }
     return self;
 }

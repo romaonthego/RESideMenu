@@ -60,7 +60,9 @@
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle; //tested
 @property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden; //tested
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController;
+- (id)initWithContentViewController:(UIViewController *)contentViewController
+             leftMenuViewController:(UIViewController *)leftMenuViewController
+            rightMenuViewController:(UIViewController *)rightMenuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 - (void)presentLeftMenuViewController;
 - (void)presentRightMenuViewController;
