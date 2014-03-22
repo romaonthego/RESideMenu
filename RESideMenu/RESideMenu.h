@@ -54,6 +54,7 @@
 @property (assign, readwrite, nonatomic) CGFloat parallaxMenuMaximumRelativeValue; //tested
 @property (assign, readwrite, nonatomic) CGFloat parallaxContentMinimumRelativeValue; //tested
 @property (assign, readwrite, nonatomic) CGFloat parallaxContentMaximumRelativeValue; //tested
+@property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;

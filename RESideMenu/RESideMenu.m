@@ -66,6 +66,8 @@
     _panGestureEnabled = YES;
     _interactivePopGestureRecognizerEnabled = YES;
   
+    _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
+    
     _scaleContentView      = YES;
     _contentViewScaleValue = 0.7f;
     
@@ -210,7 +212,7 @@
         self.backgroundImageView.frame = self.view.bounds;
     }
     self.menuViewContainer.frame = self.view.bounds;
-    self.menuViewContainer.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+    self.menuViewContainer.transform = self.menuViewControllerTransformation;
     self.menuViewContainer.alpha = 0;
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
@@ -311,7 +313,7 @@
     [UIView animateWithDuration:self.animationDuration animations:^{
         self.contentViewController.view.transform = CGAffineTransformIdentity;
         self.contentViewController.view.frame = self.view.bounds;
-        self.menuViewContainer.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+        self.menuViewContainer.transform = self.menuViewControllerTransformation;
         self.menuViewContainer.alpha = 0;
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);

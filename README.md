@@ -124,6 +124,7 @@ You can customize the following properties of `RESideMenu`:
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
+@property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
