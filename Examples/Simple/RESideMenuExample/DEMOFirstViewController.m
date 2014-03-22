@@ -36,7 +36,7 @@
 
 - (void)showLeftMenu
 {
-    [self.sideMenuViewController presentMenuViewController];
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 - (void)showRightMenu

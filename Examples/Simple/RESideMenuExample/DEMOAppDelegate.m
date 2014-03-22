@@ -21,7 +21,7 @@
     DEMOLeftMenuViewController *leftMenuViewController = [[DEMOLeftMenuViewController alloc] init];
     DEMORightMenuViewController *rightMenuViewController = [[DEMORightMenuViewController alloc] init];
     
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:leftMenuViewController];
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:leftMenuViewController];
     sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
     sideMenuViewController.delegate = self;

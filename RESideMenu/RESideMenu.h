@@ -31,7 +31,7 @@
 @interface RESideMenu : UIViewController <UIGestureRecognizerDelegate>
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
-@property (strong, readwrite, nonatomic) UIViewController *menuViewController;
+@property (strong, readwrite, nonatomic) UIViewController *leftMenuViewController;
 @property (strong, readwrite, nonatomic) UIViewController *tempViewController;
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
@@ -60,9 +60,9 @@
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle; //tested
 @property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden; //tested
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
-- (void)presentMenuViewController;
+- (void)presentLeftMenuViewController;
 - (void)presentTempViewController;
 - (void)hideMenuViewController;
 

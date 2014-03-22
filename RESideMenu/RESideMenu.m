@@ -94,12 +94,12 @@
     _contentViewShadowRadius = 8.0f;
 }
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController
 {
     self = [self init];
     if (self) {
         _contentViewController = contentViewController;
-        _menuViewController = menuViewController;
+        _leftMenuViewController = leftMenuViewController;
     }
     return self;
 }
@@ -128,12 +128,12 @@
     self.menuViewContainer.frame = self.view.bounds;
     self.menuViewContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    if (self.menuViewController) {
-        [self addChildViewController:self.menuViewController];
-        self.menuViewController.view.frame = self.view.bounds;
-        self.menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self.menuViewContainer addSubview:self.menuViewController.view];
-        [self.menuViewController didMoveToParentViewController:self];
+    if (self.leftMenuViewController) {
+        [self addChildViewController:self.leftMenuViewController];
+        self.leftMenuViewController.view.frame = self.view.bounds;
+        self.leftMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.menuViewContainer addSubview:self.leftMenuViewController.view];
+        [self.leftMenuViewController didMoveToParentViewController:self];
     }
     
     if (self.tempViewController) {
@@ -192,10 +192,10 @@
 
 #pragma mark -
 
-- (void)presentMenuViewController
+- (void)presentLeftMenuViewController
 {
-    [self presentMenuViewContainerWithMenuViewController:self.menuViewController];
-    [self showMenuViewController];
+    [self presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
+    [self showLeftMenuViewController];
 }
 
 - (void)presentTempViewController
@@ -222,12 +222,12 @@
     }
 }
 
-- (void)showMenuViewController
+- (void)showLeftMenuViewController
 {
-    if (!self.menuViewController) {
+    if (!self.leftMenuViewController) {
         return;
     }
-    self.menuViewController.view.hidden = NO;
+    self.leftMenuViewController.view.hidden = NO;
     self.tempViewController.view.hidden = YES;
     [self.view.window endEditing:YES];
     [self addContentButton];
@@ -249,7 +249,7 @@
         [self addContentViewControllerMotionEffects];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
-            [self.delegate sideMenu:self didShowMenuViewController:self.menuViewController];
+            [self.delegate sideMenu:self didShowMenuViewController:self.leftMenuViewController];
         }
         
         self.visible = YES;
@@ -264,7 +264,7 @@
     if (!self.tempViewController) {
         return;
     }
-    self.menuViewController.view.hidden = YES;
+    self.leftMenuViewController.view.hidden = YES;
     self.tempViewController.view.hidden = NO;
     [self.view.window endEditing:YES];
     [self addContentButton];
@@ -301,7 +301,7 @@
 {
     BOOL rightMenuVisible = self.rightMenuVisible;
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
-        [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.tempViewController : self.menuViewController];
+        [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.tempViewController : self.leftMenuViewController];
     }
     
     self.visible = NO;
@@ -329,7 +329,7 @@
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
-            [self.delegate sideMenu:self didHideMenuViewController:rightMenuVisible ? self.tempViewController : self.menuViewController];
+            [self.delegate sideMenu:self didHideMenuViewController:rightMenuVisible ? self.tempViewController : self.leftMenuViewController];
         }
     }];
     [self updateStatusBar];
@@ -496,7 +496,7 @@
         if (!self.didNotifyDelegate) {
             if (point.x > 0) {
                 if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
-                    [self.delegate sideMenu:self willShowMenuViewController:self.menuViewController];
+                    [self.delegate sideMenu:self willShowMenuViewController:self.leftMenuViewController];
                 }
             }
             if (point.x < 0) {
@@ -516,10 +516,10 @@
             self.contentViewController.view.transform = CGAffineTransformTranslate(self.contentViewController.view.transform, point.x, 0);
         }
         
-        self.menuViewController.view.hidden = self.contentViewController.view.frame.origin.x < 0;
+        self.leftMenuViewController.view.hidden = self.contentViewController.view.frame.origin.x < 0;
         self.tempViewController.view.hidden = self.contentViewController.view.frame.origin.x > 0;
         
-        if (!self.menuViewController && self.contentViewController.view.frame.origin.x > 0) {
+        if (!self.leftMenuViewController && self.contentViewController.view.frame.origin.x > 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
@@ -544,8 +544,8 @@
                 if (self.contentViewController.view.frame.origin.x < 0) {
                     [self hideMenuViewController];
                 } else {
-                    if (self.menuViewController) {
-                        [self showMenuViewController];
+                    if (self.leftMenuViewController) {
+                        [self showLeftMenuViewController];
                     }
                 }
             } else {
@@ -617,20 +617,20 @@
     }
 }
 
-- (void)setMenuViewController:(UIViewController *)menuViewController
+- (void)setLeftMenuViewController:(UIViewController *)leftMenuViewController
 {
-    if (!_menuViewController) {
-        _menuViewController = menuViewController;
+    if (!_leftMenuViewController) {
+        _leftMenuViewController = leftMenuViewController;
         return;
     }
-    [self re_hideController:_menuViewController];
-    _menuViewController = menuViewController;
+    [self re_hideController:_leftMenuViewController];
+    _leftMenuViewController = leftMenuViewController;
    
-    [self addChildViewController:self.menuViewController];
-    self.menuViewController.view.frame = self.view.bounds;
-    self.menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.menuViewContainer addSubview:self.menuViewController.view];
-    [self.menuViewController didMoveToParentViewController:self];
+    [self addChildViewController:self.leftMenuViewController];
+    self.leftMenuViewController.view.frame = self.view.bounds;
+    self.leftMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.menuViewContainer addSubview:self.leftMenuViewController.view];
+    [self.leftMenuViewController didMoveToParentViewController:self];
     
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewController.view];
@@ -737,9 +737,9 @@
 {
     UIStatusBarAnimation statusBarAnimation = UIStatusBarAnimationNone;
     IF_IOS7_OR_GREATER(
-        statusBarAnimation = self.visible ? self.menuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
+        statusBarAnimation = self.visible ? self.leftMenuViewController.preferredStatusBarUpdateAnimation : self.contentViewController.preferredStatusBarUpdateAnimation;
         if (self.contentViewController.view.frame.origin.y > 10) {
-            statusBarAnimation = self.menuViewController.preferredStatusBarUpdateAnimation;
+            statusBarAnimation = self.leftMenuViewController.preferredStatusBarUpdateAnimation;
         } else {
             statusBarAnimation = self.contentViewController.preferredStatusBarUpdateAnimation;
         }
