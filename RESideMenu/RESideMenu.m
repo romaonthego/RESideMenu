@@ -73,7 +73,7 @@
     
     _scaleBackgroundImageView = YES;
   
-    _panMinimumOpenThreshold = 60.0;
+    _panMinimumOpenThreshold = 70.0;
     
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = -15;
@@ -656,12 +656,6 @@
     self.rightMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.menuViewContainer addSubview:self.rightMenuViewController.view];
     [self.rightMenuViewController didMoveToParentViewController:self];
-    
-    /*[self addChildViewController:self.menuViewController];
-    self.menuViewController.view.frame = self.view.bounds;
-    self.menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.menuViewContainer addSubview:self.menuViewController.view];
-    [self.menuViewController didMoveToParentViewController:self];*/
     
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewController.view];
