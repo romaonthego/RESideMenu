@@ -35,8 +35,8 @@
 @property (strong, readwrite, nonatomic) UIViewController *tempViewController;
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
-@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
-@property (strong, readwrite, nonatomic) UIImage *backgroundImage;
+@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration; //tested
+@property (strong, readwrite, nonatomic) UIImage *backgroundImage; //tested
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled; //tested
 @property (assign, readwrite, nonatomic) BOOL panFromEdge; //tested
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
@@ -56,9 +56,9 @@
 @property (assign, readwrite, nonatomic) CGFloat parallaxContentMaximumRelativeValue; //tested
 @property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation; //tested
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled; //tested
-@property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
-@property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
-@property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
+@property (assign, readwrite, nonatomic) BOOL bouncesHorizontally; //tested
+@property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle; //tested
+@property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden; //tested
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
