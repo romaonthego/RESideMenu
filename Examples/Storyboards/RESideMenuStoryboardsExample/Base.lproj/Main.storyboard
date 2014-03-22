@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -21,7 +22,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jO9-85-nrD">
             <objects>
-                <navigationController storyboardIdentifier="contentController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EPR-YW-obD" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="contentViewController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EPR-YW-obD" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bHH-Lh-tAZ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -41,7 +42,7 @@
         <!--First View Controller - Home Controller-->
         <scene sceneID="4d1-Jz-tGk">
             <objects>
-                <viewController storyboardIdentifier="firstController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jsP-Dz-DYG" customClass="DEMOFirstViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jsP-Dz-DYG" customClass="DEMOFirstViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NKZ-RZ-CBv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -55,7 +56,7 @@
                     <navigationItem key="navigationItem" title="Home Controller" id="HIf-bS-REK">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="SZg-Pf-I50">
                             <connections>
-                                <action selector="showMenu" destination="jsP-Dz-DYG" id="Fp7-R0-lXj"/>
+                                <action selector="showLeftMenu" destination="jsP-Dz-DYG" id="Qch-XR-2ze"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -64,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="1470" y="298"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Left Menu View Controller-->
         <scene sceneID="zM8-E4-2tq">
             <objects>
-                <viewController restorationIdentifier="menuController" storyboardIdentifier="menuController" id="NMs-sm-msE" customClass="DEMOMenuViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="leftMenuViewController" storyboardIdentifier="leftMenuViewController" id="NMs-sm-msE" customClass="DEMOLeftMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ovT-uA-eEb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,12 +77,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-V3-1kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957" y="993"/>
+            <point key="canvasLocation" x="929" y="991"/>
         </scene>
         <!--Second View Controller - Second Controller-->
         <scene sceneID="ajy-0O-wjT">
             <objects>
-                <viewController restorationIdentifier="secondController" storyboardIdentifier="secondController" id="yGP-ij-jME" customClass="DEMOSecondViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="secondViewController" storyboardIdentifier="secondViewController" id="yGP-ij-jME" customClass="DEMOSecondViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zr4-Ue-MTR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -102,7 +103,7 @@
                     <navigationItem key="navigationItem" title="Second Controller" id="8VR-6H-mGr">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="3gh-ed-0Ek">
                             <connections>
-                                <action selector="showMenu" destination="yGP-ij-jME" id="ZoY-gJ-XvS"/>
+                                <action selector="showLeftMenu" destination="yGP-ij-jME" id="zYX-vo-3kR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

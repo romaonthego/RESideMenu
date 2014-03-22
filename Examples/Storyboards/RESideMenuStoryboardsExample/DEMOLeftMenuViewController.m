@@ -1,21 +1,21 @@
 //
-//  DEMOMenuViewController.m
+//  DEMOLeftMenuViewController.m
 //  RESideMenuStoryboards
 //
 //  Created by Roman Efimov on 10/9/13.
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
-#import "DEMOMenuViewController.h"
+#import "DEMOLeftMenuViewController.h"
 #import "DEMOFirstViewController.h"
 #import "DEMOSecondViewController.h"
 #import "UIViewController+RESideMenu.h"
 
-@interface DEMOMenuViewController ()
+@interface DEMOLeftMenuViewController ()
 
 @end
 
-@implementation DEMOMenuViewController
+@implementation DEMOLeftMenuViewController
 
 - (void)viewDidLoad
 {
@@ -27,9 +27,7 @@
         tableView.dataSource = self;
         tableView.opaque = NO;
         tableView.backgroundColor = [UIColor clearColor];
-        
         tableView.backgroundView = nil;
-        tableView.backgroundColor = [UIColor clearColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
         tableView.scrollsToTop = NO;
@@ -44,15 +42,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UINavigationController *navigationController = (UINavigationController *)self.sideMenuViewController.contentViewController;
-    
     switch (indexPath.row) {
         case 0:
-            navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"firstController"]];
+            self.sideMenuViewController.contentViewController = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"firstViewController"]];
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"secondController"]];
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"secondViewController"]]
+                                                         animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
         default:
@@ -104,29 +101,6 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
-}
-
-#pragma mark -
-#pragma mark RESideMenu Delegate
-
-- (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"willShowMenuViewController");
-}
-
-- (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"didShowMenuViewController");
-}
-
-- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"willHideMenuViewController");
-}
-
-- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"didHideMenuViewController");
 }
 
 @end

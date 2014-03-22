@@ -19,7 +19,7 @@
 		3076CDE21809B47200527E6C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076CDC11809B47200527E6C /* Foundation.framework */; };
 		3076CDE31809B47200527E6C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076CDC51809B47200527E6C /* UIKit.framework */; };
 		3076CE011809B59E00527E6C /* DEMOFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */; };
-		3076CE021809B59E00527E6C /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFA1809B59E00527E6C /* DEMOMenuViewController.m */; };
+		3076CE021809B59E00527E6C /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */; };
 		3076CE041809B59E00527E6C /* DEMORootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFE1809B59E00527E6C /* DEMORootViewController.m */; };
 		3076CE051809B59E00527E6C /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE001809B59E00527E6C /* DEMOSecondViewController.m */; };
 		3076CE0D1809B5C500527E6C /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE081809B5C400527E6C /* RECommonFunctions.m */; };
@@ -54,8 +54,8 @@
 		3076CDE01809B47200527E6C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3076CDF71809B59E00527E6C /* DEMOFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOFirstViewController.h; sourceTree = "<group>"; };
 		3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOFirstViewController.m; sourceTree = "<group>"; };
-		3076CDF91809B59E00527E6C /* DEMOMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOMenuViewController.h; sourceTree = "<group>"; };
-		3076CDFA1809B59E00527E6C /* DEMOMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOMenuViewController.m; sourceTree = "<group>"; };
+		3076CDF91809B59E00527E6C /* DEMOLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOLeftMenuViewController.h; sourceTree = "<group>"; };
+		3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOLeftMenuViewController.m; sourceTree = "<group>"; };
 		3076CDFD1809B59E00527E6C /* DEMORootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMORootViewController.h; sourceTree = "<group>"; };
 		3076CDFE1809B59E00527E6C /* DEMORootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORootViewController.m; sourceTree = "<group>"; };
 		3076CDFF1809B59E00527E6C /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 			children = (
 				3076CDF71809B59E00527E6C /* DEMOFirstViewController.h */,
 				3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */,
-				3076CDF91809B59E00527E6C /* DEMOMenuViewController.h */,
-				3076CDFA1809B59E00527E6C /* DEMOMenuViewController.m */,
+				3076CDF91809B59E00527E6C /* DEMOLeftMenuViewController.h */,
+				3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */,
 				3076CDFD1809B59E00527E6C /* DEMORootViewController.h */,
 				3076CDFE1809B59E00527E6C /* DEMORootViewController.m */,
 				3076CDFF1809B59E00527E6C /* DEMOSecondViewController.h */,
@@ -220,7 +220,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DEMO;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Roman Efimov";
 				TargetAttributes = {
 					3076CDDE1809B47200527E6C = {
@@ -272,7 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3076CE021809B59E00527E6C /* DEMOMenuViewController.m in Sources */,
+				3076CE021809B59E00527E6C /* DEMOLeftMenuViewController.m in Sources */,
 				3076CE011809B59E00527E6C /* DEMOFirstViewController.m in Sources */,
 				3076CDCE1809B47200527E6C /* main.m in Sources */,
 				3076CDD21809B47200527E6C /* DEMOAppDelegate.m in Sources */,
@@ -325,7 +325,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -364,7 +363,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -426,7 +424,6 @@
 		3076CDF41809B47200527E6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RESideMenuStoryboardsExample.app/RESideMenuStoryboardsExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -449,7 +446,6 @@
 		3076CDF51809B47200527E6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RESideMenuStoryboardsExample.app/RESideMenuStoryboardsExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

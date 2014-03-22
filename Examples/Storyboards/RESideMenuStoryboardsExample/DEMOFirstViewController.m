@@ -14,9 +14,9 @@
 
 @implementation DEMOFirstViewController
 
-- (IBAction)showMenu
+- (IBAction)showLeftMenu
 {
-    [self.sideMenuViewController presentMenuViewController];
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 @end

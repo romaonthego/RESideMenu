@@ -14,9 +14,9 @@
 
 @implementation DEMOSecondViewController
 
-- (IBAction)showMenu
+- (IBAction)showLeftMenu
 {
-    [self.sideMenuViewController presentMenuViewController];
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 - (IBAction)pushController:(id)sender

@@ -11,6 +11,6 @@
 
 @interface DEMOFirstViewController : UIViewController
 
-- (IBAction)showMenu;
+- (IBAction)showLeftMenu;
 
 @end
