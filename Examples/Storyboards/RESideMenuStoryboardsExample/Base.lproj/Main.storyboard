@@ -107,22 +107,27 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="L0v-7c-gKp">
-                                <rect key="frame" x="97" y="116" width="126" height="30"/>
+                                <rect key="frame" x="79" y="117" width="162" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Push Controller">
+                                <state key="normal" title="Push View Controller">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pushController:" destination="yGP-ij-jME" eventType="touchUpInside" id="KHm-s5-FrO"/>
+                                    <action selector="pushViewController:" destination="yGP-ij-jME" eventType="touchUpInside" id="Ghs-dX-Y4e"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.7902456898061645" blue="0.39722655648262306" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Second Controller" id="8VR-6H-mGr">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="3gh-ed-0Ek">
+                        <barButtonItem key="leftBarButtonItem" title="Left" id="3gh-ed-0Ek">
                             <connections>
                                 <action selector="showLeftMenu" destination="yGP-ij-jME" id="zYX-vo-3kR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Right" id="9A7-Ch-RNn">
+                            <connections>
+                                <action selector="showRightMenu" destination="yGP-ij-jME" id="zHP-rb-LYj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

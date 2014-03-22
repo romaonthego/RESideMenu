@@ -11,6 +11,4 @@
 
 @interface DEMOLeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
 
-@property (strong, readwrite, nonatomic) UITableView *tableView;
-
 @end

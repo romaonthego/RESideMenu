@@ -19,7 +19,12 @@
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 
-- (IBAction)pushController:(id)sender
+- (IBAction)showRightMenu
+{
+    [self.sideMenuViewController presentRightMenuViewController];
+}
+
+- (IBAction)pushViewController:(id)sender
 {
     UIViewController *viewController = [[UIViewController alloc] init];
     viewController.title = @"Pushed Controller";

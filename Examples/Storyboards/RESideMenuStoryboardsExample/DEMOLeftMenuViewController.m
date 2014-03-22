@@ -13,6 +13,8 @@
 
 @interface DEMOLeftMenuViewController ()
 
+@property (strong, readwrite, nonatomic) UITableView *tableView;
+
 @end
 
 @implementation DEMOLeftMenuViewController

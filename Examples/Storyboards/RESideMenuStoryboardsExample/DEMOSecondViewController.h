@@ -12,6 +12,6 @@
 @interface DEMOSecondViewController : UIViewController
 
 - (IBAction)showLeftMenu;
-- (IBAction)pushController:(id)sender;
+- (IBAction)pushViewController:(id)sender;
 
 @end

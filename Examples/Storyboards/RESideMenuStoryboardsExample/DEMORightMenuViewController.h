@@ -11,6 +11,4 @@
 
 @interface DEMORightMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, readwrite, nonatomic) UITableView *tableView;
-
 @end
