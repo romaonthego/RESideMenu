@@ -86,6 +86,7 @@
     _contentViewInPortraitOffsetCenterX  = 30.f;
     
     _bouncesHorizontally = YES;
+    _panFromEdge = YES;
     
     _menuViewContainer = [[UIView alloc] init];
     
