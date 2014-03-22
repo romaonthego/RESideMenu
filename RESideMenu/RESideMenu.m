@@ -136,12 +136,12 @@
         [self.leftMenuViewController didMoveToParentViewController:self];
     }
     
-    if (self.tempViewController) {
-        [self addChildViewController:self.tempViewController];
-        self.tempViewController.view.frame = self.view.bounds;
-        self.tempViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self.menuViewContainer addSubview:self.tempViewController.view];
-        [self.tempViewController didMoveToParentViewController:self];
+    if (self.rightMenuViewController) {
+        [self addChildViewController:self.rightMenuViewController];
+        self.rightMenuViewController.view.frame = self.view.bounds;
+        self.rightMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.menuViewContainer addSubview:self.rightMenuViewController.view];
+        [self.rightMenuViewController didMoveToParentViewController:self];
     }
     
     [self re_displayController:self.contentViewController frame:self.view.bounds];
@@ -198,9 +198,9 @@
     [self showLeftMenuViewController];
 }
 
-- (void)presentTempViewController
+- (void)presentRightMenuViewController
 {
-    [self presentMenuViewContainerWithMenuViewController:self.tempViewController];
+    [self presentMenuViewContainerWithMenuViewController:self.rightMenuViewController];
     [self showRightMenuViewController];
 }
 
@@ -228,7 +228,7 @@
         return;
     }
     self.leftMenuViewController.view.hidden = NO;
-    self.tempViewController.view.hidden = YES;
+    self.rightMenuViewController.view.hidden = YES;
     [self.view.window endEditing:YES];
     [self addContentButton];
     
@@ -261,11 +261,11 @@
 
 - (void)showRightMenuViewController
 {
-    if (!self.tempViewController) {
+    if (!self.rightMenuViewController) {
         return;
     }
     self.leftMenuViewController.view.hidden = YES;
-    self.tempViewController.view.hidden = NO;
+    self.rightMenuViewController.view.hidden = NO;
     [self.view.window endEditing:YES];
     [self addContentButton];
     
@@ -285,7 +285,7 @@
         
     } completion:^(BOOL finished) {
         if (!self.rightMenuVisible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
-            [self.delegate sideMenu:self didShowMenuViewController:self.tempViewController];
+            [self.delegate sideMenu:self didShowMenuViewController:self.rightMenuViewController];
         }
         
         self.visible = !(self.contentViewController.view.frame.size.width == self.view.bounds.size.width && self.contentViewController.view.frame.size.height == self.view.bounds.size.height && self.contentViewController.view.frame.origin.x == 0 && self.contentViewController.view.frame.origin.y == 0);
@@ -301,7 +301,7 @@
 {
     BOOL rightMenuVisible = self.rightMenuVisible;
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
-        [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.tempViewController : self.leftMenuViewController];
+        [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController];
     }
     
     self.visible = NO;
@@ -329,7 +329,7 @@
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
-            [self.delegate sideMenu:self didHideMenuViewController:rightMenuVisible ? self.tempViewController : self.leftMenuViewController];
+            [self.delegate sideMenu:self didHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController];
         }
     }];
     [self updateStatusBar];
@@ -501,7 +501,7 @@
             }
             if (point.x < 0) {
                 if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
-                    [self.delegate sideMenu:self willShowMenuViewController:self.tempViewController];
+                    [self.delegate sideMenu:self willShowMenuViewController:self.rightMenuViewController];
                 }
             }
             self.didNotifyDelegate = YES;
@@ -517,14 +517,14 @@
         }
         
         self.leftMenuViewController.view.hidden = self.contentViewController.view.frame.origin.x < 0;
-        self.tempViewController.view.hidden = self.contentViewController.view.frame.origin.x > 0;
+        self.rightMenuViewController.view.hidden = self.contentViewController.view.frame.origin.x > 0;
         
         if (!self.leftMenuViewController && self.contentViewController.view.frame.origin.x > 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
             self.leftMenuVisible = NO;
-        } else  if (!self.tempViewController && self.contentViewController.view.frame.origin.x < 0) {
+        } else  if (!self.rightMenuViewController && self.contentViewController.view.frame.origin.x < 0) {
             self.contentViewController.view.transform = CGAffineTransformIdentity;
             self.contentViewController.view.frame = self.view.bounds;
             self.visible = NO;
@@ -550,7 +550,7 @@
                 }
             } else {
                 if (self.contentViewController.view.frame.origin.x < 20) {
-                    if (self.tempViewController) {
+                    if (self.rightMenuViewController) {
                         [self showRightMenuViewController];
                     }
                 } else {
@@ -636,20 +636,20 @@
     [self.view bringSubviewToFront:self.contentViewController.view];
 }
 
-- (void)setTempViewController:(UIViewController *)tempViewController
+- (void)setRightMenuViewController:(UIViewController *)rightMenuViewController
 {
-    if (!_tempViewController) {
-        _tempViewController = tempViewController;
+    if (!_rightMenuViewController) {
+        _rightMenuViewController = rightMenuViewController;
         return;
     }
-    [self re_hideController:_tempViewController];
-    _tempViewController = tempViewController;
+    [self re_hideController:_rightMenuViewController];
+    _rightMenuViewController = rightMenuViewController;
     
-    [self addChildViewController:self.tempViewController];
-    self.tempViewController.view.frame = self.view.bounds;
-    self.tempViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.menuViewContainer addSubview:self.tempViewController.view];
-    [self.tempViewController didMoveToParentViewController:self];
+    [self addChildViewController:self.rightMenuViewController];
+    self.rightMenuViewController.view.frame = self.view.bounds;
+    self.rightMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.menuViewContainer addSubview:self.rightMenuViewController.view];
+    [self.rightMenuViewController didMoveToParentViewController:self];
     
     /*[self addChildViewController:self.menuViewController];
     self.menuViewController.view.frame = self.view.bounds;

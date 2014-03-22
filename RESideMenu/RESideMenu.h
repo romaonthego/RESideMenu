@@ -32,7 +32,7 @@
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *leftMenuViewController;
-@property (strong, readwrite, nonatomic) UIViewController *tempViewController;
+@property (strong, readwrite, nonatomic) UIViewController *rightMenuViewController;
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration; //tested
@@ -63,7 +63,7 @@
 - (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 - (void)presentLeftMenuViewController;
-- (void)presentTempViewController;
+- (void)presentRightMenuViewController;
 - (void)hideMenuViewController;
 
 @end

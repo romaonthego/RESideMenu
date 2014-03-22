@@ -49,7 +49,7 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            self.sideMenuViewController.tempViewController = ({
+            self.sideMenuViewController.rightMenuViewController = ({
                 UIViewController *viewController = [[UIViewController alloc] init];
                 viewController.view.backgroundColor = [UIColor redColor];
                 viewController;

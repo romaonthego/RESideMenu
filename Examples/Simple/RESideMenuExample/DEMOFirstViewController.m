@@ -41,7 +41,7 @@
 
 - (void)showRightMenu
 {
-    [self.sideMenuViewController presentTempViewController];
+    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 @end
