@@ -536,21 +536,26 @@
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         self.didNotifyDelegate = NO;
-        if ([recognizer velocityInView:self.view].x > 0) {
-            if (self.contentViewController.view.frame.origin.x < 0) {
-                [self hideMenuViewController];
-            } else {
-                if (self.menuViewController) {
-                    [self showMenuViewController];
-                }
-            }
+        if ((self.contentViewController.view.frame.origin.x < 0 && self.contentViewController.view.frame.origin.x > -60) ||
+            (self.contentViewController.view.frame.origin.x > 0 && self.contentViewController.view.frame.origin.x < 60)) {
+            [self hideMenuViewController];
         } else {
-            if (self.contentViewController.view.frame.origin.x < 0) {
-                if (self.tempViewController) {
-                    [self showRightMenuViewController];
+            if ([recognizer velocityInView:self.view].x > 0) {
+                if (self.contentViewController.view.frame.origin.x < 0) {
+                    [self hideMenuViewController];
+                } else {
+                    if (self.menuViewController) {
+                        [self showMenuViewController];
+                    }
                 }
             } else {
-                [self hideMenuViewController];
+                if (self.contentViewController.view.frame.origin.x < 20) {
+                    if (self.tempViewController) {
+                        [self showRightMenuViewController];
+                    }
+                } else {
+                    [self hideMenuViewController];
+                }
             }
         }
     }
