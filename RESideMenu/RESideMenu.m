@@ -580,6 +580,16 @@
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
     
+    if (self.contentViewShadowEnabled) {
+        CALayer *layer = self.contentViewController.view.layer;
+        UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
+        layer.shadowPath = path.CGPath;
+        layer.shadowColor = self.contentViewShadowColor.CGColor;
+        layer.shadowOffset = self.contentViewShadowOffset;
+        layer.shadowOpacity = self.contentViewShadowOpacity;
+        layer.shadowRadius = self.contentViewShadowRadius;
+    }
+    
     if(self.visible) {
         [self addContentViewControllerMotionEffects];
     }
