@@ -123,8 +123,8 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
+@property (assign, readwrite, nonatomic) BOOL panFromEdge;
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
-@property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
@@ -133,15 +133,17 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) CGFloat contentViewShadowOpacity;
 @property (assign, readwrite, nonatomic) CGFloat contentViewShadowRadius;
 @property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
-@property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
 @property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
-@property (strong, readwrite, nonatomic) id parallaxMenuMinimumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxMenuMaximumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxContentMinimumRelativeValue;
-@property (strong, readwrite, nonatomic) id parallaxContentMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxMenuMinimumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxMenuMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxContentMinimumRelativeValue;
+@property (assign, readwrite, nonatomic) CGFloat parallaxContentMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
+@property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
+@property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
 ```
 
 If you set a backgroundImage, don't forget to set the MenuViewController's background color to clear color.
