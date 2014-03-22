@@ -73,6 +73,8 @@
     
     _scaleBackgroundImageView = YES;
   
+    _panMinimumOpenThreshold = 60.0;
+    
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = -15;
     _parallaxMenuMaximumRelativeValue = 15;
@@ -537,8 +539,10 @@
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         self.didNotifyDelegate = NO;
-        if ((self.contentViewController.view.frame.origin.x < 0 && self.contentViewController.view.frame.origin.x > -60) ||
-            (self.contentViewController.view.frame.origin.x > 0 && self.contentViewController.view.frame.origin.x < 60)) {
+        if (self.panMinimumOpenThreshold > 0 && (
+            (self.contentViewController.view.frame.origin.x < 0 && self.contentViewController.view.frame.origin.x > -self.panMinimumOpenThreshold) ||
+            (self.contentViewController.view.frame.origin.x > 0 && self.contentViewController.view.frame.origin.x < self.panMinimumOpenThreshold))
+            ) {
             [self hideMenuViewController];
         } else {
             if ([recognizer velocityInView:self.view].x > 0) {
