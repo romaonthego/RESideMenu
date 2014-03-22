@@ -2,6 +2,8 @@
 
 iOS 7 style side menu with parallax effect inspired by Dribbble shots ([first](http://dribbble.com/shots/1116265-Instasave-iPhone-App) and [second](http://dribbble.com/shots/1114754-Social-Feed-iOS7)).
 
+Since version 4.0 you can add menu view controllers on both left and right sides of your content view controller.
+
 <img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="400" height="568" />
 <img src="https://github.com/romaonthego/RESideMenu/raw/master/Demo.gif" alt="RESideMenu Screenshot" width="320" height="568" />
 
@@ -41,7 +43,7 @@ Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'RESideMenu', '~> 3.4'
+pod 'RESideMenu', '~> 4.0'
 ```
 
 Install into your Xcode project:
@@ -70,11 +72,14 @@ In your AppDelegate's `- (BOOL)application:(UIApplication *)application didFinis
 // Create content and menu controllers
 //
 DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
-DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+DEMOLeftMenuViewController *leftMenuViewController = [[DEMOLeftMenuViewController alloc] init];
+DEMORightMenuViewController *rightMenuViewController = [[DEMORightMenuViewController alloc] init];
 
 // Create side menu controller
 //
-RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+                                                                leftMenuViewController:leftMenuViewController
+                                                               rightMenuViewController:rightMenuViewController];
 sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
 
 // Make it a root controller
@@ -82,10 +87,16 @@ sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
 self.window.rootViewController = sideMenuViewController;
 ```
 
-Present the view controller:
+Present the menu view controller:
 
 ```objective-c
-[self.sideMenuViewController presentMenuViewController];
+[self.sideMenuViewController presentLeftMenuViewController];
+```
+
+or
+
+```objective-c
+[self.sideMenuViewController presentRightMenuViewController];
 ```
 
 Switch content view controllers:
@@ -104,14 +115,15 @@ Switch content view controllers:
 1. Create a subclass of `RESideMenu`. In this example we call it `DEMORootViewController`.
 2. In the Storyboard designate the root view's owner as `DEMORootViewController`.
 3. Make sure to `#import "RESideMenu.h"` in `DEMORootViewController.h`.
-4. Add more view controllers to your Storyboard, and give them identifiers "menuController" and "contentController". Note that in the new XCode the identifier is called "Storyboard ID" and can be found in the Identity inspector.
+4. Add more view controllers to your Storyboard, and give them identifiers "leftMenuViewController", "rightMenuViewController" and "contentViewController". Note that in the new XCode the identifier is called "Storyboard ID" and can be found in the Identity inspector.
 5. Add a method `awakeFromNib` to `DEMORootViewController.m` with the following code:
 
 ```objective-c
 - (void)awakeFromNib
 {
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
-    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"menuController"];
+    self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuController"];
+    self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuController"];
 }
 ```
 
@@ -124,6 +136,7 @@ You can customize the following properties of `RESideMenu`:
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL panFromEdge;
+@property (assign, readwrite, nonatomic) NSUInteger panMinimumOpenThreshold;
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
@@ -146,7 +159,7 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
 ```
 
-If you set a backgroundImage, don't forget to set the MenuViewController's background color to clear color.
+If you set a backgroundImage, don't forget to set the Menu View Controller's background color to clear color.
 
 You can implement `RESideMenuDelegate` protocol to receive the following messages:
 
