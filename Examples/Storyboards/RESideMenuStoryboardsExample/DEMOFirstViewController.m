@@ -19,4 +19,9 @@
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 
+- (IBAction)showRightMenu
+{
+    [self.sideMenuViewController presentRightMenuViewController];
+}
+
 @end

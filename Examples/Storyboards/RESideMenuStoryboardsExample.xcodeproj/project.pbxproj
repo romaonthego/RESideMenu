@@ -25,6 +25,7 @@
 		3076CE0D1809B5C500527E6C /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE081809B5C400527E6C /* RECommonFunctions.m */; };
 		3076CE0E1809B5C500527E6C /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0A1809B5C500527E6C /* RESideMenu.m */; };
 		3076CE0F1809B5C500527E6C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */; };
+		30DF13B218DE1B0C0018463C /* DEMORightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		3076CE0A1809B5C500527E6C /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		3076CE0B1809B5C500527E6C /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		30DF13B018DE1B0C0018463C /* DEMORightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMORightMenuViewController.h; sourceTree = "<group>"; };
+		30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORightMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,14 +152,16 @@
 		3076CDF61809B50100527E6C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3076CDF71809B59E00527E6C /* DEMOFirstViewController.h */,
-				3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */,
-				3076CDF91809B59E00527E6C /* DEMOLeftMenuViewController.h */,
-				3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */,
 				3076CDFD1809B59E00527E6C /* DEMORootViewController.h */,
 				3076CDFE1809B59E00527E6C /* DEMORootViewController.m */,
+				3076CDF71809B59E00527E6C /* DEMOFirstViewController.h */,
+				3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */,
 				3076CDFF1809B59E00527E6C /* DEMOSecondViewController.h */,
 				3076CE001809B59E00527E6C /* DEMOSecondViewController.m */,
+				3076CDF91809B59E00527E6C /* DEMOLeftMenuViewController.h */,
+				3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */,
+				30DF13B018DE1B0C0018463C /* DEMORightMenuViewController.h */,
+				30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				3076CDCE1809B47200527E6C /* main.m in Sources */,
 				3076CDD21809B47200527E6C /* DEMOAppDelegate.m in Sources */,
 				3076CE051809B59E00527E6C /* DEMOSecondViewController.m in Sources */,
+				30DF13B218DE1B0C0018463C /* DEMORightMenuViewController.m in Sources */,
 				3076CE041809B59E00527E6C /* DEMORootViewController.m in Sources */,
 				3076CE0F1809B5C500527E6C /* UIViewController+RESideMenu.m in Sources */,
 				3076CE0E1809B5C500527E6C /* RESideMenu.m in Sources */,

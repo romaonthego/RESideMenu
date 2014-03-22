@@ -54,9 +54,14 @@
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" title="Home Controller" id="HIf-bS-REK">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="SZg-Pf-I50">
+                        <barButtonItem key="leftBarButtonItem" title="Left" id="SZg-Pf-I50">
                             <connections>
                                 <action selector="showLeftMenu" destination="jsP-Dz-DYG" id="Qch-XR-2ze"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Right" id="keH-6D-X6t">
+                            <connections>
+                                <action selector="showRightMenu" destination="jsP-Dz-DYG" id="sl7-5i-bxH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -78,6 +83,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-V3-1kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="929" y="991"/>
+        </scene>
+        <!--Right Menu View Controller-->
+        <scene sceneID="wN7-Cy-r0G">
+            <objects>
+                <viewController restorationIdentifier="rightMenuViewController" storyboardIdentifier="rightMenuViewController" id="atb-wu-hdZ" customClass="DEMORightMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CcE-gV-MK1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-oZ-6la" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="1685"/>
         </scene>
         <!--Second View Controller - Second Controller-->
         <scene sceneID="ajy-0O-wjT">
