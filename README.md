@@ -5,7 +5,7 @@ iOS 7 style side menu with parallax effect inspired by Dribbble shots ([first](h
 Since version 4.0 you can add menu view controllers on both left and right sides of your content view controller.
 
 <img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="400" height="568" />
-<img src="https://github.com/romaonthego/RESideMenu/raw/master/Demo.gif" alt="RESideMenu Screenshot" width="320" height="568" />
+<img src="https://raw.githubusercontent.com/romaonthego/RESideMenu/master/Demo.gif?2" alt="RESideMenu Screenshot" width="320" height="568" />
 
 ## Requirements
 * Xcode 5 or higher
