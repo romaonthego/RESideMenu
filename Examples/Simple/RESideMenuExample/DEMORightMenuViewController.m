@@ -49,11 +49,9 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-            self.sideMenuViewController.rightMenuViewController = ({
-                UIViewController *viewController = [[UIViewController alloc] init];
-                viewController.view.backgroundColor = [UIColor redColor];
-                viewController;
-            });
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
             break;
         default:
             break;
