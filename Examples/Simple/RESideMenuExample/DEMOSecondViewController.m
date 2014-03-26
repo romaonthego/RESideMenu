@@ -18,11 +18,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(showLeftMenu)];
+                                                                            action:@selector(presentLeftMenuViewController:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Right"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
-                                                                             action:@selector(showRightMenu)];
+                                                                             action:@selector(presentRightMenuViewController:)];
     
     [self.view addSubview:({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -32,16 +32,6 @@
         [button addTarget:self action:@selector(pushViewController:) forControlEvents:UIControlEventTouchUpInside];
         button;
     })];
-}
-
-- (void)showLeftMenu
-{
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
-
-- (void)showRightMenu
-{
-    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 - (void)pushViewController:(id)sender

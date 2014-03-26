@@ -21,27 +21,17 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(showLeftMenu)];
+                                                                            action:@selector(presentLeftMenuViewController:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Right"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
-                                                                            action:@selector(showRightMenu)];
+                                                                            action:@selector(presentRightMenuViewController:)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     imageView.image = [UIImage imageNamed:@"Balloon"];
     [self.view addSubview:imageView];
-}
-
-- (void)showLeftMenu
-{
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
-
-- (void)showRightMenu
-{
-    [self.sideMenuViewController presentRightMenuViewController];
 }
 
 @end
