@@ -42,11 +42,14 @@
 
 @implementation RESideMenu
 
+#pragma mark -
+#pragma mark Instance lifecycle
+
 - (id)init
 {
     self = [super init];
     if (self) {
-        [self commonInit];
+        [self __commonInit];
     }
     return self;
 }
@@ -55,12 +58,12 @@
 {
     self = [super initWithCoder:decoder];
     if (self) {
-        [self commonInit];
+        [self __commonInit];
     }
     return self;
 }
 
-- (void)commonInit
+- (void)__commonInit
 {
     _menuViewContainer = [[UIView alloc] init];
     
@@ -94,6 +97,9 @@
     _contentViewScaleValue = 0.7f;
 }
 
+#pragma mark -
+#pragma mark Public methods
+
 - (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController rightMenuViewController:(UIViewController *)rightMenuViewController
 {
     self = [self init];
@@ -104,6 +110,42 @@
     }
     return self;
 }
+
+- (void)presentLeftMenuViewController
+{
+    [self presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
+    [self showLeftMenuViewController];
+}
+
+- (void)presentRightMenuViewController
+{
+    [self presentMenuViewContainerWithMenuViewController:self.rightMenuViewController];
+    [self showRightMenuViewController];
+}
+
+- (void)hideMenuViewController
+{
+    [self hideMenuViewControllerAnimated:YES];
+}
+
+- (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
+{
+    if (!animated) {
+        [self setContentViewController:contentViewController];
+    } else {
+        contentViewController.view.alpha = 0;
+        contentViewController.view.frame = self.contentViewController.view.bounds;
+        [self.contentViewController.view addSubview:contentViewController.view];
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            contentViewController.view.alpha = 1;
+        } completion:^(BOOL finished) {
+            [contentViewController.view removeFromSuperview];
+            [self setContentViewController:contentViewController];
+        }];
+    }
+}
+
+#pragma mark View life cycle
 
 - (void)viewDidLoad
 {
@@ -169,20 +211,6 @@
         layer.shadowOpacity = self.contentViewShadowOpacity;
         layer.shadowRadius = self.contentViewShadowRadius;
     }
-}
-
-#pragma mark -
-
-- (void)presentLeftMenuViewController
-{
-    [self presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
-    [self showLeftMenuViewController];
-}
-
-- (void)presentRightMenuViewController
-{
-    [self presentMenuViewContainerWithMenuViewController:self.rightMenuViewController];
-    [self showRightMenuViewController];
 }
 
 - (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
@@ -334,11 +362,6 @@
         completionBlock();
     }
     [self statusBarNeedsAppearanceUpdate];
-}
-
-- (void)hideMenuViewController
-{
-    [self hideMenuViewControllerAnimated:YES];
 }
 
 - (void)addContentButton
@@ -609,23 +632,6 @@
     
     if(self.visible) {
         [self addContentViewControllerMotionEffects];
-    }
-}
-
-- (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
-{
-    if (!animated) {
-        [self setContentViewController:contentViewController];
-    } else {
-        contentViewController.view.alpha = 0;
-        contentViewController.view.frame = self.contentViewController.view.bounds;
-        [self.contentViewController.view addSubview:contentViewController.view];
-        [UIView animateWithDuration:self.animationDuration animations:^{
-            contentViewController.view.alpha = 1;
-        } completion:^(BOOL finished) {
-            [contentViewController.view removeFromSuperview];
-            [self setContentViewController:contentViewController];
-        }];
     }
 }
 
