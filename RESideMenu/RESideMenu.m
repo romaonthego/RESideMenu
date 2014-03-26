@@ -202,15 +202,7 @@
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
     
-    if (self.contentViewShadowEnabled) {
-        CALayer *layer = self.contentViewController.view.layer;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
-        layer.shadowPath = path.CGPath;
-        layer.shadowColor = self.contentViewShadowColor.CGColor;
-        layer.shadowOffset = self.contentViewShadowOffset;
-        layer.shadowOpacity = self.contentViewShadowOpacity;
-        layer.shadowRadius = self.contentViewShadowRadius;
-    }
+    [self __updateContentViewShadow];
 }
 
 #pragma mark -
@@ -384,6 +376,19 @@
         [UIView animateWithDuration:0.3f animations:^{
             [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
         }];
+    }
+}
+
+- (void)__updateContentViewShadow
+{
+    if (self.contentViewShadowEnabled) {
+        CALayer *layer = self.contentViewController.view.layer;
+        UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
+        layer.shadowPath = path.CGPath;
+        layer.shadowColor = self.contentViewShadowColor.CGColor;
+        layer.shadowOffset = self.contentViewShadowOffset;
+        layer.shadowOpacity = self.contentViewShadowOpacity;
+        layer.shadowRadius = self.contentViewShadowRadius;
     }
 }
 
@@ -635,15 +640,7 @@
     contentViewController.view.transform = transform;
     contentViewController.view.frame = frame;
     
-    if (self.contentViewShadowEnabled) {
-        CALayer *layer = self.contentViewController.view.layer;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
-        layer.shadowPath = path.CGPath;
-        layer.shadowColor = self.contentViewShadowColor.CGColor;
-        layer.shadowOffset = self.contentViewShadowOffset;
-        layer.shadowOpacity = self.contentViewShadowOpacity;
-        layer.shadowRadius = self.contentViewShadowRadius;
-    }
+    [self __updateContentViewShadow];
     
     if(self.visible) {
         [self __addContentViewControllerMotionEffects];
@@ -718,6 +715,8 @@
         
         self.contentViewController.view.center = center;
     }
+    
+    [self __updateContentViewShadow];
 }
 
 #pragma mark -
