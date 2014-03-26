@@ -58,4 +58,11 @@
     return nil;
 }
 
+#pragma mark - Action methods
+
+- (IBAction)showMenu
+{
+    [self.sideMenuViewController presentMenuViewController];
+}
+
 @end
