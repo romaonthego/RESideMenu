@@ -113,19 +113,19 @@
 
 - (void)presentLeftMenuViewController
 {
-    [self presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
-    [self showLeftMenuViewController];
+    [self __presentMenuViewContainerWithMenuViewController:self.leftMenuViewController];
+    [self __showLeftMenuViewController];
 }
 
 - (void)presentRightMenuViewController
 {
-    [self presentMenuViewContainerWithMenuViewController:self.rightMenuViewController];
-    [self showRightMenuViewController];
+    [self __presentMenuViewContainerWithMenuViewController:self.rightMenuViewController];
+    [self __showRightMenuViewController];
 }
 
 - (void)hideMenuViewController
 {
-    [self hideMenuViewControllerAnimated:YES];
+    [self __hideMenuViewControllerAnimated:YES];
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
@@ -193,11 +193,11 @@
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
-    [self addMenuViewControllerMotionEffects];
+    [self __addMenuViewControllerMotionEffects];
     
     if (self.panGestureEnabled) {
         self.view.multipleTouchEnabled = NO;
-        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(__panGestureRecognized:)];
         panGestureRecognizer.delegate = self;
         [self.view addGestureRecognizer:panGestureRecognizer];
     }
@@ -213,7 +213,10 @@
     }
 }
 
-- (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
+#pragma mark -
+#pragma mark Private methods
+
+- (void)__presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
 {
     self.menuViewContainer.transform = CGAffineTransformIdentity;
     if (self.scaleBackgroundImageView) {
@@ -231,7 +234,7 @@
     }
 }
 
-- (void)showLeftMenuViewController
+- (void)__showLeftMenuViewController
 {
     if (!self.leftMenuViewController) {
         return;
@@ -239,7 +242,7 @@
     self.leftMenuViewController.view.hidden = NO;
     self.rightMenuViewController.view.hidden = YES;
     [self.view.window endEditing:YES];
-    [self addContentButton];
+    [self __addContentButton];
     
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
@@ -255,7 +258,7 @@
             self.backgroundImageView.transform = CGAffineTransformIdentity;
             
     } completion:^(BOOL finished) {
-        [self addContentViewControllerMotionEffects];
+        [self __addContentViewControllerMotionEffects];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.leftMenuViewController];
@@ -265,10 +268,10 @@
         self.leftMenuVisible = YES;
     }];
     
-    [self statusBarNeedsAppearanceUpdate];
+    [self __statusBarNeedsAppearanceUpdate];
 }
 
-- (void)showRightMenuViewController
+- (void)__showRightMenuViewController
 {
     if (!self.rightMenuViewController) {
         return;
@@ -276,7 +279,7 @@
     self.leftMenuViewController.view.hidden = YES;
     self.rightMenuViewController.view.hidden = NO;
     [self.view.window endEditing:YES];
-    [self addContentButton];
+    [self __addContentButton];
     
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
@@ -300,13 +303,13 @@
         self.visible = !(self.contentViewController.view.frame.size.width == self.view.bounds.size.width && self.contentViewController.view.frame.size.height == self.view.bounds.size.height && self.contentViewController.view.frame.origin.x == 0 && self.contentViewController.view.frame.origin.y == 0);
         self.rightMenuVisible = self.visible;
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        [self addContentViewControllerMotionEffects];
+        [self __addContentViewControllerMotionEffects];
     }];
     
-    [self statusBarNeedsAppearanceUpdate];
+    [self __statusBarNeedsAppearanceUpdate];
 }
 
-- (void)hideMenuViewControllerAnimated:(BOOL)animated
+- (void)__hideMenuViewControllerAnimated:(BOOL)animated
 {
     BOOL rightMenuVisible = self.rightMenuVisible;
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
@@ -361,10 +364,10 @@
         animationBlock();
         completionBlock();
     }
-    [self statusBarNeedsAppearanceUpdate];
+    [self __statusBarNeedsAppearanceUpdate];
 }
 
-- (void)addContentButton
+- (void)__addContentButton
 {
     if (self.contentButton.superview)
         return;
@@ -375,10 +378,19 @@
     [self.contentViewController.view addSubview:self.contentButton];
 }
 
-#pragma mark -
-#pragma mark Motion effects
+- (void)__statusBarNeedsAppearanceUpdate
+{
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [UIView animateWithDuration:0.3f animations:^{
+            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+        }];
+    }
+}
 
-- (void)addMenuViewControllerMotionEffects
+#pragma mark -
+#pragma mark iOS 7 Motion Effects (Private)
+
+- (void)__addMenuViewControllerMotionEffects
 {
     if (self.parallaxEnabled) {
         IF_IOS7_OR_GREATER(
@@ -399,7 +411,7 @@
     }
 }
 
-- (void)addContentViewControllerMotionEffects
+- (void)__addContentViewControllerMotionEffects
 {
     if (self.parallaxEnabled) {
         IF_IOS7_OR_GREATER(
@@ -423,7 +435,7 @@
 }
 
 #pragma mark -
-#pragma mark Gesture recognizer
+#pragma mark UIGestureRecognizer Delegate (Private)
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
@@ -448,7 +460,10 @@
     return YES;
 }
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
+#pragma mark -
+#pragma mark Pan gesture recognizer (Private)
+
+- (void)__panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
         [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
@@ -468,7 +483,7 @@
             self.backgroundImageView.frame = self.view.bounds;
         }
         self.menuViewContainer.frame = self.view.bounds;
-        [self addContentButton];
+        [self __addContentButton];
         [self.view.window endEditing:YES];
         self.didNotifyDelegate = NO;
     }
@@ -560,7 +575,7 @@
             self.rightMenuVisible = NO;
         }
         
-        [self statusBarNeedsAppearanceUpdate];
+        [self __statusBarNeedsAppearanceUpdate];
     }
     
    if (recognizer.state == UIGestureRecognizerStateEnded) {
@@ -572,7 +587,7 @@
             [self hideMenuViewController];
         }
         else if (self.contentViewController.view.frame.origin.x == 0) {
-            [self hideMenuViewControllerAnimated:NO];
+            [self __hideMenuViewControllerAnimated:NO];
         }
         else {
             if ([recognizer velocityInView:self.view].x > 0) {
@@ -580,13 +595,13 @@
                     [self hideMenuViewController];
                 } else {
                     if (self.leftMenuViewController) {
-                        [self showLeftMenuViewController];
+                        [self __showLeftMenuViewController];
                     }
                 }
             } else {
                 if (self.contentViewController.view.frame.origin.x < 20) {
                     if (self.rightMenuViewController) {
-                        [self showRightMenuViewController];
+                        [self __showRightMenuViewController];
                     }
                 } else {
                     [self hideMenuViewController];
@@ -631,7 +646,7 @@
     }
     
     if(self.visible) {
-        [self addContentViewControllerMotionEffects];
+        [self __addContentViewControllerMotionEffects];
     }
 }
 
@@ -650,7 +665,7 @@
     [self.menuViewContainer addSubview:self.leftMenuViewController.view];
     [self.leftMenuViewController didMoveToParentViewController:self];
     
-    [self addMenuViewControllerMotionEffects];
+    [self __addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewController.view];
 }
 
@@ -669,12 +684,12 @@
     [self.menuViewContainer addSubview:self.rightMenuViewController.view];
     [self.rightMenuViewController didMoveToParentViewController:self];
     
-    [self addMenuViewControllerMotionEffects];
+    [self __addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewController.view];
 }
 
 #pragma mark -
-#pragma mark Rotation handler
+#pragma mark View Controller Rotation handler
 
 - (BOOL)shouldAutorotate
 {
@@ -706,16 +721,7 @@
 }
 
 #pragma mark -
-#pragma mark Status bar appearance management
-
-- (void)statusBarNeedsAppearanceUpdate
-{
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [UIView animateWithDuration:0.3f animations:^{
-            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-        }];
-    }
-}
+#pragma mark Status Bar Appearance Management
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
