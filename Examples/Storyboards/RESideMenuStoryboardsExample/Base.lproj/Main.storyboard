@@ -56,12 +56,12 @@
                     <navigationItem key="navigationItem" title="Home Controller" id="HIf-bS-REK">
                         <barButtonItem key="leftBarButtonItem" title="Left" id="SZg-Pf-I50">
                             <connections>
-                                <action selector="showLeftMenu" destination="jsP-Dz-DYG" id="Qch-XR-2ze"/>
+                                <action selector="presentLeftMenuViewController:" destination="jsP-Dz-DYG" id="hwP-5s-SlX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Right" id="keH-6D-X6t">
                             <connections>
-                                <action selector="showRightMenu" destination="jsP-Dz-DYG" id="sl7-5i-bxH"/>
+                                <action selector="presentRightMenuViewController:" destination="jsP-Dz-DYG" id="UYT-AK-fzA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -122,12 +122,12 @@
                     <navigationItem key="navigationItem" title="Second Controller" id="8VR-6H-mGr">
                         <barButtonItem key="leftBarButtonItem" title="Left" id="3gh-ed-0Ek">
                             <connections>
-                                <action selector="showLeftMenu" destination="yGP-ij-jME" id="zYX-vo-3kR"/>
+                                <action selector="presentLeftMenuViewController:" destination="yGP-ij-jME" id="IrF-Ol-AZY"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Right" id="9A7-Ch-RNn">
                             <connections>
-                                <action selector="showRightMenu" destination="yGP-ij-jME" id="zHP-rb-LYj"/>
+                                <action selector="presentRightMenuViewController:" destination="yGP-ij-jME" id="qbh-hR-Hxz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

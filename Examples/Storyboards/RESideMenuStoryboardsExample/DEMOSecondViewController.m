@@ -14,16 +14,6 @@
 
 @implementation DEMOSecondViewController
 
-- (IBAction)showLeftMenu
-{
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
-
-- (IBAction)showRightMenu
-{
-    [self.sideMenuViewController presentRightMenuViewController];
-}
-
 - (IBAction)pushViewController:(id)sender
 {
     UIViewController *viewController = [[UIViewController alloc] init];
