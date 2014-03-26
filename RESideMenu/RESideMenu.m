@@ -301,7 +301,7 @@
     [self updateStatusBar];
 }
 
-- (void)hideMenuViewController
+- (void)hideMenuViewControllerAnimated:(BOOL)animated
 {
     BOOL rightMenuVisible = self.rightMenuVisible;
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
@@ -313,30 +313,55 @@
     self.rightMenuVisible = NO;
     [self.contentButton removeFromSuperview];
     
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [UIView animateWithDuration:self.animationDuration animations:^{
-        self.contentViewController.view.transform = CGAffineTransformIdentity;
-        self.contentViewController.view.frame = self.view.bounds;
-        self.menuViewContainer.transform = self.menuViewControllerTransformation;
-        self.menuViewContainer.alpha = 0;
-        if (self.scaleBackgroundImageView) {
-            self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    __typeof (self) __weak weakSelf = self;
+    void (^animationBlock)(void) = ^{
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
         }
-        if (self.parallaxEnabled) {
+        strongSelf.contentViewController.view.transform = CGAffineTransformIdentity;
+        strongSelf.contentViewController.view.frame = strongSelf.view.bounds;
+        strongSelf.menuViewContainer.transform = strongSelf.menuViewControllerTransformation;
+        strongSelf.menuViewContainer.alpha = 0;
+        if (strongSelf.scaleBackgroundImageView) {
+            strongSelf.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        }
+        if (strongSelf.parallaxEnabled) {
             IF_IOS7_OR_GREATER(
-               for (UIMotionEffect *effect in self.contentViewController.view.motionEffects) {
-                   [self.contentViewController.view removeMotionEffect:effect];
+               for (UIMotionEffect *effect in strongSelf.contentViewController.view.motionEffects) {
+                   [strongSelf.contentViewController.view removeMotionEffect:effect];
                }
             );
         }
-    } completion:^(BOOL finished) {
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        
-        if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
-            [self.delegate sideMenu:self didHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController];
+    };
+    void (^completionBlock)(void) = ^{
+        __typeof (weakSelf) __strong strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
         }
-    }];
+        if (!strongSelf.visible && [strongSelf.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [strongSelf.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
+            [strongSelf.delegate sideMenu:strongSelf didHideMenuViewController:rightMenuVisible ? strongSelf.rightMenuViewController : strongSelf.leftMenuViewController];
+        }
+    };
+    
+    if (animated) {
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            animationBlock();
+        } completion:^(BOOL finished) {
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            completionBlock();
+        }];
+    } else {
+        animationBlock();
+        completionBlock();
+    }
     [self updateStatusBar];
+}
+
+- (void)hideMenuViewController
+{
+    [self hideMenuViewControllerAnimated:YES];
 }
 
 - (void)addContentButton
@@ -538,14 +563,18 @@
         [self updateStatusBar];
     }
     
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
+   if (recognizer.state == UIGestureRecognizerStateEnded) {
         self.didNotifyDelegate = NO;
         if (self.panMinimumOpenThreshold > 0 && (
             (self.contentViewController.view.frame.origin.x < 0 && self.contentViewController.view.frame.origin.x > -((NSInteger)self.panMinimumOpenThreshold)) ||
             (self.contentViewController.view.frame.origin.x > 0 && self.contentViewController.view.frame.origin.x < self.panMinimumOpenThreshold))
             ) {
             [self hideMenuViewController];
-        } else {
+        }
+        else if (self.contentViewController.view.frame.origin.x == 0) {
+            [self hideMenuViewControllerAnimated:NO];
+        }
+        else {
             if ([recognizer velocityInView:self.view].x > 0) {
                 if (self.contentViewController.view.frame.origin.x < 0) {
                     [self hideMenuViewController];
