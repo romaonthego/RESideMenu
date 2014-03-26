@@ -62,39 +62,36 @@
 
 - (void)commonInit
 {
+    _menuViewContainer = [[UIView alloc] init];
+    
     _animationDuration = 0.35f;
-    _panGestureEnabled = YES;
     _interactivePopGestureRecognizerEnabled = YES;
   
     _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
     
     _scaleContentView      = YES;
-    _contentViewScaleValue = 0.7f;
-    
     _scaleBackgroundImageView = YES;
-  
-    _panMinimumOpenThreshold = 60.0;
     
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = -15;
     _parallaxMenuMaximumRelativeValue = 15;
-    
     _parallaxContentMinimumRelativeValue = -25;
     _parallaxContentMaximumRelativeValue = 25;
-
-    _contentViewInLandscapeOffsetCenterX = 30.f;
-    _contentViewInPortraitOffsetCenterX  = 30.f;
     
     _bouncesHorizontally = YES;
-    _panFromEdge = YES;
     
-    _menuViewContainer = [[UIView alloc] init];
+    _panGestureEnabled = YES;
+    _panFromEdge = YES;
+    _panMinimumOpenThreshold = 60.0;
     
     _contentViewShadowEnabled = NO;
     _contentViewShadowColor = [UIColor blackColor];
     _contentViewShadowOffset = CGSizeZero;
     _contentViewShadowOpacity = 0.4f;
     _contentViewShadowRadius = 8.0f;
+    _contentViewInLandscapeOffsetCenterX = 30.f;
+    _contentViewInPortraitOffsetCenterX  = 30.f;
+    _contentViewScaleValue = 0.7f;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController rightMenuViewController:(UIViewController *)rightMenuViewController
