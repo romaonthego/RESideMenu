@@ -33,5 +33,7 @@
 
 - (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame;
 - (void)re_hideController:(UIViewController *)controller;
+- (IBAction)presentLeftMenuViewController:(id)sender;
+- (IBAction)presentRightMenuViewController:(id)sender;
 
 @end

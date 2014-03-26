@@ -58,4 +58,14 @@
     return nil;
 }
 
+- (IBAction)presentLeftMenuViewController:(id)sender
+{
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
+
+- (IBAction)presentRightMenuViewController:(id)sender
+{
+    [self.sideMenuViewController presentRightMenuViewController];
+}
+
 @end
