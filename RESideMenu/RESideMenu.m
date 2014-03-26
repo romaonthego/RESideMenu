@@ -235,6 +235,7 @@
     self.rightMenuViewController.view.hidden = YES;
     [self.view.window endEditing:YES];
     [self __addContentButton];
+    [self __updateContentViewShadow];
     
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
@@ -272,6 +273,7 @@
     self.rightMenuViewController.view.hidden = NO;
     [self.view.window endEditing:YES];
     [self __addContentButton];
+    [self __updateContentViewShadow];
     
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
@@ -480,6 +482,8 @@
     CGPoint point = [recognizer translationInView:self.view];
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [self __updateContentViewShadow];
+        
         self.originalPoint = CGPointMake(self.contentViewController.view.center.x - CGRectGetWidth(self.contentViewController.view.bounds) / 2.0,
                                          self.contentViewController.view.center.y - CGRectGetHeight(self.contentViewController.view.bounds) / 2.0);
         self.menuViewContainer.transform = CGAffineTransformIdentity;
