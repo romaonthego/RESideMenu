@@ -237,7 +237,7 @@
         self.leftMenuVisible = YES;
     }];
     
-    [self updateStatusBar];
+    [self statusBarNeedsAppearanceUpdate];
 }
 
 - (void)showRightMenuViewController
@@ -275,7 +275,7 @@
         [self addContentViewControllerMotionEffects];
     }];
     
-    [self updateStatusBar];
+    [self statusBarNeedsAppearanceUpdate];
 }
 
 - (void)hideMenuViewControllerAnimated:(BOOL)animated
@@ -333,7 +333,7 @@
         animationBlock();
         completionBlock();
     }
-    [self updateStatusBar];
+    [self statusBarNeedsAppearanceUpdate];
 }
 
 - (void)hideMenuViewController
@@ -537,7 +537,7 @@
             self.rightMenuVisible = NO;
         }
         
-        [self updateStatusBar];
+        [self statusBarNeedsAppearanceUpdate];
     }
     
    if (recognizer.state == UIGestureRecognizerStateEnded) {
@@ -702,7 +702,7 @@
 #pragma mark -
 #pragma mark Status bar appearance management
 
-- (void)updateStatusBar
+- (void)statusBarNeedsAppearanceUpdate
 {
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [UIView animateWithDuration:0.3f animations:^{
