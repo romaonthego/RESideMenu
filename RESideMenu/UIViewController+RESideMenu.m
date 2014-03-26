@@ -58,6 +58,9 @@
     return nil;
 }
 
+#pragma mark -
+#pragma mark IB Action Helper methods
+
 - (IBAction)presentLeftMenuViewController:(id)sender
 {
     [self.sideMenuViewController presentLeftMenuViewController];
