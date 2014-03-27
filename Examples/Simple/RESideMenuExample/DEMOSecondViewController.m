@@ -42,4 +42,16 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"DEMOSecondViewController will appear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSLog(@"DEMOSecondViewController will disappear");
+}
+
 @end

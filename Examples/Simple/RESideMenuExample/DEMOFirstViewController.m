@@ -34,4 +34,16 @@
     [self.view addSubview:imageView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"DEMOFirstViewController will appear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSLog(@"DEMOFirstViewController will disappear");
+}
+
 @end
