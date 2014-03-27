@@ -72,7 +72,7 @@
   
     _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
     
-    _scaleContentView      = YES;
+    _scaleContentView = YES;
     _scaleBackgroundImageView = YES;
     _scaleMenuView = YES;
     
@@ -217,7 +217,9 @@
         self.backgroundImageView.frame = self.view.bounds;
     }
     self.menuViewContainer.frame = self.view.bounds;
-    self.menuViewContainer.transform = self.menuViewControllerTransformation;
+    if (self.scaleMenuView) {
+        self.menuViewContainer.transform = self.menuViewControllerTransformation;
+    }
     self.menuViewContainer.alpha = 0;
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
@@ -324,7 +326,9 @@
         }
         strongSelf.contentViewController.view.transform = CGAffineTransformIdentity;
         strongSelf.contentViewController.view.frame = strongSelf.view.bounds;
-        strongSelf.menuViewContainer.transform = strongSelf.menuViewControllerTransformation;
+        if (strongSelf.scaleMenuView) {
+            strongSelf.menuViewContainer.transform = strongSelf.menuViewControllerTransformation;
+        }
         strongSelf.menuViewContainer.alpha = 0;
         if (strongSelf.scaleBackgroundImageView) {
             strongSelf.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
@@ -519,11 +523,12 @@
         }
         
         self.menuViewContainer.alpha = delta;
+        
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
         }
         
-        if(self.scaleMenuView) {
+        if (self.scaleMenuView) {
             self.menuViewContainer.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
         }
         
