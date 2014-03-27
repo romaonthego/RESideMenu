@@ -28,21 +28,6 @@
 
 @implementation UIViewController (RESideMenu)
 
-- (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame
-{
-    [self addChildViewController:controller];
-    controller.view.frame = frame;
-    [self.view addSubview:controller.view];
-    [controller didMoveToParentViewController:self];
-}
-
-- (void)re_hideController:(UIViewController *)controller
-{
-    [controller willMoveToParentViewController:nil];
-    [controller.view removeFromSuperview];
-    [controller removeFromParentViewController];
-}
-
 - (RESideMenu *)sideMenuViewController
 {
     UIViewController *iter = self.parentViewController;

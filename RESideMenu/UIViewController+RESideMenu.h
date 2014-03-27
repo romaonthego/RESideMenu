@@ -31,9 +31,6 @@
 
 @property (strong, readonly, nonatomic) RESideMenu *sideMenuViewController;
 
-- (void)re_displayController:(UIViewController *)controller frame:(CGRect)frame;
-- (void)re_hideController:(UIViewController *)controller;
-
 // IB Action Helper methods
 
 - (IBAction)presentLeftMenuViewController:(id)sender;

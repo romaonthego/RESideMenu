@@ -143,7 +143,7 @@
         [UIView animateWithDuration:self.animationDuration animations:^{
             contentViewController.view.alpha = 1;
         } completion:^(BOOL finished) {
-            [self re_hideController:self.contentViewController];
+            [self __hideViewController:self.contentViewController];
             [contentViewController didMoveToParentViewController:self];
             _contentViewController = contentViewController;
             [self __updateContentViewShadow];
@@ -321,6 +321,13 @@
     }];
     
     [self __statusBarNeedsAppearanceUpdate];
+}
+
+- (void)__hideViewController:(UIViewController *)viewController
+{
+    [viewController willMoveToParentViewController:nil];
+    [viewController.view removeFromSuperview];
+    [viewController removeFromParentViewController];
 }
 
 - (void)__hideMenuViewControllerAnimated:(BOOL)animated
@@ -662,7 +669,7 @@
         _contentViewController = contentViewController;
         return;
     }
-    [self re_hideController:_contentViewController];
+    [self __hideViewController:_contentViewController];
     _contentViewController = contentViewController;
     
     [self addChildViewController:self.contentViewController];
@@ -683,7 +690,7 @@
         _leftMenuViewController = leftMenuViewController;
         return;
     }
-    [self re_hideController:_leftMenuViewController];
+    [self __hideViewController:_leftMenuViewController];
     _leftMenuViewController = leftMenuViewController;
    
     [self addChildViewController:self.leftMenuViewController];
@@ -702,7 +709,7 @@
         _rightMenuViewController = rightMenuViewController;
         return;
     }
-    [self re_hideController:_rightMenuViewController];
+    [self __hideViewController:_rightMenuViewController];
     _rightMenuViewController = rightMenuViewController;
     
     [self addChildViewController:self.rightMenuViewController];
