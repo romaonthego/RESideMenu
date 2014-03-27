@@ -74,6 +74,7 @@
     
     _scaleContentView      = YES;
     _scaleBackgroundImageView = YES;
+    _scaleMenuView = YES;
     
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = -15;
@@ -521,7 +522,10 @@
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
         }
-        self.menuViewContainer.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
+        
+        if(self.scaleMenuView) {
+            self.menuViewContainer.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
+        }
         
         if (self.scaleBackgroundImageView) {
             if (backgroundViewScale < 1) {
