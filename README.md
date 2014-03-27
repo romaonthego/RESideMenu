@@ -140,6 +140,7 @@ You can customize the following properties of `RESideMenu`:
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
+@property (assign, readwrite, nonatomic) BOOL scaleMenuView;
 @property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
 @property (assign, readwrite, nonatomic) UIColor *contentViewShadowColor;
 @property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
