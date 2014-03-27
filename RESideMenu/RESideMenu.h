@@ -43,6 +43,7 @@
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
+@property (assign, readwrite, nonatomic) BOOL scaleMenuView;
 @property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
 @property (assign, readwrite, nonatomic) UIColor *contentViewShadowColor;
 @property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
@@ -56,7 +57,6 @@
 @property (assign, readwrite, nonatomic) CGFloat parallaxContentMinimumRelativeValue;
 @property (assign, readwrite, nonatomic) CGFloat parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
-@property (assign, readwrite, nonatomic) BOOL scaleMenuView;
 @property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
