@@ -45,7 +45,7 @@
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL scaleMenuView;
 @property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
-@property (assign, readwrite, nonatomic) UIColor *contentViewShadowColor;
+@property (strong, readwrite, nonatomic) UIColor *contentViewShadowColor;
 @property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat contentViewShadowOpacity;
 @property (assign, readwrite, nonatomic) CGFloat contentViewShadowRadius;
