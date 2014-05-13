@@ -39,6 +39,8 @@
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
 
+@property (weak, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+
 @end
 
 @implementation RESideMenu
@@ -216,7 +218,9 @@
         self.view.multipleTouchEnabled = NO;
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(__panGestureRecognized:)];
         panGestureRecognizer.delegate = self;
+        
         [self.view addGestureRecognizer:panGestureRecognizer];
+        [self setPanGestureRecognizer:panGestureRecognizer];
     }
     
     [self __updateContentViewShadow];
@@ -474,6 +478,10 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    if ([gestureRecognizer isEqual:self.panGestureRecognizer] && !self.panGestureEnabled) {
+        return NO;
+    }
+    
     IF_IOS7_OR_GREATER(
        if (self.interactivePopGestureRecognizerEnabled && [self.contentViewController isKindOfClass:[UINavigationController class]]) {
            UINavigationController *navigationController = (UINavigationController *)self.contentViewController;
@@ -483,11 +491,12 @@
        }
     );
   
-    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+    if (self.panFromEdge && [gestureRecognizer isEqual:self.panGestureRecognizer] && !self.visible) {
         CGPoint point = [touch locationInView:gestureRecognizer.view];
         if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
             return YES;
-        } else {
+        }
+        else {
             return NO;
         }
     }
