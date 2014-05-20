@@ -27,6 +27,31 @@
 #import "UIViewController+RESideMenu.h"
 #import "RECommonFunctions.h"
 
+// Let 'prefersStatusBarHidden' work in UIViewController
+@interface UINavigationController (StatusBarStyle)
+
+@end
+
+@implementation UINavigationController (StatusBarStyle)
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.visibleViewController.prefersStatusBarHidden;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return self.visibleViewController.preferredStatusBarStyle;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return self.visibleViewController.preferredStatusBarUpdateAnimation;
+}
+
+@end
+
+
 @interface RESideMenu ()
 
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
@@ -140,12 +165,13 @@
         contentViewController.view.alpha = 0;
         contentViewController.view.frame = self.contentViewContainer.bounds;
         [self.contentViewContainer addSubview:contentViewController.view];
+        UIViewController *tempViewController = _contentViewController;
+        [contentViewController didMoveToParentViewController:self];
+        _contentViewController = contentViewController;
         [UIView animateWithDuration:self.animationDuration animations:^{
             contentViewController.view.alpha = 1;
         } completion:^(BOOL finished) {
-            [self __hideViewController:self.contentViewController];
-            [contentViewController didMoveToParentViewController:self];
-            _contentViewController = contentViewController;
+            [self __hideViewController:tempViewController];
             [self __updateContentViewShadow];
             
             if (self.visible) {
