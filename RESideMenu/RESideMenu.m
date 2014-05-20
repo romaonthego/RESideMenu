@@ -28,11 +28,11 @@
 #import "RECommonFunctions.h"
 
 // Let 'prefersStatusBarHidden' work in UIViewController
-@interface UINavigationController (StatusBarStyle)
+@interface UINavigationController (FixStatusBarPreferredValues)
 
 @end
 
-@implementation UINavigationController (StatusBarStyle)
+@implementation UINavigationController (FixStatusBarPreferredValues)
 
 - (BOOL)prefersStatusBarHidden
 {
