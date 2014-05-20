@@ -34,6 +34,11 @@
     })];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)pushViewController:(id)sender
 {
     UIViewController *viewController = [[UIViewController alloc] init];
