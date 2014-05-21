@@ -118,6 +118,41 @@
 }
 
 #pragma mark -
+#pragma mark Getters (Simple mode)
+
+- (BOOL)scaleContentView
+{
+    if (self.simpleMode) {
+        return NO;
+    }
+    return _scaleContentView;
+}
+
+- (BOOL)scaleMenuView
+{
+    if (self.simpleMode) {
+        return NO;
+    }
+    return _scaleMenuView;
+}
+
+- (BOOL)scaleBackgroundImageView
+{
+    if (self.simpleMode) {
+        return NO;
+    }
+    return _scaleBackgroundImageView;
+}
+
+- (BOOL)parallaxEnabled
+{
+    if (self.simpleMode) {
+        return NO;
+    }
+    return _parallaxEnabled;
+}
+
+#pragma mark -
 #pragma mark Public methods
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController rightMenuViewController:(UIViewController *)rightMenuViewController
@@ -578,9 +613,14 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
+        CGFloat contentOffset = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX : self.contentViewInPortraitOffsetCenterX;
+        CGFloat maxPanWidth = self.contentViewContainer.bounds.size.width/2 + contentOffset;
+        
         CGFloat delta = 0;
         if (self.visible) {
             delta = self.originalPoint.x != 0 ? (point.x + self.originalPoint.x) / self.originalPoint.x : 0;
+        } else if (self.simpleMode) {
+            delta = point.x / maxPanWidth;
         } else {
             delta = point.x / self.view.frame.size.width;
         }
@@ -628,6 +668,27 @@
             point.x = MAX(point.x, -[UIScreen mainScreen].bounds.size.height);
         } else {
             point.x = MIN(point.x, [UIScreen mainScreen].bounds.size.height);
+        }
+        if (self.simpleMode) {
+            if (self.leftMenuVisible && self.rightMenuVisible) {
+                NSAssert(FALSE, @"WARNING: both left and right menu visible");
+            } else if (self.leftMenuVisible) {
+                if (point.x > 0) {
+                    point.x = 0;
+                } else if (point.x < -maxPanWidth) {
+                    point.x = -maxPanWidth;
+                }
+            } else if (self.rightMenuVisible) {
+                if (point.x < 0) {
+                    point.x = 0;
+                } else if (point.x > maxPanWidth) {
+                    point.x = maxPanWidth;
+                }
+            } else if (point.x < -maxPanWidth){
+                point.x = -maxPanWidth;
+            } else if (point.x > maxPanWidth) {
+                point.x = maxPanWidth;
+            }
         }
         [recognizer setTranslation:point inView:self.view];
         
