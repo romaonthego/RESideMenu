@@ -30,9 +30,9 @@
 
 @interface RESideMenu : UIViewController <UIGestureRecognizerDelegate>
 
-@property (strong, readwrite, nonatomic) UIViewController *contentViewController;
-@property (strong, readwrite, nonatomic) UIViewController *leftMenuViewController;
-@property (strong, readwrite, nonatomic) UIViewController *rightMenuViewController;
+@property (strong, readwrite, nonatomic) IBOutlet UIViewController *contentViewController;
+@property (strong, readwrite, nonatomic) IBOutlet UIViewController *leftMenuViewController;
+@property (strong, readwrite, nonatomic) IBOutlet UIViewController *rightMenuViewController;
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
