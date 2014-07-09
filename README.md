@@ -43,7 +43,7 @@ Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'RESideMenu', '~> 4.0.4'
+pod 'RESideMenu', '~> 4.0.5'
 ```
 
 Install into your Xcode project:
