@@ -121,7 +121,7 @@ Switch content view controllers:
 ```objective-c
 - (void)awakeFromNib
 {
-    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
+    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
     self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuController"];
     self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuController"];
 }
