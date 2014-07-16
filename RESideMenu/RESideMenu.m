@@ -38,6 +38,7 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
+@property (strong, readwrite, nonatomic) UIView *contentSnapshotView;
 
 @end
 
@@ -260,6 +261,7 @@
     self.leftMenuViewController.view.hidden = NO;
     self.rightMenuViewController.view.hidden = YES;
     [self.view.window endEditing:YES];
+    [self __addSnapshotView];
     [self __addContentButton];
     [self __updateContentViewShadow];
     
@@ -285,6 +287,7 @@
         
         self.visible = YES;
         self.leftMenuVisible = YES;
+        [self __removeSnapshotView];
     }];
     
     [self __statusBarNeedsAppearanceUpdate];
@@ -298,6 +301,7 @@
     self.leftMenuViewController.view.hidden = YES;
     self.rightMenuViewController.view.hidden = NO;
     [self.view.window endEditing:YES];
+    [self __addSnapshotView];
     [self __addContentButton];
     [self __updateContentViewShadow];
     
@@ -324,6 +328,7 @@
         self.rightMenuVisible = self.visible;
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         [self __addContentViewControllerMotionEffects];
+        [self __removeSnapshotView];
     }];
     
     [self __statusBarNeedsAppearanceUpdate];
@@ -347,7 +352,7 @@
     self.leftMenuVisible = NO;
     self.rightMenuVisible = NO;
     [self.contentButton removeFromSuperview];
-    
+
     __typeof (self) __weak weakSelf = self;
     void (^animationBlock)(void) = ^{
         __typeof (weakSelf) __strong strongSelf = weakSelf;
@@ -394,6 +399,20 @@
         completionBlock();
     }
     [self __statusBarNeedsAppearanceUpdate];
+}
+
+- (void)__addSnapshotView
+{
+    self.contentSnapshotView = [self.contentViewContainer snapshotViewAfterScreenUpdates:NO];
+    [self.contentViewContainer addSubview:self.contentSnapshotView];
+}
+
+- (void)__removeSnapshotView
+{
+    if (self.contentSnapshotView) {
+        [self.contentSnapshotView removeFromSuperview];
+        self.contentSnapshotView = nil;
+    }
 }
 
 - (void)__addContentButton
