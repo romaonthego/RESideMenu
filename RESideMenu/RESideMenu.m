@@ -100,6 +100,24 @@
     _contentViewScaleValue = 0.7f;
 }
 
+#if __IPHONE_8_0
+- (void)awakeFromNib
+{
+    if (self.contentViewStoryboardID != nil)
+    {
+        self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.contentViewStoryboardID];
+    }
+    if (self.leftMenuViewStoryboardID != nil)
+    {
+        self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.leftMenuViewStoryboardID];
+    }
+    if (self.rightMenuViewStoryboardID != nil)
+    {
+        self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.rightMenuViewStoryboardID];
+    }
+}
+#endif
+
 #pragma mark -
 #pragma mark Public methods
 
