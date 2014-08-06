@@ -272,7 +272,6 @@
 	CGFloat targetContentViewContainerCenterX = isLandscape ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame);
 	CGFloat distanceLeft = abs(self.contentViewContainer.center.x - targetContentViewContainerCenterX);
 	CGFloat initalSpringVelocity = distanceLeft > 0 ? velocity / distanceLeft : 0;
-	NSLog(@"initalSpringVelocity: %f", initalSpringVelocity);
 	
     [UIView animateWithDuration:self.animationDuration
 						  delay:0
