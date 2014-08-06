@@ -254,6 +254,11 @@
 
 - (void)__showLeftMenuViewController
 {
+	[self __showLeftMenuViewControllerWithVelocity:0];
+}
+
+- (void)__showLeftMenuViewControllerWithVelocity:(CGFloat)velocity
+{
     if (!self.leftMenuViewController) {
         return;
     }
@@ -262,14 +267,25 @@
     [self.view.window endEditing:YES];
     [self __addContentButton];
     [self __updateContentViewShadow];
-    
-    [UIView animateWithDuration:self.animationDuration animations:^{
+	
+	BOOL isLandscape = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
+	CGFloat targetContentViewContainerCenterX = isLandscape ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame);
+	CGFloat distanceLeft = abs(self.contentViewContainer.center.x - targetContentViewContainerCenterX);
+	CGFloat initalSpringVelocity = distanceLeft > 0 ? velocity / distanceLeft : 0;
+	NSLog(@"initalSpringVelocity: %f", initalSpringVelocity);
+	
+    [UIView animateWithDuration:self.animationDuration
+						  delay:0
+		 usingSpringWithDamping:1
+		  initialSpringVelocity:initalSpringVelocity
+						options:0
+					 animations:^{
         if (self.scaleContentView) {
             self.contentViewContainer.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         } else {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
         }
-        self.contentViewContainer.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewContainer.center.y);
+        self.contentViewContainer.center = CGPointMake(targetContentViewContainerCenterX, self.contentViewContainer.center.y);
 
         self.menuViewContainer.alpha = 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -278,7 +294,7 @@
             
     } completion:^(BOOL finished) {
         [self __addContentViewControllerMotionEffects];
-        
+		
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.leftMenuViewController];
         }
@@ -286,11 +302,16 @@
         self.visible = YES;
         self.leftMenuVisible = YES;
     }];
-    
+	
     [self __statusBarNeedsAppearanceUpdate];
 }
 
 - (void)__showRightMenuViewController
+{
+	[self __showRightMenuViewControllerWithVelocity:0];
+}
+
+- (void)__showRightMenuViewControllerWithVelocity:(CGFloat)velocity
 {
     if (!self.rightMenuViewController) {
         return;
@@ -300,15 +321,25 @@
     [self.view.window endEditing:YES];
     [self __addContentButton];
     [self __updateContentViewShadow];
-    
+	
+	BOOL isLandscape = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
+	CGFloat targetContentViewContainerCenterX = isLandscape ? -self.contentViewInLandscapeOffsetCenterX : -self.contentViewInPortraitOffsetCenterX;
+	CGFloat distanceLeft = abs(self.contentViewContainer.center.x - targetContentViewContainerCenterX);
+	CGFloat initalSpringVelocity = distanceLeft > 0 ? velocity / distanceLeft : 0;
+	
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [UIView animateWithDuration:self.animationDuration animations:^{
+    [UIView animateWithDuration:self.animationDuration
+						  delay:0
+		 usingSpringWithDamping:1
+		  initialSpringVelocity:initalSpringVelocity
+						options:0
+					 animations:^{
         if (self.scaleContentView) {
             self.contentViewContainer.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
         } else {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
         }
-        self.contentViewContainer.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? -self.contentViewInLandscapeOffsetCenterX : -self.contentViewInPortraitOffsetCenterX), self.contentViewContainer.center.y);
+        self.contentViewContainer.center = CGPointMake(targetContentViewContainerCenterX, self.contentViewContainer.center.y);
         
         self.menuViewContainer.alpha = 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -337,6 +368,11 @@
 }
 
 - (void)__hideMenuViewControllerAnimated:(BOOL)animated
+{
+	[self __hideMenuViewControllerAnimated:animated withVelocity:0];
+}
+
+- (void)__hideMenuViewControllerAnimated:(BOOL)animated withVelocity:(CGFloat)velocity
 {
     BOOL rightMenuVisible = self.rightMenuVisible;
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
@@ -382,8 +418,17 @@
     };
     
     if (animated) {
+		CGFloat targetContentViewContainerCenterX = self.view.center.x;
+		CGFloat distanceLeft = abs(self.contentViewContainer.center.x - targetContentViewContainerCenterX);
+		CGFloat initalSpringVelocity = distanceLeft > 0 ? velocity / distanceLeft : 0;
+		
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-        [UIView animateWithDuration:self.animationDuration animations:^{
+        [UIView animateWithDuration:self.animationDuration
+							  delay:0
+			 usingSpringWithDamping:1
+			  initialSpringVelocity:initalSpringVelocity
+							options:0
+						 animations:^{
             animationBlock();
         } completion:^(BOOL finished) {
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
@@ -638,21 +683,22 @@
             [self __hideMenuViewControllerAnimated:NO];
         }
         else {
-            if ([recognizer velocityInView:self.view].x > 0) {
+			CGFloat velocityX = [recognizer velocityInView:self.view].x;
+            if (velocityX > 0) {
                 if (self.contentViewContainer.frame.origin.x < 0) {
-                    [self hideMenuViewController];
+                    [self __hideMenuViewControllerAnimated:YES withVelocity:velocityX];
                 } else {
                     if (self.leftMenuViewController) {
-                        [self __showLeftMenuViewController];
+						[self __showLeftMenuViewControllerWithVelocity:velocityX];
                     }
                 }
             } else {
                 if (self.contentViewContainer.frame.origin.x < 20) {
                     if (self.rightMenuViewController) {
-                        [self __showRightMenuViewController];
+						[self __showRightMenuViewControllerWithVelocity:-velocityX];
                     }
                 } else {
-                    [self hideMenuViewController];
+                    [self __hideMenuViewControllerAnimated:YES withVelocity:-velocityX];
                 }
             }
         }
