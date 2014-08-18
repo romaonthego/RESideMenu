@@ -77,6 +77,7 @@
     _scaleContentView = YES;
     _scaleBackgroundImageView = YES;
     _scaleMenuView = YES;
+    _fadeMenuView = YES;
     
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = -15;
@@ -213,7 +214,7 @@
     [self.contentViewContainer addSubview:self.contentViewController.view];
     [self.contentViewController didMoveToParentViewController:self];
     
-    self.menuViewContainer.alpha = 0;
+    self.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
@@ -243,7 +244,7 @@
     if (self.scaleMenuView) {
         self.menuViewContainer.transform = self.menuViewControllerTransformation;
     }
-    self.menuViewContainer.alpha = 0;
+    self.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
     if (self.scaleBackgroundImageView)
         self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
@@ -272,7 +273,7 @@
         }
         self.contentViewContainer.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewContainer.center.y);
 
-        self.menuViewContainer.alpha = 1.0f;
+        self.menuViewContainer.alpha = !self.fadeMenuView ?: 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView)
             self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -312,7 +313,7 @@
         }
         self.contentViewContainer.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? -self.contentViewInLandscapeOffsetCenterX : -self.contentViewInPortraitOffsetCenterX), self.contentViewContainer.center.y);
         
-        self.menuViewContainer.alpha = 1.0f;
+        self.menuViewContainer.alpha = !self.fadeMenuView ?: 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView)
             self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -361,7 +362,7 @@
         if (strongSelf.scaleMenuView) {
             strongSelf.menuViewContainer.transform = strongSelf.menuViewControllerTransformation;
         }
-        strongSelf.menuViewContainer.alpha = 0;
+        strongSelf.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
         if (strongSelf.scaleBackgroundImageView) {
             strongSelf.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
         }
@@ -564,7 +565,7 @@
             menuViewScale = MAX(menuViewScale, 1.0);
         }
         
-        self.menuViewContainer.alpha = delta;
+        self.menuViewContainer.alpha = !self.fadeMenuView ?: delta;
         
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);

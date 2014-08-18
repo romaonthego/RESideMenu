@@ -41,6 +41,7 @@
 @property (assign, readwrite, nonatomic) BOOL panFromEdge;
 @property (assign, readwrite, nonatomic) NSUInteger panMinimumOpenThreshold;
 @property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
+@property (assign, readwrite, nonatomic) BOOL fadeMenuView;
 @property (assign, readwrite, nonatomic) BOOL scaleContentView;
 @property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
 @property (assign, readwrite, nonatomic) BOOL scaleMenuView;
