@@ -63,6 +63,14 @@
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
 
+//
+// 3D transformations
+//
+@property (assign, readwrite, nonatomic) BOOL use3DTransform;
+@property (assign, readwrite, nonatomic) CATransform3D leftMenu3DTransform;
+@property (assign, readwrite, nonatomic) CATransform3D rightMenu3DTransform;
+
+
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController
             rightMenuViewController:(UIViewController *)rightMenuViewController;
