@@ -64,6 +64,21 @@
     return self;
 }
 
+#if __IPHONE_8_0
+- (void)awakeFromNib
+{
+    if (self.contentViewStoryboardID) {
+        self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.contentViewStoryboardID];
+    }
+    if (self.leftMenuViewStoryboardID) {
+        self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.leftMenuViewStoryboardID];
+    }
+    if (self.rightMenuViewStoryboardID) {
+        self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.rightMenuViewStoryboardID];
+    }
+}
+#endif
+
 - (void)commonInit
 {
     _menuViewContainer = [[UIView alloc] init];
