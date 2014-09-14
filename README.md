@@ -8,7 +8,7 @@ Since version 4.0 you can add menu view controllers on both left and right sides
 <img src="https://raw.githubusercontent.com/romaonthego/RESideMenu/master/Demo.gif?2" alt="RESideMenu Screenshot" width="320" height="568" />
 
 ## Requirements
-* Xcode 5 or higher
+* Xcode 6 or higher
 * Apple LLVM compiler
 * iOS 6.0 or higher
 * ARC
