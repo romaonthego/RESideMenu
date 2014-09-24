@@ -762,6 +762,7 @@
         return;
     }
 
+    
     if (!_rightMenuViewController) {
         _rightMenuViewController = rightMenuViewController;
         return;
