@@ -26,6 +26,7 @@
 		3076CE0E1809B5C500527E6C /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0A1809B5C500527E6C /* RESideMenu.m */; };
 		3076CE0F1809B5C500527E6C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */; };
 		30DF13B218DE1B0C0018463C /* DEMORightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */; };
+		F8C68E8219D2A60300AB185E /* MCBTransform3DHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C68E8119D2A60300AB185E /* MCBTransform3DHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		30DF13B018DE1B0C0018463C /* DEMORightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMORightMenuViewController.h; sourceTree = "<group>"; };
 		30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORightMenuViewController.m; sourceTree = "<group>"; };
+		F8C68E8019D2A60300AB185E /* MCBTransform3DHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCBTransform3DHandler.h; sourceTree = "<group>"; };
+		F8C68E8119D2A60300AB185E /* MCBTransform3DHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCBTransform3DHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 			children = (
 				3076CE071809B5C400527E6C /* RECommonFunctions.h */,
 				3076CE081809B5C400527E6C /* RECommonFunctions.m */,
+				F8C68E8019D2A60300AB185E /* MCBTransform3DHandler.h */,
+				F8C68E8119D2A60300AB185E /* MCBTransform3DHandler.m */,
 				3076CE091809B5C400527E6C /* RESideMenu.h */,
 				3076CE0A1809B5C500527E6C /* RESideMenu.m */,
 				3076CE0B1809B5C500527E6C /* UIViewController+RESideMenu.h */,
@@ -277,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8C68E8219D2A60300AB185E /* MCBTransform3DHandler.m in Sources */,
 				3076CE021809B59E00527E6C /* DEMOLeftMenuViewController.m in Sources */,
 				3076CE011809B59E00527E6C /* DEMOFirstViewController.m in Sources */,
 				3076CDCE1809B47200527E6C /* main.m in Sources */,

@@ -26,6 +26,7 @@
 #import "RESideMenu.h"
 #import "UIViewController+RESideMenu.h"
 #import "RECommonFunctions.h"
+#import "MCBTransform3DHandler.h"
 
 @interface RESideMenu ()
 
@@ -38,6 +39,8 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
+
+@property (nonatomic, strong) MCBTransform3DPerspectiveRotation *perspectiveHandler;
 
 @end
 
@@ -66,6 +69,8 @@
 
 - (void)__commonInit
 {
+    self.perspectiveHandler = [[MCBTransform3DPerspectiveRotation alloc] init];
+    
     _menuViewContainer = [[UIView alloc] init];
     _contentViewContainer = [[UIView alloc] init];
     
@@ -635,12 +640,26 @@
         }
         
         if (contentViewScale > 1) {
-            CGFloat oppositeScale = (1 - (contentViewScale - 1));
-            self.contentViewContainer.transform = CGAffineTransformMakeScale(oppositeScale, oppositeScale);
-            self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+            CGFloat oppositeScale = (1 - (contentViewScale/self.contentViewScaleValue - 1));
+            if (self.use3DTransform)
+            {
+                self.contentViewContainer.layer.transform = [self.perspectiveHandler interpolatedTransformWithScale:oppositeScale];
+            }
+            else
+            {
+                self.contentViewContainer.transform = CGAffineTransformMakeScale(oppositeScale, oppositeScale);
+                self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+            }
         } else {
-            self.contentViewContainer.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
-            self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+            if (self.use3DTransform)
+            {
+                self.contentViewContainer.layer.transform = [self.perspectiveHandler interpolatedTransformWithScale:contentViewScale/self.contentViewScaleValue];
+            }
+            else
+            {
+                self.contentViewContainer.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
+                self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+            }
         }
         
         self.leftMenuViewController.view.hidden = self.contentViewContainer.frame.origin.x < 0;
