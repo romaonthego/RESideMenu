@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
+#import "MCBTransform3DHandler.h"
 #import "DEMORootViewController.h"
 #import "DEMOLeftMenuViewController.h"
 
@@ -47,12 +48,17 @@
     // 3D transformation
     // left menu
     //
+    /*
     CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
     rotationAndPerspectiveTransform.m34 = 1.0 / -500;
     rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, -25 * M_PI / 180.0f, 0.0f, 1.0f, 0.0f);
     rotationAndPerspectiveTransform = CATransform3DTranslate(rotationAndPerspectiveTransform, 170, 0, 0);
     rotationAndPerspectiveTransform = CATransform3DScale(rotationAndPerspectiveTransform, self.contentViewScaleValue, self.contentViewScaleValue, 1);
     self.leftMenu3DTransform = rotationAndPerspectiveTransform;
+    */
+    
+    MCBTransform3DPerspectiveRotation *transformHandler = [[MCBTransform3DPerspectiveRotation alloc] init];
+    self.leftMenu3DTransform = [transformHandler interpolatedTransformWithScale:1.0f];
     
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
     self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuViewController"];

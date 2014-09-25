@@ -268,7 +268,10 @@
     [self.view.window endEditing:YES];
     [self __addContentButton];
     [self __updateContentViewShadow];
-    [self __resetContentViewScale];
+    if (!self.use3DTransform)
+    {
+        [self __resetContentViewScale];
+    }
     
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (!self.use3DTransform)
@@ -281,13 +284,15 @@
             {
                 self.contentViewContainer.transform = CGAffineTransformIdentity;
             }
+            
+            self.contentViewContainer.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewContainer.center.y);
         }
         else
         {
             self.contentViewContainer.layer.transform = self.leftMenu3DTransform;
         }
         
-        self.contentViewContainer.center = CGPointMake((UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetHeight(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)), self.contentViewContainer.center.y);
+
         
         self.menuViewContainer.alpha = !self.fadeMenuView ?: 1.0f;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -559,8 +564,16 @@
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self __updateContentViewShadow];
         
-        self.originalPoint = CGPointMake(self.contentViewContainer.center.x - CGRectGetWidth(self.contentViewContainer.bounds) / 2.0,
+        if (self.use3DTransform)
+        {
+            self.originalPoint = point;
+        }
+        else
+        {
+            self.originalPoint = CGPointMake(self.contentViewContainer.center.x - CGRectGetWidth(self.contentViewContainer.bounds) / 2.0,
                                          self.contentViewContainer.center.y - CGRectGetHeight(self.contentViewContainer.bounds) / 2.0);
+        }
+        
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -574,13 +587,26 @@
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
         CGFloat delta = 0;
+        CGFloat contentViewDelta = 0;
+        
         if (self.visible) {
-            delta = self.originalPoint.x != 0 ? (point.x + self.originalPoint.x) / self.originalPoint.x : 0;
+            if (self.use3DTransform)
+            {
+                contentViewDelta = 1.0f - ((MAX(self.originalPoint.x-point.x, 0)/self.view.frame.size.width)*2);
+            }
+            //delta = self.originalPoint.x != 0 ? (point.x + self.originalPoint.x) / self.originalPoint.x : 0;
+            delta = point.x / self.view.frame.size.width;
+
         } else {
             delta = point.x / self.view.frame.size.width;
         }
+
+        //
         delta = MIN(fabs(delta), 1.6);
-        
+        contentViewDelta = MAX(contentViewDelta, 0);
+        delta = contentViewDelta;
+
+        //NSLog(@"delta: %f", delta);
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         
         CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
@@ -653,7 +679,7 @@
         } else {
             if (self.use3DTransform)
             {
-                self.contentViewContainer.layer.transform = [self.perspectiveHandler interpolatedTransformWithScale:contentViewScale/self.contentViewScaleValue];
+                self.contentViewContainer.layer.transform = [self.perspectiveHandler interpolatedTransformWithScale:contentViewDelta];
             }
             else
             {

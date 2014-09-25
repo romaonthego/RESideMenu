@@ -233,6 +233,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Roman Efimov";
 				TargetAttributes = {
+					3076CDBD1809B47200527E6C = {
+						DevelopmentTeam = 8DEWPT2VGB;
+					};
 					3076CDDE1809B47200527E6C = {
 						TestTargetID = 3076CDBD1809B47200527E6C;
 					};
@@ -408,11 +411,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -423,11 +429,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
