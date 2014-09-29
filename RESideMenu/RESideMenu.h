@@ -26,9 +26,19 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+RESideMenu.h"
 
+#ifndef IBInspectable
+#define IBInspectable
+#endif
+
 @protocol RESideMenuDelegate;
 
 @interface RESideMenu : UIViewController <UIGestureRecognizerDelegate>
+
+#if __IPHONE_8_0
+@property (strong, readwrite, nonatomic) IBInspectable NSString *contentViewStoryboardID;
+@property (strong, readwrite, nonatomic) IBInspectable NSString *leftMenuViewStoryboardID;
+@property (strong, readwrite, nonatomic) IBInspectable NSString *rightMenuViewStoryboardID;
+#endif
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *leftMenuViewController;
@@ -40,27 +50,28 @@
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) BOOL panFromEdge;
 @property (assign, readwrite, nonatomic) NSUInteger panMinimumOpenThreshold;
-@property (assign, readwrite, nonatomic) BOOL interactivePopGestureRecognizerEnabled;
-@property (assign, readwrite, nonatomic) BOOL scaleContentView;
-@property (assign, readwrite, nonatomic) BOOL scaleBackgroundImageView;
-@property (assign, readwrite, nonatomic) BOOL scaleMenuView;
-@property (assign, readwrite, nonatomic) BOOL contentViewShadowEnabled;
-@property (strong, readwrite, nonatomic) UIColor *contentViewShadowColor;
-@property (assign, readwrite, nonatomic) CGSize contentViewShadowOffset;
-@property (assign, readwrite, nonatomic) CGFloat contentViewShadowOpacity;
-@property (assign, readwrite, nonatomic) CGFloat contentViewShadowRadius;
-@property (assign, readwrite, nonatomic) CGFloat contentViewScaleValue;
-@property (assign, readwrite, nonatomic) CGFloat contentViewInLandscapeOffsetCenterX;
-@property (assign, readwrite, nonatomic) CGFloat contentViewInPortraitOffsetCenterX;
-@property (assign, readwrite, nonatomic) CGFloat parallaxMenuMinimumRelativeValue;
-@property (assign, readwrite, nonatomic) CGFloat parallaxMenuMaximumRelativeValue;
-@property (assign, readwrite, nonatomic) CGFloat parallaxContentMinimumRelativeValue;
-@property (assign, readwrite, nonatomic) CGFloat parallaxContentMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL interactivePopGestureRecognizerEnabled;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL fadeMenuView;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL scaleContentView;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL scaleBackgroundImageView;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL scaleMenuView;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL contentViewShadowEnabled;
+@property (strong, readwrite, nonatomic) IBInspectable UIColor *contentViewShadowColor;
+@property (assign, readwrite, nonatomic) IBInspectable CGSize contentViewShadowOffset;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat contentViewShadowOpacity;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat contentViewShadowRadius;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat contentViewScaleValue;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat contentViewInLandscapeOffsetCenterX;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat contentViewInPortraitOffsetCenterX;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxMenuMinimumRelativeValue;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxMenuMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxContentMinimumRelativeValue;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxContentMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
-@property (assign, readwrite, nonatomic) BOOL parallaxEnabled;
-@property (assign, readwrite, nonatomic) BOOL bouncesHorizontally;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL parallaxEnabled;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
-@property (assign, readwrite, nonatomic) BOOL menuPrefersStatusBarHidden;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController

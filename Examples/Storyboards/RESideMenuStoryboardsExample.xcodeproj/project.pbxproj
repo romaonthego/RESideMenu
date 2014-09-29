@@ -15,9 +15,6 @@
 		3076CDD21809B47200527E6C /* DEMOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDD11809B47200527E6C /* DEMOAppDelegate.m */; };
 		3076CDD51809B47200527E6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3076CDD31809B47200527E6C /* Main.storyboard */; };
 		3076CDDA1809B47200527E6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3076CDD91809B47200527E6C /* Images.xcassets */; };
-		3076CDE11809B47200527E6C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076CDE01809B47200527E6C /* XCTest.framework */; };
-		3076CDE21809B47200527E6C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076CDC11809B47200527E6C /* Foundation.framework */; };
-		3076CDE31809B47200527E6C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3076CDC51809B47200527E6C /* UIKit.framework */; };
 		3076CE011809B59E00527E6C /* DEMOFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */; };
 		3076CE021809B59E00527E6C /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */; };
 		3076CE041809B59E00527E6C /* DEMORootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFE1809B59E00527E6C /* DEMORootViewController.m */; };
@@ -27,16 +24,6 @@
 		3076CE0F1809B5C500527E6C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */; };
 		30DF13B218DE1B0C0018463C /* DEMORightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3076CDE41809B47200527E6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3076CDB61809B47200527E6C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3076CDBD1809B47200527E6C;
-			remoteInfo = RESideMenuStoryboardsExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3076CDBE1809B47200527E6C /* RESideMenuStoryboardsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RESideMenuStoryboardsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +38,6 @@
 		3076CDD11809B47200527E6C /* DEMOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMOAppDelegate.m; sourceTree = "<group>"; };
 		3076CDD41809B47200527E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3076CDD91809B47200527E6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3076CDDF1809B47200527E6C /* RESideMenuStoryboardsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RESideMenuStoryboardsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3076CDE01809B47200527E6C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3076CDF71809B59E00527E6C /* DEMOFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOFirstViewController.h; sourceTree = "<group>"; };
 		3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOFirstViewController.m; sourceTree = "<group>"; };
@@ -82,16 +68,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3076CDDC1809B47200527E6C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3076CDE11809B47200527E6C /* XCTest.framework in Frameworks */,
-				3076CDE31809B47200527E6C /* UIKit.framework in Frameworks */,
-				3076CDE21809B47200527E6C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				3076CDBE1809B47200527E6C /* RESideMenuStoryboardsExample.app */,
-				3076CDDF1809B47200527E6C /* RESideMenuStoryboardsExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,24 +175,6 @@
 			productReference = 3076CDBE1809B47200527E6C /* RESideMenuStoryboardsExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3076CDDE1809B47200527E6C /* RESideMenuStoryboardsExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3076CDF31809B47200527E6C /* Build configuration list for PBXNativeTarget "RESideMenuStoryboardsExampleTests" */;
-			buildPhases = (
-				3076CDDB1809B47200527E6C /* Sources */,
-				3076CDDC1809B47200527E6C /* Frameworks */,
-				3076CDDD1809B47200527E6C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3076CDE51809B47200527E6C /* PBXTargetDependency */,
-			);
-			name = RESideMenuStoryboardsExampleTests;
-			productName = RESideMenuStoryboardsExampleTests;
-			productReference = 3076CDDF1809B47200527E6C /* RESideMenuStoryboardsExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -227,11 +184,6 @@
 				CLASSPREFIX = DEMO;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Roman Efimov";
-				TargetAttributes = {
-					3076CDDE1809B47200527E6C = {
-						TestTargetID = 3076CDBD1809B47200527E6C;
-					};
-				};
 			};
 			buildConfigurationList = 3076CDB91809B47200527E6C /* Build configuration list for PBXProject "RESideMenuStoryboardsExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -247,7 +199,6 @@
 			projectRoot = "";
 			targets = (
 				3076CDBD1809B47200527E6C /* RESideMenuStoryboardsExample */,
-				3076CDDE1809B47200527E6C /* RESideMenuStoryboardsExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -260,13 +211,6 @@
 				3076CDDA1809B47200527E6C /* Images.xcassets in Resources */,
 				3076CDCC1809B47200527E6C /* InfoPlist.strings in Resources */,
 				3076CDD51809B47200527E6C /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3076CDDD1809B47200527E6C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,22 +234,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3076CDDB1809B47200527E6C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3076CDE51809B47200527E6C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3076CDBD1809B47200527E6C /* RESideMenuStoryboardsExample */;
-			targetProxy = 3076CDE41809B47200527E6C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3076CDCA1809B47200527E6C /* InfoPlist.strings */ = {
@@ -405,7 +334,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -420,50 +349,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		3076CDF41809B47200527E6C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RESideMenuStoryboardsExample.app/RESideMenuStoryboardsExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "RESideMenuStoryboardsExampleTests/RESideMenuStoryboardsExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3076CDF51809B47200527E6C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RESideMenuStoryboardsExample.app/RESideMenuStoryboardsExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
-				INFOPLIST_FILE = "RESideMenuStoryboardsExampleTests/RESideMenuStoryboardsExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -484,15 +373,6 @@
 			buildConfigurations = (
 				3076CDF11809B47200527E6C /* Debug */,
 				3076CDF21809B47200527E6C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3076CDF31809B47200527E6C /* Build configuration list for PBXNativeTarget "RESideMenuStoryboardsExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3076CDF41809B47200527E6C /* Debug */,
-				3076CDF51809B47200527E6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

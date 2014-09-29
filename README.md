@@ -1,6 +1,6 @@
 # RESideMenu
 
-iOS 7 style side menu with parallax effect inspired by Dribbble shots ([first](http://dribbble.com/shots/1116265-Instasave-iPhone-App) and [second](http://dribbble.com/shots/1114754-Social-Feed-iOS7)).
+iOS 7/8 style side menu with parallax effect inspired by Dribbble shots ([first](http://dribbble.com/shots/1116265-Instasave-iPhone-App) and [second](http://dribbble.com/shots/1114754-Social-Feed-iOS7)).
 
 Since version 4.0 you can add menu view controllers on both left and right sides of your content view controller.
 
@@ -8,7 +8,7 @@ Since version 4.0 you can add menu view controllers on both left and right sides
 <img src="https://raw.githubusercontent.com/romaonthego/RESideMenu/master/Demo.gif?2" alt="RESideMenu Screenshot" width="320" height="568" />
 
 ## Requirements
-* Xcode 5 or higher
+* Xcode 6 or higher
 * Apple LLVM compiler
 * iOS 6.0 or higher
 * ARC
@@ -43,7 +43,7 @@ Edit your Podfile and add RESideMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'RESideMenu', '~> 4.0.5'
+pod 'RESideMenu', '~> 4.0.7'
 ```
 
 Install into your Xcode project:
