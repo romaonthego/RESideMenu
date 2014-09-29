@@ -30,9 +30,9 @@
 @interface RESideMenu ()
 
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
-@property (assign, readwrite, nonatomic) BOOL visible;
-@property (assign, readwrite, nonatomic) BOOL leftMenuVisible;
-@property (assign, readwrite, nonatomic) BOOL rightMenuVisible;
+@property (assign, readwrite, nonatomic, getter=isVisible) BOOL visible;
+@property (assign, readwrite, nonatomic, getter=isLeftMenuVisible) BOOL leftMenuVisible;
+@property (assign, readwrite, nonatomic, getter=isRightMenuVisible) BOOL rightMenuVisible;
 @property (assign, readwrite, nonatomic) CGPoint originalPoint;
 @property (strong, readwrite, nonatomic) UIButton *contentButton;
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;

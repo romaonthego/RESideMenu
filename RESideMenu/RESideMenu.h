@@ -73,6 +73,10 @@
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
 
+@property (assign, readonly, nonatomic, getter=isVisible) BOOL visible;
+@property (assign, readonly, nonatomic, getter=isLeftMenuVisible) BOOL leftMenuVisible;
+@property (assign, readonly, nonatomic, getter=isRightMenuVisible) BOOL rightMenuVisible;
+
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController
             rightMenuViewController:(UIViewController *)rightMenuViewController;
