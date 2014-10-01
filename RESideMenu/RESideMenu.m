@@ -708,6 +708,14 @@
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         self.didNotifyDelegate = NO;
+        
+        if (self.panMinimumOpenThreshold > 0 && self.contentViewContainer.frame.origin.x == 0 && self.use3DTransform && [recognizer velocityInView:self.view].x > 0 && self.leftMenuViewController)
+        {
+            //
+            // Fixes the issue when the menu doesn't open with swipe gesture when using 3Dtransform - ugly hack
+            //
+            [self __showLeftMenuViewController];
+        }
         if (self.panMinimumOpenThreshold > 0 && (
                                                  (self.contentViewContainer.frame.origin.x < 0 && self.contentViewContainer.frame.origin.x > -((NSInteger)self.panMinimumOpenThreshold)) ||
                                                  (self.contentViewContainer.frame.origin.x > 0 && self.contentViewContainer.frame.origin.x < self.panMinimumOpenThreshold))
