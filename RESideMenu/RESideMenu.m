@@ -598,6 +598,11 @@
             delta = point.x / self.view.frame.size.width;
 
         } else {
+            if (self.use3DTransform)
+            {
+                contentViewDelta = - ((MIN(self.originalPoint.x-point.x, 1)/self.view.frame.size.width)*2);
+                contentViewDelta = MIN(contentViewDelta, 1);
+            }
             delta = point.x / self.view.frame.size.width;
         }
 
