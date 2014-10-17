@@ -180,6 +180,7 @@
         imageView.image = self.backgroundImage;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        imageView.layer.transform = CATransform3DMakeTranslation(0, 0, -10); // move the layer slightly back so we don't get any overlap when animating views - fixes iphone 6 animation bug
         imageView;
     });
     self.contentButton = ({
