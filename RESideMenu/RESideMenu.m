@@ -591,6 +591,7 @@
         }
         
         self.menuViewContainer.alpha = !self.fadeMenuView ?: delta;
+        self.contentViewContainer.alpha = 1 - (1 - self.contentViewFadeOutAlpha) * delta;
         
         if (self.scaleBackgroundImageView) {
             self.backgroundImageView.transform = CGAffineTransformMakeScale(backgroundViewScale, backgroundViewScale);
