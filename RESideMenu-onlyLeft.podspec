@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name        = 'RESideMenu'
-  s.version     = '4.0.7'
-  s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
-  s.homepage    = 'https://github.com/romaonthego/RESideMenu'
-  s.summary     = 'iOS 7 style side menu with parallax effect.'
-  s.source      = { :git => 'https://github.com/romaonthego/RESideMenu.git',
+  s.name        = 'RESideMenu-onlyLeft'
+  s.version     = '1.0'
+  s.authors     = { 'Jongsu Park' => 'pjs7678@gmail.com' }
+  s.homepage    = 'https://github.com/pjs7678/RESideMenu'
+  s.summary     = 'RESideMenu with right panning option.'
+  s.source      = { :git => 'https://github.com/pjs7678/RESideMenu.git',
                     :tag => s.version.to_s }
   s.license     = { :type => "MIT", :file => "LICENSE" }
 
