@@ -554,7 +554,7 @@
     }
     
     CGPoint point = [recognizer translationInView:self.view];
-    if (point.x <= 0 && !self.rightPanEnabled) {
+    if (point.x <= 0 && !self.rightPanEnabled && !self.leftMenuVisible) {
         return;
     }
     
