@@ -33,6 +33,7 @@
 @property (assign, readwrite, nonatomic) BOOL visible;
 @property (assign, readwrite, nonatomic) BOOL leftMenuVisible;
 @property (assign, readwrite, nonatomic) BOOL rightMenuVisible;
+@property (assign, readwrite, nonatomic) BOOL contentVisible;
 @property (assign, readwrite, nonatomic) CGPoint originalPoint;
 @property (strong, readwrite, nonatomic) UIButton *contentButton;
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
@@ -143,9 +144,30 @@
     [self showRightMenuViewController];
 }
 
+- (void)presentContentViewController
+{
+    [UIView beginAnimations:nil context:NULL];
+    self.contentViewContainer.alpha    = 1.0f;
+    [UIView commitAnimations];
+    
+    self.contentVisible     = YES;
+}
+
 - (void)hideMenuViewController
 {
     [self hideMenuViewControllerAnimated:YES];
+}
+
+- (void)hideContentViewController
+{
+    if (self.leftMenuVisible || self.rightMenuVisible)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        self.contentViewContainer.alpha    = 0.0f;
+        [UIView commitAnimations];
+        
+        self.contentVisible     = NO;
+    }
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
@@ -684,12 +706,31 @@
                     if (self.leftMenuViewController) {
                         [self showLeftMenuViewController];
                     }
+                    
+                    if (self.contentVisible)
+                    {
+                        [self presentContentViewController];
+                    }
+                    else
+                    {
+                        [self hideContentViewController];
+                    }
                 }
             } else {
                 if (self.contentViewContainer.frame.origin.x < 20) {
                     if (self.rightMenuViewController) {
                         [self showRightMenuViewController];
                     }
+                    
+                    if (self.contentVisible)
+                    {
+                        [self presentContentViewController];
+                    }
+                    else
+                    {
+                        [self hideContentViewController];
+                    }
+                    
                 } else {
                     [self hideMenuViewController];
                 }
