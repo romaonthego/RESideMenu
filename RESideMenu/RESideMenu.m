@@ -116,6 +116,8 @@
     _contentViewInLandscapeOffsetCenterX = 30.f;
     _contentViewInPortraitOffsetCenterX  = 30.f;
     _contentViewScaleValue = 0.7f;
+    
+    _contentVisible = YES;
 }
 
 #pragma mark -
