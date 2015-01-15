@@ -7,6 +7,11 @@ Since version 4.0 you can add menu view controllers on both left and right sides
 <img src="https://github.com/romaonthego/RESideMenu/raw/master/Screenshot.png" alt="RESideMenu Screenshot" width="400" height="568" />
 <img src="https://raw.githubusercontent.com/romaonthego/RESideMenu/master/Demo.gif?2" alt="RESideMenu Screenshot" width="320" height="568" />
 
+slip type.
+
+<img src="https://github.com/leiyong316/RESideMenu/blob/master/ScreenShot1.png" alt="RESideMenu Screenshot1" width="320" height="568" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/leiyong316/RESideMenu/blob/master/Demo1.gif?2" alt="RESideMenu Screenshot1" width="320" height="568" />
+
 ## Requirements
 * Xcode 6 or higher
 * Apple LLVM compiler
