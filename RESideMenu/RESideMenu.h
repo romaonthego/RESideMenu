@@ -26,6 +26,11 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+RESideMenu.h"
 
+typedef NS_ENUM(NSInteger, RESideMenuType) {
+    RESideMenuTypeScale,            //default
+    RESideMenuTypeSlip
+};
+
 #ifndef IBInspectable
 #define IBInspectable
 #endif
@@ -73,6 +78,8 @@
 @property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
+@property (assign, readwrite, nonatomic) RESideMenuType sideMenuType;
+
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController
