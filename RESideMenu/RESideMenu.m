@@ -94,6 +94,9 @@
     _scaleMenuView = YES;
     _fadeMenuView = YES;
     
+    _clipLeftMenuView = NO;
+    _clipRightMenuView = NO;
+    
     _parallaxEnabled = YES;
     _parallaxMenuMinimumRelativeValue = -15;
     _parallaxMenuMaximumRelativeValue = 15;
@@ -299,7 +302,12 @@
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView)
             self.backgroundImageView.transform = CGAffineTransformIdentity;
-            
+        
+        if (self.clipLeftMenuView) {
+            CGFloat finalWidth = self.view.frame.size.width / 2.0 + self.contentViewInPortraitOffsetCenterX;
+            self.menuViewContainer.frame = CGRectMake(0.0, 0.0, finalWidth, self.view.bounds.size.height);
+        }
+        
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
         
@@ -340,6 +348,11 @@
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView)
             self.backgroundImageView.transform = CGAffineTransformIdentity;
+        
+        if (self.clipRightMenuView) {
+            CGFloat finalWidth = self.view.frame.size.width / 2.0 + self.contentViewInPortraitOffsetCenterX;
+            self.menuViewContainer.frame = CGRectMake(self.view.frame.size.width - finalWidth, 0.0, finalWidth, self.view.bounds.size.height);
+        }
         
     } completion:^(BOOL finished) {
         if (!self.rightMenuVisible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
@@ -398,6 +411,11 @@
                }
             );
         }
+        
+        if (self.clipLeftMenuView || self.clipRightMenuView) {
+            strongSelf.menuViewContainer.frame = CGRectMake(0.0, 0.0, 0.0, self.view.bounds.size.height);
+        }
+
     };
     void (^completionBlock)(void) = ^{
         __typeof (weakSelf) __strong strongSelf = weakSelf;
@@ -696,6 +714,15 @@
             }
         }
     }
+    
+    if (self.leftMenuViewController && self.clipLeftMenuView) {
+        CGFloat width = self.contentViewContainer.frame.origin.x;
+        self.menuViewContainer.frame = CGRectMake(0.0, 0.0, width, self.view.bounds.size.height);
+    }
+    if (self.rightMenuViewController && self.clipRightMenuView) {
+        CGFloat width = - self.contentViewContainer.frame.origin.x;
+        self.menuViewContainer.frame = CGRectMake(self.view.frame.size.width - width, 0.0, width, self.view.bounds.size.height);
+    }
 }
 
 #pragma mark -
@@ -744,6 +771,10 @@
     [self.menuViewContainer addSubview:self.leftMenuViewController.view];
     [self.leftMenuViewController didMoveToParentViewController:self];
     
+    if (self.clipLeftMenuView) {
+        self.leftMenuViewController.view.clipsToBounds = true;
+    }
+    
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewContainer];
 }
@@ -763,8 +794,26 @@
     [self.menuViewContainer addSubview:self.rightMenuViewController.view];
     [self.rightMenuViewController didMoveToParentViewController:self];
     
+    if (self.rightMenuViewController) {
+        self.rightMenuViewController.view.clipsToBounds = true;
+    }
+    
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewContainer];
+}
+
+- (void)setClipLeftMenuView:(BOOL)clipLeftMenuView {
+    _clipLeftMenuView = clipLeftMenuView;
+    if (self.leftMenuViewController) {
+        self.leftMenuViewController.view.clipsToBounds = clipLeftMenuView;
+    }
+}
+
+- (void)setClipRightMenuView:(BOOL)clipRightMenuView {
+    _clipRightMenuView = clipRightMenuView;
+    if (self.rightMenuViewController) {
+        self.rightMenuViewController.view.clipsToBounds = clipRightMenuView;
+    }
 }
 
 #pragma mark -
