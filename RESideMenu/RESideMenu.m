@@ -758,6 +758,10 @@
 
 - (void)setLeftMenuViewController:(UIViewController *)leftMenuViewController
 {
+    if (self.clipLeftMenuView) {
+        leftMenuViewController.view.clipsToBounds = true;
+    }
+    
     if (!_leftMenuViewController) {
         _leftMenuViewController = leftMenuViewController;
         return;
@@ -770,10 +774,6 @@
     self.leftMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.menuViewContainer addSubview:self.leftMenuViewController.view];
     [self.leftMenuViewController didMoveToParentViewController:self];
-    
-    if (self.clipLeftMenuView) {
-        self.leftMenuViewController.view.clipsToBounds = true;
-    }
     
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewContainer];
