@@ -259,7 +259,9 @@
         self.backgroundImageView.transform = CGAffineTransformIdentity;
         self.backgroundImageView.frame = self.view.bounds;
     }
-    self.menuViewContainer.frame = self.view.bounds;
+    if (!self.clipLeftMenuView) {
+        self.menuViewContainer.frame = self.view.bounds;
+    }
     if (self.scaleMenuView) {
         self.menuViewContainer.transform = self.menuViewControllerTransformation;
     }
@@ -283,6 +285,11 @@
     [self addContentButton];
     [self updateContentViewShadow];
     [self resetContentViewScale];
+    
+    if (self.clipLeftMenuView) {
+        CGFloat width = self.contentViewContainer.frame.origin.x;
+        self.menuViewContainer.frame = CGRectMake(0.0, 0.0, width, self.view.bounds.size.height);
+    }
     
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
@@ -333,6 +340,11 @@
     [self addContentButton];
     [self updateContentViewShadow];
     [self resetContentViewScale];
+    
+    if (self.clipRightMenuView) {
+        CGFloat width = - self.contentViewContainer.frame.origin.x;
+        self.menuViewContainer.frame = CGRectMake(self.view.frame.size.width - width, 0.0, width, self.view.bounds.size.height);
+    }
     
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:self.animationDuration animations:^{
