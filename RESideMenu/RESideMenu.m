@@ -37,6 +37,8 @@
 @property (strong, readwrite, nonatomic) UIButton *contentButton;
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
+@property (strong, readwrite, nonatomic) UIView *leftShadowView;
+@property (strong, readwrite, nonatomic) UIView *rightShadowView;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
 
 @end
@@ -477,8 +479,52 @@
 - (void)updateContentViewShadow
 {
     if (self.contentViewShadowEnabled) {
-        CALayer *layer = self.contentViewContainer.layer;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
+        
+        UIBezierPath *path = nil;
+        CALayer *layer = nil;
+        
+        if (self.contentViewClipShadowUnderView) {
+            if (self.leftMenuViewController) {
+                if (!self.leftShadowView) {
+                    // Create shadow view
+                    UIView *shadowView = [UIView new];
+                    shadowView.backgroundColor = [UIColor clearColor];
+                    shadowView.frame = CGRectMake(- (self.contentViewShadowRadius + 1) * 2, 0, (self.contentViewShadowRadius + 1) * 2, self.contentViewContainer.frame.size.height);
+                    shadowView.clipsToBounds = YES;
+                    [self.contentViewContainer addSubview:shadowView];
+                    self.leftShadowView = shadowView;
+                }
+                
+                CGRect shadowRect = self.contentViewContainer.bounds;
+                shadowRect.origin.x = self.leftShadowView.frame.size.width;
+                path = [UIBezierPath bezierPathWithRect:shadowRect];
+                layer = self.leftShadowView.layer;
+            }
+            
+            if (self.rightMenuViewController) {
+                if (!self.rightShadowView) {
+                    // Create shadow view
+                    UIView *shadowView = [UIView new];
+                    shadowView.backgroundColor = [UIColor clearColor];
+                    shadowView.frame = CGRectMake(self.contentViewContainer.frame.size.width,
+                                                  0,
+                                                  (self.contentViewShadowRadius + 1) * 2,
+                                                  self.contentViewContainer.frame.size.height);
+                    shadowView.clipsToBounds = YES;
+                    [self.contentViewContainer addSubview:shadowView];
+                    self.leftShadowView = shadowView;
+                }
+                
+                CGRect shadowRect = self.contentViewContainer.bounds;
+                shadowRect.origin.x = -self.contentViewContainer.frame.size.width;
+                path = [UIBezierPath bezierPathWithRect:shadowRect];
+                layer = self.rightShadowView.layer;
+            }
+        } else {
+            path = [UIBezierPath bezierPathWithRect:layer.bounds];
+            layer = self.contentViewContainer.layer;
+        }
+        
         layer.shadowPath = path.CGPath;
         layer.shadowColor = self.contentViewShadowColor.CGColor;
         layer.shadowOffset = self.contentViewShadowOffset;

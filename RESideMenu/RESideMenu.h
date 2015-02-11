@@ -58,6 +58,7 @@
 @property (assign, readwrite, nonatomic) IBInspectable BOOL contentViewShadowEnabled;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL clipLeftMenuView;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL clipRightMenuView;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL contentViewClipShadowUnderView;
 @property (strong, readwrite, nonatomic) IBInspectable UIColor *contentViewShadowColor;
 @property (assign, readwrite, nonatomic) IBInspectable CGSize contentViewShadowOffset;
 @property (assign, readwrite, nonatomic) IBInspectable CGFloat contentViewShadowOpacity;
