@@ -561,6 +561,10 @@
         }
     }
     
+    if (!self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+        return NO;
+    }
+    
     return YES;
 }
 
