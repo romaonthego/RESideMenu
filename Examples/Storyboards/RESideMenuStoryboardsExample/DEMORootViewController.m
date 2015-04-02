@@ -17,6 +17,7 @@
 
 - (void)awakeFromNib
 {
+    self.sideMenuType = RESideMenuTypeSlip;
     self.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
     self.contentViewShadowColor = [UIColor blackColor];
     self.contentViewShadowOffset = CGSizeMake(0, 0);
