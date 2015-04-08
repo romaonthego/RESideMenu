@@ -38,7 +38,7 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
-
+@property (strong, readwrite, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @end
 
 @implementation RESideMenu
@@ -102,6 +102,8 @@
     
     _bouncesHorizontally = YES;
     
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+    _panGestureRecognizer.delegate = self;
     _panGestureEnabled = YES;
     _panFromEdge = YES;
     _panMinimumOpenThreshold = 60.0;
@@ -238,9 +240,7 @@
     
     if (self.panGestureEnabled) {
         self.view.multipleTouchEnabled = NO;
-        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
-        panGestureRecognizer.delegate = self;
-        [self.view addGestureRecognizer:panGestureRecognizer];
+        [self.view addGestureRecognizer:self.panGestureRecognizer];
     }
     
     [self updateContentViewShadow];
@@ -707,6 +707,19 @@
 
 #pragma mark -
 #pragma mark Setters
+
+- (void)setPanGestureEnabled:(BOOL)panGestureEnabled {
+    if (_panGestureEnabled != panGestureEnabled) {
+        _panGestureEnabled = panGestureEnabled;
+        if (!_panGestureEnabled) {
+            self.view.multipleTouchEnabled = YES;
+            [self.view removeGestureRecognizer:self.panGestureRecognizer];
+        } else {
+            self.view.multipleTouchEnabled = NO;
+            [self.view addGestureRecognizer:self.panGestureRecognizer];
+        }
+    }
+}
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage
 {
