@@ -550,7 +550,7 @@
 #pragma mark -
 #pragma mark Pan gesture recognizer (Private)
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
+- (IBAction)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
         [self.delegate sideMenu:self didRecognizePanGesture:recognizer];

@@ -82,6 +82,8 @@
 - (void)hideMenuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 
+- (IBAction)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
+
 @end
 
 @protocol RESideMenuDelegate <NSObject>
