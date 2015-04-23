@@ -38,6 +38,7 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
+@property (assign, readwrite, nonatomic) BOOL contentViewControllerChanged;
 
 @end
 
@@ -152,9 +153,11 @@
 {
     if (_contentViewController == contentViewController)
     {
+        self.contentViewControllerChanged = NO;
         return;
     }
-    
+    self.contentViewControllerChanged = YES;
+
     if (!animated) {
         [self setContentViewController:contentViewController];
     } else {
@@ -371,8 +374,13 @@
     BOOL rightMenuVisible = self.rightMenuVisible;
     UIViewController *visibleMenuViewController = rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController;
     [visibleMenuViewController beginAppearanceTransition:NO animated:animated];
-    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
-        [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController];
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)]) {
+        if ([self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
+            [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController];
+        }
+        if ([self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:contentViewControllerChanged:)]) {
+            [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController contentViewControllerChanged:self.contentViewControllerChanged];
+        }
     }
     
     self.visible = NO;
@@ -411,8 +419,13 @@
             return;
         }
         [visibleMenuViewController endAppearanceTransition];
-        if (!strongSelf.visible && [strongSelf.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [strongSelf.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
-            [strongSelf.delegate sideMenu:strongSelf didHideMenuViewController:rightMenuVisible ? strongSelf.rightMenuViewController : strongSelf.leftMenuViewController];
+        if (!strongSelf.visible && [strongSelf.delegate conformsToProtocol:@protocol(RESideMenuDelegate)]) {
+            if ([strongSelf.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
+                [strongSelf.delegate sideMenu:strongSelf didHideMenuViewController:rightMenuVisible ? strongSelf.rightMenuViewController : strongSelf.leftMenuViewController];
+            }
+            if ([strongSelf.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:contentViewControllerChanged:)]) {
+                [strongSelf.delegate sideMenu:strongSelf didHideMenuViewController:rightMenuVisible ? strongSelf.rightMenuViewController : strongSelf.leftMenuViewController contentViewControllerChanged:self.contentViewControllerChanged];
+            }
         }
     };
     
@@ -678,14 +691,17 @@
             (self.contentViewContainer.frame.origin.x < 0 && self.contentViewContainer.frame.origin.x > -((NSInteger)self.panMinimumOpenThreshold)) ||
             (self.contentViewContainer.frame.origin.x > 0 && self.contentViewContainer.frame.origin.x < self.panMinimumOpenThreshold))
             ) {
+            self.contentViewControllerChanged = NO;
             [self hideMenuViewController];
         }
         else if (self.contentViewContainer.frame.origin.x == 0) {
+            self.contentViewControllerChanged = NO;
             [self hideMenuViewControllerAnimated:NO];
         }
         else {
             if ([recognizer velocityInView:self.view].x > 0) {
                 if (self.contentViewContainer.frame.origin.x < 0) {
+                    self.contentViewControllerChanged = NO;
                     [self hideMenuViewController];
                 } else {
                     if (self.leftMenuViewController) {
@@ -698,6 +714,7 @@
                         [self showRightMenuViewController];
                     }
                 } else {
+                    self.contentViewControllerChanged = NO;
                     [self hideMenuViewController];
                 }
             }

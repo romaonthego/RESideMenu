@@ -94,4 +94,6 @@
 - (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController;
 - (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController;
 
+- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController contentViewControllerChanged:(BOOL)contentViewControllerChanged;
+- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController contentViewControllerChanged:(BOOL)contentViewControllerChanged;
 @end
