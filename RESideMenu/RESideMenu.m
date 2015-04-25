@@ -103,7 +103,7 @@
     _bouncesHorizontally = YES;
     
     _panGestureEnabled = YES;
-    _panFromEdge = YES;
+    _panDirection = REPanDirectionFromEdge;
     _panMinimumOpenThreshold = 60.0;
     
     _contentViewShadowEnabled = NO;
@@ -535,12 +535,16 @@
        }
     );
   
-    if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
-        CGPoint point = [touch locationInView:gestureRecognizer.view];
-        if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
+        if (self.panDirection == REPanDirectionFromEdge) {
+            CGPoint point = [touch locationInView:gestureRecognizer.view];
+            if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
+                return YES;
+            } else {
+                return NO;
+            }
+        } else if (self.panDirection == REPanDirectionFromEveryWhere){
             return YES;
-        } else {
-            return NO;
         }
     }
     
