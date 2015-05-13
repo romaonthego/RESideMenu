@@ -73,6 +73,7 @@
 @property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
+@property (assign, readwrite, nonatomic) BOOL contentViewControllerChanged;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController

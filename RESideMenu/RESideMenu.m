@@ -38,7 +38,6 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
-@property (assign, readwrite, nonatomic) BOOL contentViewControllerChanged;
 
 @end
 
