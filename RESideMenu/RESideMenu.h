@@ -73,6 +73,7 @@
 @property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
+@property (assign, readwrite, nonatomic) BOOL contentViewControllerChanged;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController
@@ -80,6 +81,7 @@
 - (void)presentLeftMenuViewController;
 - (void)presentRightMenuViewController;
 - (void)hideMenuViewController;
+- (void)hideMenuViewControllerAnimated:(BOOL)animated;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 
 @end
@@ -93,4 +95,6 @@
 - (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController;
 - (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController;
 
+- (void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController contentViewControllerChanged:(BOOL)contentViewControllerChanged;
+- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController contentViewControllerChanged:(BOOL)contentViewControllerChanged;
 @end

@@ -62,4 +62,12 @@
     NSLog(@"didHideMenuViewController: %@", NSStringFromClass([menuViewController class]));
 }
 
+-(void)sideMenu:(RESideMenu *)sideMenu willHideMenuViewController:(UIViewController *)menuViewController contentViewControllerChanged:(BOOL)contentViewControllerChanged {
+    NSLog(@"willHideMenuViewController: %@ - changed: %@", NSStringFromClass([menuViewController class]), contentViewControllerChanged ? @"YES" : @"NO");
+}
+
+-(void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController contentViewControllerChanged:(BOOL)contentViewControllerChanged {
+    NSLog(@"didHideMenuViewController: %@ - changed: %@", NSStringFromClass([menuViewController class]), contentViewControllerChanged ? @"YES" : @"NO");
+}
+
 @end
