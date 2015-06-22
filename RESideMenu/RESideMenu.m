@@ -99,6 +99,8 @@
     _parallaxMenuMaximumRelativeValue = 15;
     _parallaxContentMinimumRelativeValue = -25;
     _parallaxContentMaximumRelativeValue = 25;
+
+    _backgroundTransformScale = 1.7;
     
     _bouncesHorizontally = YES;
     
@@ -232,7 +234,7 @@
     
     self.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
     if (self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        self.backgroundImageView.transform = [self backgroundTransformMakeScale];
     
     [self addMenuViewControllerMotionEffects];
     
@@ -262,7 +264,7 @@
     }
     self.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
     if (self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+        self.backgroundImageView.transform = [self backgroundTransformMakeScale];
     
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
         [self.delegate sideMenu:self willShowMenuViewController:menuViewController];
@@ -395,7 +397,7 @@
         strongSelf.contentViewContainer.alpha = 1;
 
         if (strongSelf.scaleBackgroundImageView) {
-            strongSelf.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+            strongSelf.backgroundImageView.transform = [self backgroundTransformMakeScale];
         }
         if (strongSelf.parallaxEnabled) {
             IF_IOS7_OR_GREATER(
@@ -472,6 +474,11 @@
     self.contentViewContainer.transform = CGAffineTransformIdentity;
     self.contentViewContainer.transform = CGAffineTransformMakeScale(scale, scale);
     self.contentViewContainer.frame = frame;
+}
+
+- (CGAffineTransform)backgroundTransformMakeScale
+{
+    return CGAffineTransformMakeScale(self.backgroundTransformScale, self.backgroundTransformScale);
 }
 
 #pragma mark -
@@ -588,7 +595,7 @@
         
         CGFloat contentViewScale = self.scaleContentView ? 1 - ((1 - self.contentViewScaleValue) * delta) : 1;
         
-        CGFloat backgroundViewScale = 1.7f - (0.7f * delta);
+        CGFloat backgroundViewScale = self.backgroundTransformScale - (0.7f * delta);
         CGFloat menuViewScale = 1.5f - (0.5f * delta);
 
         if (!self.bouncesHorizontally) {

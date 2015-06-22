@@ -68,6 +68,7 @@
 @property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxMenuMaximumRelativeValue;
 @property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxContentMinimumRelativeValue;
 @property (assign, readwrite, nonatomic) IBInspectable CGFloat parallaxContentMaximumRelativeValue;
+@property (assign, readwrite, nonatomic) IBInspectable CGFloat backgroundTransformScale;
 @property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
