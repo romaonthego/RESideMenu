@@ -552,12 +552,15 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
-    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
-        [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
+    BOOL stop = NO;
     
-    if (!self.panGestureEnabled) {
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:shouldStop:)])
+        [self.delegate sideMenu:self didRecognizePanGesture:recognizer shouldStop:&stop];
+    
+    if (!self.panGestureEnabled || stop) {
         return;
     }
+
     
     CGPoint point = [recognizer translationInView:self.view];
     
