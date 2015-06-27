@@ -42,6 +42,13 @@
 #pragma mark -
 #pragma mark RESideMenu Delegate
 
+- (BOOL)sideMenu:(RESideMenu *)sideMenu shouldBeginPanGesture:(UIPanGestureRecognizer *)recognizer
+{
+    BOOL stop = !CGRectContainsPoint(sideMenu.contentViewController.view.bounds, [recognizer locationInView:sideMenu.contentViewController.view]);
+    
+    return !stop;
+}
+
 - (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController
 {
     NSLog(@"willShowMenuViewController: %@", NSStringFromClass([menuViewController class]));
