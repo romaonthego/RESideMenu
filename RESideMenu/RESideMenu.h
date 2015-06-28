@@ -23,7 +23,7 @@
 // THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 //! Project version number for RESideMenu.
 FOUNDATION_EXPORT double RESideMenuVersionNumber;

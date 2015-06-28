@@ -24,7 +24,7 @@
 //
 
 #import "RECommonFunctions.h"
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 BOOL RESideMenuUIKitIsFlatMode(void)
 {
