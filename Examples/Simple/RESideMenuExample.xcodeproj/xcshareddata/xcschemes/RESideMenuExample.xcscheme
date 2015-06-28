@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17FEB6A11B400B5600E04564"
-               BuildableName = "RESideMenu.framework"
-               BlueprintName = "RESideMenu"
-               ReferencedContainer = "container:RESideMenu.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17FEB6AC1B400B5600E04564"
-               BuildableName = "RESideMenuTests.xctest"
-               BlueprintName = "RESideMenuTests"
-               ReferencedContainer = "container:RESideMenu.xcodeproj">
+               BlueprintIdentifier = "3032B90E1807338200064F85"
+               BuildableName = "RESideMenuExample.app"
+               BlueprintName = "RESideMenuExample"
+               ReferencedContainer = "container:RESideMenuExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,24 +28,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17FEB6AC1B400B5600E04564"
-               BuildableName = "RESideMenuTests.xctest"
-               BlueprintName = "RESideMenuTests"
-               ReferencedContainer = "container:RESideMenu.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "17FEB6A11B400B5600E04564"
-            BuildableName = "RESideMenu.framework"
-            BlueprintName = "RESideMenu"
-            ReferencedContainer = "container:RESideMenu.xcodeproj">
+            BlueprintIdentifier = "3032B90E1807338200064F85"
+            BuildableName = "RESideMenuExample.app"
+            BlueprintName = "RESideMenuExample"
+            ReferencedContainer = "container:RESideMenuExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "17FEB6A11B400B5600E04564"
-            BuildableName = "RESideMenu.framework"
-            BlueprintName = "RESideMenu"
-            ReferencedContainer = "container:RESideMenu.xcodeproj">
+            BlueprintIdentifier = "3032B90E1807338200064F85"
+            BuildableName = "RESideMenuExample.app"
+            BlueprintName = "RESideMenuExample"
+            ReferencedContainer = "container:RESideMenuExample.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -93,15 +70,16 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "17FEB6A11B400B5600E04564"
-            BuildableName = "RESideMenu.framework"
-            BlueprintName = "RESideMenu"
-            ReferencedContainer = "container:RESideMenu.xcodeproj">
+            BlueprintIdentifier = "3032B90E1807338200064F85"
+            BuildableName = "RESideMenuExample.app"
+            BlueprintName = "RESideMenuExample"
+            ReferencedContainer = "container:RESideMenuExample.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

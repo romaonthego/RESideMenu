@@ -31,7 +31,7 @@ FOUNDATION_EXPORT double RESideMenuVersionNumber;
 //! Project version string for RESideMenu.
 FOUNDATION_EXPORT const unsigned char RESideMenuVersionString[];
 
-#import "UIViewController+RESideMenu.h"
+#import <RESideMenu/UIViewController+RESideMenu.h>
 
 #ifndef IBInspectable
 #define IBInspectable

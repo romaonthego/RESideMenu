@@ -19,9 +19,6 @@
 		3076CE021809B59E00527E6C /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFA1809B59E00527E6C /* DEMOLeftMenuViewController.m */; };
 		3076CE041809B59E00527E6C /* DEMORootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CDFE1809B59E00527E6C /* DEMORootViewController.m */; };
 		3076CE051809B59E00527E6C /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE001809B59E00527E6C /* DEMOSecondViewController.m */; };
-		3076CE0D1809B5C500527E6C /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE081809B5C400527E6C /* RECommonFunctions.m */; };
-		3076CE0E1809B5C500527E6C /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0A1809B5C500527E6C /* RESideMenu.m */; };
-		3076CE0F1809B5C500527E6C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */; };
 		30DF13B218DE1B0C0018463C /* DEMORightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +35,6 @@
 		3076CDD11809B47200527E6C /* DEMOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMOAppDelegate.m; sourceTree = "<group>"; };
 		3076CDD41809B47200527E6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3076CDD91809B47200527E6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3076CDE01809B47200527E6C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3076CDF71809B59E00527E6C /* DEMOFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOFirstViewController.h; sourceTree = "<group>"; };
 		3076CDF81809B59E00527E6C /* DEMOFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOFirstViewController.m; sourceTree = "<group>"; };
 		3076CDF91809B59E00527E6C /* DEMOLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOLeftMenuViewController.h; sourceTree = "<group>"; };
@@ -47,12 +43,6 @@
 		3076CDFE1809B59E00527E6C /* DEMORootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORootViewController.m; sourceTree = "<group>"; };
 		3076CDFF1809B59E00527E6C /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
 		3076CE001809B59E00527E6C /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
-		3076CE071809B5C400527E6C /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
-		3076CE081809B5C400527E6C /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
-		3076CE091809B5C400527E6C /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
-		3076CE0A1809B5C500527E6C /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
-		3076CE0B1809B5C500527E6C /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
-		3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		30DF13B018DE1B0C0018463C /* DEMORightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMORightMenuViewController.h; sourceTree = "<group>"; };
 		30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMORightMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +64,6 @@
 		3076CDB51809B47200527E6C = {
 			isa = PBXGroup;
 			children = (
-				3076CE061809B5C400527E6C /* RESideMenu */,
 				3076CDC71809B47200527E6C /* RESideMenuStoryboardsExample */,
 				3076CDC01809B47200527E6C /* Frameworks */,
 				3076CDBF1809B47200527E6C /* Products */,
@@ -95,7 +84,6 @@
 				3076CDC11809B47200527E6C /* Foundation.framework */,
 				3076CDC31809B47200527E6C /* CoreGraphics.framework */,
 				3076CDC51809B47200527E6C /* UIKit.framework */,
-				3076CDE01809B47200527E6C /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,20 +127,6 @@
 				30DF13B118DE1B0C0018463C /* DEMORightMenuViewController.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		3076CE061809B5C400527E6C /* RESideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				3076CE071809B5C400527E6C /* RECommonFunctions.h */,
-				3076CE081809B5C400527E6C /* RECommonFunctions.m */,
-				3076CE091809B5C400527E6C /* RESideMenu.h */,
-				3076CE0A1809B5C500527E6C /* RESideMenu.m */,
-				3076CE0B1809B5C500527E6C /* UIViewController+RESideMenu.h */,
-				3076CE0C1809B5C500527E6C /* UIViewController+RESideMenu.m */,
-			);
-			name = RESideMenu;
-			path = ../../RESideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +202,6 @@
 				3076CE051809B59E00527E6C /* DEMOSecondViewController.m in Sources */,
 				30DF13B218DE1B0C0018463C /* DEMORightMenuViewController.m in Sources */,
 				3076CE041809B59E00527E6C /* DEMORootViewController.m in Sources */,
-				3076CE0F1809B5C500527E6C /* UIViewController+RESideMenu.m in Sources */,
-				3076CE0E1809B5C500527E6C /* RESideMenu.m in Sources */,
-				3076CE0D1809B5C500527E6C /* RECommonFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -320,7 +291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -334,7 +305,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -349,7 +320,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

@@ -10,7 +10,7 @@
 		177090E81B400E0000ED6490 /* RECommonFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 177090E31B400E0000ED6490 /* RECommonFunctions.h */; };
 		177090E91B400E0000ED6490 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 177090E41B400E0000ED6490 /* RECommonFunctions.m */; };
 		177090EA1B400E0000ED6490 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 177090E51B400E0000ED6490 /* RESideMenu.m */; };
-		177090EB1B400E0000ED6490 /* UIViewController+RESideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 177090E61B400E0000ED6490 /* UIViewController+RESideMenu.h */; };
+		177090EB1B400E0000ED6490 /* UIViewController+RESideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 177090E61B400E0000ED6490 /* UIViewController+RESideMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		177090EC1B400E0000ED6490 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 177090E71B400E0000ED6490 /* UIViewController+RESideMenu.m */; };
 		17FEB6A81B400B5600E04564 /* RESideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 17FEB6A71B400B5600E04564 /* RESideMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -24,8 +24,6 @@
 		17FEB6A21B400B5600E04564 /* RESideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RESideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FEB6A61B400B5600E04564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17FEB6A71B400B5600E04564 /* RESideMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
-		17FEB6B31B400B5600E04564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17FEB6B41B400B5600E04564 /* RESideMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESideMenuTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				17FEB6A41B400B5600E04564 /* RESideMenu */,
-				17FEB6B11B400B5600E04564 /* RESideMenuTests */,
 				17FEB6A31B400B5600E04564 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,11 +58,11 @@
 			children = (
 				177090E31B400E0000ED6490 /* RECommonFunctions.h */,
 				177090E41B400E0000ED6490 /* RECommonFunctions.m */,
+				17FEB6A71B400B5600E04564 /* RESideMenu.h */,
 				177090E51B400E0000ED6490 /* RESideMenu.m */,
+				17FEB6A51B400B5600E04564 /* Supporting Files */,
 				177090E61B400E0000ED6490 /* UIViewController+RESideMenu.h */,
 				177090E71B400E0000ED6490 /* UIViewController+RESideMenu.m */,
-				17FEB6A71B400B5600E04564 /* RESideMenu.h */,
-				17FEB6A51B400B5600E04564 /* Supporting Files */,
 			);
 			path = RESideMenu;
 			sourceTree = "<group>";
@@ -74,23 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				17FEB6A61B400B5600E04564 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		17FEB6B11B400B5600E04564 /* RESideMenuTests */ = {
-			isa = PBXGroup;
-			children = (
-				17FEB6B41B400B5600E04564 /* RESideMenuTests.m */,
-				17FEB6B21B400B5600E04564 /* Supporting Files */,
-			);
-			path = RESideMenuTests;
-			sourceTree = "<group>";
-		};
-		17FEB6B21B400B5600E04564 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				17FEB6B31B400B5600E04564 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -135,6 +115,7 @@
 		17FEB6991B400B5600E04564 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = RE;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Roman Efimov";
 				TargetAttributes = {
@@ -281,6 +262,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RESideMenu/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -296,6 +278,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RESideMenu/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
