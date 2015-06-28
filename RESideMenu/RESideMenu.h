@@ -24,6 +24,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+//! Project version number for RESideMenu.
+FOUNDATION_EXPORT double RESideMenuVersionNumber;
+
+//! Project version string for RESideMenu.
+FOUNDATION_EXPORT const unsigned char RESideMenuVersionString[];
+
 #import "UIViewController+RESideMenu.h"
 
 #ifndef IBInspectable
