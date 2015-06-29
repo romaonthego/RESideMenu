@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RESideMenu.h"
+#import <RESideMenu/RESideMenu.h>
 
 @interface DEMOAppDelegate : UIResponder <UIApplicationDelegate, RESideMenuDelegate>
 

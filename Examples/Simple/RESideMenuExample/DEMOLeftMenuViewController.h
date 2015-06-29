@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RESideMenu.h"
+#import <RESideMenu/RESideMenu.h>
 
 @interface DEMOLeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

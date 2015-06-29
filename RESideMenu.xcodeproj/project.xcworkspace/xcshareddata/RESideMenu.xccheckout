@@ -5,20 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>3879733F-3A95-4277-B781-69031D14BC32</string>
+	<string>C0DC6D63-A586-4BBA-A0D0-BCBB2CCDA23E</string>
 	<key>IDESourceControlProjectName</key>
-	<string>RESideMenuStoryboardsExample</string>
+	<string>RESideMenu</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4D9AE519C7D7E765CA7498EFD8B3BB24ACB11215</key>
 		<string>github.com:keslcod/RESideMenu.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Examples/Storyboards/RESideMenuStoryboardsExample.xcodeproj</string>
+	<string>RESideMenu.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4D9AE519C7D7E765CA7498EFD8B3BB24ACB11215</key>
-		<string>../../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:keslcod/RESideMenu.git</string>

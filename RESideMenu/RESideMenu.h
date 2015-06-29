@@ -23,8 +23,15 @@
 // THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import "UIViewController+RESideMenu.h"
+@import UIKit;
+
+//! Project version number for RESideMenu.
+FOUNDATION_EXPORT double RESideMenuVersionNumber;
+
+//! Project version string for RESideMenu.
+FOUNDATION_EXPORT const unsigned char RESideMenuVersionString[];
+
+#import <RESideMenu/UIViewController+RESideMenu.h>
 
 #ifndef IBInspectable
 #define IBInspectable
@@ -81,6 +88,8 @@
 - (void)presentRightMenuViewController;
 - (void)hideMenuViewController;
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
+
+- (IBAction)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
 
 @end
 
