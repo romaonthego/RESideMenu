@@ -45,6 +45,8 @@
 @property (strong, readwrite, nonatomic) UIViewController *rightMenuViewController;
 @property (weak, readwrite, nonatomic) id<RESideMenuDelegate> delegate;
 
+@property (assign, readwrite, nonatomic) BOOL simpleMode;
+
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (strong, readwrite, nonatomic) UIImage *backgroundImage;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
