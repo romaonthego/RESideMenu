@@ -256,7 +256,7 @@
     
     self.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
     if (self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
+    self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
     
     [self addMenuViewControllerMotionEffects];
     
@@ -275,6 +275,10 @@
 
 - (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
 {
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
+        [self.delegate sideMenu:self willShowMenuViewController:menuViewController];
+    }
+    
     self.menuViewContainer.transform = CGAffineTransformIdentity;
     if (self.scaleBackgroundImageView) {
         self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -286,11 +290,7 @@
     }
     self.menuViewContainer.alpha = !self.fadeMenuView ?: 0;
     if (self.scaleBackgroundImageView)
-        self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
-    
-    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willShowMenuViewController:)]) {
-        [self.delegate sideMenu:self willShowMenuViewController:menuViewController];
-    }
+    self.backgroundImageView.transform = CGAffineTransformMakeScale(1.7f, 1.7f);
 }
 
 - (void)showLeftMenuViewController
@@ -322,7 +322,7 @@
         self.contentViewContainer.alpha = self.contentViewFadeOutAlpha;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView)
-            self.backgroundImageView.transform = CGAffineTransformIdentity;
+        self.backgroundImageView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
@@ -363,7 +363,7 @@
         self.contentViewContainer.alpha = self.contentViewFadeOutAlpha;
         self.menuViewContainer.transform = CGAffineTransformIdentity;
         if (self.scaleBackgroundImageView)
-            self.backgroundImageView.transform = CGAffineTransformIdentity;
+        self.backgroundImageView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
         if (!self.rightMenuVisible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
@@ -451,7 +451,7 @@
 - (void)addContentButton
 {
     if (self.contentButton.superview)
-        return;
+    return;
     
     self.contentButton.autoresizingMask = UIViewAutoresizingNone;
     self.contentButton.frame = self.contentViewContainer.bounds;
@@ -574,7 +574,7 @@
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
-        [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
+    [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
     
     if (!self.panGestureEnabled) {
         return;
@@ -637,10 +637,10 @@
         
         if (!self.bouncesHorizontally && self.visible) {
             if (self.contentViewContainer.frame.origin.x > self.contentViewContainer.frame.size.width / 2.0)
-                point.x = MIN(0.0, point.x);
+            point.x = MIN(0.0, point.x);
             
             if (self.contentViewContainer.frame.origin.x < -(self.contentViewContainer.frame.size.width / 2.0))
-                point.x = MAX(0.0, point.x);
+            point.x = MAX(0.0, point.x);
         }
         
         // Limit size
@@ -752,7 +752,7 @@
 {
     _backgroundImage = backgroundImage;
     if (self.backgroundImageView)
-        self.backgroundImageView.image = backgroundImage;
+    self.backgroundImageView.image = backgroundImage;
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
