@@ -298,6 +298,7 @@
     if (!self.leftMenuViewController) {
         return;
     }
+    [self.leftMenuViewController beginAppearanceTransition:YES animated:YES];
     self.leftMenuViewController.view.hidden = NO;
     self.rightMenuViewController.view.hidden = YES;
     [self.view.window endEditing:YES];
@@ -326,6 +327,7 @@
         
     } completion:^(BOOL finished) {
         [self addContentViewControllerMotionEffects];
+        [self.leftMenuViewController endAppearanceTransition];
         
         if (!self.visible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.leftMenuViewController];
@@ -343,6 +345,7 @@
     if (!self.rightMenuViewController) {
         return;
     }
+    [self.rightMenuViewController beginAppearanceTransition:YES animated:YES];
     self.leftMenuViewController.view.hidden = YES;
     self.rightMenuViewController.view.hidden = NO;
     [self.view.window endEditing:YES];
@@ -366,6 +369,7 @@
         self.backgroundImageView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
+        [self.rightMenuViewController endAppearanceTransition];
         if (!self.rightMenuVisible && [self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didShowMenuViewController:)]) {
             [self.delegate sideMenu:self didShowMenuViewController:self.rightMenuViewController];
         }
@@ -390,6 +394,8 @@
 - (void)hideMenuViewControllerAnimated:(BOOL)animated
 {
     BOOL rightMenuVisible = self.rightMenuVisible;
+    UIViewController *visibleMenuViewController = rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController;
+    [visibleMenuViewController beginAppearanceTransition:NO animated:animated];
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:willHideMenuViewController:)]) {
         [self.delegate sideMenu:self willHideMenuViewController:rightMenuVisible ? self.rightMenuViewController : self.leftMenuViewController];
     }
@@ -428,6 +434,7 @@
         if (!strongSelf) {
             return;
         }
+        [visibleMenuViewController endAppearanceTransition];
         if (!strongSelf.visible && [strongSelf.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [strongSelf.delegate respondsToSelector:@selector(sideMenu:didHideMenuViewController:)]) {
             [strongSelf.delegate sideMenu:strongSelf didHideMenuViewController:rightMenuVisible ? strongSelf.rightMenuViewController : strongSelf.leftMenuViewController];
         }
