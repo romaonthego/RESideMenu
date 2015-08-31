@@ -757,6 +757,11 @@
 
 - (void)setRightMenuViewController:(UIViewController *)rightMenuViewController
 {
+    if ( ! rightMenuViewController) {
+        _rightMenuViewController = nil;
+        return;
+    }
+
     if (!_rightMenuViewController) {
         _rightMenuViewController = rightMenuViewController;
         return;
