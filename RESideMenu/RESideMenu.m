@@ -150,6 +150,11 @@
 
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated
 {
+    [self setContentViewController:contentViewController animated:animated completion:nil];
+}
+
+- (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated completion:(void(^)())completion
+{
     if (_contentViewController == contentViewController)
     {
         return;
@@ -168,12 +173,16 @@
             [self hideViewController:self.contentViewController];
             [contentViewController didMoveToParentViewController:self];
             _contentViewController = contentViewController;
-
+            
             [self statusBarNeedsAppearanceUpdate];
             [self updateContentViewShadow];
             
             if (self.visible) {
                 [self addContentViewControllerMotionEffects];
+            }
+            
+            if (completion) {
+                completion();
             }
         }];
     }
