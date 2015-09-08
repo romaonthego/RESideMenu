@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4D9AE519C7D7E765CA7498EFD8B3BB24ACB11215</key>
-		<string>ssh://github.com/romaonthego/RESideMenu.git</string>
+		<string>https://github.com/kafejo/RESideMenu.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Examples/Storyboards/RESideMenuStoryboardsExample.xcodeproj/project.xcworkspace</string>
+	<string>Examples/Storyboards/RESideMenuStoryboardsExample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4D9AE519C7D7E765CA7498EFD8B3BB24ACB11215</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/romaonthego/RESideMenu.git</string>
+	<string>https://github.com/kafejo/RESideMenu.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
