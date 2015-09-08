@@ -605,7 +605,10 @@
         }
         
         if (self.scaleMenuView) {
-            self.menuViewContainer.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
+//            self.menuViewContainer.transform = CGAffineTransformMakeScale(menuViewScale, menuViewScale);
+            CGFloat a = _menuViewControllerTransformation.a + delta * (1.0 - _menuViewControllerTransformation.a);
+            CGFloat d = _menuViewControllerTransformation.d + delta * (1.0 - _menuViewControllerTransformation.d);
+            self.menuViewContainer.transform = CGAffineTransformMakeScale(a, d);
         }
         
         if (self.scaleBackgroundImageView) {
