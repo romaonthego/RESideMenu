@@ -20,6 +20,7 @@
 		C26E25001B9FC2A70006A2DC /* DEMOFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26E24FF1B9FC2A70006A2DC /* DEMOFirstViewController.swift */; };
 		C26E25051B9FC5620006A2DC /* DEMOLeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26E25041B9FC5620006A2DC /* DEMOLeftMenuViewController.swift */; };
 		C26E25071B9FC5870006A2DC /* DEMORightMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26E25061B9FC5870006A2DC /* DEMORightMenuViewController.swift */; };
+		C2F3562C1B9FEE980064901B /* DEMOSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F3562B1B9FEE980064901B /* DEMOSecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		C26E25011B9FC3AF0006A2DC /* RESideMenuStoryboardsExampleSwift-Bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RESideMenuStoryboardsExampleSwift-Bridging-header.h"; sourceTree = "<group>"; };
 		C26E25041B9FC5620006A2DC /* DEMOLeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DEMOLeftMenuViewController.swift; sourceTree = "<group>"; };
 		C26E25061B9FC5870006A2DC /* DEMORightMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DEMORightMenuViewController.swift; sourceTree = "<group>"; };
+		C2F3562B1B9FEE980064901B /* DEMOSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DEMOSecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				C26E24D31B9FB1DB0006A2DC /* AppDelegate.swift */,
 				C26E24D51B9FB1DB0006A2DC /* ViewController.swift */,
 				C26E24D71B9FB1DB0006A2DC /* Main.storyboard */,
+				C2F3562B1B9FEE980064901B /* DEMOSecondViewController.swift */,
 				C26E24FF1B9FC2A70006A2DC /* DEMOFirstViewController.swift */,
 				C26E24FD1B9FC2000006A2DC /* DEMORootViewController.swift */,
 				C26E25061B9FC5870006A2DC /* DEMORightMenuViewController.swift */,
@@ -252,6 +255,7 @@
 				C26E24FB1B9FC1DD0006A2DC /* RESideMenu.m in Sources */,
 				C26E24D61B9FB1DB0006A2DC /* ViewController.swift in Sources */,
 				C26E24FC1B9FC1DD0006A2DC /* UIViewController+RESideMenu.m in Sources */,
+				C2F3562C1B9FEE980064901B /* DEMOSecondViewController.swift in Sources */,
 				C26E25001B9FC2A70006A2DC /* DEMOFirstViewController.swift in Sources */,
 				C26E24FE1B9FC2000006A2DC /* DEMORootViewController.swift in Sources */,
 				C26E24FA1B9FC1DD0006A2DC /* RECommonFunctions.m in Sources */,
@@ -455,6 +459,7 @@
 				C26E24EF1B9FB1DB0006A2DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C26E24F01B9FB1DB0006A2DC /* Build configuration list for PBXNativeTarget "RESideMenuStoryboardsExampleSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +468,7 @@
 				C26E24F21B9FB1DB0006A2DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

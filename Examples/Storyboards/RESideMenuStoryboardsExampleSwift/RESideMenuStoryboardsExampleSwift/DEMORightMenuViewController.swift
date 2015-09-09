@@ -8,28 +8,78 @@
 
 import UIKit
 
-class DEMORightMenuViewController: UIViewController {
+class DEMORightMenuViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+  
+  @IBOutlet weak var tableView: UITableView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.view.backgroundColor = UIColor.clearColor()
+    
+    let table = UITableView(frame: CGRectMake(0, (self.view.frame.size.height-54*5)/2.0, self.view.frame.size.width, 54*5), style: .Plain)
+    table.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth
+    table.delegate = self
+    table.dataSource = self
+    table.opaque = false
+    table.backgroundColor = UIColor.clearColor()
+    table.backgroundView = nil
+    table.separatorStyle = .None
+    table.bounces = false
+    table.scrollsToTop = false
+    
+    self.tableView = table
+    self.view.addSubview(self.tableView)
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  {
+    return 2
+  }
+  
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+  {
+    return 54
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  {
+    var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell!
+    if cell == nil
+    {
+      cell = UITableViewCell(style:.Default, reuseIdentifier: "cell")
+      cell.backgroundColor = UIColor.clearColor()
+      cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 21)
+      cell.textLabel?.textColor = UIColor.whiteColor()
+      cell.textLabel?.highlightedTextColor = UIColor.lightGrayColor()
+      cell.selectedBackgroundView = UIView()
     }
     
+    let titles = ["Test 1", "Test 2"]
+    cell.textLabel!.text = titles[indexPath.row]
+    cell.textLabel?.textAlignment = .Right
+    return cell
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+  {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    switch indexPath.row
+    {
+    case 0:
+      self.sideMenuViewController.setContentViewController(UINavigationController(rootViewController: self.storyboard?.instantiateViewControllerWithIdentifier("firstViewController")as! UIViewController), animated: true)
+      self.sideMenuViewController.hideMenuViewController()
+      
+    case 1:
+      self.sideMenuViewController.setContentViewController(UINavigationController(rootViewController: self.storyboard?.instantiateViewControllerWithIdentifier("secondViewController")as! UIViewController), animated: true)
+      self.sideMenuViewController.hideMenuViewController()
+      
+    default:
+      break
     }
-    */
 
+  }
+  
+  
 }

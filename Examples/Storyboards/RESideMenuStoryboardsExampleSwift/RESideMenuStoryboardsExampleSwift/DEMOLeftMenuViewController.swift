@@ -9,28 +9,28 @@
 import UIKit
 
 class DEMOLeftMenuViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,RESideMenuDelegate {
-
+  
   @IBOutlet weak var tableView: UITableView!
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-      self.view.backgroundColor = UIColor.clearColor()
-      
-      let table = UITableView(frame: CGRectMake(0, (self.view.frame.size.height-54*5)/2.0, self.view.frame.size.width, 54*5), style: .Plain)
-      table.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth
-      table.delegate = self
-      table.dataSource = self
-      table.opaque = false
-      table.backgroundColor = UIColor.clearColor()
-      table.backgroundView = nil
-      table.separatorStyle = .None
-      table.bounces = false
-      table.scrollsToTop = false
-      
-      self.tableView = table
-      self.view.addSubview(self.tableView)
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    self.view.backgroundColor = UIColor.clearColor()
+    
+    let table = UITableView(frame: CGRectMake(0, (self.view.frame.size.height-54*5)/2.0, self.view.frame.size.width, 54*5), style: .Plain)
+    table.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleWidth
+    table.delegate = self
+    table.dataSource = self
+    table.opaque = false
+    table.backgroundColor = UIColor.clearColor()
+    table.backgroundView = nil
+    table.separatorStyle = .None
+    table.bounces = false
+    table.scrollsToTop = false
+    
+    self.tableView = table
+    self.view.addSubview(self.tableView)
+  }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   {
@@ -65,23 +65,37 @@ class DEMOLeftMenuViewController: UIViewController,UITableViewDataSource,UITable
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
   {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    switch indexPath.row
+    {
+    case 0:
+      self.sideMenuViewController.setContentViewController(UINavigationController(rootViewController: self.storyboard?.instantiateViewControllerWithIdentifier("firstViewController")as! UIViewController), animated: true)
+      self.sideMenuViewController.hideMenuViewController()
+      
+    case 1:
+      self.sideMenuViewController.setContentViewController(UINavigationController(rootViewController: self.storyboard?.instantiateViewControllerWithIdentifier("secondViewController")as! UIViewController), animated: true)
+      self.sideMenuViewController.hideMenuViewController()
+      
+    default:
+      break
+    }
     
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  
+  /*
+  // MARK: - Navigation
+  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  // Get the new view controller using segue.destinationViewController.
+  // Pass the selected object to the new view controller.
+  }
+  */
+  
 }
