@@ -29,15 +29,15 @@
 
 @interface RESideMenu ()
 
-@property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
-@property (assign, readwrite, nonatomic) BOOL visible;
-@property (assign, readwrite, nonatomic) BOOL leftMenuVisible;
-@property (assign, readwrite, nonatomic) BOOL rightMenuVisible;
-@property (assign, readwrite, nonatomic) CGPoint originalPoint;
-@property (strong, readwrite, nonatomic) UIButton *contentButton;
-@property (strong, readwrite, nonatomic) UIView *menuViewContainer;
-@property (strong, readwrite, nonatomic) UIView *contentViewContainer;
-@property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
+@property (strong, nonatomic) UIImageView *backgroundImageView;
+@property (assign, nonatomic, getter=isVisible) BOOL visible;
+@property (assign, nonatomic, getter=isLeftMenuVisible) BOOL leftMenuVisible;
+@property (assign, nonatomic, getter=isRightMenuVisible) BOOL rightMenuVisible;
+@property (assign, nonatomic) CGPoint originalPoint;
+@property (strong, nonatomic) UIButton *contentButton;
+@property (strong, nonatomic) UIView *menuViewContainer;
+@property (strong, nonatomic) UIView *contentViewContainer;
+@property (assign, nonatomic) BOOL didNotifyDelegate;
 
 @end
 
@@ -145,6 +145,13 @@
 
 - (void)hideMenuViewController
 {
+    if (self.leftMenuVisible || self.rightMenuVisible) {
+        [self forceHideMenuViewController];
+    }
+}
+
+- (void)forceHideMenuViewController
+{
     [self hideMenuViewControllerAnimated:YES];
 }
 
@@ -195,7 +202,7 @@
     });
     self.contentButton = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectNull];
-        [button addTarget:self action:@selector(hideMenuViewController) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(forceHideMenuViewController) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
     
@@ -678,7 +685,7 @@
             (self.contentViewContainer.frame.origin.x < 0 && self.contentViewContainer.frame.origin.x > -((NSInteger)self.panMinimumOpenThreshold)) ||
             (self.contentViewContainer.frame.origin.x > 0 && self.contentViewContainer.frame.origin.x < self.panMinimumOpenThreshold))
             ) {
-            [self hideMenuViewController];
+            [self forceHideMenuViewController];
         }
         else if (self.contentViewContainer.frame.origin.x == 0) {
             [self hideMenuViewControllerAnimated:NO];
@@ -686,7 +693,7 @@
         else {
             if ([recognizer velocityInView:self.view].x > 0) {
                 if (self.contentViewContainer.frame.origin.x < 0) {
-                    [self hideMenuViewController];
+                    [self forceHideMenuViewController];
                 } else {
                     if (self.leftMenuViewController) {
                         [self showLeftMenuViewController];
@@ -698,7 +705,7 @@
                         [self showRightMenuViewController];
                     }
                 } else {
-                    [self hideMenuViewController];
+                    [self forceHideMenuViewController];
                 }
             }
         }
