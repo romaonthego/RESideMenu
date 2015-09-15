@@ -182,7 +182,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DEMO;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Roman Efimov";
 			};
 			buildConfigurationList = 3076CDB91809B47200527E6C /* Build configuration list for PBXProject "RESideMenuStoryboardsExample" */;
@@ -274,6 +274,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -335,6 +336,7 @@
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Roman-Efimov.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -350,6 +352,7 @@
 				GCC_PREFIX_HEADER = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Prefix.pch";
 				INFOPLIST_FILE = "RESideMenuStoryboardsExample/RESideMenuStoryboardsExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Roman-Efimov.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
