@@ -145,6 +145,13 @@
 
 - (void)hideMenuViewController
 {
+    if (self.leftMenuVisible || self.rightMenuVisible) {
+        [self forceHideMenuViewController];
+    }
+}
+
+- (void)forceHideMenuViewController
+{
     [self hideMenuViewControllerAnimated:YES];
 }
 
@@ -195,7 +202,7 @@
     });
     self.contentButton = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectNull];
-        [button addTarget:self action:@selector(hideMenuViewController) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(forceHideMenuViewController) forControlEvents:UIControlEventTouchUpInside];
         button;
     });
     
@@ -678,7 +685,7 @@
             (self.contentViewContainer.frame.origin.x < 0 && self.contentViewContainer.frame.origin.x > -((NSInteger)self.panMinimumOpenThreshold)) ||
             (self.contentViewContainer.frame.origin.x > 0 && self.contentViewContainer.frame.origin.x < self.panMinimumOpenThreshold))
             ) {
-            [self hideMenuViewController];
+            [self forceHideMenuViewController];
         }
         else if (self.contentViewContainer.frame.origin.x == 0) {
             [self hideMenuViewControllerAnimated:NO];
@@ -686,7 +693,7 @@
         else {
             if ([recognizer velocityInView:self.view].x > 0) {
                 if (self.contentViewContainer.frame.origin.x < 0) {
-                    [self hideMenuViewController];
+                    [self forceHideMenuViewController];
                 } else {
                     if (self.leftMenuViewController) {
                         [self showLeftMenuViewController];
@@ -698,7 +705,7 @@
                         [self showRightMenuViewController];
                     }
                 } else {
-                    [self hideMenuViewController];
+                    [self forceHideMenuViewController];
                 }
             }
         }
