@@ -33,7 +33,11 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
         tableView.scrollsToTop = NO;
+        if ([tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) {
+            tableView.cellLayoutMarginsFollowReadableWidth = NO;
+        }
         tableView;
+        
     });
     [self.view addSubview:self.tableView];
 }
