@@ -32,6 +32,9 @@
         tableView.backgroundView = nil;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.bounces = NO;
+        if ([tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) {
+            tableView.cellLayoutMarginsFollowReadableWidth = NO;
+        }
         tableView;
     });
     [self.view addSubview:self.tableView];
