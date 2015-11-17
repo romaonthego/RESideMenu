@@ -103,6 +103,8 @@
     _bouncesHorizontally = YES;
     
     _panGestureEnabled = YES;
+    _panGestureLeftEnabled = YES;
+    _panGestureRightEnabled = YES;
     _panFromEdge = YES;
     _panMinimumOpenThreshold = 60.0;
     
@@ -537,11 +539,13 @@
   
     if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
         CGPoint point = [touch locationInView:gestureRecognizer.view];
-        if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
+        if(self.panGestureLeftEnabled && point.x < 20.0) {
             return YES;
-        } else {
-            return NO;
+        } else if(self.panGestureRightEnabled && point.x > self.view.frame.size.width - 20.0) {
+            return YES;
         }
+      
+        return NO;
     }
     
     return YES;
