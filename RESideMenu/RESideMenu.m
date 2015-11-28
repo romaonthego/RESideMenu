@@ -86,6 +86,7 @@
     
     _animationDuration = 0.35f;
     _interactivePopGestureRecognizerEnabled = YES;
+    _interactivePopGestureRecognizerIgnoreRightMenu = NO;
   
     _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
     
