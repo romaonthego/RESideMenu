@@ -86,6 +86,7 @@
     
     _animationDuration = 0.35f;
     _interactivePopGestureRecognizerEnabled = YES;
+    _interactivePopGestureRecognizerIgnoreRightMenu = NO;
   
     _menuViewControllerTransformation = CGAffineTransformMakeScale(1.5f, 1.5f);
     
@@ -526,18 +527,23 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    const CGFloat edgeWidth = 20;
+    const CGPoint point = [touch locationInView:gestureRecognizer.view];
+    const BOOL isLeftEdge = point.x < edgeWidth;
+    const BOOL isRightEdge = point.x > self.view.frame.size.width - edgeWidth;
+    
     IF_IOS7_OR_GREATER(
        if (self.interactivePopGestureRecognizerEnabled && [self.contentViewController isKindOfClass:[UINavigationController class]]) {
            UINavigationController *navigationController = (UINavigationController *)self.contentViewController;
-           if (navigationController.viewControllers.count > 1 && navigationController.interactivePopGestureRecognizer.enabled) {
+           const BOOL shouldIgnore = self.interactivePopGestureRecognizerIgnoreRightMenu && (!self.rightMenuViewController.view.hidden || isRightEdge);
+           if (!shouldIgnore && navigationController.viewControllers.count > 1 && navigationController.interactivePopGestureRecognizer.enabled) {
                return NO;
            }
        }
     );
   
     if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
-        CGPoint point = [touch locationInView:gestureRecognizer.view];
-        if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
+        if (isLeftEdge || isRightEdge) {
             return YES;
         } else {
             return NO;
