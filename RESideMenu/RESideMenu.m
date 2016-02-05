@@ -38,6 +38,7 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
+@property (strong, readwrite, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @end
 
@@ -237,10 +238,7 @@
     [self addMenuViewControllerMotionEffects];
     
     if (self.panGestureEnabled) {
-        self.view.multipleTouchEnabled = NO;
-        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
-        panGestureRecognizer.delegate = self;
-        [self.view addGestureRecognizer:panGestureRecognizer];
+        [self configurePanGestureRecognizer];
     }
     
     [self updateContentViewShadow];
@@ -472,6 +470,15 @@
     self.contentViewContainer.transform = CGAffineTransformIdentity;
     self.contentViewContainer.transform = CGAffineTransformMakeScale(scale, scale);
     self.contentViewContainer.frame = frame;
+}
+
+- (void)configurePanGestureRecognizer
+{
+    self.view.multipleTouchEnabled = NO;
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+    panGestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:panGestureRecognizer];
+    self.panGestureRecognizer = panGestureRecognizer;
 }
 
 #pragma mark -
@@ -772,6 +779,17 @@
     
     [self addMenuViewControllerMotionEffects];
     [self.view bringSubviewToFront:self.contentViewContainer];
+}
+
+- (void)setPanGestureEnabled:(BOOL)enabled
+{
+    _panGestureEnabled = enabled;
+    
+    if (self.panGestureRecognizer) {
+        self.panGestureRecognizer.enabled = enabled;
+    } else {
+        [self configurePanGestureRecognizer];
+    }
 }
 
 #pragma mark -
