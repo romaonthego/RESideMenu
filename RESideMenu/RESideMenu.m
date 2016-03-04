@@ -101,6 +101,7 @@
     _parallaxContentMaximumRelativeValue = 25;
     
     _bouncesHorizontally = YES;
+    _preventOvershoot = NO;
     
     _panGestureEnabled = YES;
     _panFromEdge = YES;
@@ -629,6 +630,25 @@
         } else {
             point.x = MIN(point.x, [UIScreen mainScreen].bounds.size.height);
         }
+        
+        // Prevent main content going past offsetCenterX
+        //
+        if (self.preventOvershoot && !self.bouncesHorizontally) {
+            if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+                if (point.x < 0) {
+                    point.x = MAX(point.x, -([UIScreen mainScreen].bounds.size.width / 2 + self.contentViewInLandscapeOffsetCenterX + self.originalPoint.x));
+                } else {
+                    point.x = MIN(point.x, [UIScreen mainScreen].bounds.size.width / 2 + self.contentViewInLandscapeOffsetCenterX - self.originalPoint.x);
+                }
+            } else {
+                if (point.x < 0) {
+                    point.x = MAX(point.x, -([UIScreen mainScreen].bounds.size.width / 2 + self.contentViewInPortraitOffsetCenterX + self.originalPoint.x));
+                } else {
+                    point.x = MIN(point.x, [UIScreen mainScreen].bounds.size.width / 2 + self.contentViewInPortraitOffsetCenterX - self.originalPoint.x);
+                }
+            }
+        }
+        
         [recognizer setTranslation:point inView:self.view];
         
         if (!self.didNotifyDelegate) {
