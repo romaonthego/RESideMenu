@@ -71,6 +71,7 @@
 @property (assign, readwrite, nonatomic) CGAffineTransform menuViewControllerTransformation;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL parallaxEnabled;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL bouncesHorizontally;
+@property (assign, readwrite, nonatomic) IBInspectable BOOL preventOvershoot;
 @property (assign, readwrite, nonatomic) UIStatusBarStyle menuPreferredStatusBarStyle;
 @property (assign, readwrite, nonatomic) IBInspectable BOOL menuPrefersStatusBarHidden;
 
