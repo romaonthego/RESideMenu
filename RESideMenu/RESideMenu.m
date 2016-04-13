@@ -251,9 +251,10 @@
 
 - (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
 {
-    
-    if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
-        return;
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:shouldShowMenuViewController:)]){
+        if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
+            return;
+        }
     }
     
     self.menuViewContainer.transform = CGAffineTransformIdentity;
@@ -557,6 +558,7 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
+    
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
         [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
     
@@ -565,13 +567,15 @@
     }
     
     CGPoint point = [recognizer translationInView:self.view];
-    if (point.x > 0) {
-        if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
-            return;
-        }
-    } else {
-        if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.rightMenuViewController]){
-            return;
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:shouldShowMenuViewController:)]){
+        if (point.x > 0) {
+            if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
+                return;
+            }
+        } else {
+            if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.rightMenuViewController]){
+                return;
+            }
         }
     }
     

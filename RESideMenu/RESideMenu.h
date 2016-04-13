@@ -86,9 +86,8 @@
 
 @protocol RESideMenuDelegate <NSObject>
 
-- (BOOL)sideMenu:(RESideMenu *)sideMenu shouldShowMenuViewController:(UIViewController *)menuViewController;
-
 @optional
+- (BOOL)sideMenu:(RESideMenu *)sideMenu shouldShowMenuViewController:(UIViewController *)menuViewController;
 - (void)sideMenu:(RESideMenu *)sideMenu didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer;
 - (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController;
 - (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController;
