@@ -251,6 +251,11 @@
 
 - (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
 {
+    
+    if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
+        return;
+    }
+    
     self.menuViewContainer.transform = CGAffineTransformIdentity;
     if (self.scaleBackgroundImageView) {
         self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -560,6 +565,15 @@
     }
     
     CGPoint point = [recognizer translationInView:self.view];
+    if (point.x > 0) {
+        if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
+            return;
+        }
+    } else {
+        if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.rightMenuViewController]){
+            return;
+        }
+    }
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self updateContentViewShadow];
