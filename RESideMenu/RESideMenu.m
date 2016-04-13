@@ -251,6 +251,12 @@
 
 - (void)presentMenuViewContainerWithMenuViewController:(UIViewController *)menuViewController
 {
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:shouldShowMenuViewController:)]){
+        if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
+            return;
+        }
+    }
+    
     self.menuViewContainer.transform = CGAffineTransformIdentity;
     if (self.scaleBackgroundImageView) {
         self.backgroundImageView.transform = CGAffineTransformIdentity;
@@ -552,6 +558,7 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
+    
     if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:didRecognizePanGesture:)])
         [self.delegate sideMenu:self didRecognizePanGesture:recognizer];
     
@@ -560,6 +567,17 @@
     }
     
     CGPoint point = [recognizer translationInView:self.view];
+    if ([self.delegate conformsToProtocol:@protocol(RESideMenuDelegate)] && [self.delegate respondsToSelector:@selector(sideMenu:shouldShowMenuViewController:)]){
+        if (point.x > 0) {
+            if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.leftMenuViewController]){
+                return;
+            }
+        } else {
+            if(! [self.delegate sideMenu:self shouldShowMenuViewController:self.rightMenuViewController]){
+                return;
+            }
+        }
+    }
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self updateContentViewShadow];
