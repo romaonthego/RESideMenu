@@ -38,7 +38,7 @@
 @property (strong, readwrite, nonatomic) UIView *menuViewContainer;
 @property (strong, readwrite, nonatomic) UIView *contentViewContainer;
 @property (assign, readwrite, nonatomic) BOOL didNotifyDelegate;
-
+@property (strong, readwrite, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @end
 
 @implementation RESideMenu
@@ -241,6 +241,7 @@
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
         panGestureRecognizer.delegate = self;
         [self.view addGestureRecognizer:panGestureRecognizer];
+        self.panGestureRecognizer = panGestureRecognizer;
     }
     
     [self updateContentViewShadow];
@@ -855,6 +856,12 @@
         }
     );
     return statusBarAnimation;
+}
+
+- (void)setPanGestureEnabled:(BOOL)panGestureEnabled
+{
+    _panGestureEnabled = panGestureEnabled;
+    self.panGestureRecognizer.enabled = panGestureEnabled;
 }
 
 @end
