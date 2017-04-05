@@ -79,7 +79,7 @@
             rightMenuViewController:(UIViewController *)rightMenuViewController;
 - (void)presentLeftMenuViewController;
 - (void)presentRightMenuViewController;
-- (void)hideMenuViewController;
+- (void)hideMenuViewController NS_SWIFT_NAME(hideSideMenuViewController());
 - (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated;
 
 @end
