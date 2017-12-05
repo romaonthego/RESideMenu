@@ -285,6 +285,7 @@
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewContainer.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+            [self updateContentViewAdditionalSafeAreaInsets];
         } else {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
         }
@@ -333,6 +334,7 @@
     [UIView animateWithDuration:self.animationDuration animations:^{
         if (self.scaleContentView) {
             self.contentViewContainer.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+            [self updateContentViewAdditionalSafeAreaInsets];
         } else {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
         }
@@ -388,6 +390,7 @@
         }
         strongSelf.contentViewContainer.transform = CGAffineTransformIdentity;
         strongSelf.contentViewContainer.frame = strongSelf.view.bounds;
+        [self updateContentViewAdditionalSafeAreaInsets];
         if (strongSelf.scaleMenuView) {
             strongSelf.menuViewContainer.transform = strongSelf.menuViewControllerTransformation;
         }
@@ -472,6 +475,21 @@
     self.contentViewContainer.transform = CGAffineTransformIdentity;
     self.contentViewContainer.transform = CGAffineTransformMakeScale(scale, scale);
     self.contentViewContainer.frame = frame;
+}
+
+- (void)updateContentViewAdditionalSafeAreaInsets
+{
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets insets = self.contentViewController.additionalSafeAreaInsets;
+        insets.top = CGRectGetMinY(self.contentViewContainer.frame);
+        CGFloat topSafeArea = CGRectGetMinY(self.view.safeAreaLayoutGuide.layoutFrame);
+        if (insets.top > topSafeArea) {
+            insets.top = topSafeArea;
+        } else if (insets.top < 0.0) {
+            insets.top = 0.0;
+        }
+        self.contentViewController.additionalSafeAreaInsets = insets;
+    }
 }
 
 #pragma mark -
@@ -649,9 +667,11 @@
             CGFloat oppositeScale = (1 - (contentViewScale - 1));
             self.contentViewContainer.transform = CGAffineTransformMakeScale(oppositeScale, oppositeScale);
             self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+            [self updateContentViewAdditionalSafeAreaInsets];
         } else {
             self.contentViewContainer.transform = CGAffineTransformMakeScale(contentViewScale, contentViewScale);
             self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+            [self updateContentViewAdditionalSafeAreaInsets];
         }
         
         self.leftMenuViewController.view.hidden = self.contentViewContainer.frame.origin.x < 0;
@@ -660,11 +680,13 @@
         if (!self.leftMenuViewController && self.contentViewContainer.frame.origin.x > 0) {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
             self.contentViewContainer.frame = self.view.bounds;
+            [self updateContentViewAdditionalSafeAreaInsets];
             self.visible = NO;
             self.leftMenuVisible = NO;
         } else  if (!self.rightMenuViewController && self.contentViewContainer.frame.origin.x < 0) {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
             self.contentViewContainer.frame = self.view.bounds;
+            [self updateContentViewAdditionalSafeAreaInsets];
             self.visible = NO;
             self.rightMenuVisible = NO;
         }
@@ -791,6 +813,7 @@
         
         if (self.scaleContentView) {
             self.contentViewContainer.transform = CGAffineTransformMakeScale(self.contentViewScaleValue, self.contentViewScaleValue);
+            [self updateContentViewAdditionalSafeAreaInsets];
         } else {
             self.contentViewContainer.transform = CGAffineTransformIdentity;
         }
